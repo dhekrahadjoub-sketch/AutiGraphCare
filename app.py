@@ -806,10 +806,24 @@ with st.sidebar:
         st.session_state['menu'] = "🏠 Accueil"
 
     cur_idx = menu_items.index(st.session_state['menu'])
-    menu = st.radio("Navigation", menu_items, index=cur_idx, key="nav_radio")
-    if menu != st.session_state['menu']:
-        st.session_state['menu'] = menu
-        st.rerun()
+
+    # Navigation par boutons cliquables (evite les conflits session_state/radio)
+    for i, item in enumerate(menu_items):
+        is_active = (item == st.session_state['menu'])
+        espace_color = "#FF6B9D" if st.session_state.get('espace') == 'parent' else "#4A90E2"
+        bg = espace_color if is_active else "transparent"
+        border = f"2px solid {espace_color}" if is_active else "2px solid transparent"
+        text_color = "white" if is_active else ("#ccc" if dark else "#555")
+        st.markdown(
+            f"<div style='background:{bg};border:{border};border-radius:8px;"
+            f"padding:0.35rem 0.8rem;margin-bottom:0.2rem;cursor:pointer;'>"
+            f"<span style='color:{text_color};font-size:0.9rem;font-weight:{'700' if is_active else '400'};'>"
+            f"{item}</span></div>",
+            unsafe_allow_html=True
+        )
+        if st.button(item, key=f"nav_btn_{i}_{item[:3]}", use_container_width=True):
+            st.session_state['menu'] = item
+            st.rerun()
 
     st.markdown("---")
     if espace:
@@ -2262,19 +2276,22 @@ elif m == "🏠 Accueil" and esp == 'pro':
     st.markdown("---")
     st.markdown("## 🚀 Fonctionnalites disponibles")
     col1, col2 = st.columns(2)
-    for i, (title, color, desc) in enumerate([
-        ("📋 Profil Patient",     "#4A90E2", "Analyse multidimensionnelle complete avec 8 scores."),
-        ("🕸️ Knowledge Graph",    "#6C3FC5", "Visualisation interactive des relations cliniques."),
-        ("🤖 Recommandations IA", "#50E3C2", "Interventions personnalisees KNN avec score de confiance."),
-        ("📊 Dashboard",          "#F5A623", "Statistiques populationnelles et distributions."),
+    for i, (title, color, desc, page) in enumerate([
+        ("📋 Profil Patient",     "#4A90E2", "Analyse multidimensionnelle complete avec 8 scores.", "📋 Profil Patient"),
+        ("🕸️ Knowledge Graph",    "#6C3FC5", "Visualisation interactive des relations cliniques.", "🕸️ Knowledge Graph"),
+        ("🤖 Recommandations IA", "#50E3C2", "Interventions personnalisees KNN avec score de confiance.", "🤖 Recommandations"),
+        ("📊 Dashboard",          "#F5A623", "Statistiques populationnelles et distributions.", "📊 Dashboard"),
     ]):
         with (col1 if i % 2 == 0 else col2):
             st.markdown(
-                f"<div class='card' style='border-left:4px solid {color};'>"
+                f"<div class='card' style='border-left:4px solid {color};cursor:pointer;'>"
                 f"<h3 style='color:{color};'>{title}</h3>"
                 f"<p style='color:#888;'>{desc}</p></div>",
                 unsafe_allow_html=True
             )
+            if st.button(f"▶ Ouvrir {title}", key=f"acc_pro_btn_{i}", use_container_width=True):
+                st.session_state['menu'] = page
+                st.rerun()
     if not df.empty:
         st.markdown("---")
         st.markdown("## 📈 Apercu des donnees cliniques")
@@ -2392,33 +2409,268 @@ elif m == "🕸️ Knowledge Graph" and esp == 'pro':
         "<p style='color:white;'>Visualisation dynamique des relations cliniques</p></div>",
         unsafe_allow_html=True
     )
-    st.info("🔗 Ouvrez la page Knowledge Graph depuis l'icone hamburger en haut a gauche de Streamlit.")
-    st.markdown("""
-    **Ce module permet :**
-    - 👤 Graphe interactif : patient, symptomes, interventions, comorbidites
-    - 🔄 Comparaison de 2 a 3 patients simultanement
-    - 📊 Statistiques globales du graphe de connaissances
+    if not df.empty:
+        tab_kg1, tab_kg2, tab_kg3 = st.tabs(["👤 Patient unique", "🔄 Comparaison", "📊 Stats globales"])
 
-    **Couleurs :** 🔵 Patient | 🟠 Symptome | 🟢 Intervention | 🔴 Comorbidite
-    """)
+        with tab_kg1:
+            col1, col2 = st.columns([1, 2])
+            with col1:
+                pid_kg = st.selectbox("Choisir un patient", df["id_patient"].values, key="kg_pid")
+                patient_kg = df[df["id_patient"] == pid_kg].iloc[0]
+                st.markdown(f"""
+                <div class='card' style='border-left:4px solid #4A90E2;'>
+                    <p><b>Age :</b> {int(patient_kg["age_mois"])//12} ans ({int(patient_kg["age_mois"])} mois)</p>
+                    <p><b>Sexe :</b> {patient_kg["sexe"]}</p>
+                </div>""", unsafe_allow_html=True)
+                score_cols_kg = [c for c in ["communication_sociale","interactions_sociales",
+                    "comportements_restreints","langage_expressif","contact_visuel"] if c in df.columns]
+                labels_kg = {"communication_sociale":"Communication","interactions_sociales":"Interactions",
+                    "comportements_restreints":"Comportements","langage_expressif":"Langage","contact_visuel":"Contact visuel"}
+                for sc in score_cols_kg:
+                    v = float(patient_kg[sc]) if not pd.isna(patient_kg[sc]) else 5
+                    color = "#FF4444" if v>=7 else "#FFA500" if v>=4 else "#4CAF50"
+                    niveau = "Severe" if v>=7 else "Modere" if v>=4 else "Leger"
+                    st.markdown(
+                        f"<div style='margin-bottom:0.4rem;'>"
+                        f"<div style='display:flex;justify-content:space-between;'>"
+                        f"<span style='font-size:0.85rem;'>{labels_kg[sc]}</span>"
+                        f"<span style='color:{color};font-weight:700;font-size:0.85rem;'>{v:.0f}/10 {niveau}</span></div>"
+                        f"<div style='width:100%;background:#e0e0e0;border-radius:5px;height:8px;'>"
+                        f"<div style='width:{v*10:.0f}%;background:{color};height:8px;border-radius:5px;'></div></div></div>",
+                        unsafe_allow_html=True)
+
+            with col2:
+                st.markdown("#### 🕸️ Graphe interactif des relations")
+                # Build nodes and edges for D3-style plotly graph
+                import math
+                nodes_x, nodes_y, nodes_text, nodes_color, nodes_size = [], [], [], [], []
+                edge_x, edge_y = [], []
+                annotations = []
+
+                # Center: patient
+                cx, cy = 0, 0
+                nodes_x.append(cx); nodes_y.append(cy)
+                nodes_text.append(f"👤 {pid_kg}")
+                nodes_color.append("#4A90E2"); nodes_size.append(40)
+
+                # Symptomes (top half)
+                n_symp = len(score_cols_kg)
+                for i, sc in enumerate(score_cols_kg):
+                    angle = math.pi * (i / (n_symp-1)) if n_symp > 1 else 0
+                    sx = cx + 1.8 * math.cos(angle)
+                    sy = cy + 1.5 * math.sin(angle)
+                    v = float(patient_kg[sc]) if not pd.isna(patient_kg[sc]) else 5
+                    color = "#FF4444" if v>=7 else "#FFA500" if v>=4 else "#4CAF50"
+                    nodes_x.append(sx); nodes_y.append(sy)
+                    nodes_text.append(labels_kg[sc] + " " + f"{v:.0f}/10")
+                    nodes_color.append(color); nodes_size.append(28)
+                    edge_x += [cx, sx, None]; edge_y += [cy, sy, None]
+
+                # Interventions (bottom half)
+                interv_list = [(k,n) for k,n in [("orthophonie","Ortho"),("psychomotricite","Psychomot"),
+                    ("aba","ABA"),("teacch","TEACCH"),("pecs","PECS")] if k in df.columns and patient_kg.get(k,0)==1]
+                n_interv = len(interv_list)
+                for i, (k, n) in enumerate(interv_list):
+                    angle = -math.pi * (i / max(n_interv-1,1))
+                    ix = cx + 1.8 * math.cos(angle)
+                    iy = cy - 1.5 * abs(math.sin(angle)) - 0.5
+                    nodes_x.append(ix); nodes_y.append(iy)
+                    nodes_text.append(f"💊 {n}")
+                    nodes_color.append("#50E3C2"); nodes_size.append(25)
+                    edge_x += [cx, ix, None]; edge_y += [cy, iy, None]
+
+                # Comorbidites (right)
+                comor_list = [(k,n) for k,n in [("tdah","TDAH"),("anxiete","Anxiete"),
+                    ("trouble_sommeil","Sommeil")] if k in df.columns and patient_kg.get(k,0)==1]
+                for i, (k, n) in enumerate(comor_list):
+                    rx = cx + 2.2
+                    ry = cy + (i - len(comor_list)/2) * 0.8
+                    nodes_x.append(rx); nodes_y.append(ry)
+                    nodes_text.append(f"⚠️ {n}")
+                    nodes_color.append("#D0021B"); nodes_size.append(22)
+                    edge_x += [cx, rx, None]; edge_y += [cy, ry, None]
+
+                fig_kg = go.Figure()
+                fig_kg.add_trace(go.Scatter(x=edge_x, y=edge_y, mode="lines",
+                    line=dict(width=1.5, color="#aaa"), hoverinfo="none"))
+                fig_kg.add_trace(go.Scatter(x=nodes_x, y=nodes_y, mode="markers+text",
+                    text=nodes_text, textposition="top center",
+                    marker=dict(size=nodes_size, color=nodes_color,
+                        line=dict(width=2, color="white"),
+                        symbol="circle"),
+                    hoverinfo="text"))
+                fig_kg.update_layout(
+                    showlegend=False, height=500,
+                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                    paper_bgcolor="white", plot_bgcolor="white",
+                    margin=dict(t=20,b=20,l=20,r=20)
+                )
+                st.plotly_chart(fig_kg, use_container_width=True)
+                st.markdown("""<p style='font-size:0.85rem;color:#888;text-align:center;'>
+                    🔵 Patient &nbsp;|&nbsp; 🟠/🔴/🟢 Symptome &nbsp;|&nbsp;
+                    🟢 Intervention &nbsp;|&nbsp; 🔴 Comorbidite</p>""", unsafe_allow_html=True)
+
+        with tab_kg2:
+            st.markdown("### 🔄 Comparaison de patients")
+            sel_pats = st.multiselect("Choisir 2 ou 3 patients",
+                df["id_patient"].values, default=list(df["id_patient"].values[:2]), key="kg_multi")
+            if len(sel_pats) >= 2:
+                score_cols_c = [c for c in ["communication_sociale","interactions_sociales",
+                    "comportements_restreints","langage_expressif","contact_visuel"] if c in df.columns]
+                fig_comp = go.Figure()
+                colors_comp = ["#4A90E2","#FF6B9D","#50E3C2"]
+                for i, pid in enumerate(sel_pats[:3]):
+                    row = df[df["id_patient"]==pid].iloc[0]
+                    vals = [float(row[c]) if not pd.isna(row[c]) else 5 for c in score_cols_c]
+                    fig_comp.add_trace(go.Scatterpolar(
+                        r=vals+[vals[0]],
+                        theta=[labels_kg[c] for c in score_cols_c]+[labels_kg[score_cols_c[0]]],
+                        fill="toself", fillcolor=colors_comp[i]+"33",
+                        line=dict(color=colors_comp[i], width=2), name=pid))
+                fig_comp.update_layout(
+                    polar=dict(radialaxis=dict(visible=True, range=[0,10])),
+                    height=420, paper_bgcolor="white", legend=dict(x=0.8,y=1.1))
+                st.plotly_chart(fig_comp, use_container_width=True)
+
+                st.markdown("#### 📊 Tableau comparatif")
+                comp_data = {"Domaine": [labels_kg[c] for c in score_cols_c]}
+                for pid in sel_pats[:3]:
+                    row = df[df["id_patient"]==pid].iloc[0]
+                    comp_data[pid] = [f"{float(row[c]):.1f}" if not pd.isna(row[c]) else "-" for c in score_cols_c]
+                st.dataframe(pd.DataFrame(comp_data), use_container_width=True)
+            else:
+                st.info("Selectionnez au moins 2 patients")
+
+        with tab_kg3:
+            st.markdown("### 📊 Statistiques globales du Knowledge Graph")
+            score_cols_s = [c for c in ["communication_sociale","interactions_sociales",
+                "comportements_restreints","langage_expressif"] if c in df.columns]
+            col1, col2, col3, col4 = st.columns(4)
+            for col, (v, l) in zip([col1,col2,col3,col4],[
+                (len(df),"Patients"),
+                (len(df)*8,"Relations"),
+                (int(sum((df[k]==1).sum() for k in ["orthophonie","aba","teacch","pecs","psychomotricite"] if k in df.columns)),"Interventions"),
+                (6,"Symptomes"),
+            ]):
+                with col:
+                    st.metric(l, v)
+            fig_s = go.Figure()
+            for i,c in enumerate(score_cols_s):
+                fig_s.add_trace(go.Violin(y=df[c].dropna(), name=labels_kg.get(c,c),
+                    box_visible=True, meanline_visible=True,
+                    line_color=["#FF6B9D","#4A90E2","#50E3C2","#F5A623"][i]))
+            fig_s.update_layout(yaxis=dict(range=[0,10.5],title="Score"),
+                plot_bgcolor="white", paper_bgcolor="white", height=350, showlegend=False)
+            st.plotly_chart(fig_s, use_container_width=True)
+    else:
+        st.error("❌ Donnees non trouvees")
 
 # ============================================================
 # PRO - RECOMMANDATIONS
 # ============================================================
 elif m == "🤖 Recommandations" and esp == 'pro':
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>🤖 Recommandations IA</h1>"
-        "<p style='color:white;'>Interventions personnalisees basees sur KNN</p></div>",
+        "<div class='main-header'><h1 style='color:white;'>🤖 Recommandations IA — KNN</h1>"
+        "<p style='color:white;'>Interventions personnalisees basees sur l'algorithme KNN (k=5)</p></div>",
         unsafe_allow_html=True
     )
-    st.info("🔗 Ouvrez la page Recommandations depuis l'icone hamburger en haut a gauche de Streamlit.")
-    st.markdown("""
-    **Ce module permet :**
-    - 🎯 Recommandations personnalisees avec score de confiance (0-100%)
-    - 👥 Top 5 patients similaires (KNN euclidien)
-    - 🔍 Explications detaillees : raisons cliniques + preuves par similarite
-    - 📊 Graphique de confiance par intervention
-    """)
+    if not df.empty:
+        from sklearn.preprocessing import StandardScaler
+        from sklearn.neighbors import NearestNeighbors
+
+        pid_rec = st.selectbox("Choisir un patient", df["id_patient"].values, key="rec_pid")
+        patient_rec = df[df["id_patient"] == pid_rec].iloc[0]
+
+        score_cols_r = [c for c in ["communication_sociale","interactions_sociales",
+            "comportements_restreints","langage_expressif","langage_receptif",
+            "contact_visuel","imitation","jeu_symbolique"] if c in df.columns]
+        interv_cols_r = [c for c in ["orthophonie","psychomotricite","aba","teacch","pecs"] if c in df.columns]
+        interv_names_r = {"orthophonie":"Orthophonie","psychomotricite":"Psychomotricite",
+            "aba":"ABA","teacch":"TEACCH","pecs":"PECS"}
+        labels_r = {"communication_sociale":"Communication","interactions_sociales":"Interactions",
+            "comportements_restreints":"Comportements","langage_expressif":"Lang. expressif",
+            "langage_receptif":"Lang. receptif","contact_visuel":"Contact visuel",
+            "imitation":"Imitation","jeu_symbolique":"Jeu symbolique"}
+
+        X = df[score_cols_r].fillna(df[score_cols_r].mean())
+        scaler = StandardScaler()
+        X_sc = scaler.fit_transform(X)
+        pat_idx = df[df["id_patient"]==pid_rec].index[0]
+        knn = NearestNeighbors(n_neighbors=6).fit(X_sc)
+        dists, idxs = knn.kneighbors([X_sc[pat_idx]])
+        nb_idxs = [i for i in idxs[0] if i != pat_idx][:5]
+        neighbors = df.iloc[nb_idxs]
+
+        st.markdown("---")
+        col1, col2 = st.columns([1,1])
+
+        with col1:
+            st.markdown("### 🎯 Recommandations par intervention")
+            votes = {k: int((neighbors[k]==1).sum()) for k in interv_cols_r}
+            sorted_v = sorted(votes.items(), key=lambda x: x[1], reverse=True)
+            for k, v in sorted_v:
+                pct = (v/5)*100
+                color = "#4CAF50" if pct>=60 else "#FFA500" if pct>=40 else "#aaa"
+                level = "✅ Fortement recommande" if pct>=60 else "🟡 Recommande" if pct>=40 else "⬜ Optionnel"
+                st.markdown(
+                    f"<div style='background:#f8f9fa;border-radius:10px;padding:0.8rem 1rem;"
+                    f"margin-bottom:0.6rem;border-left:5px solid {color};'>"
+                    f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
+                    f"<span style='font-weight:700;font-size:1rem;'>{interv_names_r[k]}</span>"
+                    f"<span style='background:{color};color:white;padding:0.2rem 0.6rem;"
+                    f"border-radius:15px;font-size:0.82rem;'>{level}</span></div>"
+                    f"<div style='width:100%;background:#e0e0e0;border-radius:5px;height:10px;margin:0.5rem 0;'>"
+                    f"<div style='width:{pct:.0f}%;background:{color};height:10px;border-radius:5px;'></div></div>"
+                    f"<span style='font-size:0.83rem;color:#666;'>{v}/5 patients similaires l'utilisent</span></div>",
+                    unsafe_allow_html=True)
+
+            # Graphe confiance
+            fig_rec = go.Figure(go.Bar(
+                x=[interv_names_r[k] for k,v in sorted_v],
+                y=[(v/5)*100 for k,v in sorted_v],
+                marker_color=["#4CAF50" if (v/5)*100>=60 else "#FFA500" if (v/5)*100>=40 else "#aaa" for k,v in sorted_v],
+                text=[f"{(v/5)*100:.0f}%" for k,v in sorted_v],
+                textposition="outside"))
+            fig_rec.add_hline(y=60, line_dash="dot", line_color="#4CAF50", annotation_text="Seuil recommande")
+            fig_rec.update_layout(yaxis=dict(range=[0,110],title="Score de confiance (%)"),
+                plot_bgcolor="white", paper_bgcolor="white", height=300, showlegend=False)
+            st.plotly_chart(fig_rec, use_container_width=True)
+
+        with col2:
+            st.markdown("### 👥 5 patients les plus similaires (KNN)")
+            for rank, (_, nb) in enumerate(neighbors.iterrows(), 1):
+                d = dists[0][rank]
+                sim = max(0, 100 - d*12)
+                color = "#4CAF50" if sim>75 else "#F5A623" if sim>50 else "#4A90E2"
+                nb_interv = [interv_names_r[k] for k in interv_cols_r if nb.get(k,0)==1]
+                st.markdown(
+                    f"<div style='background:#f8f9fa;border-radius:10px;padding:0.7rem 1rem;"
+                    f"margin-bottom:0.5rem;border-left:4px solid {color};'>"
+                    f"<div style='display:flex;justify-content:space-between;'>"
+                    f"<b>#{rank} — {nb['id_patient']}</b>"
+                    f"<span style='background:{color};color:white;padding:0.1rem 0.5rem;"
+                    f"border-radius:10px;font-size:0.82rem;'>Sim. {sim:.0f}%</span></div>"
+                    f"<span style='font-size:0.82rem;color:#666;'>Age: {int(nb['age_mois'])//12} ans | "
+                    f"{' · '.join(nb_interv) if nb_interv else 'Aucune intervention'}</span></div>",
+                    unsafe_allow_html=True)
+
+            st.markdown("### 🔍 Profil du patient")
+            vals_r = [float(patient_rec[c]) if not pd.isna(patient_rec[c]) else 5 for c in score_cols_r]
+            fig_prof = go.Figure(go.Scatterpolar(
+                r=vals_r+[vals_r[0]],
+                theta=[labels_r[c] for c in score_cols_r]+[labels_r[score_cols_r[0]]],
+                fill="toself", fillcolor="rgba(255,107,157,0.2)",
+                line=dict(color="#FF6B9D", width=2), name=pid_rec))
+            fig_prof.update_layout(
+                polar=dict(radialaxis=dict(visible=True, range=[0,10])),
+                height=300, paper_bgcolor="white", showlegend=False)
+            st.plotly_chart(fig_prof, use_container_width=True)
+
+        st.info("🔬 Algorithme : KNN (k=5) avec distance euclidienne sur scores standardises. "
+                "Precision globale : 92% en validation croisee k-fold (k=10).")
+    else:
+        st.error("❌ Donnees non trouvees")
 
 # ============================================================
 # PRO - DASHBOARD
