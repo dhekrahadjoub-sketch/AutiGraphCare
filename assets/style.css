@@ -1,0 +1,190 @@
+/* assets/style.css - Style original avec ajout mode sombre */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Style global */
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, #4A90E2 0%, #50E3C2 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    border: 1px solid #f0f0f0;
+}
+
+/* Boutons */
+.stButton > button {
+    background: linear-gradient(135deg, #4A90E2 0%, #50E3C2 100%);
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: transform 0.3s;
+}
+
+.stButton > button:hover {
+    transform: scale(1.05);
+    color: white;
+}
+
+/* Sidebar */
+.css-1d391kg {
+    background-color: #f8f9fa;
+}
+
+/* Metrics */
+.css-1xarl3l {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Tableaux */
+.dataframe {
+    border: none !important;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Alertes */
+.stAlert {
+    border-radius: 10px;
+}
+
+/* ===== AJOUT MODE SOMBRE - GARDE LE MÊME STYLE ===== */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-color: #ffffff;
+    --text-secondary: #cccccc;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+}
+
+[data-theme="dark"] body,
+[data-theme="dark"] .stApp,
+[data-theme="dark"] .main {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .css-1d391kg,
+[data-theme="dark"] [data-testid="stSidebar"] {
+    background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .css-1xarl3l,
+[data-theme="dark"] .stMetric {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] p, 
+[data-theme="dark"] li, 
+[data-theme="dark"] span {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .st-bb,
+[data-theme="dark"] .st-d6,
+[data-theme="dark"] .st-bq,
+[data-theme="dark"] .st-bv,
+[data-theme="dark"] .st-ax,
+[data-theme="dark"] .st-b3 {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .stSelectbox > div > div,
+[data-theme="dark"] .stRadio > div,
+[data-theme="dark"] .stSlider {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .stAlert {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .dataframe,
+[data-theme="dark"] .stDataFrame {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .dataframe td {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .streamlit-expanderHeader {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .streamlit-expanderContent {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .js-plotly-plot .main-svg {
+    background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .js-plotly-plot .g-title text,
+[data-theme="dark"] .js-plotly-plot .legend text {
+    fill: var(--text-color) !important;
+}
+
+[data-theme="dark"] footer {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] hr {
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] code,
+[data-theme="dark"] pre {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Transition douce pour tous les éléments */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
