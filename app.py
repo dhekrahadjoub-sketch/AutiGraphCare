@@ -304,61 +304,64 @@ def show_auth_gate():
     # PAGE : LOGIN
     # ─────────────────────────────────────────────────────────────────────────
     if pg == "login":
-        col_c, col_f, col_c2 = st.columns([1, 2, 1])
-        with col_f:
-            st.markdown("<div class='auth-card'>", unsafe_allow_html=True)
-            st.markdown("<p class='auth-title'>🔐 Connexion</p>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align:center;color:#888;margin-bottom:1.5rem;'>"
-                        "Connectez-vous a votre compte AutiGraphCare</p>", unsafe_allow_html=True)
+        # Centrage CSS sans colonnes vides
+        st.markdown("""
+        <style>
+        .login-wrap{max-width:460px;margin:0 auto;background:white;
+                    border-radius:14px;padding:0.8rem 1.5rem 1.2rem 1.5rem;
+                    box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+        </style>
+        <div class='login-wrap'>
+            <p style='text-align:center;font-size:1.3rem;font-weight:800;
+                color:#4A90E2;margin:0.3rem 0 0.1rem;'>🔐 Connexion</p>
+            <p style='text-align:center;color:#888;margin-bottom:0.3rem;font-size:0.88rem;'>
+                Connectez-vous a votre compte AutiGraphCare</p>
+        </div>
+        """, unsafe_allow_html=True)
 
+        _, mid, _ = st.columns([1, 3, 1])
+        with mid:
             email = st.text_input("📧 Adresse email", placeholder="exemple@email.com", key="login_email")
-            mdp   = st.text_input("🔒 Mot de passe",  type="password", placeholder="••••••••", key="login_mdp")
+            mdp   = st.text_input("🔒 Mot de passe", type="password", placeholder="••••••••", key="login_mdp")
 
             col_r, col_oubli = st.columns([1,1])
             with col_r:
-                remember = st.checkbox("Se souvenir de moi")
+                st.checkbox("Se souvenir de moi")
             with col_oubli:
                 st.markdown("<p style='text-align:right;color:#4A90E2;font-size:0.85rem;"
-                            "margin-top:0.4rem;cursor:pointer;'>Mot de passe oublie ?</p>",
-                            unsafe_allow_html=True)
+                            "margin-top:0.4rem;'>Mot de passe oublie ?</p>", unsafe_allow_html=True)
 
             if st.button("🚀 Se connecter", use_container_width=True, key="btn_login"):
                 if email.strip() in COMPTES_DEMO and COMPTES_DEMO[email.strip()]["mdp"] == mdp:
                     compte = COMPTES_DEMO[email.strip()]
-                    st.session_state["auth_connecte"] = True
-                    st.session_state["auth_user"]     = email.strip()
-                    st.session_state["auth_type"]     = compte["type"]
-                    st.session_state["auth_nom"]      = compte["nom"]
-                    st.session_state["auth_plan"]     = compte["plan"]
-                    st.session_state["auth_avatar"]   = compte["avatar"]
-                    # Rediriger vers le bon espace
-                    st.session_state["espace"] = compte["type"]
-                    st.session_state["menu"]   = "🏠 Accueil"
+                    st.session_state.update({
+                        "auth_connecte": True, "auth_user": email.strip(),
+                        "auth_type": compte["type"], "auth_nom": compte["nom"],
+                        "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
+                        "espace": compte["type"], "menu": "🏠 Accueil"
+                    })
                     st.rerun()
                 elif email.strip() in st.session_state.get("comptes_inscrits", {}):
                     compte = st.session_state["comptes_inscrits"][email.strip()]
                     if compte["mdp"] == mdp:
-                        st.session_state["auth_connecte"] = True
-                        st.session_state["auth_user"]     = email.strip()
-                        st.session_state["auth_type"]     = compte["type"]
-                        st.session_state["auth_nom"]      = compte["nom"]
-                        st.session_state["auth_plan"]     = compte["plan"]
-                        st.session_state["auth_avatar"]   = compte.get("avatar","👤")
-                        st.session_state["espace"]        = compte["type"]
-                        st.session_state["menu"]          = "🏠 Accueil"
+                        st.session_state.update({
+                            "auth_connecte": True, "auth_user": email.strip(),
+                            "auth_type": compte["type"], "auth_nom": compte["nom"],
+                            "auth_plan": compte["plan"], "auth_avatar": compte.get("avatar","👤"),
+                            "espace": compte["type"], "menu": "🏠 Accueil"
+                        })
                         st.rerun()
                     else:
                         st.error("❌ Mot de passe incorrect")
                 else:
-                    st.error("❌ Email ou mot de passe incorrect. Utilisez un compte demo ou creez un compte.")
+                    st.error("❌ Email ou mot de passe incorrect")
 
-            st.markdown("<hr style='margin:1.2rem 0;'>", unsafe_allow_html=True)
-
-            # Comptes demo
-            st.markdown("<p style='text-align:center;color:#888;font-size:0.85rem;margin-bottom:0.5rem;'>"
+            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align:center;color:#888;font-size:0.85rem;'>"
                         "🎯 Comptes de demonstration</p>", unsafe_allow_html=True)
+
             for email_d, info in COMPTES_DEMO.items():
-                col_a, col_b = st.columns([3,1])
+                col_a, col_b = st.columns([3, 1])
                 with col_a:
                     st.markdown(
                         f"<div style='background:#f8f9fa;border-radius:8px;padding:0.4rem 0.8rem;"
@@ -379,14 +382,12 @@ def show_auth_gate():
                         })
                         st.rerun()
 
-            st.markdown("<hr style='margin:1.2rem 0;'>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align:center;color:#555;'>Pas encore de compte ? </p>",
+            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align:center;color:#555;'>Pas encore de compte ?</p>",
                         unsafe_allow_html=True)
             if st.button("✨ Creer un compte gratuit", use_container_width=True, key="btn_to_register"):
                 st.session_state["auth_page"] = "register"
                 st.rerun()
-
-            st.markdown("</div>", unsafe_allow_html=True)
 
     # ─────────────────────────────────────────────────────────────────────────
     # PAGE : INSCRIPTION + CHOIX PLAN
