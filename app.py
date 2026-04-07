@@ -729,6 +729,48 @@ elif not _is_connected and st.session_state.get("auth_page") != "login":
     st.stop()
 
 # ============================================================
+# SYSTEME DE PATIENTS PAR PROFESSIONNEL
+# ============================================================
+def get_patients_du_pro(df, user_email):
+    """Retourne seulement les patients assignes a ce professionnel"""
+    if df.empty:
+        return df
+    # Cle unique par pro dans session state
+    key = f"patients_pro_{user_email.replace('@','_').replace('.','_')}"
+    if key not in st.session_state:
+        # Assignation initiale : diviser le dataset equitablement
+        tous_ids = df['id_patient'].tolist()
+        pros_demo = ["pro@demo.dz", "medecin@demo.dz"]
+        # Pro demo 1 : premiers 75 patients
+        # Pro demo 2 : patients 75-150
+        if user_email == "pro@demo.dz":
+            ids_assignes = tous_ids[:75]
+        elif user_email == "medecin@demo.dz":
+            ids_assignes = tous_ids[75:]
+        else:
+            # Nouveau pro inscrit : aucun patient au depart (il les ajoute lui-meme)
+            ids_assignes = st.session_state.get(
+                f"nouveaux_patients_{user_email}", []
+            )
+        st.session_state[key] = ids_assignes
+    ids = st.session_state[key]
+    # Inclure aussi les nouveaux patients ajoutes par ce pro
+    nouveaux = st.session_state.get(f"nouveaux_patients_{user_email}", [])
+    tous_ids_pro = list(set(ids + nouveaux))
+    if not tous_ids_pro:
+        return pd.DataFrame(columns=df.columns)
+    return df[df['id_patient'].isin(tous_ids_pro)].reset_index(drop=True)
+
+def ajouter_patient_au_pro(user_email, patient_id):
+    """Assigne un nouveau patient a ce professionnel"""
+    key = f"nouveaux_patients_{user_email}"
+    if key not in st.session_state:
+        st.session_state[key] = []
+    if patient_id not in st.session_state[key]:
+        st.session_state[key].append(patient_id)
+
+
+# ============================================================
 # SIDEBAR
 # ============================================================
 with st.sidebar:
@@ -846,6 +888,11 @@ with st.sidebar:
 
 m   = st.session_state['menu']
 esp = st.session_state['espace']
+
+# ── Filtrer les patients selon le pro connecte ───────────────
+if esp == 'pro' and st.session_state.get("auth_connecte", False):
+    user_email = st.session_state.get("auth_user", "pro@demo.dz")
+    df = get_patients_du_pro(df, user_email)
 
 # ============================================================
 # ACCUEIL - CHOIX ESPACE
@@ -1023,121 +1070,97 @@ if m == "🏠 Accueil" and esp is None:
 # PARENTS - ACCUEIL
 # ============================================================
 elif m == "🏠 Accueil" and esp == 'parent':
+    # ── Nom du parent connecte
+    nom_parent = st.session_state.get("auth_nom", "").split()[0] if st.session_state.get("auth_nom") else "!"
+
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>👪 Espace Parents</h1>"
-        "<p style='color:white;'>Accompagnez votre enfant a chaque etape de son parcours TSA</p></div>",
+        f"<div class='main-header'>"
+        f"<h1 style='color:white;font-size:2rem;'>👋 Bonjour {nom_parent}</h1>"
+        f"<p style='color:white;font-size:1.1rem;'>Comment puis-je vous aider aujourd'hui ?</p>"
+        f"</div>",
         unsafe_allow_html=True
     )
-    # ---- DIAGNOSTIC IA - BANNIERE PRINCIPALE ----
-    st.markdown("""
-    <div style='background:linear-gradient(135deg,#6C3FC5,#4A90E2,#50E3C2);
-                border-radius:15px;padding:1.5rem;margin-bottom:1.5rem;text-align:center;'>
-        <div style='font-size:3rem;'>🧬</div>
-        <h2 style='color:white;margin:0.3rem 0;'>Diagnostic IA Multi-Modal</h2>
-        <p style='color:rgba(255,255,255,0.9);margin:0;'>
-            M-CHAT adaptatif + Analyse faciale + Detection du regard + Analyse vocale
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    if st.button("🧬 Acceder au Diagnostic IA complet (4 modules)", use_container_width=True, key="nav_diag_ia"):
-        st.session_state['menu'] = "🧬 Diagnostic IA"
-        st.rerun()
 
-    st.markdown("---")
-    st.markdown("## 💡 Ce que AutiGraphCare apporte aux parents")
-    st.markdown("<p style='color:#555;font-size:1.05rem;'>Cliquez sur une fonction pour y acceder directement.</p>", unsafe_allow_html=True)
+    # ── 3 grandes tuiles principales ──
+    st.markdown("<div style='height:0.5rem;'></div>", unsafe_allow_html=True)
+    c1, c2, c3 = st.columns(3)
 
-    # ---- LIGNE 1 : Detection + Orientation ----
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        <div class='card' style='border-left:5px solid #FF6B9D;min-height:130px;'>
-            <h4 style='color:#FF6B9D;margin:0 0 0.4rem;'>🔍 Detection precoce</h4>
-            <p style='color:#555;margin:0;font-size:0.95rem;'>
-                Un <b>questionnaire clinique</b> pour savoir si votre enfant est dans la norme
-                et detecter les premiers signes TSA.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("🔍 Faire le questionnaire de detection", use_container_width=True, key="nav_detection"):
-            st.session_state['menu'] = "🔍 Detection precoce"
-            st.rerun()
+    tiles = [
+        ("🔍", "Mon enfant — signes TSA ?",
+         "Questionnaire de detection en 5 minutes",
+         "#FF6B9D", "🔍 Detection precoce"),
+        ("📈", "Suivre l'evolution",
+         "Voir les progres mois par mois",
+         "#4A90E2", "📈 Suivi Evolution"),
+        ("💬", "Parler a l'equipe soignante",
+         "Messagerie avec les therapeutes",
+         "#6C3FC5", "💬 Messagerie"),
+    ]
+    for col, (icon, title, sub, color, page) in zip([c1, c2, c3], tiles):
+        with col:
+            st.markdown(
+                f"<div style='background:white;border-radius:16px;padding:1.5rem;text-align:center;"
+                f"box-shadow:0 4px 15px rgba(0,0,0,0.08);border-top:5px solid {color};"
+                f"min-height:160px;'>"
+                f"<div style='font-size:2.8rem;'>{icon}</div>"
+                f"<h3 style='color:{color};font-size:1rem;margin:0.5rem 0 0.3rem;"
+                f"white-space:pre-line;'>{title}</h3>"
+                f"<p style='color:#888;font-size:0.82rem;margin:0;'>{sub}</p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+            if st.button(f"Ouvrir →", key=f"tile_{page}", use_container_width=True):
+                st.session_state['menu'] = page
+                st.rerun()
 
-    with col2:
-        st.markdown("""
-        <div class='card' style='border-left:5px solid #4A90E2;min-height:130px;'>
-            <h4 style='color:#4A90E2;margin:0 0 0.4rem;'>🧭 Orientation vers les specialistes</h4>
-            <p style='color:#555;margin:0;font-size:0.95rem;'>
-                Savoir <b>vers quels specialistes orienter votre enfant</b>
-                selon son profil : orthophoniste, psychologue, neuropediatre...
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("🧭 Voir l'orientation conseillee", use_container_width=True, key="nav_orientation"):
-            st.session_state['menu'] = "🧭 Orientation"
-            st.rerun()
+    st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
 
-    # ---- LIGNE 2 : Conseils + Mon Enfant ----
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        <div class='card' style='border-left:5px solid #4CAF50;min-height:130px;'>
-            <h4 style='color:#4CAF50;margin:0 0 0.4rem;'>💡 Conseils pratiques a la maison</h4>
-            <p style='color:#555;margin:0;font-size:0.95rem;'>
-                Des <b>activites adaptees</b> et des conseils personnalises selon
-                les scores cliniques de votre enfant.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("💡 Voir les conseils personnalises", use_container_width=True, key="nav_conseils"):
-            st.session_state['menu'] = "💡 Conseils pratiques"
-            st.rerun()
+    # ── 4 actions rapides ──
+    st.markdown("### ⚡ Actions rapides")
+    a1, a2, a3, a4 = st.columns(4)
+    actions = [
+        ("🧬", "Diagnostic IA", "#50E3C2", "🧬 Diagnostic IA"),
+        ("🧭", "Orientation", "#4CAF50", "🧭 Orientation"),
+        ("💡", "Conseils", "#F5A623", "💡 Conseils pratiques"),
+        ("🔔", "Alertes", "#FF4444", "🔔 Alertes"),
+    ]
+    for col, (icon, label, color, page) in zip([a1, a2, a3, a4], actions):
+        with col:
+            st.markdown(
+                f"<div style='background:{color}18;border:2px solid {color}44;"
+                f"border-radius:12px;padding:0.8rem;text-align:center;'>"
+                f"<div style='font-size:1.8rem;'>{icon}</div>"
+                f"<p style='color:{color};font-weight:700;font-size:0.88rem;margin:0.3rem 0 0;'>{label}</p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+            if st.button(label, key=f"act_{page}", use_container_width=True):
+                st.session_state['menu'] = page
+                st.rerun()
 
-    with col2:
-        st.markdown("""
-        <div class='card' style='border-left:5px solid #4A90E2;min-height:130px;'>
-            <h4 style='color:#4A90E2;margin:0 0 0.4rem;'>👶 Profil de mon Enfant</h4>
-            <p style='color:#555;margin:0;font-size:0.95rem;'>
-                Consultez le profil complet de votre enfant avec les <b>scores
-                cliniques visuels</b> et les therapies en cours.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("👶 Consulter le profil de mon enfant", use_container_width=True, key="nav_enfant"):
+    st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
+
+    # ── Profil enfant rapide ──
+    st.markdown("### 👶 Profil de mon enfant")
+    col_p, col_btn = st.columns([4, 1])
+    with col_p:
+        st.markdown(
+            "<div style='background:white;border-radius:12px;padding:1rem 1.5rem;"
+            "box-shadow:0 2px 10px rgba(0,0,0,0.06);display:flex;align-items:center;gap:1rem;'>"
+            "<span style='font-size:2.5rem;'>👶</span>"
+            "<div><p style='margin:0;font-weight:700;color:#333;font-size:1.05rem;'>Voir le dossier complet</p>"
+            "<p style='margin:0;color:#888;font-size:0.88rem;'>Scores cliniques, therapies en cours, historique</p></div>"
+            "</div>",
+            unsafe_allow_html=True
+        )
+    with col_btn:
+        st.markdown("<div style='height:0.6rem;'></div>", unsafe_allow_html=True)
+        if st.button("👶 Ouvrir", use_container_width=True, key="nav_enfant_quick"):
             st.session_state['menu'] = "👶 Mon Enfant"
             st.rerun()
 
-    # ---- LIGNE 3 : Suivi + Alertes ----
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        <div class='card' style='border-left:5px solid #F5A623;min-height:130px;'>
-            <h4 style='color:#F5A623;margin:0 0 0.4rem;'>📈 Suivi mensuel de l'evolution</h4>
-            <p style='color:#555;margin:0;font-size:0.95rem;'>
-                Visualisez les progres de votre enfant sur 6 competences
-                avec un <b>graphe radar interactif</b>.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("📈 Voir le suivi de l'evolution", use_container_width=True, key="nav_suivi"):
-            st.session_state['menu'] = "📈 Suivi Evolution"
-            st.rerun()
-
-    with col2:
-        st.markdown("""
-        <div class='card' style='border-left:5px solid #6C3FC5;min-height:130px;'>
-            <h4 style='color:#6C3FC5;margin:0 0 0.4rem;'>🔔 Alertes et lien avec les professionnels</h4>
-            <p style='color:#555;margin:0;font-size:0.95rem;'>
-                Des <b>alertes automatiques intelligentes</b> pour detecter les signes
-                preoccupants et coordonner le suivi avec l'equipe therapeutique.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("🔔 Voir les alertes de mon enfant", use_container_width=True, key="nav_alertes"):
-            st.session_state['menu'] = "🔔 Alertes"
-            st.rerun()
-
-    st.info("💡 La detection precoce avant 3 ans ameliore significativement les resultats therapeutiques.")
+    st.markdown("<br/>", unsafe_allow_html=True)
+    st.info("💡 **Conseil :** La detection precoce avant 3 ans ameliore significativement les resultats therapeutiques.")
 
 # ============================================================
 # PARENTS - DIAGNOSTIC IA (4 modules)
@@ -2223,9 +2246,22 @@ elif m == "🔔 Alertes" and esp == 'parent':
 # PRO - ACCUEIL
 # ============================================================
 elif m == "🏠 Accueil" and esp == 'pro':
+    nom_pro = st.session_state.get("auth_nom", "Docteur")
+    n_patients_pro = len(df)
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>👨‍⚕️ Espace Professionnels</h1>"
-        "<p style='color:white;'>Outils d'aide a la decision clinique bases sur l'IA</p></div>",
+        f"<div class='main-header'>"
+        f"<h1 style='color:white;font-size:1.8rem;'>👨‍⚕️ Bonjour {nom_pro}</h1>"
+        f"<p style='color:white;'>Vous avez <b style='font-size:1.3rem;'>{n_patients_pro}</b> patients dans votre espace prive</p>"
+        f"</div>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        "<div style='background:#fff8f0;border:2px solid #F5A623;border-radius:12px;"
+        "padding:0.8rem 1.2rem;margin-bottom:1rem;'>"
+        "<span style='font-size:1.2rem;'>🔒</span> "
+        "<b style='color:#F5A623;'>Espace prive</b> — "
+        "<span style='color:#555;font-size:0.9rem;'>Seuls VOS patients sont visibles ici. "
+        "Aucun autre professionnel n'a acces a vos dossiers.</span></div>",
         unsafe_allow_html=True
     )
     col1, col2, col3, col4 = st.columns(4)
@@ -3920,6 +3956,9 @@ elif m == "➕ Nouveau Patient" and esp == 'pro':
                     'notes': notes,
                 }
                 st.session_state["patient_sauvegarde"] = True
+                # Assigner ce patient au pro qui l'a cree
+                user_email_pro = st.session_state.get("auth_user", "pro@demo.dz")
+                ajouter_patient_au_pro(user_email_pro, new_id.strip())
                 st.cache_data.clear()
                 st.rerun()
 
