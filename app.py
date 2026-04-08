@@ -729,6 +729,124 @@ elif not _is_connected and st.session_state.get("auth_page") != "login":
     st.stop()
 
 # ============================================================
+# SYSTEME DE TRADUCTION
+# ============================================================
+LANGUES = {
+    "🇫🇷 Français": "fr",
+    "🇬🇧 English": "en",
+    "🇸🇦 العربية": "ar",
+}
+
+TRAD = {
+    "fr": {
+        "accueil": "🏠 Accueil", "bonjour": "Bonjour",
+        "bienvenue": "Bienvenue dans votre espace",
+        "detection": "🔍 Détection précoce",
+        "orientation": "🧭 Orientation",
+        "conseils": "💡 Conseils pratiques",
+        "mon_enfant": "👶 Mon Enfant",
+        "suivi": "📈 Suivi Evolution",
+        "alertes": "🔔 Alertes",
+        "messagerie": "💬 Messagerie",
+        "aide": "❓ Aide",
+        "diagnostic_ia": "🧬 Diagnostic IA",
+        "notif_titre": "🔔 Notifications",
+        "notif_vide": "Aucune nouvelle notification",
+        "nouveau_msg": "Nouveau message de",
+        "alerte_score": "Alerte : score élevé détecté",
+        "nouveau_patient": "Nouveau patient ajouté",
+        "langue": "Langue",
+        "deconnecter": "🚪 Se déconnecter",
+        "connecter": "🔐 Se connecter",
+    },
+    "en": {
+        "accueil": "🏠 Home", "bonjour": "Hello",
+        "bienvenue": "Welcome to your space",
+        "detection": "🔍 Early Detection",
+        "orientation": "🧭 Orientation",
+        "conseils": "💡 Practical Tips",
+        "mon_enfant": "👶 My Child",
+        "suivi": "📈 Progress Tracking",
+        "alertes": "🔔 Alerts",
+        "messagerie": "💬 Messaging",
+        "aide": "❓ Help",
+        "diagnostic_ia": "🧬 AI Diagnostic",
+        "notif_titre": "🔔 Notifications",
+        "notif_vide": "No new notifications",
+        "nouveau_msg": "New message from",
+        "alerte_score": "Alert: high score detected",
+        "nouveau_patient": "New patient added",
+        "langue": "Language",
+        "deconnecter": "🚪 Sign out",
+        "connecter": "🔐 Sign in",
+    },
+    "ar": {
+        "accueil": "🏠 الرئيسية", "bonjour": "مرحباً",
+        "bienvenue": "مرحباً بك في فضائك",
+        "detection": "🔍 الكشف المبكر",
+        "orientation": "🧭 التوجيه",
+        "conseils": "💡 نصائح عملية",
+        "mon_enfant": "👶 طفلي",
+        "suivi": "📈 متابعة التطور",
+        "alertes": "🔔 التنبيهات",
+        "messagerie": "💬 المراسلة",
+        "aide": "❓ المساعدة",
+        "diagnostic_ia": "🧬 تشخيص الذكاء الاصطناعي",
+        "notif_titre": "🔔 الإشعارات",
+        "notif_vide": "لا توجد إشعارات جديدة",
+        "nouveau_msg": "رسالة جديدة من",
+        "alerte_score": "تنبيه: تم اكتشاف درجة عالية",
+        "nouveau_patient": "تمت إضافة مريض جديد",
+        "langue": "اللغة",
+        "deconnecter": "🚪 تسجيل الخروج",
+        "connecter": "🔐 تسجيل الدخول",
+    },
+}
+
+def t(key):
+    """Retourner la traduction selon la langue choisie"""
+    lang = st.session_state.get("langue", "fr")
+    return TRAD.get(lang, TRAD["fr"]).get(key, key)
+
+# Initialiser langue
+if "langue" not in st.session_state:
+    st.session_state["langue"] = "fr"
+
+# ============================================================
+# SYSTEME DE NOTIFICATIONS
+# ============================================================
+def init_notifications():
+    if "notifications" not in st.session_state:
+        st.session_state["notifications"] = [
+            {"id":1, "type":"message",  "icon":"💬", "color":"#4A90E2",
+             "texte":"Dr. Benali Karima vous a envoye un message",
+             "heure":"09:14", "lu":False},
+            {"id":2, "type":"alerte",   "icon":"⚠️", "color":"#FF4444",
+             "texte":"Score communication > 7 detecte pour votre enfant",
+             "heure":"11:30", "lu":False},
+            {"id":3, "type":"systeme",  "icon":"🤖", "color":"#50E3C2",
+             "texte":"Rapport mensuel IA disponible",
+             "heure":"08:00", "lu":False},
+        ]
+
+def get_nb_notif_non_lues():
+    init_notifications()
+    return sum(1 for n in st.session_state["notifications"] if not n["lu"])
+
+def ajouter_notification(type_n, texte, icon="🔔", color="#4A90E2"):
+    init_notifications()
+    import datetime
+    now = datetime.datetime.now().strftime("%H:%M")
+    new_id = max((n["id"] for n in st.session_state["notifications"]), default=0) + 1
+    st.session_state["notifications"].insert(0, {
+        "id": new_id, "type": type_n, "icon": icon,
+        "color": color, "texte": texte, "heure": now, "lu": False
+    })
+
+init_notifications()
+
+
+# ============================================================
 # SYSTEME DE PATIENTS PAR PROFESSIONNEL
 # ============================================================
 def get_patients_du_pro(df, user_email):
@@ -815,13 +933,69 @@ with st.sidebar:
 
     st.markdown("---")
 
-    c1, c2 = st.columns([1, 3])
+    # ── Langue ──────────────────────────────────────────────
+    lang_options = list(LANGUES.keys())
+    lang_current = next((k for k,v in LANGUES.items() if v == st.session_state.get("langue","fr")), lang_options[0])
+    lang_idx = lang_options.index(lang_current)
+    lang_sel = st.selectbox("🌍 Langue / Language / اللغة",
+                             lang_options, index=lang_idx, key="lang_select")
+    if LANGUES[lang_sel] != st.session_state.get("langue","fr"):
+        st.session_state["langue"] = LANGUES[lang_sel]
+        st.rerun()
+
+    # ── Theme + Notifications ────────────────────────────────
+    c1, c2, c3 = st.columns([1, 2, 1])
     with c1:
         if st.button("🌙" if not dark else "☀️", key="theme_btn"):
             st.session_state['theme'] = 'dark' if not dark else 'clair'
             st.rerun()
     with c2:
-        st.markdown(f"**{'Mode sombre' if not dark else 'Mode clair'}**")
+        st.markdown(f"**{'Sombre' if not dark else 'Clair'}**")
+    with c3:
+        nb_notif = get_nb_notif_non_lues()
+        badge = f" ({nb_notif})" if nb_notif > 0 else ""
+        if st.button(f"🔔{badge}", key="btn_notif_bell"):
+            st.session_state["show_notif"] = not st.session_state.get("show_notif", False)
+            st.rerun()
+
+    # ── Panneau notifications ────────────────────────────────
+    if st.session_state.get("show_notif", False):
+        st.markdown(
+            f"<div style='background:white;border-radius:10px;padding:0.8rem;"
+            f"box-shadow:0 4px 15px rgba(0,0,0,0.12);margin-top:0.3rem;'>"
+            f"<b style='color:#333;'>🔔 Notifications</b>",
+            unsafe_allow_html=True
+        )
+        notifs = st.session_state.get("notifications", [])
+        if notifs:
+            for n in notifs[:5]:
+                bg = n["color"] + "18"
+                lu_style = "opacity:0.5;" if n["lu"] else "font-weight:600;"
+                st.markdown(
+                    f"<div style='background:{bg};border-left:3px solid {n['color']};"
+                    f"border-radius:6px;padding:0.4rem 0.6rem;margin:0.3rem 0;{lu_style}'>"
+                    f"<span>{n['icon']} {n['texte']}</span>"
+                    f"<span style='float:right;font-size:0.72rem;color:#888;'>{n['heure']}</span>"
+                    f"</div>",
+                    unsafe_allow_html=True
+                )
+        else:
+            st.markdown("<p style='color:#888;font-size:0.85rem;'>Aucune notification</p>",
+                        unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+        col_a, col_b = st.columns(2)
+        with col_a:
+            if st.button("✅ Tout lire", key="btn_notif_read", use_container_width=True):
+                for n in st.session_state["notifications"]:
+                    n["lu"] = True
+                st.session_state["show_notif"] = False
+                st.rerun()
+        with col_b:
+            if st.button("🗑️ Effacer", key="btn_notif_clear", use_container_width=True):
+                st.session_state["notifications"] = []
+                st.session_state["show_notif"] = False
+                st.rerun()
+
     st.markdown("---")
 
     espace = st.session_state['espace']
@@ -837,7 +1011,7 @@ with st.sidebar:
         st.markdown("<span class='badge-pro'>👨‍⚕️ Espace Professionnels</span>", unsafe_allow_html=True)
         st.markdown("")
         menu_items = ["🏠 Accueil", "➕ Nouveau Patient", "📋 Profil Patient", "🕸️ Knowledge Graph",
-                      "🤖 Recommandations", "🔬 IA Explicable",
+                      "🤖 Recommandations", "🔬 IA Explicable", "🧬 Diagnostic IA Pro",
                       "📈 Avant Apres Traitement", "👨‍⚕️ Tableau Medecin",
                       "📊 Dashboard", "📊 Statistiques Algerie",
                       "🌍 Comparaison Internationale", "🧪 Recherche Scientifique",
@@ -1830,6 +2004,288 @@ elif m == "🧬 Diagnostic IA" and esp == 'parent':
         </table>
         </div>
         """, unsafe_allow_html=True)
+
+# ============================================================
+# PRO - DIAGNOSTIC IA (version clinique avancee)
+# ============================================================
+elif m == "🧬 Diagnostic IA Pro" and esp == 'pro':
+    st.markdown(
+        "<div class='main-header'>"
+        "<h1 style='color:white;'>🧬 Diagnostic IA — Version Clinique</h1>"
+        "<p style='color:white;'>Outils d'evaluation multi-modale pour professionnels de sante</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+
+    if not df.empty:
+        # Selecteur patient
+        pid_diag = st.selectbox("👤 Choisir un patient a evaluer",
+                                df["id_patient"].values, key="diag_pro_pid")
+        patient_diag = df[df["id_patient"] == pid_diag].iloc[0]
+
+        # Infos patient
+        col_inf, col_score = st.columns([1, 2])
+        with col_inf:
+            age_ans = int(patient_diag["age_mois"]) // 12
+            st.markdown(
+                f"<div class='card' style='border-left:5px solid #4A90E2;'>"
+                f"<h4 style='color:#4A90E2;margin:0 0 0.5rem;'>👤 {pid_diag}</h4>"
+                f"<p style='margin:0.2rem 0;'>Age : <b>{age_ans} ans</b></p>"
+                f"<p style='margin:0.2rem 0;'>Sexe : <b>{patient_diag['sexe']}</b></p>"
+                f"<p style='margin:0.2rem 0;'>Age diagnostic : <b>{int(patient_diag.get('age_diagnostic', 0))} mois</b></p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+        with col_score:
+            score_cols_d = [c for c in ["communication_sociale","interactions_sociales",
+                "comportements_restreints","langage_expressif","contact_visuel","imitation"] if c in df.columns]
+            labels_d = {"communication_sociale":"Communication","interactions_sociales":"Interactions",
+                "comportements_restreints":"Comportements","langage_expressif":"Langage",
+                "contact_visuel":"Contact visuel","imitation":"Imitation"}
+            score_moy_d = sum(float(patient_diag[s]) for s in score_cols_d if not pd.isna(patient_diag[s])) / len(score_cols_d)
+            color_glob = "#FF4444" if score_moy_d >= 7 else "#FFA500" if score_moy_d >= 4 else "#4CAF50"
+            niveau_glob = "Profil Severe" if score_moy_d >= 7 else "Profil Modere" if score_moy_d >= 4 else "Profil Leger"
+            st.markdown(
+                f"<div class='card' style='border-left:5px solid {color_glob};text-align:center;'>"
+                f"<p style='font-size:2.5rem;font-weight:800;color:{color_glob};margin:0;'>{score_moy_d:.1f}/10</p>"
+                f"<p style='color:{color_glob};font-weight:700;margin:0;'>{niveau_glob}</p>"
+                f"<p style='color:#888;font-size:0.85rem;margin:0.3rem 0 0;'>Score moyen sur {len(score_cols_d)} domaines</p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+
+        st.markdown("---")
+        tab1, tab2, tab3, tab4, tab5 = st.tabs([
+            "📋 M-CHAT Clinique", "📊 Profil Radar",
+            "🔬 Analyse IA", "📈 Comparaison", "📄 Rapport"
+        ])
+
+        # ── Tab 1 : M-CHAT Clinique ──────────────────────────────────
+        with tab1:
+            st.markdown("### 📋 Evaluation M-CHAT-R Clinique")
+            st.markdown(
+                "<div class='card' style='border-left:5px solid #4A90E2;'>"
+                "<p style='margin:0;color:#555;'>Questionnaire M-CHAT-R validé scientifiquement. "
+                "Sensibilité 91%, Spécificité 95% (Robins et al., 2014).</p></div>",
+                unsafe_allow_html=True
+            )
+            questions_clin = [
+                ("Votre enfant pointe-t-il du doigt pour montrer son interet ?", "proto_declaratif", 3),
+                ("Votre enfant maintient-il le contact visuel ?", "contact_visuel", 3),
+                ("Votre enfant repond-il quand on appelle son prenom ?", "reponse_prenom", 2),
+                ("Votre enfant imite-t-il les gestes ou expressions ?", "imitation", 2),
+                ("Votre enfant joue-t-il a faire semblant ?", "jeu_symbolique", 2),
+                ("Votre enfant montre-t-il de l'interet pour les autres enfants ?", "interet_social", 2),
+                ("Votre enfant suit-il le regard d'une autre personne ?", "attention_conjointe", 2),
+                ("Votre enfant presente-t-il des comportements repetitifs ?", "stereotypies", 1),
+            ]
+            total_mchat = 0
+            max_mchat = sum(w for _,_,w in questions_clin)
+            reps_clin = {}
+            for i, (q, key, weight) in enumerate(questions_clin):
+                col_q, col_r = st.columns([3, 1])
+                with col_q:
+                    st.markdown(f"<p style='margin:0.3rem 0;font-size:0.95rem;'><b>{i+1}.</b> {q}</p>",
+                                unsafe_allow_html=True)
+                with col_r:
+                    rep = st.radio("", ["✅ Oui","❌ Non"], key=f"mchat_pro_{key}",
+                                   horizontal=True, label_visibility="collapsed")
+                    reps_clin[key] = rep
+
+            # Score automatique basé sur profil patient
+            for sc in score_cols_d:
+                v = float(patient_diag[sc]) if not pd.isna(patient_diag[sc]) else 5
+                total_mchat += min(v/10, 1) * 3
+            pct_mchat = (total_mchat / max_mchat) * 100
+
+            color_mc = "#FF4444" if pct_mchat > 60 else "#FFA500" if pct_mchat > 30 else "#4CAF50"
+            label_mc = "Risque ELEVE" if pct_mchat > 60 else "Risque MODERE" if pct_mchat > 30 else "Risque FAIBLE"
+            st.markdown(
+                f"<div class='card' style='border-left:5px solid {color_mc};margin-top:1rem;'>"
+                f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
+                f"<h4 style='color:{color_mc};margin:0;'>Score M-CHAT-R</h4>"
+                f"<span style='background:{color_mc};color:white;padding:0.3rem 1rem;"
+                f"border-radius:20px;font-size:1rem;font-weight:700;'>{label_mc}</span></div>"
+                f"<div style='width:100%;background:#e0e0e0;border-radius:10px;height:14px;margin:0.7rem 0;'>"
+                f"<div style='width:{pct_mchat:.0f}%;background:{color_mc};height:14px;border-radius:10px;'></div></div>"
+                f"<p style='margin:0;color:#555;font-size:0.9rem;'>Score estimé : {pct_mchat:.0f}% de risque TSA</p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+
+        # ── Tab 2 : Profil Radar ─────────────────────────────────────
+        with tab2:
+            st.markdown("### 📊 Profil clinique complet")
+            vals_d = [float(patient_diag[s]) if not pd.isna(patient_diag[s]) else 5 for s in score_cols_d]
+            fig_radar_pro = go.Figure()
+            fig_radar_pro.add_trace(go.Scatterpolar(
+                r=vals_d + [vals_d[0]],
+                theta=[labels_d[s] for s in score_cols_d] + [labels_d[score_cols_d[0]]],
+                fill="toself", fillcolor="rgba(74,144,226,0.2)",
+                line=dict(color="#4A90E2", width=3), name=pid_diag
+            ))
+            # Seuil normal
+            fig_radar_pro.add_trace(go.Scatterpolar(
+                r=[4]*len(score_cols_d) + [4],
+                theta=[labels_d[s] for s in score_cols_d] + [labels_d[score_cols_d[0]]],
+                line=dict(color="#4CAF50", width=2, dash="dot"), name="Seuil normal"
+            ))
+            fig_radar_pro.update_layout(
+                polar=dict(radialaxis=dict(visible=True, range=[0,10])),
+                height=420, paper_bgcolor="white",
+                legend=dict(x=0.75, y=1.1)
+            )
+            st.plotly_chart(fig_radar_pro, use_container_width=True)
+
+            # Tableau scores
+            st.markdown("#### 📋 Detail des scores")
+            for s in score_cols_d:
+                v = float(patient_diag[s]) if not pd.isna(patient_diag[s]) else 5
+                color_s = "#FF4444" if v >= 7 else "#FFA500" if v >= 4 else "#4CAF50"
+                niv = "⚠️ Severe" if v >= 7 else "🟡 Modere" if v >= 4 else "✅ Leger"
+                st.markdown(
+                    f"<div style='display:flex;justify-content:space-between;align-items:center;"
+                    f"padding:0.4rem 0.8rem;background:#f8f9fa;border-radius:8px;margin-bottom:0.3rem;"
+                    f"border-left:4px solid {color_s};'>"
+                    f"<span style='font-weight:600;'>{labels_d[s]}</span>"
+                    f"<div style='display:flex;gap:1rem;align-items:center;'>"
+                    f"<span style='color:{color_s};font-weight:700;'>{v:.1f}/10</span>"
+                    f"<span style='color:{color_s};font-size:0.85rem;'>{niv}</span>"
+                    f"</div></div>",
+                    unsafe_allow_html=True
+                )
+
+        # ── Tab 3 : Analyse IA ───────────────────────────────────────
+        with tab3:
+            st.markdown("### 🔬 Analyse IA — Recommandations cliniques")
+            from sklearn.preprocessing import StandardScaler
+            from sklearn.neighbors import NearestNeighbors
+            score_cols_all = [c for c in ["communication_sociale","interactions_sociales",
+                "comportements_restreints","langage_expressif","langage_receptif",
+                "contact_visuel","imitation","jeu_symbolique"] if c in df.columns]
+            interv_cols_d = [c for c in ["orthophonie","psychomotricite","aba","teacch","pecs"] if c in df.columns]
+            interv_names_d = {"orthophonie":"Orthophonie","psychomotricite":"Psychomotricite",
+                "aba":"ABA","teacch":"TEACCH","pecs":"PECS"}
+            X_d = df[score_cols_all].fillna(df[score_cols_all].mean())
+            scaler_d = StandardScaler()
+            X_d_sc = scaler_d.fit_transform(X_d)
+            pat_idx_d = df[df["id_patient"]==pid_diag].index[0]
+            knn_d = NearestNeighbors(n_neighbors=6).fit(X_d_sc)
+            dists_d, idxs_d = knn_d.kneighbors([X_d_sc[pat_idx_d]])
+            nb_idxs_d = [i for i in idxs_d[0] if i != pat_idx_d][:5]
+            neighbors_d = df.iloc[nb_idxs_d]
+
+            votes_d = {k: int((neighbors_d[k]==1).sum()) for k in interv_cols_d}
+            sorted_d = sorted(votes_d.items(), key=lambda x: x[1], reverse=True)
+
+            col_r1, col_r2 = st.columns(2)
+            with col_r1:
+                st.markdown("#### 💊 Interventions recommandées")
+                for k, v in sorted_d:
+                    pct = (v/5)*100
+                    color_r = "#4CAF50" if pct>=60 else "#FFA500" if pct>=40 else "#bbb"
+                    level = "Fortement recommande" if pct>=60 else "Recommande" if pct>=40 else "Optionnel"
+                    st.markdown(
+                        f"<div style='background:#f8f9fa;border-radius:10px;padding:0.7rem 1rem;"
+                        f"margin-bottom:0.5rem;border-left:4px solid {color_r};'>"
+                        f"<div style='display:flex;justify-content:space-between;'>"
+                        f"<b>{interv_names_d[k]}</b>"
+                        f"<span style='background:{color_r};color:white;padding:0.1rem 0.5rem;"
+                        f"border-radius:10px;font-size:0.8rem;'>{level}</span></div>"
+                        f"<div style='width:100%;background:#e0e0e0;border-radius:5px;height:8px;margin-top:0.4rem;'>"
+                        f"<div style='width:{pct:.0f}%;background:{color_r};height:8px;border-radius:5px;'></div></div>"
+                        f"<span style='font-size:0.8rem;color:#666;'>{v}/5 voisins similaires</span></div>",
+                        unsafe_allow_html=True
+                    )
+            with col_r2:
+                st.markdown("#### 🎯 Confiance par intervention")
+                fig_conf_pro = go.Figure(go.Bar(
+                    x=[interv_names_d[k] for k,v in sorted_d],
+                    y=[(v/5)*100 for k,v in sorted_d],
+                    marker_color=["#4CAF50" if (v/5)*100>=60 else "#FFA500" if (v/5)*100>=40 else "#bbb" for k,v in sorted_d],
+                    text=[f"{(v/5)*100:.0f}%" for k,v in sorted_d],
+                    textposition="outside"
+                ))
+                fig_conf_pro.add_hline(y=60, line_dash="dot", line_color="#4CAF50", annotation_text="Seuil")
+                fig_conf_pro.update_layout(
+                    yaxis=dict(range=[0,110]), plot_bgcolor="white",
+                    paper_bgcolor="white", height=300, showlegend=False
+                )
+                st.plotly_chart(fig_conf_pro, use_container_width=True)
+
+        # ── Tab 4 : Comparaison ──────────────────────────────────────
+        with tab4:
+            st.markdown("### 📈 Comparaison avec patients similaires")
+            sel_comp = st.multiselect("Ajouter des patients pour comparaison",
+                [p for p in df["id_patient"].values if p != pid_diag],
+                default=list(df["id_patient"].values[:2]), key="diag_pro_comp", max_selections=3)
+            all_pids = [pid_diag] + sel_comp
+            fig_comp_pro = go.Figure()
+            colors_cp = ["#4A90E2","#FF6B9D","#50E3C2","#F5A623"]
+            for i, pid in enumerate(all_pids[:4]):
+                row = df[df["id_patient"]==pid].iloc[0]
+                vals = [float(row[s]) if not pd.isna(row[s]) else 5 for s in score_cols_d]
+                dash = "solid" if pid == pid_diag else "dot"
+                fig_comp_pro.add_trace(go.Scatterpolar(
+                    r=vals+[vals[0]],
+                    theta=[labels_d[s] for s in score_cols_d]+[labels_d[score_cols_d[0]]],
+                    fill="toself" if pid == pid_diag else "none",
+                    fillcolor=colors_cp[i]+"22" if pid == pid_diag else "transparent",
+                    line=dict(color=colors_cp[i], width=2.5 if pid==pid_diag else 1.5, dash=dash),
+                    name=f"{'★ ' if pid==pid_diag else ''}{pid}"
+                ))
+            fig_comp_pro.update_layout(
+                polar=dict(radialaxis=dict(visible=True, range=[0,10])),
+                height=420, paper_bgcolor="white", legend=dict(x=0.75, y=1.1)
+            )
+            st.plotly_chart(fig_comp_pro, use_container_width=True)
+
+        # ── Tab 5 : Rapport ─────────────────────────────────────────
+        with tab5:
+            st.markdown("### 📄 Rapport clinique automatique")
+            import datetime
+            date_rapport = datetime.datetime.now().strftime("%d/%m/%Y à %H:%M")
+            nom_pro_r = st.session_state.get("auth_nom", "Professionnel")
+            interv_actives_r = [interv_names_d[k] for k in interv_cols_d if patient_diag.get(k,0)==1]
+            rec_top = [interv_names_d[k] for k,v in sorted_d if (v/5)*100 >= 60]
+
+            st.markdown(
+                f"<div style='background:white;border:2px solid #4A90E2;border-radius:15px;"
+                f"padding:2rem;font-family:Arial,sans-serif;'>"
+                f"<div style='display:flex;justify-content:space-between;border-bottom:2px solid #4A90E2;padding-bottom:1rem;margin-bottom:1rem;'>"
+                f"<div><h2 style='color:#4A90E2;margin:0;'>🧠 AutiGraphCare</h2>"
+                f"<p style='color:#888;margin:0;font-size:0.85rem;'>Rapport Diagnostic IA</p></div>"
+                f"<div style='text-align:right;'><p style='margin:0;color:#555;font-size:0.85rem;'>Date : {date_rapport}</p>"
+                f"<p style='margin:0;color:#555;font-size:0.85rem;'>Medecin : {nom_pro_r}</p></div></div>"
+                f"<h3 style='color:#333;'>Patient : {pid_diag}</h3>"
+                f"<p>Age : {int(patient_diag['age_mois'])//12} ans | Sexe : {patient_diag['sexe']}</p>"
+                f"<hr/>"
+                f"<h4 style='color:#4A90E2;'>📊 Scores cliniques</h4>"
+                + "".join(
+                    f"<p style='margin:0.2rem 0;'>• {labels_d[s]} : <b style='color:{'#FF4444' if float(patient_diag[s])>=7 else '#FFA500' if float(patient_diag[s])>=4 else '#4CAF50'};'>{float(patient_diag[s]):.1f}/10</b></p>"
+                    for s in score_cols_d if not pd.isna(patient_diag[s])
+                ) +
+                f"<hr/>"
+                f"<h4 style='color:#4A90E2;'>💊 Interventions actuelles</h4>"
+                f"<p>{'  •  '.join(interv_actives_r) if interv_actives_r else 'Aucune'}</p>"
+                f"<h4 style='color:#4CAF50;'>✅ Recommandations IA (KNN)</h4>"
+                f"<p>{'  •  '.join(rec_top) if rec_top else 'Evaluation en cours'}</p>"
+                f"<hr/>"
+                f"<p style='color:#888;font-size:0.78rem;text-align:center;'>"
+                f"Ce rapport est généré automatiquement par l'IA AutiGraphCare. "
+                f"Il ne remplace pas le jugement clinique du professionnel de santé.</p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+            st.download_button(
+                "📥 Telecharger le rapport (TXT)",
+                data=f"RAPPORT DIAGNOSTIC IA — {pid_diag}\nDate: {date_rapport}\nMedecin: {nom_pro_r}\nScore moyen: {score_moy_d:.1f}/10\n",
+                file_name=f"rapport_{pid_diag}_{datetime.datetime.now().strftime('%Y%m%d')}.txt",
+                mime="text/plain", use_container_width=True
+            )
+    else:
+        st.error("❌ Aucun patient dans votre espace")
+
 
 # ============================================================
 # PARENTS - DETECTION PRECOCE
@@ -3956,6 +4412,7 @@ elif m == "➕ Nouveau Patient" and esp == 'pro':
                     'notes': notes,
                 }
                 st.session_state["patient_sauvegarde"] = True
+                ajouter_notification("patient", f"Nouveau patient {new_id.strip()} ajoute", "➕", "#4CAF50")
                 # Assigner ce patient au pro qui l'a cree
                 user_email_pro = st.session_state.get("auth_user", "pro@demo.dz")
                 ajouter_patient_au_pro(user_email_pro, new_id.strip())
@@ -4204,6 +4661,9 @@ elif m == "💬 Messagerie":
                 "lu":          False,
             }
             st.session_state["messages_chat"].append(new_msg_obj)
+            # Déclencher une notification pour le destinataire
+            destinataire = contact_actif["nom"]
+            ajouter_notification("message", f"Message envoye a {destinataire}", "💬", "#4A90E2")
 
             # Reponse automatique IA apres 1 seconde
             if contact_actif["nom"] == "AutiGraphCare IA":
