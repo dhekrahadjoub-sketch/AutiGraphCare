@@ -21,6 +21,11 @@ for key, val in [('theme','clair'), ('espace',None), ('menu',"🏠 Accueil")]:
 
 dark = st.session_state['theme'] == 'dark'
 
+# Injection CSS RTL si langue arabe
+if st.session_state.get("langue","fr") == "ar":
+    st.markdown("<style>body,.stApp,.main,p,h1,h2,h3,h4,li{direction:rtl!important;text-align:right!important;}</style>", unsafe_allow_html=True)
+
+
 BG      = "#1a1a1a" if dark else "#f8f9fa"
 BG2     = "#2d2d2d" if dark else "#ffffff"
 BG3     = "#3a3a3a" if dark else "#f0f0f0"
@@ -321,17 +326,17 @@ def show_auth_gate():
 
         _, mid, _ = st.columns([1, 3, 1])
         with mid:
-            email = st.text_input("📧 Adresse email", placeholder="exemple@email.com", key="login_email")
-            mdp   = st.text_input("🔒 Mot de passe", type="password", placeholder="••••••••", key="login_mdp")
+            email = st.text_input(t("email"), placeholder="exemple@email.com", key="login_email")
+            mdp   = st.text_input(t("mdp"), type="password", placeholder="••••••••", key="login_mdp")
 
             col_r, col_oubli = st.columns([1,1])
             with col_r:
-                st.checkbox("Se souvenir de moi")
+                st.checkbox(t("souvenir"))
             with col_oubli:
                 st.markdown("<p style='text-align:right;color:#4A90E2;font-size:0.85rem;"
                             "margin-top:0.4rem;'>Mot de passe oublie ?</p>", unsafe_allow_html=True)
 
-            if st.button("🚀 Se connecter", use_container_width=True, key="btn_login"):
+            if st.button(t("se_connecter"), use_container_width=True, key="btn_login"):
                 if email.strip() in COMPTES_DEMO and COMPTES_DEMO[email.strip()]["mdp"] == mdp:
                     compte = COMPTES_DEMO[email.strip()]
                     st.session_state.update({
@@ -385,7 +390,7 @@ def show_auth_gate():
             st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
             st.markdown("<p style='text-align:center;color:#555;'>Pas encore de compte ?</p>",
                         unsafe_allow_html=True)
-            if st.button("✨ Creer un compte gratuit", use_container_width=True, key="btn_to_register"):
+            if st.button(t("creer_compte"), use_container_width=True, key="btn_to_register"):
                 st.session_state["auth_page"] = "register"
                 st.rerun()
 
@@ -662,7 +667,7 @@ def show_auth_gate():
                             _finalize_inscription(plan_info, "Cash a la livraison")
 
             st.markdown("<hr style='margin:1.5rem 0;'>", unsafe_allow_html=True)
-            if st.button("← Retour a la connexion", key="btn_back_login"):
+            if st.button(t("retour_connexion"), key="btn_back_login"):
                 st.session_state["auth_page"] = "login"
                 st.rerun()
 
@@ -738,79 +743,213 @@ LANGUES = {
 }
 
 TRAD = {
+    # ══════════════════════════ FRANÇAIS ══════════════════════════
     "fr": {
-        "accueil": "🏠 Accueil", "bonjour": "Bonjour",
-        "bienvenue": "Bienvenue dans votre espace",
-        "detection": "🔍 Détection précoce",
-        "orientation": "🧭 Orientation",
-        "conseils": "💡 Conseils pratiques",
-        "mon_enfant": "👶 Mon Enfant",
-        "suivi": "📈 Suivi Evolution",
-        "alertes": "🔔 Alertes",
-        "messagerie": "💬 Messagerie",
-        "aide": "❓ Aide",
-        "diagnostic_ia": "🧬 Diagnostic IA",
-        "notif_titre": "🔔 Notifications",
-        "notif_vide": "Aucune nouvelle notification",
-        "nouveau_msg": "Nouveau message de",
-        "alerte_score": "Alerte : score élevé détecté",
-        "nouveau_patient": "Nouveau patient ajouté",
-        "langue": "Langue",
-        "deconnecter": "🚪 Se déconnecter",
-        "connecter": "🔐 Se connecter",
+        # Menu
+        "accueil":"🏠 Accueil","detection":"🔍 Détection précoce",
+        "orientation":"🧭 Orientation","conseils":"💡 Conseils pratiques",
+        "mon_enfant":"👶 Mon Enfant","suivi":"📈 Suivi Évolution",
+        "alertes":"🔔 Alertes","messagerie":"💬 Messagerie","aide":"❓ Aide",
+        "diagnostic_ia":"🧬 Diagnostic IA","diagnostic_ia_pro":"🧬 Diagnostic IA Pro",
+        "nouveau_patient":"➕ Nouveau Patient","profil_patient":"📋 Profil Patient",
+        "knowledge_graph":"🕸️ Knowledge Graph","recommandations":"🤖 Recommandations",
+        "ia_explicable":"🔬 IA Explicable","avant_apres":"📈 Avant Après Traitement",
+        "tableau_medecin":"👨‍⚕️ Tableau Médecin","dashboard":"📊 Dashboard",
+        "stats_algerie":"📊 Statistiques Algérie","comparaison":"🌍 Comparaison Internationale",
+        "recherche":"🧪 Recherche Scientifique","business":"💰 Business Model",
+        # Auth
+        "connexion":"🔐 Connexion","connecter_msg":"Connectez-vous à votre compte AutiGraphCare",
+        "email":t("email"),"mdp":t("mdp"),"se_connecter":t("se_connecter"),
+        "souvenir":t("souvenir"),"oublie":"Mot de passe oublié ?",
+        "comptes_demo":"🎯 Comptes de démonstration","pas_compte":t("pas_compte"),
+        "creer_compte":"✨ Créer un compte gratuit","deconnecter":"🚪 Se déconnecter",
+        "connecter":"🔐 Se connecter","retour_connexion":"← Retour à la connexion",
+        # Accueil général
+        "bienvenue_titre":"🧠 AutiGraphCare","bienvenue_sous":"Plateforme intelligente pour les enfants TSA",
+        "qui_etes_vous":"👋 Bienvenue ! Qui êtes-vous ?",
+        "espace_parents":"Espace Parents","espace_pro":"Espace Professionnels",
+        "entrer_parents":"👪 Entrer - Espace Parents","entrer_pro":"👨‍⚕️ Entrer - Espace Professionnels",
+        # Accueil Parent
+        "bonjour":"Bonjour","comment_aider":t("comment_aider"),
+        "signes_tsa":"Mon enfant — signes TSA ?","detection_sub":"Questionnaire de détection en 5 minutes",
+        "suivre_evolution":"Suivre l'évolution","evolution_sub":"Voir les progrès mois par mois",
+        "parler_equipe":"Parler à l'équipe soignante","equipe_sub":"Messagerie avec les thérapeutes",
+        "ouvrir":"Ouvrir →","actions_rapides":t("actions_rapides"),
+        "profil_enfant":t("profil_enfant"),"voir_dossier":t("voir_dossier"),
+        "scores_therapies":"Scores cliniques, thérapies en cours, historique",
+        "conseil_detection":"💡 Conseil : La détection précoce avant 3 ans améliore significativement les résultats thérapeutiques.",
+        # Accueil Pro
+        "bonjour_pro":"Bonjour","patients_espace":"patients dans votre espace privé",
+        "espace_prive":"🔒 Espace privé","espace_prive_msg":"Seuls VOS patients sont visibles ici. Aucun autre professionnel n'a accès à vos dossiers.",
+        # Notifications
+        "notif_titre":"🔔 Notifications","notif_vide":t("notif_vide"),
+        "tout_lire":"✅ Tout lire","effacer":"🗑️ Effacer",
+        "nouveau_msg_notif":"Message envoyé à","nouveau_patient_notif":"Nouveau patient ajouté",
+        # Commun
+        "choisir_patient":"Choisir un patient","enregistrer":"💾 Enregistrer",
+        "annuler":"Annuler","confirmer":"Confirmer","fermer":"Fermer",
+        "score":"Score","niveau":"Niveau","severe":"Sévère","modere":"Modéré","leger":"Léger",
+        "oui":"Oui","non":"Non","patients":"patients","chargement":"Chargement...",
+        "erreur_donnees":"❌ Données non trouvées","langue":"🌍 Langue",
+        "theme_sombre":"Sombre","theme_clair":"Clair",
+        # TSA stats
+        "tsa_chiffres":"📊 TSA en chiffres","enfants_algerie":"Enfants TSA en Algérie",
+        "enfants_monde":"Enfants touchés dans le monde","sans_suivi":"Sans suivi structuré",
+        "precision_ia":"Précision de notre IA",
+        # Detection precoce
+        "detection_titre":"🔍 Détection Précoce TSA",
+        "detection_desc":"Questionnaire de repérage des signes TSA",
+        "repondez":"Répondez aux questions suivantes concernant votre enfant",
+        "outil_reperage":"(Ce questionnaire est un outil de repérage, non un diagnostic médical)",
+        # Messages
+        "envoyer":"📤 Envoyer","nouveau_message":"Votre message","suggestions":"Suggestion rapide (optionnel)",
+        "ecrire_manuellement":"-- Écrire manuellement --",
+        # Messagerie contacts
+        "equipe_therapeutique":"👥 Équipe thérapeutique","en_ligne":"En ligne","hors_ligne":"Hors ligne","occupe":"Occupé",
     },
+    # ══════════════════════════ ENGLISH ═══════════════════════════
     "en": {
-        "accueil": "🏠 Home", "bonjour": "Hello",
-        "bienvenue": "Welcome to your space",
-        "detection": "🔍 Early Detection",
-        "orientation": "🧭 Orientation",
-        "conseils": "💡 Practical Tips",
-        "mon_enfant": "👶 My Child",
-        "suivi": "📈 Progress Tracking",
-        "alertes": "🔔 Alerts",
-        "messagerie": "💬 Messaging",
-        "aide": "❓ Help",
-        "diagnostic_ia": "🧬 AI Diagnostic",
-        "notif_titre": "🔔 Notifications",
-        "notif_vide": "No new notifications",
-        "nouveau_msg": "New message from",
-        "alerte_score": "Alert: high score detected",
-        "nouveau_patient": "New patient added",
-        "langue": "Language",
-        "deconnecter": "🚪 Sign out",
-        "connecter": "🔐 Sign in",
+        # Menu
+        "accueil":"🏠 Home","detection":"🔍 Early Detection",
+        "orientation":"🧭 Orientation","conseils":"💡 Practical Tips",
+        "mon_enfant":"👶 My Child","suivi":"📈 Progress Tracking",
+        "alertes":"🔔 Alerts","messagerie":"💬 Messaging","aide":"❓ Help",
+        "diagnostic_ia":"🧬 AI Diagnostic","diagnostic_ia_pro":"🧬 AI Diagnostic Pro",
+        "nouveau_patient":"➕ New Patient","profil_patient":"📋 Patient Profile",
+        "knowledge_graph":"🕸️ Knowledge Graph","recommandations":"🤖 Recommendations",
+        "ia_explicable":"🔬 Explainable AI","avant_apres":"📈 Before/After Treatment",
+        "tableau_medecin":"👨‍⚕️ Doctor Dashboard","dashboard":"📊 Dashboard",
+        "stats_algerie":"📊 Algeria Statistics","comparaison":"🌍 International Comparison",
+        "recherche":"🧪 Scientific Research","business":"💰 Business Model",
+        # Auth
+        "connexion":"🔐 Login","connecter_msg":"Sign in to your AutiGraphCare account",
+        "email":"📧 Email address","mdp":"🔒 Password","se_connecter":"🚀 Sign in",
+        "souvenir":"Remember me","oublie":"Forgot password?",
+        "comptes_demo":"🎯 Demo accounts","pas_compte":"Don't have an account?",
+        "creer_compte":"✨ Create a free account","deconnecter":"🚪 Sign out",
+        "connecter":"🔐 Sign in","retour_connexion":"← Back to login",
+        # General home
+        "bienvenue_titre":"🧠 AutiGraphCare","bienvenue_sous":"Intelligent platform for ASD children",
+        "qui_etes_vous":"👋 Welcome! Who are you?",
+        "espace_parents":"Parent Space","espace_pro":"Professional Space",
+        "entrer_parents":"👪 Enter - Parent Space","entrer_pro":"👨‍⚕️ Enter - Professional Space",
+        # Parent home
+        "bonjour":"Hello","comment_aider":"How can I help you today?",
+        "signes_tsa":"My child — ASD signs?","detection_sub":"5-minute detection questionnaire",
+        "suivre_evolution":"Track progress","evolution_sub":"View monthly progress",
+        "parler_equipe":"Talk to the care team","equipe_sub":"Messaging with therapists",
+        "ouvrir":"Open →","actions_rapides":"⚡ Quick actions",
+        "profil_enfant":"👶 My child's profile","voir_dossier":"View complete file",
+        "scores_therapies":"Clinical scores, ongoing therapies, history",
+        "conseil_detection":"💡 Tip: Early detection before age 3 significantly improves therapeutic outcomes.",
+        # Pro home
+        "bonjour_pro":"Hello","patients_espace":"patients in your private space",
+        "espace_prive":"🔒 Private space","espace_prive_msg":"Only YOUR patients are visible here. No other professional has access to your records.",
+        # Notifications
+        "notif_titre":"🔔 Notifications","notif_vide":"No notifications",
+        "tout_lire":"✅ Mark all read","effacer":"🗑️ Clear",
+        "nouveau_msg_notif":"Message sent to","nouveau_patient_notif":"New patient added",
+        # Common
+        "choisir_patient":"Choose a patient","enregistrer":"💾 Save",
+        "annuler":"Cancel","confirmer":"Confirm","fermer":"Close",
+        "score":"Score","niveau":"Level","severe":"Severe","modere":"Moderate","leger":"Mild",
+        "oui":"Yes","non":"No","patients":"patients","chargement":"Loading...",
+        "erreur_donnees":"❌ Data not found","langue":"🌍 Language",
+        "theme_sombre":"Dark","theme_clair":"Light",
+        # TSA stats
+        "tsa_chiffres":"📊 ASD in numbers","enfants_algerie":"ASD children in Algeria",
+        "enfants_monde":"Children affected worldwide","sans_suivi":"Without structured care",
+        "precision_ia":"Our AI precision",
+        # Detection
+        "detection_titre":"🔍 Early ASD Detection",
+        "detection_desc":"ASD signs screening questionnaire",
+        "repondez":"Answer the following questions about your child",
+        "outil_reperage":"(This questionnaire is a screening tool, not a medical diagnosis)",
+        # Messages
+        "envoyer":"📤 Send","nouveau_message":"Your message","suggestions":"Quick suggestion (optional)",
+        "ecrire_manuellement":"-- Write manually --",
+        # Messaging contacts
+        "equipe_therapeutique":"👥 Therapeutic team","en_ligne":"Online","hors_ligne":"Offline","occupe":"Busy",
     },
+    # ══════════════════════════ ARABE ═════════════════════════════
     "ar": {
-        "accueil": "🏠 الرئيسية", "bonjour": "مرحباً",
-        "bienvenue": "مرحباً بك في فضائك",
-        "detection": "🔍 الكشف المبكر",
-        "orientation": "🧭 التوجيه",
-        "conseils": "💡 نصائح عملية",
-        "mon_enfant": "👶 طفلي",
-        "suivi": "📈 متابعة التطور",
-        "alertes": "🔔 التنبيهات",
-        "messagerie": "💬 المراسلة",
-        "aide": "❓ المساعدة",
-        "diagnostic_ia": "🧬 تشخيص الذكاء الاصطناعي",
-        "notif_titre": "🔔 الإشعارات",
-        "notif_vide": "لا توجد إشعارات جديدة",
-        "nouveau_msg": "رسالة جديدة من",
-        "alerte_score": "تنبيه: تم اكتشاف درجة عالية",
-        "nouveau_patient": "تمت إضافة مريض جديد",
-        "langue": "اللغة",
-        "deconnecter": "🚪 تسجيل الخروج",
-        "connecter": "🔐 تسجيل الدخول",
+        # Menu
+        "accueil":"🏠 الرئيسية","detection":"🔍 الكشف المبكر",
+        "orientation":"🧭 التوجيه","conseils":"💡 نصائح عملية",
+        "mon_enfant":"👶 طفلي","suivi":"📈 متابعة التطور",
+        "alertes":"🔔 التنبيهات","messagerie":"💬 المراسلة","aide":"❓ المساعدة",
+        "diagnostic_ia":"🧬 تشخيص الذكاء الاصطناعي","diagnostic_ia_pro":"🧬 تشخيص ذكاء اصطناعي متقدم",
+        "nouveau_patient":"➕ مريض جديد","profil_patient":"📋 ملف المريض",
+        "knowledge_graph":"🕸️ الرسم البياني المعرفي","recommandations":"🤖 التوصيات",
+        "ia_explicable":"🔬 الذكاء الاصطناعي القابل للتفسير","avant_apres":"📈 قبل وبعد العلاج",
+        "tableau_medecin":"👨‍⚕️ لوحة الطبيب","dashboard":"📊 لوحة التحكم",
+        "stats_algerie":"📊 إحصائيات الجزائر","comparaison":"🌍 المقارنة الدولية",
+        "recherche":"🧪 البحث العلمي","business":"💰 نموذج الأعمال",
+        # Auth
+        "connexion":"🔐 تسجيل الدخول","connecter_msg":"سجّل دخولك إلى حساب AutiGraphCare",
+        "email":"📧 البريد الإلكتروني","mdp":"🔒 كلمة المرور","se_connecter":"🚀 تسجيل الدخول",
+        "souvenir":"تذكّرني","oublie":"نسيت كلمة المرور؟",
+        "comptes_demo":"🎯 حسابات تجريبية","pas_compte":"ليس لديك حساب؟",
+        "creer_compte":"✨ إنشاء حساب مجاني","deconnecter":"🚪 تسجيل الخروج",
+        "connecter":"🔐 تسجيل الدخول","retour_connexion":"← العودة إلى تسجيل الدخول",
+        # General home
+        "bienvenue_titre":"🧠 AutiGraphCare","bienvenue_sous":"منصة ذكية لأطفال طيف التوحد",
+        "qui_etes_vous":"👋 مرحباً! من أنت؟",
+        "espace_parents":"فضاء الآباء","espace_pro":"فضاء المختصين",
+        "entrer_parents":"👪 دخول - فضاء الآباء","entrer_pro":"👨‍⚕️ دخول - فضاء المختصين",
+        # Parent home
+        "bonjour":"مرحباً","comment_aider":"كيف يمكنني مساعدتك اليوم؟",
+        "signes_tsa":"هل يُظهر طفلي علامات التوحد؟","detection_sub":"استبيان الكشف في 5 دقائق",
+        "suivre_evolution":"متابعة التطور","evolution_sub":"عرض التقدم شهرًا بشهر",
+        "parler_equipe":"التواصل مع الفريق","equipe_sub":"المراسلة مع المعالجين",
+        "ouvrir":"فتح ←","actions_rapides":"⚡ إجراءات سريعة",
+        "profil_enfant":"👶 ملف طفلي","voir_dossier":"عرض الملف الكامل",
+        "scores_therapies":"الدرجات السريرية، العلاجات الجارية، السجل",
+        "conseil_detection":"💡 نصيحة: الكشف المبكر قبل سن 3 سنوات يحسّن بشكل كبير نتائج العلاج.",
+        # Pro home
+        "bonjour_pro":"مرحباً","patients_espace":"مرضى في فضائك الخاص",
+        "espace_prive":"🔒 فضاء خاص","espace_prive_msg":"فقط مرضاك مرئيون هنا. لا يمكن لأي متخصص آخر الوصول إلى ملفاتك.",
+        # Notifications
+        "notif_titre":"🔔 الإشعارات","notif_vide":"لا توجد إشعارات",
+        "tout_lire":"✅ تحديد الكل كمقروء","effacer":"🗑️ مسح",
+        "nouveau_msg_notif":"رسالة أُرسلت إلى","nouveau_patient_notif":"تمت إضافة مريض جديد",
+        # Common
+        "choisir_patient":"اختر مريضًا","enregistrer":"💾 حفظ",
+        "annuler":"إلغاء","confirmer":"تأكيد","fermer":"إغلاق",
+        "score":"الدرجة","niveau":"المستوى","severe":"شديد","modere":"متوسط","leger":"خفيف",
+        "oui":"نعم","non":"لا","patients":"مرضى","chargement":"جار التحميل...",
+        "erreur_donnees":"❌ البيانات غير موجودة","langue":"🌍 اللغة",
+        "theme_sombre":"داكن","theme_clair":"فاتح",
+        # TSA stats
+        "tsa_chiffres":"📊 التوحد بالأرقام","enfants_algerie":"طفل مصاب بالتوحد في الجزائر",
+        "enfants_monde":"أطفال متضررون في العالم","sans_suivi":"بدون متابعة منظمة",
+        "precision_ia":"دقة الذكاء الاصطناعي لدينا",
+        # Detection
+        "detection_titre":"🔍 الكشف المبكر عن التوحد",
+        "detection_desc":"استبيان رصد علامات طيف التوحد",
+        "repondez":"أجب عن الأسئلة التالية المتعلقة بطفلك",
+        "outil_reperage":"(هذا الاستبيان أداة فحص وليس تشخيصًا طبيًا)",
+        # Messages
+        "envoyer":"📤 إرسال","nouveau_message":"رسالتك","suggestions":"اقتراح سريع (اختياري)",
+        "ecrire_manuellement":"-- كتابة يدوية --",
+        # Messaging contacts
+        "equipe_therapeutique":"👥 الفريق العلاجي","en_ligne":"متصل","hors_ligne":"غير متصل","occupe":"مشغول",
     },
 }
 
 def t(key):
     """Retourner la traduction selon la langue choisie"""
     lang = st.session_state.get("langue", "fr")
-    return TRAD.get(lang, TRAD["fr"]).get(key, key)
+    return TRAD.get(lang, TRAD["fr"]).get(key, TRAD["fr"].get(key, key))
 
-# Initialiser langue
+# Initialiser langue et direction texte
 if "langue" not in st.session_state:
     st.session_state["langue"] = "fr"
+
+def get_rtl():
+    """Retourne True si la langue est de droite à gauche (arabe)"""
+    return st.session_state.get("langue", "fr") == "ar"
+
 
 # ============================================================
 # SYSTEME DE NOTIFICATIONS
@@ -918,7 +1057,7 @@ with st.sidebar:
             f"</div></div></div>",
             unsafe_allow_html=True
         )
-        if st.button("🚪 Se deconnecter", use_container_width=True, key="btn_logout"):
+        if st.button(t("deconnecter"), use_container_width=True, key="btn_logout"):
             for k in ["auth_connecte","auth_user","auth_type","auth_nom",
                       "auth_plan","auth_avatar","espace"]:
                 st.session_state[k] = None if k == "espace" else False if k == "auth_connecte" else ""
@@ -926,7 +1065,7 @@ with st.sidebar:
             st.session_state["auth_page"] = "login"
             st.rerun()
     else:
-        if st.button("🔐 Se connecter", use_container_width=True, key="btn_login_side"):
+        if st.button(t("connecter"), use_container_width=True, key="btn_login_side"):
             st.session_state["auth_page"] = "login"
             st.session_state["espace"] = "parent"   # trigger gate
             st.rerun()
@@ -985,13 +1124,13 @@ with st.sidebar:
         st.markdown("</div>", unsafe_allow_html=True)
         col_a, col_b = st.columns(2)
         with col_a:
-            if st.button("✅ Tout lire", key="btn_notif_read", use_container_width=True):
+            if st.button(t("tout_lire"), key="btn_notif_read", use_container_width=True):
                 for n in st.session_state["notifications"]:
                     n["lu"] = True
                 st.session_state["show_notif"] = False
                 st.rerun()
         with col_b:
-            if st.button("🗑️ Effacer", key="btn_notif_clear", use_container_width=True):
+            if st.button(t("effacer"), key="btn_notif_clear", use_container_width=True):
                 st.session_state["notifications"] = []
                 st.session_state["show_notif"] = False
                 st.rerun()
@@ -1003,24 +1142,42 @@ with st.sidebar:
     if espace == 'parent':
         st.markdown("<span class='badge-parent'>👪 Espace Parents</span>", unsafe_allow_html=True)
         st.markdown("")
-        menu_items = ["🏠 Accueil", "🧬 Diagnostic IA", "🔍 Detection precoce",
-                      "🧭 Orientation", "💡 Conseils pratiques", "👶 Mon Enfant",
-                      "📈 Suivi Evolution", "🔔 Alertes",
-                      "💬 Messagerie", "❓ Aide"]
+        menu_items = [
+            t("accueil"), t("diagnostic_ia"), t("detection"),
+            t("orientation"), t("conseils"), t("mon_enfant"),
+            t("suivi"), t("alertes"), t("messagerie"), t("aide")
+        ]
     elif espace == 'pro':
         st.markdown("<span class='badge-pro'>👨‍⚕️ Espace Professionnels</span>", unsafe_allow_html=True)
         st.markdown("")
-        menu_items = ["🏠 Accueil", "➕ Nouveau Patient", "📋 Profil Patient", "🕸️ Knowledge Graph",
-                      "🤖 Recommandations", "🔬 IA Explicable", "🧬 Diagnostic IA Pro",
-                      "📈 Avant Apres Traitement", "👨‍⚕️ Tableau Medecin",
-                      "📊 Dashboard", "📊 Statistiques Algerie",
-                      "🌍 Comparaison Internationale", "🧪 Recherche Scientifique",
-                      "💬 Messagerie", "💰 Business Model", "❓ Aide"]
+        menu_items = [
+            t("accueil"), t("nouveau_patient"), t("profil_patient"), t("knowledge_graph"),
+            t("recommandations"), t("ia_explicable"), t("diagnostic_ia_pro"),
+            t("avant_apres"), t("tableau_medecin"),
+            t("dashboard"), t("stats_algerie"),
+            t("comparaison"), t("recherche"),
+            t("messagerie"), t("business"), t("aide")
+        ]
     else:
         menu_items = ["🏠 Accueil", "💰 Business Model", "📊 Statistiques Algerie", "❓ Aide"]
 
+    # Mapping cles de navigation traduits -> page interne
+    PM = {
+        t("accueil"):"acc", t("diagnostic_ia"):"diag_parent", t("diagnostic_ia_pro"):"diag_pro",
+        t("detection"):"detection", t("orientation"):"orientation", t("conseils"):"conseils",
+        t("mon_enfant"):"mon_enfant", t("suivi"):"suivi", t("alertes"):"alertes",
+        t("messagerie"):"messagerie", t("aide"):"aide",
+        t("nouveau_patient"):"nouveau_patient", t("profil_patient"):"profil_patient",
+        t("knowledge_graph"):"kg", t("recommandations"):"reco",
+        t("ia_explicable"):"xai", t("avant_apres"):"avant_apres",
+        t("tableau_medecin"):"tableau_medecin", t("dashboard"):"dashboard",
+        t("stats_algerie"):"stats", t("comparaison"):"comparaison",
+        t("recherche"):"recherche", t("business"):"business",
+    }
+    st.session_state["PM"] = PM
+    # Si la langue a change, reinitialiser le menu sur accueil
     if st.session_state['menu'] not in menu_items:
-        st.session_state['menu'] = "🏠 Accueil"
+        st.session_state['menu'] = t("accueil")
 
     cur_idx = menu_items.index(st.session_state['menu'])
 
@@ -1062,6 +1219,12 @@ with st.sidebar:
 
 m   = st.session_state['menu']
 esp = st.session_state['espace']
+lang = st.session_state.get("langue", "fr")
+PM  = st.session_state.get("PM", {})
+
+def mp(key):
+    """Retourne True si la page courante correspond a cette cle"""
+    return m == t(key)
 
 # ── Filtrer les patients selon le pro connecte ───────────────
 if esp == 'pro' and st.session_state.get("auth_connecte", False):
@@ -1071,7 +1234,7 @@ if esp == 'pro' and st.session_state.get("auth_connecte", False):
 # ============================================================
 # ACCUEIL - CHOIX ESPACE
 # ============================================================
-if m == "🏠 Accueil" and esp is None:
+if mp("accueil") and esp is None:
     st.markdown("""
     <div class='main-header'>
         <h1 style='color:white; font-size:3rem; margin-bottom:0;'>🧠 AutiGraphCare</h1>
@@ -1243,13 +1406,13 @@ if m == "🏠 Accueil" and esp is None:
 # ============================================================
 # PARENTS - ACCUEIL
 # ============================================================
-elif m == "🏠 Accueil" and esp == 'parent':
+elif mp("accueil") and esp == 'parent':
     # ── Nom du parent connecte
     nom_parent = st.session_state.get("auth_nom", "").split()[0] if st.session_state.get("auth_nom") else "!"
 
     st.markdown(
         f"<div class='main-header'>"
-        f"<h1 style='color:white;font-size:2rem;'>👋 Bonjour {nom_parent}</h1>"
+        f"<h1 style='color:white;font-size:2rem;'>{t('bonjour')} {nom_parent}</h1>"
         f"<p style='color:white;font-size:1.1rem;'>Comment puis-je vous aider aujourd'hui ?</p>"
         f"</div>",
         unsafe_allow_html=True
@@ -1339,7 +1502,7 @@ elif m == "🏠 Accueil" and esp == 'parent':
 # ============================================================
 # PARENTS - DIAGNOSTIC IA (4 modules)
 # ============================================================
-elif m == "🧬 Diagnostic IA" and esp == 'parent':
+elif mp("diagnostic_ia") and esp == 'parent':
 
     st.markdown(
         "<div class='main-header'>"
@@ -2008,7 +2171,7 @@ elif m == "🧬 Diagnostic IA" and esp == 'parent':
 # ============================================================
 # PRO - DIAGNOSTIC IA (version clinique avancee)
 # ============================================================
-elif m == "🧬 Diagnostic IA Pro" and esp == 'pro':
+elif mp("diagnostic_ia_pro") and esp == 'pro':
     st.markdown(
         "<div class='main-header'>"
         "<h1 style='color:white;'>🧬 Diagnostic IA — Version Clinique</h1>"
@@ -2290,7 +2453,7 @@ elif m == "🧬 Diagnostic IA Pro" and esp == 'pro':
 # ============================================================
 # PARENTS - DETECTION PRECOCE
 # ============================================================
-elif m == "🔍 Detection precoce" and esp == 'parent':
+elif mp("detection") and esp == 'parent':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🔍 Detection Precoce TSA</h1>"
         "<p style='color:white;'>Questionnaire de reperage des signes TSA</p></div>",
@@ -2380,7 +2543,7 @@ elif m == "🔍 Detection precoce" and esp == 'parent':
 # ============================================================
 # PARENTS - ORIENTATION
 # ============================================================
-elif m == "🧭 Orientation" and esp == 'parent':
+elif mp("orientation") and esp == 'parent':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🧭 Orientation vers les Specialistes</h1>"
         "<p style='color:white;'>Savoir vers qui orienter votre enfant</p></div>",
@@ -2426,7 +2589,7 @@ elif m == "🧭 Orientation" and esp == 'parent':
 # ============================================================
 # PARENTS - CONSEILS PRATIQUES
 # ============================================================
-elif m == "💡 Conseils pratiques" and esp == 'parent':
+elif mp("conseils") and esp == 'parent':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>💡 Conseils Pratiques a la Maison</h1>"
         "<p style='color:white;'>Activites adaptees et conseils personnalises</p></div>",
@@ -2510,7 +2673,7 @@ elif m == "💡 Conseils pratiques" and esp == 'parent':
 # ============================================================
 # PARENTS - MON ENFANT
 # ============================================================
-elif m == "👶 Mon Enfant" and esp == 'parent':
+elif mp("mon_enfant") and esp == 'parent':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>👶 Profil de mon Enfant</h1>"
         "<p style='color:white;'>Suivez le developpement de votre enfant</p></div>",
@@ -2584,7 +2747,7 @@ elif m == "👶 Mon Enfant" and esp == 'parent':
 # ============================================================
 # PARENTS - SUIVI EVOLUTION
 # ============================================================
-elif m == "📈 Suivi Evolution" and esp == 'parent':
+elif mp("suivi") and esp == 'parent':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📈 Suivi de l'Evolution</h1>"
         "<p style='color:white;'>Visualisez les progres de votre enfant</p></div>",
@@ -2638,7 +2801,7 @@ elif m == "📈 Suivi Evolution" and esp == 'parent':
 # ============================================================
 # PARENTS - ALERTES
 # ============================================================
-elif m == "🔔 Alertes" and esp == 'parent':
+elif mp("alertes") and esp == 'parent':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🔔 Alertes Automatiques</h1>"
         "<p style='color:white;'>Detection precoce des signes preoccupants</p></div>",
@@ -2701,12 +2864,12 @@ elif m == "🔔 Alertes" and esp == 'parent':
 # ============================================================
 # PRO - ACCUEIL
 # ============================================================
-elif m == "🏠 Accueil" and esp == 'pro':
+elif mp("accueil") and esp == 'pro':
     nom_pro = st.session_state.get("auth_nom", "Docteur")
     n_patients_pro = len(df)
     st.markdown(
         f"<div class='main-header'>"
-        f"<h1 style='color:white;font-size:1.8rem;'>👨‍⚕️ Bonjour {nom_pro}</h1>"
+        f"<h1 style='color:white;font-size:1.8rem;'>{t('bonjour_pro')} {nom_pro}</h1>"
         f"<p style='color:white;'>Vous avez <b style='font-size:1.3rem;'>{n_patients_pro}</b> patients dans votre espace prive</p>"
         f"</div>",
         unsafe_allow_html=True
@@ -2811,7 +2974,7 @@ elif m == "🏠 Accueil" and esp == 'pro':
 # ============================================================
 # PRO - PROFIL PATIENT
 # ============================================================
-elif m == "📋 Profil Patient" and esp == 'pro':
+elif mp("profil_patient") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📋 Analyse du Profil Patient</h1>"
         "<p style='color:white;'>Evaluation clinique complete</p></div>",
@@ -2896,7 +3059,7 @@ elif m == "📋 Profil Patient" and esp == 'pro':
 # ============================================================
 # PRO - KNOWLEDGE GRAPH
 # ============================================================
-elif m == "🕸️ Knowledge Graph" and esp == 'pro':
+elif mp("knowledge_graph") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🕸️ Knowledge Graph</h1>"
         "<p style='color:white;'>Visualisation dynamique des relations cliniques</p></div>",
@@ -3062,7 +3225,7 @@ elif m == "🕸️ Knowledge Graph" and esp == 'pro':
 # ============================================================
 # PRO - RECOMMANDATIONS
 # ============================================================
-elif m == "🤖 Recommandations" and esp == 'pro':
+elif mp("recommandations") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🤖 Recommandations IA — KNN</h1>"
         "<p style='color:white;'>Interventions personnalisees basees sur l'algorithme KNN (k=5)</p></div>",
@@ -3168,7 +3331,7 @@ elif m == "🤖 Recommandations" and esp == 'pro':
 # ============================================================
 # PRO - DASHBOARD
 # ============================================================
-elif m == "📊 Dashboard" and esp == 'pro':
+elif mp("dashboard") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📊 Dashboard - Analyse de Cohorte</h1>"
         "<p style='color:white;'>Statistiques cliniques globales</p></div>",
@@ -3233,7 +3396,7 @@ elif m == "📊 Dashboard" and esp == 'pro':
 # ============================================================
 # STATISTIQUES ALGERIE
 # ============================================================
-elif m == "📊 Statistiques Algerie":
+elif mp("stats_algerie"):
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📊 Statistiques TSA en Algerie</h1>"
         "<p style='color:white;'>Etat des lieux et opportunites de marche</p></div>",
@@ -3301,7 +3464,7 @@ elif m == "📊 Statistiques Algerie":
 # ============================================================
 # BUSINESS MODEL
 # ============================================================
-elif m == "💰 Business Model":
+elif mp("business"):
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>💰 Business Model</h1>"
         "<p style='color:white;'>Modele economique hybride B2C et B2B</p></div>",
@@ -3387,7 +3550,7 @@ elif m == "💰 Business Model":
 # ============================================================
 # PRO - IA EXPLICABLE (XAI)
 # ============================================================
-elif m == "🔬 IA Explicable" and esp == 'pro':
+elif mp("ia_explicable") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🔬 IA Explicable — Pourquoi cette recommandation ?</h1>"
         "<p style='color:white;'>Comprendre les decisions de l'algorithme KNN</p></div>",
@@ -3530,7 +3693,7 @@ elif m == "🔬 IA Explicable" and esp == 'pro':
 # ============================================================
 # PRO - AVANT / APRES TRAITEMENT
 # ============================================================
-elif m == "📈 Avant Apres Traitement" and esp == 'pro':
+elif mp("avant_apres") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📈 Evolution Avant / Apres Traitement</h1>"
         "<p style='color:white;'>Mesurer l'impact des interventions therapeutiques dans le temps</p></div>",
@@ -3675,7 +3838,7 @@ elif m == "📈 Avant Apres Traitement" and esp == 'pro':
 # ============================================================
 # PRO - TABLEAU DE BORD MEDECIN
 # ============================================================
-elif m == "👨‍⚕️ Tableau Medecin" and esp == 'pro':
+elif mp("tableau_medecin") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>👨‍⚕️ Tableau de Bord Medecin</h1>"
         "<p style='color:white;'>Vue clinique synthetique — tous vos patients en un coup d'oeil</p></div>",
@@ -3806,7 +3969,7 @@ elif m == "👨‍⚕️ Tableau Medecin" and esp == 'pro':
 # ============================================================
 # PRO - COMPARAISON INTERNATIONALE
 # ============================================================
-elif m == "🌍 Comparaison Internationale":
+elif mp("comparaison"):
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🌍 Comparaison Internationale</h1>"
         "<p style='color:white;'>Algerie vs monde — etat des lieux et positionnement</p></div>",
@@ -3952,7 +4115,7 @@ elif m == "🌍 Comparaison Internationale":
 # ============================================================
 # PRO - RECHERCHE SCIENTIFIQUE
 # ============================================================
-elif m == "🧪 Recherche Scientifique":
+elif mp("recherche"):
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🧪 Base Scientifique d'AutiGraphCare</h1>"
         "<p style='color:white;'>Methodologie, references et validation</p></div>",
@@ -4182,7 +4345,7 @@ elif m == "🧪 Recherche Scientifique":
 # ============================================================
 # PRO - NOUVEAU PATIENT
 # ============================================================
-elif m == "➕ Nouveau Patient" and esp == 'pro':
+elif mp("nouveau_patient") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>➕ Ajouter un Nouveau Patient</h1>"
         "<p style='color:white;'>Creer un dossier clinique complet</p></div>",
@@ -4420,7 +4583,7 @@ elif m == "➕ Nouveau Patient" and esp == 'pro':
                 st.rerun()
 
 
-elif m == "💬 Messagerie":
+elif mp("messagerie"):
     import datetime
 
     st.markdown(
@@ -4715,7 +4878,7 @@ elif m == "💬 Messagerie":
 # ============================================================
 # AIDE
 # ============================================================
-elif m == "❓ Aide":
+elif mp("aide"):
     st.title("❓ Aide et Documentation")
     st.markdown("""
 ## Guide d'utilisation - AutiGraphCare v2.0
