@@ -1654,6 +1654,27 @@ with st.sidebar:
         st.session_state["langue"] = LANGUES[lang_sel]
         st.rerun()
 
+    # Afficher lien vers version traduite
+    _l_sel = LANGUES[lang_sel]
+    if _l_sel == "en":
+        st.info("🇬🇧 English version: use **app_en.py**")
+        st.markdown(
+            "<div style='background:#EEF5FF;border-radius:8px;padding:0.6rem 1rem;"
+            "border-left:4px solid #4A90E2;margin-top:0.3rem;'>"
+            "<p style='margin:0;font-size:0.85rem;color:#333;'>"
+            "Run: <code>streamlit run app_en.py</code></p></div>",
+            unsafe_allow_html=True
+        )
+    elif _l_sel == "ar":
+        st.info("🇸🇦 النسخة العربية: استخدم **app_ar.py**")
+        st.markdown(
+            "<div style='background:#FFF8F0;border-radius:8px;padding:0.6rem 1rem;"
+            "border-left:4px solid #F5A623;margin-top:0.3rem;'>"
+            "<p style='margin:0;font-size:0.85rem;color:#333;'>"
+            "Run: <code>streamlit run app_ar.py</code></p></div>",
+            unsafe_allow_html=True
+        )
+
     # ── Theme + Notifications ────────────────────────────────
     c1, c2, c3 = st.columns([1, 2, 1])
     with c1:
