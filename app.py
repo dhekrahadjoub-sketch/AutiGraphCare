@@ -289,489 +289,7 @@ def load_data():
 
 df = load_data()
 
-# ============================================================
-# COMPTES DEMO PRE-CHARGES
-# ============================================================
-COMPTES_DEMO = {
-    "parent@demo.dz":  {"mdp":"parent123",  "type":"parent", "nom":"Famille Hadjoub",
-                        "plan":"Famille Premium", "expire":"2027-03-01", "avatar":"👪"},
-    "pro@demo.dz":     {"mdp":"pro123",     "type":"pro",    "nom":"Dr. Benali Karima",
-                        "plan":"Professionnel", "expire":"2027-01-15", "avatar":"👨‍⚕️"},
-    "medecin@demo.dz": {"mdp":"medecin123", "type":"pro",    "nom":"Dr. Meziane Sofiane",
-                        "plan":"Etablissement","expire":"2027-06-30", "avatar":"🧠"},
-}
 
-# Initialiser auth session
-for k, v in [("auth_connecte", False), ("auth_user", None),
-             ("auth_type", None),("auth_nom", ""),
-             ("auth_page", "login")]:
-    if k not in st.session_state:
-        st.session_state[k] = v
-
-# ── Gate : si pas connecte et veut entrer dans un espace ─────────────────────
-def show_auth_gate():
-    """Affiche login / inscription / paiement selon auth_page"""
-
-    pg = st.session_state["auth_page"]
-
-    # ── CSS specifique auth ──
-    st.markdown("""
-    <style>
-    .auth-card{background:white;border-radius:20px;padding:2.5rem;
-               box-shadow:0 20px 60px rgba(0,0,0,0.12);max-width:480px;margin:0 auto;}
-    .auth-title{font-size:1.6rem;font-weight:800;text-align:center;margin-bottom:0.3rem;}
-    .plan-card{border-radius:14px;padding:1.2rem;margin-bottom:0.8rem;cursor:pointer;
-               transition:transform 0.2s;border:2px solid transparent;}
-    .plan-card:hover{transform:translateY(-3px);}
-    .plan-selected{border:2px solid #4A90E2 !important;background:#EEF5FF !important;}
-    .method-card{border-radius:12px;padding:1rem;border:2px solid #e0e0e0;
-                 text-align:center;cursor:pointer;transition:all 0.2s;}
-    .method-card:hover{border-color:#4A90E2;background:#EEF5FF;}
-    </style>
-    """, unsafe_allow_html=True)
-
-    # ── HEADER ──
-    st.markdown("""
-    <div style='text-align:center;margin-bottom:2rem;'>
-        <div style='font-size:3.5rem;'>🧠</div>
-        <h1 style='font-size:2rem;font-weight:800;background:linear-gradient(135deg,#6C3FC5,#4A90E2);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;'>
-            AutiGraphCare</h1>
-        <p style='color:#888;margin:0.3rem 0 0;'>Plateforme intelligente TSA</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # PAGE : LOGIN
-    # ─────────────────────────────────────────────────────────────────────────
-    if pg == "login":
-        # Centrage CSS sans colonnes vides
-        st.markdown("""
-        <style>
-        .login-wrap{max-width:460px;margin:0 auto;background:white;
-                    border-radius:14px;padding:0.8rem 1.5rem 1.2rem 1.5rem;
-                    box-shadow:0 6px 20px rgba(0,0,0,0.08);}
-        </style>
-        <div class='login-wrap'>
-            <p style='text-align:center;font-size:1.3rem;font-weight:800;
-                color:#4A90E2;margin:0.3rem 0 0.1rem;'>🔐 Connexion</p>
-            <p style='text-align:center;color:#888;margin-bottom:0.3rem;font-size:0.88rem;'>
-                Connectez-vous a votre compte AutiGraphCare</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        _, mid, _ = st.columns([1, 3, 1])
-        with mid:
-            email = st.text_input(t("email"), placeholder="exemple@email.com", key="login_email")
-            mdp   = st.text_input(t("mdp"), type="password", placeholder="••••••••", key="login_mdp")
-
-            col_r, col_oubli = st.columns([1,1])
-            with col_r:
-                st.checkbox(t("souvenir"))
-            with col_oubli:
-                st.markdown("<p style='text-align:right;color:#4A90E2;font-size:0.85rem;"
-                            "margin-top:0.4rem;'>Mot de passe oublie ?</p>", unsafe_allow_html=True)
-
-            if st.button(t("se_connecter"), use_container_width=True, key="btn_login"):
-                if email.strip() in COMPTES_DEMO and COMPTES_DEMO[email.strip()]["mdp"] == mdp:
-                    compte = COMPTES_DEMO[email.strip()]
-                    st.session_state.update({
-                        "auth_connecte": True, "auth_user": email.strip(),
-                        "auth_type": compte["type"], "auth_nom": compte["nom"],
-                        "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
-                        "espace": compte["type"], "menu": "🏠 Accueil"
-                    })
-                    st.rerun()
-                elif email.strip() in st.session_state.get("comptes_inscrits", {}):
-                    compte = st.session_state["comptes_inscrits"][email.strip()]
-                    if compte["mdp"] == mdp:
-                        st.session_state.update({
-                            "auth_connecte": True, "auth_user": email.strip(),
-                            "auth_type": compte["type"], "auth_nom": compte["nom"],
-                            "auth_plan": compte["plan"], "auth_avatar": compte.get("avatar","👤"),
-                            "espace": compte["type"], "menu": "🏠 Accueil"
-                        })
-                        st.rerun()
-                    else:
-                        st.error("❌ Mot de passe incorrect")
-                else:
-                    st.error("❌ Email ou mot de passe incorrect")
-
-            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align:center;color:#888;font-size:0.85rem;'>"
-                        "🎯 Comptes de demonstration</p>", unsafe_allow_html=True)
-
-            for email_d, info in COMPTES_DEMO.items():
-                col_a, col_b = st.columns([3, 1])
-                with col_a:
-                    st.markdown(
-                        f"<div style='background:#f8f9fa;border-radius:8px;padding:0.4rem 0.8rem;"
-                        f"margin-bottom:0.3rem;'>"
-                        f"<span style='font-size:1.1rem;'>{info['avatar']}</span> "
-                        f"<b style='font-size:0.85rem;'>{info['nom']}</b><br/>"
-                        f"<span style='font-size:0.78rem;color:#888;'>{email_d} / {info['mdp']}</span></div>",
-                        unsafe_allow_html=True
-                    )
-                with col_b:
-                    if st.button("Demo", key=f"demo_{email_d}", use_container_width=True):
-                        compte = COMPTES_DEMO[email_d]
-                        st.session_state.update({
-                            "auth_connecte": True, "auth_user": email_d,
-                            "auth_type": compte["type"], "auth_nom": compte["nom"],
-                            "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
-                            "espace": compte["type"], "menu": "🏠 Accueil"
-                        })
-                        st.rerun()
-
-            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align:center;color:#555;'>Pas encore de compte ?</p>",
-                        unsafe_allow_html=True)
-            if st.button(t("creer_compte"), use_container_width=True, key="btn_to_register"):
-                st.session_state["auth_page"] = "register"
-                st.rerun()
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # PAGE : INSCRIPTION + CHOIX PLAN
-    # ─────────────────────────────────────────────────────────────────────────
-    elif pg == "register":
-        col_c, col_f, col_c2 = st.columns([1, 3, 1])
-        with col_f:
-            st.markdown("## ✨ Creer votre compte AutiGraphCare")
-
-            # Tabs inscription
-            tab_info, tab_plan, tab_paiement = st.tabs(
-                ["1️⃣  Informations", "2️⃣  Choisir un plan", "3️⃣  Paiement"]
-            )
-
-            # ── Tab 1 : Infos ──
-            with tab_info:
-                st.markdown("### 👤 Vos informations")
-                col1, col2 = st.columns(2)
-                with col1:
-                    r_prenom = st.text_input("Prenom *", key="r_prenom")
-                    r_email  = st.text_input("Email *",  placeholder="votre@email.com", key="r_email")
-                    r_tel    = st.text_input("Telephone", placeholder="+213 6XX XXX XXX", key="r_tel")
-                with col2:
-                    r_nom    = st.text_input("Nom *", key="r_nom")
-                    r_mdp    = st.text_input("Mot de passe *", type="password", placeholder="8+ caracteres", key="r_mdp")
-                    r_mdp2   = st.text_input("Confirmer MDP *", type="password", key="r_mdp2")
-
-                r_type = st.radio("Vous etes *", ["👪 Parent / Famille", "👨‍⚕️ Professionnel de sante"],
-                                  horizontal=True, key="r_type")
-                if "Professionnel" in r_type:
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        r_specialite = st.selectbox("Specialite", ["Orthophoniste","Psychologue",
-                            "Neuropediatre","Psychomotricien","Educateur specialise","Autre"], key="r_spec")
-                    with col2:
-                        r_num_ordre = st.text_input("N° Ordre professionnel", key="r_ordre")
-
-                r_wilaya = st.selectbox(t("wilaya"), ["Alger","Oran","Constantine","Annaba",
-                    "Blida","Setif","Tlemcen","Batna","Bejaia","Tizi Ouzou","Autres"], key="r_wilaya")
-                r_cgu    = st.checkbox("J'accepte les Conditions Generales d'Utilisation *", key="r_cgu")
-                st.info("➡️ Passez a l'onglet **2 - Choisir un plan** pour continuer")
-
-            # ── Tab 2 : Plans ──
-            with tab_plan:
-                st.markdown("### 💰 Choisir votre abonnement")
-
-                plans = [
-                    {
-                        "id": "gratuit", "nom": "Gratuit", "prix": "0 DA",
-                        "periode": "Pour toujours", "color": "#4CAF50",
-                        "badge": "", "type_user": "parent",
-                        "features": ["✅ Questionnaire M-CHAT",
-                                     "✅ Orientation specialists",
-                                     "⛔ Suivi evolution",
-                                     "⛔ Alertes automatiques",
-                                     "⛔ Diagnostic IA complet"],
-                    },
-                    {
-                        "id": "famille", "nom": "Famille Premium", "prix": "2 500 DA",
-                        "periode": "/ mois", "color": "#FF6B9D",
-                        "badge": "⭐ Recommande", "type_user": "parent",
-                        "features": ["✅ Tout le plan gratuit",
-                                     "✅ Profil enfant complet",
-                                     "✅ Suivi mensuel radar",
-                                     "✅ Alertes automatiques IA",
-                                     "✅ Diagnostic multimodal",
-                                     "✅ Messagerie therapeute",
-                                     "✅ Conseils personnalises"],
-                    },
-                    {
-                        "id": "pro", "nom": "Professionnel", "prix": "15 000 DA",
-                        "periode": "/ an", "color": "#4A90E2",
-                        "badge": "🏆 Professionnel", "type_user": "pro",
-                        "features": ["✅ Tout plan Famille",
-                                     "✅ KNN Recommandations IA",
-                                     "✅ Knowledge Graph",
-                                     "✅ IA Explicable (XAI)",
-                                     "✅ Dashboard clinique",
-                                     "✅ Export PDF",
-                                     "✅ Multi-patients illimite"],
-                    },
-                    {
-                        "id": "etablissement", "nom": "Etablissement", "prix": "30 000 DA",
-                        "periode": "/ an", "color": "#6C3FC5",
-                        "badge": "🏥 Etablissement", "type_user": "pro",
-                        "features": ["✅ Tout plan Pro",
-                                     "✅ Licence multi-utilisateurs",
-                                     "✅ Tableau de bord medecin",
-                                     "✅ Stats comparaison int.",
-                                     "✅ Formation incluse",
-                                     "✅ Support prioritaire 24/7"],
-                    },
-                ]
-
-                if "plan_choisi" not in st.session_state:
-                    st.session_state["plan_choisi"] = "famille"
-
-                col1, col2 = st.columns(2)
-                for i, plan in enumerate(plans):
-                    with (col1 if i % 2 == 0 else col2):
-                        is_sel = st.session_state["plan_choisi"] == plan["id"]
-                        border = f"3px solid {plan['color']}" if is_sel else f"2px solid {plan['color']}44"
-                        bg     = plan["color"] + "15" if is_sel else "white"
-                        feat_html = "".join(
-                            f"<p style='margin:0.2rem 0;font-size:0.85rem;color:#555;'>{f}</p>"
-                            for f in plan["features"]
-                        )
-                        badge_html = (
-                            f"<span style='background:{plan['color']};color:white;padding:0.15rem 0.6rem;"
-                            f"border-radius:20px;font-size:0.78rem;font-weight:700;'>{plan['badge']}</span>"
-                            if plan["badge"] else ""
-                        )
-                        st.markdown(
-                            f"<div style='border:{border};background:{bg};border-radius:14px;"
-                            f"padding:1.2rem;margin-bottom:0.8rem;'>"
-                            f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
-                            f"<h3 style='color:{plan['color']};margin:0;'>{plan['nom']}</h3>"
-                            f"{badge_html}</div>"
-                            f"<p style='font-size:1.6rem;font-weight:800;color:{plan['color']};margin:0.3rem 0;'>"
-                            f"{plan['prix']}<span style='font-size:0.9rem;color:#888;'> {plan['periode']}</span></p>"
-                            f"<hr style='margin:0.6rem 0;'/>{feat_html}</div>",
-                            unsafe_allow_html=True
-                        )
-                        btn_label = "✅ Selectionne" if is_sel else f"Choisir {plan['nom']}"
-                        if st.button(btn_label, key=f"plan_{plan['id']}", use_container_width=True):
-                            st.session_state["plan_choisi"] = plan["id"]
-                            st.session_state["plan_type_user"] = plan["type_user"]
-                            st.rerun()
-
-                st.info("➡️ Passez a l'onglet **3 - Paiement** pour finaliser")
-
-            # ── Tab 3 : Paiement ──
-            with tab_paiement:
-                plan_id     = st.session_state.get("plan_choisi", "famille")
-                plan_info   = next((p for p in plans if p["id"] == plan_id), plans[1])
-
-                st.markdown(
-                    f"<div style='background:{plan_info['color']}15;border:2px solid {plan_info['color']};"
-                    f"border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center;'>"
-                    f"<h3 style='color:{plan_info['color']};margin:0;'>Plan selectionne : {plan_info['nom']}</h3>"
-                    f"<p style='font-size:2rem;font-weight:800;color:{plan_info['color']};margin:0.2rem 0;'>"
-                    f"{plan_info['prix']} <span style='font-size:1rem;color:#888;'>{plan_info['periode']}</span></p>"
-                    f"</div>",
-                    unsafe_allow_html=True
-                )
-
-                if plan_id == "gratuit":
-                    st.success("✅ Plan gratuit — aucun paiement requis !")
-                    if st.button("🚀 Creer mon compte gratuit", use_container_width=True, key="btn_create_free"):
-                        r_email_v = st.session_state.get("r_email","").strip()
-                        r_nom_v   = st.session_state.get("r_nom","").strip()
-                        r_prenom_v= st.session_state.get("r_prenom","").strip()
-                        r_mdp_v   = st.session_state.get("r_mdp","").strip()
-                        r_type_v  = st.session_state.get("r_type","Parent")
-                        if r_email_v and r_nom_v and r_mdp_v:
-                            if "comptes_inscrits" not in st.session_state:
-                                st.session_state["comptes_inscrits"] = {}
-                            st.session_state["comptes_inscrits"][r_email_v] = {
-                                "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip(),
-                                "type": "parent", "plan": "Gratuit", "avatar": "👤"
-                            }
-                            st.session_state.update({
-                                "auth_connecte": True, "auth_user": r_email_v,
-                                "auth_type": "parent", "auth_nom": f"{r_prenom_v} {r_nom_v}".strip(),
-                                "auth_plan": "Gratuit", "auth_avatar": "👤",
-                                "espace": "parent", "menu": "🏠 Accueil"
-                            })
-                            st.rerun()
-                        else:
-                            st.error("❌ Remplissez vos informations dans l'onglet 1 d'abord")
-                else:
-                    st.markdown("### 💳 Mode de paiement")
-                    methode = st.radio("", [
-                        "💳 Carte bancaire (CIB / EDAHABIA)",
-                        "📱 Virement bancaire",
-                        "🏦 Paiement en agence",
-                        "📦 Cash a la livraison",
-                    ], key="methode_paiement")
-
-                    st.markdown("---")
-
-                    if methode == "💳 Carte bancaire (CIB / EDAHABIA)":
-                        st.markdown("#### 💳 Informations de la carte")
-                        col1, col2 = st.columns([2,1])
-                        with col1:
-                            carte_num = st.text_input("Numero de carte (16 chiffres)",
-                                placeholder="XXXX  XXXX  XXXX  XXXX", key="carte_num",
-                                max_chars=19)
-                        with col2:
-                            carte_type = st.selectbox("Type", ["CIB","EDAHABIA","Visa","Mastercard"], key="carte_type")
-
-                        col1, col2, col3 = st.columns(3)
-                        with col1:
-                            carte_exp = st.text_input("Expiration", placeholder="MM/AA", max_chars=5, key="carte_exp")
-                        with col2:
-                            carte_cvv = st.text_input("CVV", placeholder="XXX", type="password", max_chars=3, key="carte_cvv")
-                        with col3:
-                            st.markdown("<div style='height:1.9rem'></div>", unsafe_allow_html=True)
-                            st.markdown("🔒 Paiement securise", unsafe_allow_html=True)
-
-                        nom_carte = st.text_input("Nom sur la carte", placeholder="NOM PRENOM", key="nom_carte")
-
-                        # Badge securite
-                        st.markdown("""
-                        <div style='background:#f0fff4;border:1px solid #4CAF50;border-radius:8px;
-                                    padding:0.6rem 1rem;display:flex;gap:0.5rem;align-items:center;margin:0.5rem 0;'>
-                            <span>🔒</span>
-                            <span style='color:#555;font-size:0.85rem;'>
-                            Paiement crypte SSL 256-bit. Vos donnees bancaires ne sont jamais stockees.
-                            Conforme PCI-DSS.</span>
-                        </div>
-                        """, unsafe_allow_html=True)
-
-                        if st.button(f"💳 Payer {plan_info['prix']} et creer mon compte",
-                                     use_container_width=True, key="btn_pay_card"):
-                            if carte_num and len(carte_num.replace(" ","")) >= 16 and carte_cvv:
-                                with st.spinner("Traitement du paiement en cours..."):
-                                    time.sleep(2)
-                                _finalize_inscription(plan_info, "Carte bancaire")
-                            else:
-                                st.error("❌ Verifiez les informations de votre carte")
-
-                    elif methode == "📱 Virement bancaire":
-                        st.markdown("""
-                        <div class='card' style='border-left:5px solid #4A90E2;'>
-                            <h4 style='color:#4A90E2;'>📱 Instructions de virement</h4>
-                            <p><b>Banque :</b> BNA — Banque Nationale d'Algerie</p>
-                            <p><b>IBAN :</b> DZ59 0002 1000 0010 0001 2345 6789</p>
-                            <p><b>RIB :</b> 00021000001000012345678900</p>
-                            <p><b>Beneficiaire :</b> AutiGraphCare SARL</p>
-                            <p><b>Montant exact :</b> <b style='color:#4A90E2;'>{plan_info['prix'].replace(' DA','')} DZD</b></p>
-                            <p><b>Reference :</b> AUTi-2026-{hash(st.session_state.get('r_email','')) % 99999:05d}</p>
-                        </div>
-                        """.format(plan_info=plan_info), unsafe_allow_html=True)
-                        recu = st.file_uploader("📎 Joindre le recu de virement (PDF/JPG)", key="recu_virement")
-                        if st.button("📤 Envoyer et activer mon compte (sous 24h)",
-                                     use_container_width=True, key="btn_virement"):
-                            _finalize_inscription(plan_info, "Virement bancaire")
-
-                    elif methode == "🏦 Paiement en agence":
-                        st.markdown("""
-                        <div class='card' style='border-left:5px solid #6C3FC5;'>
-                            <h4 style='color:#6C3FC5;'>🏦 Agences partenaires AutiGraphCare</h4>
-                            <p>📍 <b>Alger</b> — 12 Rue Didouche Mourad, Centre</p>
-                            <p>📍 <b>Oran</b> — Boulevard Millénium, Les Amandiers</p>
-                            <p>📍 <b>Constantine</b> — Rue Larbi Ben M'Hidi</p>
-                            <p>📍 <b>Annaba</b> — Avenue du 1er Novembre</p>
-                            <hr/>
-                            <p style='color:#888;font-size:0.85rem;'>
-                            Presentez-vous avec votre CIN + ce code de commande :<br/>
-                            <b style='color:#6C3FC5;font-size:1.1rem;'>
-                            AUTi-{code}</b></p>
-                        </div>
-                        """.format(code=f"{hash(st.session_state.get('r_email','')) % 99999:05d}"), unsafe_allow_html=True)
-                        if st.button("✅ J'ai effectue le paiement en agence",
-                                     use_container_width=True, key="btn_agence"):
-                            _finalize_inscription(plan_info, "Agence")
-
-                    elif methode == "📦 Cash a la livraison":
-                        st.markdown("""
-                        <div class='card' style='border-left:5px solid #F5A623;'>
-                            <h4 style='color:#F5A623;'>📦 Activation apres validation</h4>
-                            <p>Un representant AutiGraphCare vous contactera sous <b>48h</b>
-                            pour valider votre abonnement.</p>
-                            <p>📞 Hotline : <b>+213 (0)21 XX XX XX</b></p>
-                            <p>✉️ Email : <b>support@autigraphcare.dz</b></p>
-                        </div>
-                        """, unsafe_allow_html=True)
-                        adresse = st.text_input("Adresse de livraison / contact", key="adresse_cash")
-                        if st.button("📞 Etre contacte par un agent",
-                                     use_container_width=True, key="btn_cash"):
-                            _finalize_inscription(plan_info, "Cash a la livraison")
-
-            st.markdown("<hr style='margin:1.5rem 0;'>", unsafe_allow_html=True)
-            if st.button(t("retour_connexion"), key="btn_back_login"):
-                st.session_state["auth_page"] = "login"
-                st.rerun()
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # PAGE : CONFIRMATION PAIEMENT
-    # ─────────────────────────────────────────────────────────────────────────
-    elif pg == "confirmed":
-        col_c, col_f, col_c2 = st.columns([1, 2, 1])
-        with col_f:
-            st.markdown("""
-            <div style='text-align:center;padding:2rem;background:white;border-radius:20px;
-                        box-shadow:0 20px 60px rgba(0,0,0,0.12);'>
-                <div style='font-size:5rem;'>🎉</div>
-                <h2 style='color:#4CAF50;'>Paiement accepte !</h2>
-                <p style='color:#555;'>Votre compte AutiGraphCare est maintenant actif.</p>
-            </div>
-            """, unsafe_allow_html=True)
-            time.sleep(0.5)
-            st.balloons()
-            if st.button("🚀 Acceder a ma plateforme", use_container_width=True, key="btn_goto_app"):
-                st.session_state["auth_page"] = "login"
-                st.rerun()
-
-
-def _finalize_inscription(plan_info, methode_paiement):
-    """Cree le compte et connecte l'utilisateur"""
-    r_email_v  = st.session_state.get("r_email","user@demo.dz").strip() or "user@demo.dz"
-    r_nom_v    = st.session_state.get("r_nom","").strip()
-    r_prenom_v = st.session_state.get("r_prenom","").strip()
-    r_mdp_v    = st.session_state.get("r_mdp","password").strip() or "password"
-    type_user  = st.session_state.get("plan_type_user", plan_info["type_user"])
-    avatar     = "👪" if type_user == "parent" else "👨‍⚕️"
-
-    if "comptes_inscrits" not in st.session_state:
-        st.session_state["comptes_inscrits"] = {}
-    st.session_state["comptes_inscrits"][r_email_v] = {
-        "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
-        "type": type_user, "plan": plan_info["nom"], "avatar": avatar,
-        "methode": methode_paiement,
-    }
-    st.session_state.update({
-        "auth_connecte": True,
-        "auth_user":     r_email_v,
-        "auth_type":     type_user,
-        "auth_nom":      f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
-        "auth_plan":     plan_info["nom"],
-        "auth_avatar":   avatar,
-        "espace":        type_user,
-        "menu":          "🏠 Accueil",
-        "auth_page":     "confirmed",
-    })
-    st.rerun()
-
-# ── LOGIQUE PRINCIPALE : bloquer si non connecte ─────────────────────────────
-_wants_space = st.session_state.get("espace") is not None
-_is_connected = st.session_state.get("auth_connecte", False)
-
-if _wants_space and not _is_connected:
-    # Remettre espace a None et afficher la gate
-    show_auth_gate()
-    st.stop()
-elif not _is_connected and st.session_state.get("auth_page") != "login":
-    show_auth_gate()
-    st.stop()
-
-# ============================================================
-# SYSTEME DE TRADUCTION
-# ============================================================
 LANGUES = {
     "🇫🇷 Français": "fr",
     "🇬🇧 English": "en",
@@ -1523,7 +1041,490 @@ if "langue" not in st.session_state:
 def get_rtl():
     return st.session_state.get("langue", "fr") == "ar"
 
+
 # ============================================================
+# COMPTES DEMO PRE-CHARGES
+# ============================================================
+COMPTES_DEMO = {
+    "parent@demo.dz":  {"mdp":"parent123",  "type":"parent", "nom":"Famille Hadjoub",
+                        "plan":"Famille Premium", "expire":"2027-03-01", "avatar":"👪"},
+    "pro@demo.dz":     {"mdp":"pro123",     "type":"pro",    "nom":"Dr. Benali Karima",
+                        "plan":"Professionnel", "expire":"2027-01-15", "avatar":"👨‍⚕️"},
+    "medecin@demo.dz": {"mdp":"medecin123", "type":"pro",    "nom":"Dr. Meziane Sofiane",
+                        "plan":"Etablissement","expire":"2027-06-30", "avatar":"🧠"},
+}
+
+# Initialiser auth session
+for k, v in [("auth_connecte", False), ("auth_user", None),
+             ("auth_type", None),("auth_nom", ""),
+             ("auth_page", "login")]:
+    if k not in st.session_state:
+        st.session_state[k] = v
+
+# ── Gate : si pas connecte et veut entrer dans un espace ─────────────────────
+def show_auth_gate():
+    """Affiche login / inscription / paiement selon auth_page"""
+
+    pg = st.session_state["auth_page"]
+
+    # ── CSS specifique auth ──
+    st.markdown("""
+    <style>
+    .auth-card{background:white;border-radius:20px;padding:2.5rem;
+               box-shadow:0 20px 60px rgba(0,0,0,0.12);max-width:480px;margin:0 auto;}
+    .auth-title{font-size:1.6rem;font-weight:800;text-align:center;margin-bottom:0.3rem;}
+    .plan-card{border-radius:14px;padding:1.2rem;margin-bottom:0.8rem;cursor:pointer;
+               transition:transform 0.2s;border:2px solid transparent;}
+    .plan-card:hover{transform:translateY(-3px);}
+    .plan-selected{border:2px solid #4A90E2 !important;background:#EEF5FF !important;}
+    .method-card{border-radius:12px;padding:1rem;border:2px solid #e0e0e0;
+                 text-align:center;cursor:pointer;transition:all 0.2s;}
+    .method-card:hover{border-color:#4A90E2;background:#EEF5FF;}
+    </style>
+    """, unsafe_allow_html=True)
+
+    # ── HEADER ──
+    st.markdown("""
+    <div style='text-align:center;margin-bottom:2rem;'>
+        <div style='font-size:3.5rem;'>🧠</div>
+        <h1 style='font-size:2rem;font-weight:800;background:linear-gradient(135deg,#6C3FC5,#4A90E2);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;'>
+            AutiGraphCare</h1>
+        <p style='color:#888;margin:0.3rem 0 0;'>Plateforme intelligente TSA</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # PAGE : LOGIN
+    # ─────────────────────────────────────────────────────────────────────────
+    if pg == "login":
+        # Centrage CSS sans colonnes vides
+        st.markdown("""
+        <style>
+        .login-wrap{max-width:460px;margin:0 auto;background:white;
+                    border-radius:14px;padding:0.8rem 1.5rem 1.2rem 1.5rem;
+                    box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+        </style>
+        <div class='login-wrap'>
+            <p style='text-align:center;font-size:1.3rem;font-weight:800;
+                color:#4A90E2;margin:0.3rem 0 0.1rem;'>🔐 Connexion</p>
+            <p style='text-align:center;color:#888;margin-bottom:0.3rem;font-size:0.88rem;'>
+                Connectez-vous a votre compte AutiGraphCare</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        _, mid, _ = st.columns([1, 3, 1])
+        with mid:
+            email = st.text_input("📧 Adresse email", placeholder="exemple@email.com", key="login_email")
+            mdp   = st.text_input("🔒 Mot de passe", type="password", placeholder="••••••••", key="login_mdp")
+
+            col_r, col_oubli = st.columns([1,1])
+            with col_r:
+                st.checkbox("Se souvenir de moi")
+            with col_oubli:
+                st.markdown("<p style='text-align:right;color:#4A90E2;font-size:0.85rem;"
+                            "margin-top:0.4rem;'>Mot de passe oublie ?</p>", unsafe_allow_html=True)
+
+            if st.button("🚀 Se connecter", use_container_width=True, key="btn_login"):
+                if email.strip() in COMPTES_DEMO and COMPTES_DEMO[email.strip()]["mdp"] == mdp:
+                    compte = COMPTES_DEMO[email.strip()]
+                    st.session_state.update({
+                        "auth_connecte": True, "auth_user": email.strip(),
+                        "auth_type": compte["type"], "auth_nom": compte["nom"],
+                        "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
+                        "espace": compte["type"], "menu": "🏠 Accueil"
+                    })
+                    st.rerun()
+                elif email.strip() in st.session_state.get("comptes_inscrits", {}):
+                    compte = st.session_state["comptes_inscrits"][email.strip()]
+                    if compte["mdp"] == mdp:
+                        st.session_state.update({
+                            "auth_connecte": True, "auth_user": email.strip(),
+                            "auth_type": compte["type"], "auth_nom": compte["nom"],
+                            "auth_plan": compte["plan"], "auth_avatar": compte.get("avatar","👤"),
+                            "espace": compte["type"], "menu": "🏠 Accueil"
+                        })
+                        st.rerun()
+                    else:
+                        st.error("❌ Mot de passe incorrect")
+                else:
+                    st.error("❌ Email ou mot de passe incorrect")
+
+            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align:center;color:#888;font-size:0.85rem;'>"
+                        "🎯 Comptes de demonstration</p>", unsafe_allow_html=True)
+
+            for email_d, info in COMPTES_DEMO.items():
+                col_a, col_b = st.columns([3, 1])
+                with col_a:
+                    st.markdown(
+                        f"<div style='background:#f8f9fa;border-radius:8px;padding:0.4rem 0.8rem;"
+                        f"margin-bottom:0.3rem;'>"
+                        f"<span style='font-size:1.1rem;'>{info['avatar']}</span> "
+                        f"<b style='font-size:0.85rem;'>{info['nom']}</b><br/>"
+                        f"<span style='font-size:0.78rem;color:#888;'>{email_d} / {info['mdp']}</span></div>",
+                        unsafe_allow_html=True
+                    )
+                with col_b:
+                    if st.button("Demo", key=f"demo_{email_d}", use_container_width=True):
+                        compte = COMPTES_DEMO[email_d]
+                        st.session_state.update({
+                            "auth_connecte": True, "auth_user": email_d,
+                            "auth_type": compte["type"], "auth_nom": compte["nom"],
+                            "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
+                            "espace": compte["type"], "menu": "🏠 Accueil"
+                        })
+                        st.rerun()
+
+            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align:center;color:#555;'>Pas encore de compte ?</p>",
+                        unsafe_allow_html=True)
+            if st.button("✨ Creer un compte gratuit", use_container_width=True, key="btn_to_register"):
+                st.session_state["auth_page"] = "register"
+                st.rerun()
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # PAGE : INSCRIPTION + CHOIX PLAN
+    # ─────────────────────────────────────────────────────────────────────────
+    elif pg == "register":
+        col_c, col_f, col_c2 = st.columns([1, 3, 1])
+        with col_f:
+            st.markdown("## ✨ Creer votre compte AutiGraphCare")
+
+            # Tabs inscription
+            tab_info, tab_plan, tab_paiement = st.tabs(
+                ["1️⃣  Informations", "2️⃣  Choisir un plan", "3️⃣  Paiement"]
+            )
+
+            # ── Tab 1 : Infos ──
+            with tab_info:
+                st.markdown("### 👤 Vos informations")
+                col1, col2 = st.columns(2)
+                with col1:
+                    r_prenom = st.text_input("Prenom *", key="r_prenom")
+                    r_email  = st.text_input("Email *",  placeholder="votre@email.com", key="r_email")
+                    r_tel    = st.text_input("Telephone", placeholder="+213 6XX XXX XXX", key="r_tel")
+                with col2:
+                    r_nom    = st.text_input("Nom *", key="r_nom")
+                    r_mdp    = st.text_input("Mot de passe *", type="password", placeholder="8+ caracteres", key="r_mdp")
+                    r_mdp2   = st.text_input("Confirmer MDP *", type="password", key="r_mdp2")
+
+                r_type = st.radio("Vous etes *", ["👪 Parent / Famille", "👨‍⚕️ Professionnel de sante"],
+                                  horizontal=True, key="r_type")
+                if "Professionnel" in r_type:
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        r_specialite = st.selectbox("Specialite", ["Orthophoniste","Psychologue",
+                            "Neuropediatre","Psychomotricien","Educateur specialise","Autre"], key="r_spec")
+                    with col2:
+                        r_num_ordre = st.text_input("N° Ordre professionnel", key="r_ordre")
+
+                r_wilaya = st.selectbox(t("wilaya"), ["Alger","Oran","Constantine","Annaba",
+                    "Blida","Setif","Tlemcen","Batna","Bejaia","Tizi Ouzou","Autres"], key="r_wilaya")
+                r_cgu    = st.checkbox("J'accepte les Conditions Generales d'Utilisation *", key="r_cgu")
+                st.info("➡️ Passez a l'onglet **2 - Choisir un plan** pour continuer")
+
+            # ── Tab 2 : Plans ──
+            with tab_plan:
+                st.markdown("### 💰 Choisir votre abonnement")
+
+                plans = [
+                    {
+                        "id": "gratuit", "nom": "Gratuit", "prix": "0 DA",
+                        "periode": "Pour toujours", "color": "#4CAF50",
+                        "badge": "", "type_user": "parent",
+                        "features": ["✅ Questionnaire M-CHAT",
+                                     "✅ Orientation specialists",
+                                     "⛔ Suivi evolution",
+                                     "⛔ Alertes automatiques",
+                                     "⛔ Diagnostic IA complet"],
+                    },
+                    {
+                        "id": "famille", "nom": "Famille Premium", "prix": "2 500 DA",
+                        "periode": "/ mois", "color": "#FF6B9D",
+                        "badge": "⭐ Recommande", "type_user": "parent",
+                        "features": ["✅ Tout le plan gratuit",
+                                     "✅ Profil enfant complet",
+                                     "✅ Suivi mensuel radar",
+                                     "✅ Alertes automatiques IA",
+                                     "✅ Diagnostic multimodal",
+                                     "✅ Messagerie therapeute",
+                                     "✅ Conseils personnalises"],
+                    },
+                    {
+                        "id": "pro", "nom": "Professionnel", "prix": "15 000 DA",
+                        "periode": "/ an", "color": "#4A90E2",
+                        "badge": "🏆 Professionnel", "type_user": "pro",
+                        "features": ["✅ Tout plan Famille",
+                                     "✅ KNN Recommandations IA",
+                                     "✅ Knowledge Graph",
+                                     "✅ IA Explicable (XAI)",
+                                     "✅ Dashboard clinique",
+                                     "✅ Export PDF",
+                                     "✅ Multi-patients illimite"],
+                    },
+                    {
+                        "id": "etablissement", "nom": "Etablissement", "prix": "30 000 DA",
+                        "periode": "/ an", "color": "#6C3FC5",
+                        "badge": "🏥 Etablissement", "type_user": "pro",
+                        "features": ["✅ Tout plan Pro",
+                                     "✅ Licence multi-utilisateurs",
+                                     "✅ Tableau de bord medecin",
+                                     "✅ Stats comparaison int.",
+                                     "✅ Formation incluse",
+                                     "✅ Support prioritaire 24/7"],
+                    },
+                ]
+
+                if "plan_choisi" not in st.session_state:
+                    st.session_state["plan_choisi"] = "famille"
+
+                col1, col2 = st.columns(2)
+                for i, plan in enumerate(plans):
+                    with (col1 if i % 2 == 0 else col2):
+                        is_sel = st.session_state["plan_choisi"] == plan["id"]
+                        border = f"3px solid {plan['color']}" if is_sel else f"2px solid {plan['color']}44"
+                        bg     = plan["color"] + "15" if is_sel else "white"
+                        feat_html = "".join(
+                            f"<p style='margin:0.2rem 0;font-size:0.85rem;color:#555;'>{f}</p>"
+                            for f in plan["features"]
+                        )
+                        badge_html = (
+                            f"<span style='background:{plan['color']};color:white;padding:0.15rem 0.6rem;"
+                            f"border-radius:20px;font-size:0.78rem;font-weight:700;'>{plan['badge']}</span>"
+                            if plan["badge"] else ""
+                        )
+                        st.markdown(
+                            f"<div style='border:{border};background:{bg};border-radius:14px;"
+                            f"padding:1.2rem;margin-bottom:0.8rem;'>"
+                            f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
+                            f"<h3 style='color:{plan['color']};margin:0;'>{plan['nom']}</h3>"
+                            f"{badge_html}</div>"
+                            f"<p style='font-size:1.6rem;font-weight:800;color:{plan['color']};margin:0.3rem 0;'>"
+                            f"{plan['prix']}<span style='font-size:0.9rem;color:#888;'> {plan['periode']}</span></p>"
+                            f"<hr style='margin:0.6rem 0;'/>{feat_html}</div>",
+                            unsafe_allow_html=True
+                        )
+                        btn_label = "✅ Selectionne" if is_sel else f"Choisir {plan['nom']}"
+                        if st.button(btn_label, key=f"plan_{plan['id']}", use_container_width=True):
+                            st.session_state["plan_choisi"] = plan["id"]
+                            st.session_state["plan_type_user"] = plan["type_user"]
+                            st.rerun()
+
+                st.info("➡️ Passez a l'onglet **3 - Paiement** pour finaliser")
+
+            # ── Tab 3 : Paiement ──
+            with tab_paiement:
+                plan_id     = st.session_state.get("plan_choisi", "famille")
+                plan_info   = next((p for p in plans if p["id"] == plan_id), plans[1])
+
+                st.markdown(
+                    f"<div style='background:{plan_info['color']}15;border:2px solid {plan_info['color']};"
+                    f"border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center;'>"
+                    f"<h3 style='color:{plan_info['color']};margin:0;'>Plan selectionne : {plan_info['nom']}</h3>"
+                    f"<p style='font-size:2rem;font-weight:800;color:{plan_info['color']};margin:0.2rem 0;'>"
+                    f"{plan_info['prix']} <span style='font-size:1rem;color:#888;'>{plan_info['periode']}</span></p>"
+                    f"</div>",
+                    unsafe_allow_html=True
+                )
+
+                if plan_id == "gratuit":
+                    st.success("✅ Plan gratuit — aucun paiement requis !")
+                    if st.button("🚀 Creer mon compte gratuit", use_container_width=True, key="btn_create_free"):
+                        r_email_v = st.session_state.get("r_email","").strip()
+                        r_nom_v   = st.session_state.get("r_nom","").strip()
+                        r_prenom_v= st.session_state.get("r_prenom","").strip()
+                        r_mdp_v   = st.session_state.get("r_mdp","").strip()
+                        r_type_v  = st.session_state.get("r_type","Parent")
+                        if r_email_v and r_nom_v and r_mdp_v:
+                            if "comptes_inscrits" not in st.session_state:
+                                st.session_state["comptes_inscrits"] = {}
+                            st.session_state["comptes_inscrits"][r_email_v] = {
+                                "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip(),
+                                "type": "parent", "plan": "Gratuit", "avatar": "👤"
+                            }
+                            st.session_state.update({
+                                "auth_connecte": True, "auth_user": r_email_v,
+                                "auth_type": "parent", "auth_nom": f"{r_prenom_v} {r_nom_v}".strip(),
+                                "auth_plan": "Gratuit", "auth_avatar": "👤",
+                                "espace": "parent", "menu": "🏠 Accueil"
+                            })
+                            st.rerun()
+                        else:
+                            st.error("❌ Remplissez vos informations dans l'onglet 1 d'abord")
+                else:
+                    st.markdown("### 💳 Mode de paiement")
+                    methode = st.radio("", [
+                        "💳 Carte bancaire (CIB / EDAHABIA)",
+                        "📱 Virement bancaire",
+                        "🏦 Paiement en agence",
+                        "📦 Cash a la livraison",
+                    ], key="methode_paiement")
+
+                    st.markdown("---")
+
+                    if methode == "💳 Carte bancaire (CIB / EDAHABIA)":
+                        st.markdown("#### 💳 Informations de la carte")
+                        col1, col2 = st.columns([2,1])
+                        with col1:
+                            carte_num = st.text_input("Numero de carte (16 chiffres)",
+                                placeholder="XXXX  XXXX  XXXX  XXXX", key="carte_num",
+                                max_chars=19)
+                        with col2:
+                            carte_type = st.selectbox("Type", ["CIB","EDAHABIA","Visa","Mastercard"], key="carte_type")
+
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            carte_exp = st.text_input("Expiration", placeholder="MM/AA", max_chars=5, key="carte_exp")
+                        with col2:
+                            carte_cvv = st.text_input("CVV", placeholder="XXX", type="password", max_chars=3, key="carte_cvv")
+                        with col3:
+                            st.markdown("<div style='height:1.9rem'></div>", unsafe_allow_html=True)
+                            st.markdown("🔒 Paiement securise", unsafe_allow_html=True)
+
+                        nom_carte = st.text_input("Nom sur la carte", placeholder="NOM PRENOM", key="nom_carte")
+
+                        # Badge securite
+                        st.markdown("""
+                        <div style='background:#f0fff4;border:1px solid #4CAF50;border-radius:8px;
+                                    padding:0.6rem 1rem;display:flex;gap:0.5rem;align-items:center;margin:0.5rem 0;'>
+                            <span>🔒</span>
+                            <span style='color:#555;font-size:0.85rem;'>
+                            Paiement crypte SSL 256-bit. Vos donnees bancaires ne sont jamais stockees.
+                            Conforme PCI-DSS.</span>
+                        </div>
+                        """, unsafe_allow_html=True)
+
+                        if st.button(f"💳 Payer {plan_info['prix']} et creer mon compte",
+                                     use_container_width=True, key="btn_pay_card"):
+                            if carte_num and len(carte_num.replace(" ","")) >= 16 and carte_cvv:
+                                with st.spinner("Traitement du paiement en cours..."):
+                                    time.sleep(2)
+                                _finalize_inscription(plan_info, "Carte bancaire")
+                            else:
+                                st.error("❌ Verifiez les informations de votre carte")
+
+                    elif methode == "📱 Virement bancaire":
+                        st.markdown("""
+                        <div class='card' style='border-left:5px solid #4A90E2;'>
+                            <h4 style='color:#4A90E2;'>📱 Instructions de virement</h4>
+                            <p><b>Banque :</b> BNA — Banque Nationale d'Algerie</p>
+                            <p><b>IBAN :</b> DZ59 0002 1000 0010 0001 2345 6789</p>
+                            <p><b>RIB :</b> 00021000001000012345678900</p>
+                            <p><b>Beneficiaire :</b> AutiGraphCare SARL</p>
+                            <p><b>Montant exact :</b> <b style='color:#4A90E2;'>{plan_info['prix'].replace(' DA','')} DZD</b></p>
+                            <p><b>Reference :</b> AUTi-2026-{hash(st.session_state.get('r_email','')) % 99999:05d}</p>
+                        </div>
+                        """.format(plan_info=plan_info), unsafe_allow_html=True)
+                        recu = st.file_uploader("📎 Joindre le recu de virement (PDF/JPG)", key="recu_virement")
+                        if st.button("📤 Envoyer et activer mon compte (sous 24h)",
+                                     use_container_width=True, key="btn_virement"):
+                            _finalize_inscription(plan_info, "Virement bancaire")
+
+                    elif methode == "🏦 Paiement en agence":
+                        st.markdown("""
+                        <div class='card' style='border-left:5px solid #6C3FC5;'>
+                            <h4 style='color:#6C3FC5;'>🏦 Agences partenaires AutiGraphCare</h4>
+                            <p>📍 <b>Alger</b> — 12 Rue Didouche Mourad, Centre</p>
+                            <p>📍 <b>Oran</b> — Boulevard Millénium, Les Amandiers</p>
+                            <p>📍 <b>Constantine</b> — Rue Larbi Ben M'Hidi</p>
+                            <p>📍 <b>Annaba</b> — Avenue du 1er Novembre</p>
+                            <hr/>
+                            <p style='color:#888;font-size:0.85rem;'>
+                            Presentez-vous avec votre CIN + ce code de commande :<br/>
+                            <b style='color:#6C3FC5;font-size:1.1rem;'>
+                            AUTi-{code}</b></p>
+                        </div>
+                        """.format(code=f"{hash(st.session_state.get('r_email','')) % 99999:05d}"), unsafe_allow_html=True)
+                        if st.button("✅ J'ai effectue le paiement en agence",
+                                     use_container_width=True, key="btn_agence"):
+                            _finalize_inscription(plan_info, "Agence")
+
+                    elif methode == "📦 Cash a la livraison":
+                        st.markdown("""
+                        <div class='card' style='border-left:5px solid #F5A623;'>
+                            <h4 style='color:#F5A623;'>📦 Activation apres validation</h4>
+                            <p>Un representant AutiGraphCare vous contactera sous <b>48h</b>
+                            pour valider votre abonnement.</p>
+                            <p>📞 Hotline : <b>+213 (0)21 XX XX XX</b></p>
+                            <p>✉️ Email : <b>support@autigraphcare.dz</b></p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        adresse = st.text_input("Adresse de livraison / contact", key="adresse_cash")
+                        if st.button("📞 Etre contacte par un agent",
+                                     use_container_width=True, key="btn_cash"):
+                            _finalize_inscription(plan_info, "Cash a la livraison")
+
+            st.markdown("<hr style='margin:1.5rem 0;'>", unsafe_allow_html=True)
+            if st.button("← Retour a la connexion", key="btn_back_login"):
+                st.session_state["auth_page"] = "login"
+                st.rerun()
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # PAGE : CONFIRMATION PAIEMENT
+    # ─────────────────────────────────────────────────────────────────────────
+    elif pg == "confirmed":
+        col_c, col_f, col_c2 = st.columns([1, 2, 1])
+        with col_f:
+            st.markdown("""
+            <div style='text-align:center;padding:2rem;background:white;border-radius:20px;
+                        box-shadow:0 20px 60px rgba(0,0,0,0.12);'>
+                <div style='font-size:5rem;'>🎉</div>
+                <h2 style='color:#4CAF50;'>Paiement accepte !</h2>
+                <p style='color:#555;'>Votre compte AutiGraphCare est maintenant actif.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            time.sleep(0.5)
+            st.balloons()
+            if st.button("🚀 Acceder a ma plateforme", use_container_width=True, key="btn_goto_app"):
+                st.session_state["auth_page"] = "login"
+                st.rerun()
+
+
+def _finalize_inscription(plan_info, methode_paiement):
+    """Cree le compte et connecte l'utilisateur"""
+    r_email_v  = st.session_state.get("r_email","user@demo.dz").strip() or "user@demo.dz"
+    r_nom_v    = st.session_state.get("r_nom","").strip()
+    r_prenom_v = st.session_state.get("r_prenom","").strip()
+    r_mdp_v    = st.session_state.get("r_mdp","password").strip() or "password"
+    type_user  = st.session_state.get("plan_type_user", plan_info["type_user"])
+    avatar     = "👪" if type_user == "parent" else "👨‍⚕️"
+
+    if "comptes_inscrits" not in st.session_state:
+        st.session_state["comptes_inscrits"] = {}
+    st.session_state["comptes_inscrits"][r_email_v] = {
+        "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
+        "type": type_user, "plan": plan_info["nom"], "avatar": avatar,
+        "methode": methode_paiement,
+    }
+    st.session_state.update({
+        "auth_connecte": True,
+        "auth_user":     r_email_v,
+        "auth_type":     type_user,
+        "auth_nom":      f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
+        "auth_plan":     plan_info["nom"],
+        "auth_avatar":   avatar,
+        "espace":        type_user,
+        "menu":          "🏠 Accueil",
+        "auth_page":     "confirmed",
+    })
+    st.rerun()
+
+# ── LOGIQUE PRINCIPALE : bloquer si non connecte ─────────────────────────────
+_wants_space = st.session_state.get("espace") is not None
+_is_connected = st.session_state.get("auth_connecte", False)
+
+if _wants_space and not _is_connected:
+    # Remettre espace a None et afficher la gate
+    show_auth_gate()
+    st.stop()
+elif not _is_connected and st.session_state.get("auth_page") != "login":
+    show_auth_gate()
+    st.stop()
+
+# ============================================================
+# SYSTEME DE TRADUCTION
+# ============================================================# ============================================================
 # SYSTEME DE NOTIFICATIONS
 # ============================================================
 def init_notifications():
@@ -1629,7 +1630,7 @@ with st.sidebar:
             f"</div></div></div>",
             unsafe_allow_html=True
         )
-        if st.button(t("deconnecter"), use_container_width=True, key="btn_logout"):
+        if st.button("🚪 Se deconnecter", use_container_width=True, key="btn_logout"):
             for k in ["auth_connecte","auth_user","auth_type","auth_nom",
                       "auth_plan","auth_avatar","espace"]:
                 st.session_state[k] = None if k == "espace" else False if k == "auth_connecte" else ""
@@ -1637,41 +1638,56 @@ with st.sidebar:
             st.session_state["auth_page"] = "login"
             st.rerun()
     else:
-        if st.button(t("connecter"), use_container_width=True, key="btn_login_side"):
+        if st.button("🔐 Se connecter", use_container_width=True, key="btn_login_side"):
             st.session_state["auth_page"] = "login"
             st.session_state["espace"] = "parent"   # trigger gate
             st.rerun()
 
     st.markdown("---")
 
-    # ── Langue ──────────────────────────────────────────────
-    lang_options = list(LANGUES.keys())
-    lang_current = next((k for k,v in LANGUES.items() if v == st.session_state.get("langue","fr")), lang_options[0])
-    lang_idx = lang_options.index(lang_current)
-    lang_sel = st.selectbox("🌍 Langue / Language / اللغة",
-                             lang_options, index=lang_idx, key="lang_select")
-    if LANGUES[lang_sel] != st.session_state.get("langue","fr"):
-        st.session_state["langue"] = LANGUES[lang_sel]
-        st.rerun()
+    # ── Sélecteur de langue avec boutons cliquables ──────────
+    st.markdown("**🌍 Langue / Language / اللغة**")
+    _cur_lang = st.session_state.get("langue", "fr")
 
-    # Afficher lien vers version traduite
-    _l_sel = LANGUES[lang_sel]
-    if _l_sel == "en":
-        st.info("🇬🇧 English version: use **app_en.py**")
+    # URLs Streamlit Cloud — à mettre à jour avec vos vrais liens
+    _BASE = st.query_params.get("base_url", "")
+    _URL_FR = "https://dhekrahadjoub-sketch-autigraphcare-tsa-app-py-fr.streamlit.app"
+    _URL_EN = "https://dhekrahadjoub-sketch-autigraphcare-tsa-app-en.streamlit.app"
+    _URL_AR = "https://dhekrahadjoub-sketch-autigraphcare-tsa-app-ar.streamlit.app"
+
+    # Boutons langue côte à côte
+    bl1, bl2, bl3 = st.columns(3)
+    with bl1:
+        active_fr = _cur_lang == "fr"
+        bg_fr = "#FF6B9D" if active_fr else "#f0f0f0"
+        tc_fr = "white" if active_fr else "#333"
         st.markdown(
-            "<div style='background:#EEF5FF;border-radius:8px;padding:0.6rem 1rem;"
-            "border-left:4px solid #4A90E2;margin-top:0.3rem;'>"
-            "<p style='margin:0;font-size:0.85rem;color:#333;'>"
-            "Run: <code>streamlit run app_en.py</code></p></div>",
+            f"<a href='{_URL_FR}' target='_self' style='text-decoration:none;'>"
+            f"<div style='background:{bg_fr};color:{tc_fr};border-radius:8px;"
+            f"padding:0.4rem;text-align:center;font-weight:700;font-size:0.85rem;'>"
+            f"🇫🇷 FR</div></a>",
             unsafe_allow_html=True
         )
-    elif _l_sel == "ar":
-        st.info("🇸🇦 النسخة العربية: استخدم **app_ar.py**")
+    with bl2:
+        active_en = _cur_lang == "en"
+        bg_en = "#4A90E2" if active_en else "#f0f0f0"
+        tc_en = "white" if active_en else "#333"
         st.markdown(
-            "<div style='background:#FFF8F0;border-radius:8px;padding:0.6rem 1rem;"
-            "border-left:4px solid #F5A623;margin-top:0.3rem;'>"
-            "<p style='margin:0;font-size:0.85rem;color:#333;'>"
-            "Run: <code>streamlit run app_ar.py</code></p></div>",
+            f"<a href='{_URL_EN}' target='_self' style='text-decoration:none;'>"
+            f"<div style='background:{bg_en};color:{tc_en};border-radius:8px;"
+            f"padding:0.4rem;text-align:center;font-weight:700;font-size:0.85rem;'>"
+            f"🇬🇧 EN</div></a>",
+            unsafe_allow_html=True
+        )
+    with bl3:
+        active_ar = _cur_lang == "ar"
+        bg_ar = "#50E3C2" if active_ar else "#f0f0f0"
+        tc_ar = "white" if active_ar else "#333"
+        st.markdown(
+            f"<a href='{_URL_AR}' target='_self' style='text-decoration:none;'>"
+            f"<div style='background:{bg_ar};color:{tc_ar};border-radius:8px;"
+            f"padding:0.4rem;text-align:center;font-weight:700;font-size:0.85rem;'>"
+            f"🇸🇦 عر</div></a>",
             unsafe_allow_html=True
         )
 
@@ -1695,7 +1711,7 @@ with st.sidebar:
         st.markdown(
             f"<div style='background:white;border-radius:10px;padding:0.8rem;"
             f"box-shadow:0 4px 15px rgba(0,0,0,0.12);margin-top:0.3rem;'>"
-            f"<b style='color:#333;'>" + t("notif_titre") + "</b>",
+            f"<b style='color:#333;'>" + "🔔 Notifications" + "</b>",
             unsafe_allow_html=True
         )
         notifs = st.session_state.get("notifications", [])
@@ -1717,13 +1733,13 @@ with st.sidebar:
         st.markdown("</div>", unsafe_allow_html=True)
         col_a, col_b = st.columns(2)
         with col_a:
-            if st.button(t("tout_lire"), key="btn_notif_read", use_container_width=True):
+            if st.button("✅ Tout lire", key="btn_notif_read", use_container_width=True):
                 for n in st.session_state["notifications"]:
                     n["lu"] = True
                 st.session_state["show_notif"] = False
                 st.rerun()
         with col_b:
-            if st.button(t("effacer"), key="btn_notif_clear", use_container_width=True):
+            if st.button("🗑️ Effacer", key="btn_notif_clear", use_container_width=True):
                 st.session_state["notifications"] = []
                 st.session_state["show_notif"] = False
                 st.rerun()
