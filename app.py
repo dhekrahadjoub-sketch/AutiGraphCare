@@ -20,10 +20,46 @@ for key, val in [('theme','clair'), ('espace',None), ('menu',"🏠 Accueil")]:
         st.session_state[key] = val
 
 dark = st.session_state['theme'] == 'dark'
+lang = st.session_state.get("langue", "fr")
 
-# Injection CSS RTL si langue arabe
-if st.session_state.get("langue","fr") == "ar":
-    st.markdown("<style>body,.stApp,.main,p,h1,h2,h3,h4,li{direction:rtl!important;text-align:right!important;}</style>", unsafe_allow_html=True)
+# ── TRADUCTION COMPLÈTE FR→EN/AR via JS ──────────────────────────────────────
+_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Medecin":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","Connexion":"Login","Se déconnecter":"Sign out","Connectez-vous à votre compte AutiGraphCare":"Sign in to your AutiGraphCare account","Connectez-vous a votre compte AutiGraphCare":"Sign in to your AutiGraphCare account","Adresse email":"Email address","Mot de passe":"Password","Se souvenir de moi":"Remember me","Mot de passe oublié ?":"Forgot password?","Mot de passe oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","Pas encore de compte ?":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","Plateforme intelligente pour les enfants TSA":"Intelligent platform for ASD children","Plateforme intelligente TSA":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","Espace Parents":"Parent Space","Espace Professionnels":"Professional Space","Entrer - Espace Parents":"Enter - Parent Space","Entrer - Espace Professionnels":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","Enfants TSA en Algerie":"ASD children in Algeria","Enfants TSA en Algérie":"ASD children in Algeria","Enfants touches monde":"Children affected worldwide","Sans suivi structure":"Without structured care","Précision de notre IA":"Our AI precision","Precision de notre IA":"Our AI precision","Bonjour":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","Voir le dossier complet":"View complete file","Bonjour Dr.":"Hello Dr.","patients dans votre espace privé":"patients in your private space","patients dans votre espace prive":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","Aucune notification":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","Choisir un patient":"Choose a patient","Enregistrer le patient":"Save patient","Annuler":"Cancel","Confirmer":"Confirm","Fermer":"Close","Niveau":"Level","Sévère":"Severe","Modéré":"Moderate","Modere":"Moderate","Léger":"Mild","Leger":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","Sombre":"Dark","Clair":"Light","Risque ÉLEVÉ":"HIGH Risk","Risque ELEVE":"HIGH Risk","Risque MODÉRÉ":"MODERATE Risk","Risque MODERE":"MODERATE Risk","Risque FAIBLE":"LOW Risk","Comorbidités":"Comorbidities","Comorbidites":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","Questionnaire de reperage des signes TSA":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","En ligne":"Online","Hors ligne":"Offline","Occupé":"Busy","Occupe":"Busy","Envoyer":"Send","Votre message":"Your message","Messages total":"Total messages","Messages parents":"Parent messages","Messages pros":"Pro messages","Non lus":"Unread","Communication sociale":"Social communication","Interactions sociales":"Social interactions","Comportements restreints":"Restricted behaviors","Langage expressif":"Expressive language","Langage réceptif":"Receptive language","Langage receptif":"Receptive language","Contact visuel":"Eye contact","Imitation":"Imitation","Jeu symbolique":"Symbolic play","Orthophonie":"Speech therapy","Psychomotricité":"Psychomotricity","Psychomotricite":"Psychomotricity","Trouble du sommeil":"Sleep disorder","Anxiété":"Anxiety","Anxiete":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","Score moyen initial":"Initial average score","Score moyen actuel":"Current average score","Amélioration globale":"Overall improvement","Amelioration globale":"Overall improvement","Total patients":"Total patients","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Sans suivi":"No follow-up","Prévalence":"Prevalence","Prevalence":"Prevalence","Prise en charge":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","Gratuit":"Free","Famille Premium":"Family Premium","Établissement":"Institution","Etablissement":"Institution","Pour toujours":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Mode sombre":"Dark mode","Mode clair":"Light mode","Wilaya":"Wilaya","FAIBLE":"LOW","MODERE":"MODERATE","ELEVE":"HIGH"}
+
+_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Medecin":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","Connexion":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","Connectez-vous à votre compte AutiGraphCare":"سجّل دخولك إلى حساب AutiGraphCare","Connectez-vous a votre compte AutiGraphCare":"سجّل دخولك إلى حساب AutiGraphCare","Adresse email":"البريد الإلكتروني","Mot de passe":"كلمة المرور","Se souvenir de moi":"تذكّرني","Mot de passe oublié ?":"نسيت كلمة المرور؟","Mot de passe oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","Pas encore de compte ?":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","Plateforme intelligente pour les enfants TSA":"منصة ذكية لأطفال طيف التوحد","Plateforme intelligente TSA":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","Espace Parents":"فضاء الآباء","Espace Professionnels":"فضاء المختصين","Entrer - Espace Parents":"دخول - فضاء الآباء","Entrer - Espace Professionnels":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","Enfants TSA en Algerie":"طفل مصاب بالتوحد في الجزائر","Enfants TSA en Algérie":"طفل مصاب بالتوحد في الجزائر","Enfants touches monde":"أطفال متضررون في العالم","Sans suivi structure":"بدون متابعة منظمة","Précision de notre IA":"دقة الذكاء الاصطناعي لدينا","Precision de notre IA":"دقة الذكاء الاصطناعي لدينا","Bonjour":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","Voir le dossier complet":"عرض الملف الكامل","Bonjour Dr.":"مرحباً دكتور","patients dans votre espace privé":"مرضى في فضائك الخاص","patients dans votre espace prive":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","Aucune notification":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","Choisir un patient":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","Annuler":"إلغاء","Confirmer":"تأكيد","Fermer":"إغلاق","Niveau":"المستوى","Sévère":"شديد","Modéré":"متوسط","Modere":"متوسط","Léger":"خفيف","Leger":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","Sombre":"داكن","Clair":"فاتح","Risque ÉLEVÉ":"خطر مرتفع","Risque ELEVE":"خطر مرتفع","Risque MODÉRÉ":"خطر متوسط","Risque MODERE":"خطر متوسط","Risque FAIBLE":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","Comorbidites":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","Questionnaire de reperage des signes TSA":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","En ligne":"متصل","Hors ligne":"غير متصل","Occupé":"مشغول","Occupe":"مشغول","Envoyer":"إرسال","Votre message":"رسالتك","Messages total":"إجمالي الرسائل","Messages parents":"رسائل الآباء","Messages pros":"رسائل المختصين","Non lus":"غير مقروء","Communication sociale":"التواصل الاجتماعي","Interactions sociales":"التفاعلات الاجتماعية","Comportements restreints":"السلوكيات المقيدة","Langage expressif":"اللغة التعبيرية","Langage réceptif":"اللغة الاستقبالية","Langage receptif":"اللغة الاستقبالية","Contact visuel":"التواصل البصري","Imitation":"التقليد","Jeu symbolique":"اللعب الرمزي","Orthophonie":"علاج النطق","Psychomotricité":"العلاج النفسحركي","Psychomotricite":"العلاج النفسحركي","Trouble du sommeil":"اضطراب النوم","Anxiété":"القلق","Anxiete":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","Score moyen initial":"الدرجة المتوسطة الأولية","Score moyen actuel":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","Amelioration globale":"التحسن الإجمالي","Total patients":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Sans suivi":"بدون متابعة","Prévalence":"الانتشار","Prevalence":"الانتشار","Prise en charge":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","Gratuit":"مجاني","Famille Premium":"عائلي مميز","Établissement":"مؤسسة","Etablissement":"مؤسسة","Pour toujours":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Mode sombre":"الوضع الداكن","Mode clair":"الوضع الفاتح","Wilaya":"الولاية","FAIBLE":"منخفض","MODERE":"متوسط","ELEVE":"مرتفع"}
+
+def _inject_js_translation():
+    _l = st.session_state.get("langue","fr")
+    if _l == "fr":
+        return
+    _d = _TR_EN if _l == "en" else _TR_AR
+    _rtl = "true" if _l == "ar" else "false"
+    pairs = ",".join(f'["{k.replace(chr(34),chr(39))}","{v.replace(chr(34),chr(39))}"]' for k,v in _d.items())
+    st.markdown(f"""<script>
+(function(){{var T=[{pairs}];var R={_rtl};
+function tr(s){{for(var i=0;i<T.length;i++)s=s.split(T[i][0]).join(T[i][1]);return s;}}
+function walk(n){{if(n.nodeType===3){{var r=tr(n.textContent);if(r!==n.textContent)n.textContent=r;}}
+else if(n.nodeType===1&&!["SCRIPT","STYLE","CODE","PRE"].includes(n.tagName)){{
+if(n.placeholder)n.placeholder=tr(n.placeholder);
+for(var c=n.firstChild;c;c=c.nextSibling)walk(c);}}}};
+function run(){{if(!document.body)return;walk(document.body);
+if(R){{document.body.style.direction="rtl";document.body.style.textAlign="right";}}}};
+run();setTimeout(run,300);setTimeout(run,800);setTimeout(run,2000);
+new MutationObserver(function(ms){{ms.forEach(function(m){{m.addedNodes.forEach(function(n){{
+if(n.nodeType===1){{walk(n);if(R)n.style.direction="rtl";}}}});}});}})
+.observe(document.body,{{childList:true,subtree:true}});}})();
+</script>""", unsafe_allow_html=True)
+
+_inject_js_translation()
+
+
+# ── CSS RTL pour arabe ────────────────────────────────────────────────────────
+if lang == "ar":
+    st.markdown("""<style>
+    body,.stApp,.main,.block-container,p,h1,h2,h3,h4,li,label,span,button {
+        direction: rtl !important; text-align: right !important;
+        font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+    }
+    </style>""", unsafe_allow_html=True)
 
 
 BG      = "#1a1a1a" if dark else "#f8f9fa"
@@ -751,10 +787,10 @@ TRAD = {
 "alertes":"🔔 Alertes","messagerie":"💬 Messagerie","aide":"❓ Aide",
 "diagnostic_ia":"🧬 Diagnostic IA","diagnostic_ia_pro":"🧬 Diagnostic IA Pro",
 "nouveau_patient":"➕ Nouveau Patient","profil_patient":"📋 Profil Patient",
-"knowledge_graph":t("kg_titre"),"recommandations":"🤖 Recommandations",
+"knowledge_graph":"🕸️ Knowledge Graph","recommandations":"🤖 Recommandations",
 "ia_explicable":"🔬 IA Explicable","avant_apres":"📈 Avant Après Traitement",
 "tableau_medecin":"👨‍⚕️ Tableau Médecin","dashboard":"📊 Dashboard",
-"stats_algerie":"📊 Statistiques Algérie","comparaison":t("comp_titre"),
+"stats_algerie":"📊 Statistiques Algérie","comparaison":"🌍 Comparaison Internationale",
 "recherche":"🧪 Recherche Scientifique","business":"💰 Business Model",
 # ── AUTH ────────────────────────────────────────────────────────────────
 "connexion":"🔐 Connexion","connecter_msg":"Connectez-vous à votre compte AutiGraphCare",
@@ -767,14 +803,14 @@ TRAD = {
 "demo_btn":"Démo","erreur_mdp":"❌ Mot de passe incorrect",
 "erreur_login":"❌ Email ou mot de passe incorrect",
 # ── ACCUEIL GENERAL ─────────────────────────────────────────────────────
-"bienvenue_titre":"🧠 AutiGraphCare","bienvenue_sous":t("bienvenue_sous"),
+"bienvenue_titre":"🧠 AutiGraphCare","bienvenue_sous":"Plateforme intelligente pour les enfants TSA",
 "bienvenue_credit":"Par Hadjoub Dhekra — Master 2 IATI — Soutenance 2026",
 "qui_etes_vous":"👋 Bienvenue ! Qui êtes-vous ?",
 "espace_parents":"Espace Parents","espace_pro":"Espace Professionnels",
 "entrer_parents":"👪 Entrer — Espace Parents","entrer_pro":"👨‍⚕️ Entrer — Espace Professionnels",
 "desc_parents":"Suivez le développement de votre enfant.",
 "desc_pro":"Outils d'aide à la décision clinique IA.",
-"changer_espace":t("changer_espace"),
+"changer_espace":"🔄 Changer d'espace",
 # ── STATS TSA ───────────────────────────────────────────────────────────
 "tsa_chiffres":"📊 TSA en chiffres",
 "enfants_algerie":"Enfants TSA en Algérie","enfants_monde":"Enfants touchés monde",
@@ -794,11 +830,11 @@ TRAD = {
 "espace_prive_msg":"Seuls VOS patients sont visibles. Aucun autre professionnel n'a accès à vos dossiers.",
 "fonctionnalites":"🚀 Fonctionnalités disponibles",
 # ── NOTIFICATIONS ────────────────────────────────────────────────────────
-"notif_titre":"🔔 Notifications","notif_vide":t("notif_vide"),
+"notif_titre":"🔔 Notifications","notif_vide":"Aucune nouvelle notification",
 "tout_lire":"✅ Tout lire","effacer":"🗑️ Effacer",
 "nouveau_msg_notif":"Message envoyé à","nouveau_patient_notif":"Nouveau patient ajouté",
 # ── COMMUN ────────────────────────────────────────────────────────────
-"choisir_patient":t("choisir_patient"),"enregistrer":t("enregistrer"),
+"choisir_patient":"Choisir un patient","enregistrer":"💾 Enregistrer le patient",
 "annuler":"Annuler","confirmer":"Confirmer","fermer":"Fermer",
 "score":"Score","niveau":"Niveau","severe":"Sévère","modere":"Modéré","leger":"Léger",
 "oui":"Oui","non":"Non","patients_label":"patients","chargement":"Chargement...",
@@ -812,7 +848,7 @@ TRAD = {
 "telecharger":"📥 Télécharger le rapport","exporter":"📤 Exporter",
 "ouvrir_btn":"▶ Ouvrir","voir_btn":"Voir →",
 # ── DIAGNOSTIC IA ────────────────────────────────────────────────────────
-"diag_titre":t("diag_titre"),
+"diag_titre":"🧬 Diagnostic IA Multi-Modal",
 "diag_desc":"4 techniques d'analyse automatique pour le repérage TSA",
 "diag_avertissement":"⚠️ Ces outils sont des aides au repérage, non des diagnostics médicaux. Seul un professionnel qualifié peut établir un diagnostic TSA.",
 "tab_mchat":"📋 M-CHAT Adaptatif","tab_facial":"🖼️ Analyse Faciale",
@@ -846,7 +882,7 @@ TRAD = {
 "activites":"Activités recommandées","routine":"Routine quotidienne",
 "communication":"Communication","jeu":"Jeu et interaction",
 # ── MON ENFANT ──────────────────────────────────────────────────────────
-"mon_enfant_titre":t("mon_enfant_titre"),
+"mon_enfant_titre":"👶 Profil de Mon Enfant",
 "mon_enfant_desc":"Scores cliniques visuels et thérapies en cours",
 "prenom":"Prénom","nom_enfant":"Nom","date_naissance":"Date de naissance",
 "therapies_cours":"Thérapies en cours","aucune_therapie":"Aucune thérapie enregistrée",
@@ -856,26 +892,26 @@ TRAD = {
 "evolution_6comp":"Évolution sur 6 compétences","periode":"Période",
 "mois_dernier":"Dernier mois","trimestre":"Trimestre","annee":"Année",
 # ── ALERTES ──────────────────────────────────────────────────────────────
-"alertes_titre":t("alertes_titre"),
+"alertes_titre":"🔔 Alertes Intelligentes",
 "alertes_desc":"Détection automatique des signes préoccupants",
 "alerte_rouge":"🔴 Alerte critique","alerte_orange":"🟠 Alerte modérée",
 "alerte_verte":"🟢 Tout va bien","aucune_alerte":"Aucune alerte active",
 "signaler":"Signaler au médecin","consulter":"Consulter un spécialiste",
 # ── MESSAGERIE ───────────────────────────────────────────────────────────
 "messagerie_titre":"💬 Messagerie Sécurisée",
-"messagerie_desc":t("messagerie_desc"),
+"messagerie_desc":"Communication directe Parents ↔ Professionnels",
 "equipe_therapeutique":"👥 Équipe thérapeutique",
-"en_ligne":t("en_ligne"),"hors_ligne":t("hors_ligne"),"occupe":"Occupé",
-"envoyer":t("envoyer"),"nouveau_message":t("nouveau_message"),
-"suggestions":t("suggestions"),"ecrire_manuellement":"-- Écrire manuellement --",
-"joindre_rapport":t("joindre_rapport"),"messages_total":t("messages_total"),
-"messages_parents":t("messages_parents"),"messages_pros":t("messages_pros"),"non_lus":t("non_lus"),
+"en_ligne":"En ligne","hors_ligne":"Hors ligne","occupe":"Occupé",
+"envoyer":"📤 Envoyer","nouveau_message":"Votre message",
+"suggestions":"Suggestion rapide (optionnel)","ecrire_manuellement":"-- Écrire manuellement --",
+"joindre_rapport":"📎 Rapport","messages_total":"Messages total",
+"messages_parents":"Messages parents","messages_pros":"Messages pros","non_lus":"Non lus",
 "confirmer_rdv":"📅 Confirmer le prochain RDV",
 "demander_rapport":"📊 Demander un rapport d'évolution",
 "question_interventions":"💊 Question sur les interventions",
 "signaler_regression":"🔔 Signaler une régression",
 # ── PROFIL PATIENT PRO ───────────────────────────────────────────────────
-"profil_titre":t("profil_titre"),
+"profil_titre":"📋 Profil Patient Complet",
 "profil_desc":"Analyse multidimensionnelle avec 8 scores cliniques",
 "info_generales":"Informations générales","scores_cliniques":"Scores cliniques",
 "id_patient":"ID Patient","age_mois":"Âge (mois)","diagnostic":"Diagnostic",
@@ -887,18 +923,18 @@ TRAD = {
 "aba":"ABA","teacch":"TEACCH","pecs":"PECS",
 "tdah":"TDAH","anxiete":"Anxiété","trouble_sommeil":"Trouble du sommeil",
 # ── KNOWLEDGE GRAPH ─────────────────────────────────────────────────────
-"kg_titre":t("kg_titre"),"kg_desc":t("kg_desc"),
+"kg_titre":"🕸️ Knowledge Graph","kg_desc":"Visualisation dynamique des relations cliniques",
 "patient_unique":"👤 Patient unique","comparaison_tab":"🔄 Comparaison","stats_kg":"📊 Stats globales",
 "relations":"Relations","choisir_patients":"Choisir 2 ou 3 patients",
 # ── RECOMMANDATIONS ─────────────────────────────────────────────────────
-"reco_titre":t("reco_titre"),
+"reco_titre":"🤖 Recommandations IA — KNN",
 "reco_desc":"Interventions personnalisées basées sur l'algorithme KNN (k=5)",
 "fortement_recommande":"✅ Fortement recommandé","recommande":"🟡 Recommandé","optionnel":"⬜ Optionnel",
 "patients_similaires":"patients similaires utilisent","voisins_similaires":"voisins similaires",
 "profil_patient_label":"🔍 Profil du patient","confiance":"Score de confiance (%)",
 "methode_knn":"🔬 Algorithme : KNN (k=5) avec distance euclidienne standardisée. Précision : 92%.",
 # ── IA EXPLICABLE ────────────────────────────────────────────────────────
-"xai_titre":t("xai_titre"),
+"xai_titre":"🔬 IA Explicable — Pourquoi cette recommandation ?",
 "xai_desc":"Comprendre les décisions de l'algorithme KNN",
 "profil_vs_voisins":"🎯 Profil du patient vs voisins KNN",
 "patients_similaires_titre":"👥 Les 5 patients les plus similaires",
@@ -917,8 +953,8 @@ TRAD = {
 # ── TABLEAU MÉDECIN ──────────────────────────────────────────────────────
 "tableau_titre":"👨‍⚕️ Tableau de Bord Médecin",
 "tableau_desc":"Vue clinique synthétique — tous vos patients en un coup d'œil",
-"total_patients":t("total_patients"),"profil_severe":"⚠️ Profil sévère",
-"profil_modere":"🟠 Profil modéré","profil_stable":t("profil_stable"),
+"total_patients":"total_patients","profil_severe":"⚠️ Profil sévère",
+"profil_modere":"🟠 Profil modéré","profil_stable":"profil_stable",
 "comorbidite_tdah":"🔴 Comorbidité TDAH",
 "patients_attention":"🚨 Patients nécessitant attention immédiate",
 "repartition_profils":"📊 Répartition des profils","taux_couverture":"🏥 Taux de couverture",
@@ -927,7 +963,7 @@ TRAD = {
 "suivi_actif":"✅ Suivi actif","sans_suivi_badge":"❌ Sans suivi",
 "distribution_scores":"📈 Distribution des scores par domaine",
 # ── DASHBOARD ────────────────────────────────────────────────────────────
-"dashboard_titre":t("dashboard_titre"),
+"dashboard_titre":"📊 Dashboard — Analyse de Cohorte",
 "dashboard_desc":"Statistiques cliniques globales sur tous les patients",
 "distribution_age":"Distribution par âge","couverture_interventions":"Couverture des interventions",
 # ── STATS ALGÉRIE ────────────────────────────────────────────────────────
@@ -936,7 +972,7 @@ TRAD = {
 "prevalence":"Prévalence","prise_en_charge":"Prise en charge",
 "specialistes_disponibles":"Spécialistes disponibles","delai_diagnostic":"Délai de diagnostic",
 # ── COMPARAISON INTERNATIONALE ───────────────────────────────────────────
-"comp_titre":t("comp_titre"),
+"comp_titre":"🌍 Comparaison Internationale",
 "comp_desc":"Algérie vs monde — état des lieux et positionnement",
 "gap_combler":"🔍 Algérie vs France — le gap à combler",
 "specialistes_10k":"Spécialistes pour 10 000 enfants",
@@ -945,7 +981,7 @@ TRAD = {
 "positionnement_ia":"🤖 Positionnement des outils IA par pays",
 "conclusion_opp":"🎯 Conclusion — Opportunité AutiGraphCare",
 # ── RECHERCHE ────────────────────────────────────────────────────────────
-"recherche_titre":t("recherche_titre"),
+"recherche_titre":"🧪 Base Scientifique d'AutiGraphCare",
 "recherche_desc":"Méthodologie, références et validation",
 "tab_methodo":"🔬 Méthodologie","tab_refs":"📚 Références",
 "tab_validation":"✅ Validation","tab_perspectives":"🚀 Perspectives",
@@ -957,30 +993,30 @@ TRAD = {
 "court_terme":"🔮 Court terme (2026-2027)","moyen_terme":"🌱 Moyen terme (2027-2028)",
 "long_terme":"🌍 Long terme (2028+)","impact_scientifique":"🏆 Impact scientifique attendu",
 # ── NOUVEAU PATIENT ─────────────────────────────────────────────────────
-"np_titre":t("np_titre"),
+"np_titre":"➕ Ajouter un Nouveau Patient",
 "np_desc":"Créer un dossier clinique complet",
 "info_generales_form":"👤 Informations Générales",
 "scores_form":"🎯 Scores Cliniques (1 = très faible, 10 = très élevé)",
 "scores_avert":"⚠️ Un score élevé indique une difficulté importante dans ce domaine",
 "interventions_form":"💊 Interventions Thérapeutiques en cours",
-"comorbidites_form":"🏥 Comorbidités","notes_form":t("notes_form"),
+"comorbidites_form":"🏥 Comorbidités","notes_form":"notes_form",
 "observations_placeholder":"Ex : Enfant coopératif, bonne réponse aux stimuli visuels...",
 "id_placeholder":"P-2026-001","id_obligatoire":"L'ID patient est obligatoire !",
 "id_existe":"existe déjà dans la base de données !",
 "patient_ajoute":"✅ Patient ajouté avec succès dans la base de données !",
-"autre_patient":t("autre_patient"),"voir_profil":t("voir_profil"),
-"reco_ia":t("reco_ia"),
+"autre_patient":"➕ Ajouter un autre patient","voir_profil":"📋 Voir le profil",
+"reco_ia":"🤖 Obtenir recommandations IA",
 "resume_dossier":"📋 Résumé du dossier créé",
-"medecin_referent":"Médecin référent","wilaya":t("wilaya"),"age_diagnostic":"Âge au diagnostic (mois)",
+"medecin_referent":"Médecin référent","wilaya":"wilaya","age_diagnostic":"Âge au diagnostic (mois)",
 # ── BUSINESS MODEL ──────────────────────────────────────────────────────
-"business_titre":t("business_titre"),
+"business_titre":"💰 Business Model — AutiGraphCare",
 "business_desc":"Modèle économique et stratégie de déploiement",
 "plan_gratuit":"Gratuit","plan_famille":"Famille Premium",
 "plan_pro":"Professionnel","plan_etab":"Établissement",
 "par_mois":"/ mois","par_an":"/ an","pour_toujours":"Pour toujours",
 "choisir_plan":"Choisir ce plan",
 # ── AIDE ────────────────────────────────────────────────────────────────
-"aide_titre":t("aide_titre"),
+"aide_titre":"❓ Aide et Documentation",
 "aide_desc":"Guide d'utilisation — AutiGraphCare v2.0",
 "guide_parents":"Espace Parents","guide_pro":"Espace Professionnels",
 "contact_support":"📞 Contact Support",
@@ -996,7 +1032,7 @@ TRAD = {
 "alertes":"🔔 Alerts","messagerie":"💬 Messaging","aide":"❓ Help",
 "diagnostic_ia":"🧬 AI Diagnostic","diagnostic_ia_pro":"🧬 AI Diagnostic Pro",
 "nouveau_patient":"➕ New Patient","profil_patient":"📋 Patient Profile",
-"knowledge_graph":t("kg_titre"),"recommandations":"🤖 Recommendations",
+"knowledge_graph":"🕸️ Knowledge Graph","recommandations":"🤖 Recommendations",
 "ia_explicable":"🔬 Explainable AI","avant_apres":"📈 Before/After Treatment",
 "tableau_medecin":"👨‍⚕️ Doctor Dashboard","dashboard":"📊 Dashboard",
 "stats_algerie":"📊 Algeria Statistics","comparaison":"🌍 International Comparison",
@@ -1132,7 +1168,7 @@ TRAD = {
 "aba":"ABA","teacch":"TEACCH","pecs":"PECS",
 "tdah":"ADHD","anxiete":"Anxiety","trouble_sommeil":"Sleep disorder",
 # ── KNOWLEDGE GRAPH ─────────────────────────────────────────────────────
-"kg_titre":t("kg_titre"),"kg_desc":"Dynamic visualization of clinical relationships",
+"kg_titre":"🕸️ Knowledge Graph","kg_desc":"Dynamic visualization of clinical relationships",
 "patient_unique":"👤 Single patient","comparaison_tab":"🔄 Comparison","stats_kg":"📊 Global stats",
 "relations":"Relations","choisir_patients":"Choose 2 or 3 patients",
 # ── RECOMMANDATIONS ─────────────────────────────────────────────────────
@@ -1162,7 +1198,7 @@ TRAD = {
 # ── TABLEAU MÉDECIN ──────────────────────────────────────────────────────
 "tableau_titre":"👨‍⚕️ Doctor Dashboard",
 "tableau_desc":"Synthetic clinical view — all your patients at a glance",
-"total_patients":t("total_patients"),"profil_severe":"⚠️ Severe profile",
+"total_patients":"total_patients","profil_severe":"⚠️ Severe profile",
 "profil_modere":"🟠 Moderate profile","profil_stable":"✅ Stable profile",
 "comorbidite_tdah":"🔴 ADHD comorbidity",
 "patients_attention":"🚨 Patients requiring immediate attention",
@@ -1216,9 +1252,9 @@ TRAD = {
 "autre_patient":"➕ Add another patient","voir_profil":"📋 View profile",
 "reco_ia":"🤖 Get AI recommendations",
 "resume_dossier":"📋 Created file summary",
-"medecin_referent":"Referring doctor","wilaya":t("wilaya"),"age_diagnostic":"Age at diagnosis (months)",
+"medecin_referent":"Referring doctor","wilaya":"wilaya","age_diagnostic":"Age at diagnosis (months)",
 # ── BUSINESS MODEL ──────────────────────────────────────────────────────
-"business_titre":t("business_titre"),
+"business_titre":"💰 Business Model — AutiGraphCare",
 "business_desc":"Economic model and deployment strategy",
 "plan_gratuit":"Free","plan_famille":"Family Premium",
 "plan_pro":"Professional","plan_etab":"Institution",
@@ -1617,6 +1653,27 @@ with st.sidebar:
     if LANGUES[lang_sel] != st.session_state.get("langue","fr"):
         st.session_state["langue"] = LANGUES[lang_sel]
         st.rerun()
+
+    # Afficher lien vers version traduite
+    _l_sel = LANGUES[lang_sel]
+    if _l_sel == "en":
+        st.info("🇬🇧 English version: use **app_en.py**")
+        st.markdown(
+            "<div style='background:#EEF5FF;border-radius:8px;padding:0.6rem 1rem;"
+            "border-left:4px solid #4A90E2;margin-top:0.3rem;'>"
+            "<p style='margin:0;font-size:0.85rem;color:#333;'>"
+            "Run: <code>streamlit run app_en.py</code></p></div>",
+            unsafe_allow_html=True
+        )
+    elif _l_sel == "ar":
+        st.info("🇸🇦 النسخة العربية: استخدم **app_ar.py**")
+        st.markdown(
+            "<div style='background:#FFF8F0;border-radius:8px;padding:0.6rem 1rem;"
+            "border-left:4px solid #F5A623;margin-top:0.3rem;'>"
+            "<p style='margin:0;font-size:0.85rem;color:#333;'>"
+            "Run: <code>streamlit run app_ar.py</code></p></div>",
+            unsafe_allow_html=True
+        )
 
     # ── Theme + Notifications ────────────────────────────────
     c1, c2, c3 = st.columns([1, 2, 1])
