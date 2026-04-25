@@ -33,21 +33,72 @@ def _inject_js_translation():
         return
     _d = _TR_EN if _l == "en" else _TR_AR
     _rtl = "true" if _l == "ar" else "false"
-    pairs = ",".join(f'["{k.replace(chr(34),chr(39))}","{v.replace(chr(34),chr(39))}"]' for k,v in _d.items())
-    st.markdown(f"""<script>
-(function(){{var T=[{pairs}];var R={_rtl};
-function tr(s){{for(var i=0;i<T.length;i++)s=s.split(T[i][0]).join(T[i][1]);return s;}}
-function walk(n){{if(n.nodeType===3){{var r=tr(n.textContent);if(r!==n.textContent)n.textContent=r;}}
-else if(n.nodeType===1&&!["SCRIPT","STYLE","CODE","PRE"].includes(n.tagName)){{
-if(n.placeholder)n.placeholder=tr(n.placeholder);
-for(var c=n.firstChild;c;c=c.nextSibling)walk(c);}}}};
-function run(){{if(!document.body)return;walk(document.body);
-if(R){{document.body.style.direction="rtl";document.body.style.textAlign="right";}}}};
-run();setTimeout(run,300);setTimeout(run,800);setTimeout(run,2000);
-new MutationObserver(function(ms){{ms.forEach(function(m){{m.addedNodes.forEach(function(n){{
-if(n.nodeType===1){{walk(n);if(R)n.style.direction="rtl";}}}});}});}})
-.observe(document.body,{{childList:true,subtree:true}});}})();
-</script>""", unsafe_allow_html=True)
+    pairs = ",".join(
+        '["%s","%s"]' % (
+            k.replace("\\","\\\\").replace('"',"\'"),
+            v.replace("\\","\\\\").replace('"',"\'")
+        )
+        for k,v in _d.items()
+    )
+    # Use components.html — seule méthode fiable pour JS dans Streamlit
+    components.html(f"""
+<script>
+(function(){{
+  var T=[{pairs}];
+  var R={_rtl};
+  function tr(s){{
+    for(var i=0;i<T.length;i++) s=s.split(T[i][0]).join(T[i][1]);
+    return s;
+  }}
+  function walk(n){{
+    if(n.nodeType===3){{
+      var r=tr(n.textContent);
+      if(r!==n.textContent) n.textContent=r;
+    }} else if(n.nodeType===1 && !["SCRIPT","STYLE","CODE","PRE"].includes(n.tagName)){{
+      if(n.placeholder) n.placeholder=tr(n.placeholder);
+      for(var c=n.firstChild;c;c=c.nextSibling) walk(c);
+    }}
+  }}
+  function run(){{
+    // Cibler le document parent (Streamlit iframe)
+    try {{
+      var doc = window.parent.document;
+      if(!doc.body) return;
+      // Traduire tout le body du parent
+      var walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+      var node;
+      while(node=walker.nextNode()){{
+        var r=tr(node.textContent);
+        if(r!==node.textContent) node.textContent=r;
+      }}
+      // Traduire placeholders
+      doc.querySelectorAll("input,textarea").forEach(function(el){{
+        if(el.placeholder) el.placeholder=tr(el.placeholder);
+      }});
+      // RTL
+      if(R){{
+        doc.body.style.direction="rtl";
+        doc.body.style.textAlign="right";
+        doc.querySelectorAll("p,h1,h2,h3,h4,h5,li,label,button,.stMarkdown,.element-container").forEach(function(el){{
+          el.style.direction="rtl";
+          el.style.textAlign="right";
+        }});
+      }}
+    }} catch(e){{}}
+  }}
+  run();
+  setTimeout(run,200);
+  setTimeout(run,600);
+  setTimeout(run,1200);
+  setTimeout(run,2500);
+  // Observer les changements dynamiques
+  try{{
+    var obs = new MutationObserver(function(){{ run(); }});
+    obs.observe(window.parent.document.body,{{childList:true,subtree:true}});
+  }}catch(e){{}}
+}})();
+</script>
+""", height=0, scrolling=False)
 
 _inject_js_translation()
 
@@ -1645,51 +1696,32 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # ── Sélecteur de langue avec boutons cliquables ──────────
+    # ── Sélecteur de langue — vrais boutons Streamlit ──────────
     st.markdown("**🌍 Langue / Language / اللغة**")
     _cur_lang = st.session_state.get("langue", "fr")
 
-    # URLs Streamlit Cloud — à mettre à jour avec vos vrais liens
-    _BASE = st.query_params.get("base_url", "")
-    _URL_FR = "https://dhekrahadjoub-sketch-autigraphcare-tsa-app-py-fr.streamlit.app"
-    _URL_EN = "https://dhekrahadjoub-sketch-autigraphcare-tsa-app-en.streamlit.app"
-    _URL_AR = "https://dhekrahadjoub-sketch-autigraphcare-tsa-app-ar.streamlit.app"
-
-    # Boutons langue côte à côte
     bl1, bl2, bl3 = st.columns(3)
     with bl1:
-        active_fr = _cur_lang == "fr"
-        bg_fr = "#FF6B9D" if active_fr else "#f0f0f0"
-        tc_fr = "white" if active_fr else "#333"
-        st.markdown(
-            f"<a href='{_URL_FR}' target='_self' style='text-decoration:none;'>"
-            f"<div style='background:{bg_fr};color:{tc_fr};border-radius:8px;"
-            f"padding:0.4rem;text-align:center;font-weight:700;font-size:0.85rem;'>"
-            f"🇫🇷 FR</div></a>",
-            unsafe_allow_html=True
-        )
+        _active_fr = _cur_lang == "fr"
+        if st.button("🇫🇷 FR", key="btn_lang_fr", use_container_width=True,
+                     type="primary" if _active_fr else "secondary"):
+            st.session_state["langue"] = "fr"
+            st.session_state["menu"] = "🏠 Accueil"
+            st.rerun()
     with bl2:
-        active_en = _cur_lang == "en"
-        bg_en = "#4A90E2" if active_en else "#f0f0f0"
-        tc_en = "white" if active_en else "#333"
-        st.markdown(
-            f"<a href='{_URL_EN}' target='_self' style='text-decoration:none;'>"
-            f"<div style='background:{bg_en};color:{tc_en};border-radius:8px;"
-            f"padding:0.4rem;text-align:center;font-weight:700;font-size:0.85rem;'>"
-            f"🇬🇧 EN</div></a>",
-            unsafe_allow_html=True
-        )
+        _active_en = _cur_lang == "en"
+        if st.button("🇬🇧 EN", key="btn_lang_en", use_container_width=True,
+                     type="primary" if _active_en else "secondary"):
+            st.session_state["langue"] = "en"
+            st.session_state["menu"] = "🏠 Accueil"
+            st.rerun()
     with bl3:
-        active_ar = _cur_lang == "ar"
-        bg_ar = "#50E3C2" if active_ar else "#f0f0f0"
-        tc_ar = "white" if active_ar else "#333"
-        st.markdown(
-            f"<a href='{_URL_AR}' target='_self' style='text-decoration:none;'>"
-            f"<div style='background:{bg_ar};color:{tc_ar};border-radius:8px;"
-            f"padding:0.4rem;text-align:center;font-weight:700;font-size:0.85rem;'>"
-            f"🇸🇦 عر</div></a>",
-            unsafe_allow_html=True
-        )
+        _active_ar = _cur_lang == "ar"
+        if st.button("🇸🇦 عر", key="btn_lang_ar", use_container_width=True,
+                     type="primary" if _active_ar else "secondary"):
+            st.session_state["langue"] = "ar"
+            st.session_state["menu"] = "🏠 Accueil"
+            st.rerun()
 
     # ── Theme + Notifications ────────────────────────────────
     c1, c2, c3 = st.columns([1, 2, 1])
