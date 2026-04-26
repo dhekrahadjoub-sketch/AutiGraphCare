@@ -15,9 +15,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-for key, val in [('theme','clair'), ('espace',None), ('menu',"🏠 Home")]:
+for key, val in [('theme','clair'), ('menu',"🏠 Home")]:
     if key not in st.session_state:
         st.session_state[key] = val
+if 'espace' not in st.session_state:
+    st.session_state['espace'] = None
 
 dark = st.session_state['theme'] == 'dark'
 lang = st.session_state.get("langue", "fr")
