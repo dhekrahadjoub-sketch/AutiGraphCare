@@ -9,25 +9,24 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 st.set_page_config(
-    page_title="AutiGraphCare - Plateforme TSA",
+    page_title="AutiGraphCare - منصة التوحد",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-for key, val in [('theme','clair'), ('espace',لاe), ('menu',"🏠 الرئيسية")]:
+for key, val in [('theme','clair'), ('espace',None), ('menu',"🏠 الرئيسية")]:
     if key not in st.session_state:
         st.session_state[key] = val
 
 dark = st.session_state['theme'] == 'dark'
-# RTL CSS
-st.markdown('<style>body,.stApp,.main,p,h1,h2,h3,h4,h5,li,span,label,div{direction:rtl!important;text-align:right!important;font-family:"Segoe UI",Tahoma,Arial,sans-serif!important;}</style>', unsafe_allow_html=True)
+st.markdown('<style>body,.stApp,.main,p,h1,h2,h3,h4,h5,li,span,label,button,div{direction:rtl!important;text-align:right!important;font-family:"Segoe UI",Tahoma,Arial,sans-serif!important;}</style>', unsafe_allow_html=True)
 lang = st.session_state.get("langue", "fr")
 
 # ── TRADUCTION COMPLÈTE FR→EN/AR via JS ──────────────────────────────────────
-_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Medecin":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","تسجيل الدخول":"Login","Se déconnecter":"Sign out","سجّل دخولك إلى حساب AutiGraphCare":"Sign in to your AutiGraphCare account","سجّل دخولك إلى حساب AutiGraphCare":"Sign in to your AutiGraphCare account","البريد الإلكتروني":"Email address","كلمة المرور":"Password","تذكّرني":"Remember me","كلمة المرور oublié ?":"Forgot password?","كلمة المرور oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","ليس لديك حساب؟":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","منصة ذكية لأطفال طيف التوحد":"Intelligent platform for ASD children","منصة ذكية للتوحد":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","فضاء الآباء":"Parent Space","فضاء المختصين":"Professional Space","Entrer - فضاء الآباء":"Enter - Parent Space","Entrer - فضاء المختصين":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","طفل مصاب بالتوحد في الجزائر":"ASD children in Algeria","طفل مصاب بالتوحد في الجزائر":"ASD children in Algeria","أطفال متضررون في العالم":"Children affected worldwide","بدون متابعة منظمة":"Without structured care","دقة الذكاء الاصطناعي لدينا":"Our AI precision","دقة الذكاء الاصطناعي لدينا":"Our AI precision","مرحباً":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","عرض الملف الكامل":"View complete file","مرحباً Dr.":"Hello Dr.","مرضى في فضائك الخاص":"patients in your private space","مرضى في فضائك الخاص":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","لا توجد إشعارات":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","اختر مريضًا":"Choose a patient","Enregistrer le patient":"Save patient","إلغاء":"Cancel","تأكيد":"Confirm","إغلاق":"Close","المستوى":"Level","شديد":"شديد","متوسط":"Moderate","متوسط":"Moderate","خفيف":"Mild","خفيف":"Mild","نعم":"Yes","لا":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","داكن":"Dark","فاتح":"Light","خطر مرتفع":"HIGH Risk","خطر مرتفع":"HIGH Risk","خطر متوسط":"MODERATE Risk","خطر متوسط":"MODERATE Risk","خطر منخفض":"LOW Risk","الأمراض المصاحبة":"Comorbidities","الأمراض المصاحبة":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","التحليل Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","التحليل Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","استبيان رصد علامات طيف التوحد":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","متصل":"Online","غير متصل":"Offline","مشغول":"Busy","مشغول":"Busy","Envoyer":"Send","رسالتك":"Your message","إجمالي الرسائل":"Total messages","رسائل الآباء":"Parent messages","رسائل المختصين":"Pro messages","لا lus":"Unread","التواصل الاجتماعي":"Social communication","التفاعلات الاجتماعية":"Social interactions","السلوكيات المقيدة":"Restricted behaviors","اللغة التعبيرية":"Expressive language","اللغة الاستقبالية":"Receptive language","اللغة الاستقبالية":"Receptive language","التواصل البصري":"Eye contact","التقليد":"التقليد","اللعب الرمزي":"Symbolic play","علاج النطق":"Speech therapy","العلاج النفسحركي":"Psychomotricity","العلاج النفسحركي":"Psychomotricity","اضطراب النوم":"Sleep disorder","القلق":"Anxiety","القلق":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","الدرجة المتوسطة initial":"Initial average score","الدرجة المتوسطة actuel":"Current average score","التحسن الإجمالي":"Overall improvement","التحسن الإجمالي":"Overall improvement","إجمالي المرضى":"إجمالي المرضى","Profil sévère":"شديد profile","Profil severe":"شديد profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Sans suivi":"No follow-up","الانتشار":"الانتشار","الانتشار":"الانتشار","التكفل":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","مجاني":"Free","عائلي مميز":"Family Premium","مؤسسة":"Institution","مؤسسة":"Institution","للأبد":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","الوضع الداكن":"Dark mode","الوضع الفاتح":"Light mode","Wilaya":"Wilaya","منخفض":"LOW","متوسط":"MODERATE","مرتفع":"HIGH"}
+_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Medecin":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","تسجيل الدخول":"Login","Se déconnecter":"Sign out","سجّل دخولك إلى حساب AutiGraphCare":"Sign in to your AutiGraphCare account","سجّل دخولك إلى حساب AutiGraphCare":"Sign in to your AutiGraphCare account","البريد الإلكتروني":"Email address","كلمة المرور":"Password","تذكّرني":"Remember me","كلمة المرور oublié ?":"Forgot password?","كلمة المرور oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","ليس لديك حساب؟":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","منصة ذكية لأطفال طيف التوحد":"Intelligent platform for ASD children","منصة ذكية للتوحد":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","فضاء الآباء":"Parent Space","فضاء المختصين":"Professional Space","Entrer - فضاء الآباء":"Enter - Parent Space","Entrer - فضاء المختصين":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","أطفال التوحد في الجزائر":"ASD children in Algeria","أطفال التوحد في الجزائر":"ASD children in Algeria","أطفال متضررون في العالم":"Children affected worldwide","بدون متابعة منظمة":"Without structured care","دقة الذكاء الاصطناعي لدينا":"Our AI precision","دقة الذكاء الاصطناعي لدينا":"Our AI precision","مرحباً":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","عرض الملف الكامل":"View complete file","مرحباً Dr.":"Hello Dr.","patients dسنة votre espace privé":"patients in your private space","مرضى في فضائك الخاص":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","لا توجد إشعارات":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","اختر مريضًا":"Choose a patient","Enregistrer le patient":"Save patient","إلغاء":"Cancel","تأكيد":"Confirm","إغلاق":"Close","المستوى":"Level","شديد":"Severe","متوسط":"Moderate","متوسط":"Moderate","خفيف":"Mild","خفيف":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","داكن":"Dark","فاتح":"Light","خطر مرتفع":"HIGH Risk","خطر مرتفع":"HIGH Risk","خطر متوسط":"MODERATE Risk","خطر متوسط":"MODERATE Risk","خطر منخفض":"LOW Risk","Comorbidités":"Comorbidities","الأمراض المصاحبة":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","استبيان رصد علامات طيف التوحد":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","متصل":"Online","غير متصل":"Offline","Occupé":"Busy","مشغول":"Busy","Envoyer":"Send","رسالتك":"Your message","إجمالي الرسائل":"Total messages","رسائل الآباء":"Parent messages","رسائل المختصين":"Pro messages","غير مقروء":"Unread","التواصل الاجتماعي":"Social communication","التفاعلات الاجتماعية":"Social interactions","السلوكيات المقيدة":"Restricted behaviors","اللغة التعبيرية":"Expressive language","اللغة réceptif":"Receptive language","اللغة الاستقبالية":"Receptive language","التواصل البصري":"Eye contact","التقليد":"التقليد","اللعب الرمزي":"Symbolic play","علاج النطق":"Speech therapy","Psychomotricité":"Psychomotricity","العلاج النفسحركي":"Psychomotricity","اضطراب النوم":"Sleep disorder","Anxiété":"Anxiety","القلق":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","الدرجة de confiance":"Confidence score","الدرجة المتوسطة الأولية":"Initial average score","الدرجة المتوسطة الحالية":"Current average score","Amélioration globale":"Overall improvement","التحسن الإجمالي":"Overall improvement","إجمالي المرضى":"إجمالي المرضى","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Sسنة suivi":"No follow-up","Prévalence":"الانتشار","الانتشار":"الانتشار","التكفل":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","مجاني":"Free","عائلي مميز":"Family Premium","Établissement":"Institution","مؤسسة":"Institution","للأبد":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Mode sombre":"Dark mode","Mode clair":"Light mode","Wilaya":"Wilaya","منخفض":"LOW","متوسط":"MODERATE","مرتفع":"HIGH"}
 
-_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Medecin":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","تسجيل الدخول":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","سجّل دخولك إلى حساب AutiGraphCare":"سجّل دخولك إلى حساب AutiGraphCare","سجّل دخولك إلى حساب AutiGraphCare":"سجّل دخولك إلى حساب AutiGraphCare","البريد الإلكتروني":"البريد الإلكتروني","كلمة المرور":"كلمة المرور","تذكّرني":"تذكّرني","كلمة المرور oublié ?":"نسيت كلمة المرور؟","كلمة المرور oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","ليس لديك حساب؟":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","منصة ذكية لأطفال طيف التوحد":"منصة ذكية لأطفال طيف التوحد","منصة ذكية للتوحد":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","فضاء الآباء":"فضاء الآباء","فضاء المختصين":"فضاء المختصين","Entrer - فضاء الآباء":"دخول - فضاء الآباء","Entrer - فضاء المختصين":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","طفل مصاب بالتوحد في الجزائر":"طفل مصاب بالتوحد في الجزائر","طفل مصاب بالتوحد في الجزائر":"طفل مصاب بالتوحد في الجزائر","أطفال متضررون في العالم":"أطفال متضررون في العالم","بدون متابعة منظمة":"بدون متابعة منظمة","دقة الذكاء الاصطناعي لدينا":"دقة الذكاء الاصطناعي لدينا","دقة الذكاء الاصطناعي لدينا":"دقة الذكاء الاصطناعي لدينا","مرحباً":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","عرض الملف الكامل":"عرض الملف الكامل","مرحباً Dr.":"مرحباً دكتور","مرضى في فضائك الخاص":"مرضى في فضائك الخاص","مرضى في فضائك الخاص":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","لا توجد إشعارات":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","اختر مريضًا":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","إلغاء":"إلغاء","تأكيد":"تأكيد","إغلاق":"إغلاق","المستوى":"المستوى","شديد":"شديد","متوسط":"متوسط","متوسط":"متوسط","خفيف":"خفيف","خفيف":"خفيف","نعم":"نعم","لا":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","داكن":"داكن","فاتح":"فاتح","خطر مرتفع":"خطر مرتفع","خطر مرتفع":"خطر مرتفع","خطر متوسط":"خطر متوسط","خطر متوسط":"خطر متوسط","خطر منخفض":"خطر منخفض","الأمراض المصاحبة":"الأمراض المصاحبة","الأمراض المصاحبة":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","التحليل Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","التحليل Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","استبيان رصد علامات طيف التوحد":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","متصل":"متصل","غير متصل":"غير متصل","مشغول":"مشغول","مشغول":"مشغول","Envoyer":"إرسال","رسالتك":"رسالتك","إجمالي الرسائل":"إجمالي الرسائل","رسائل الآباء":"رسائل الآباء","رسائل المختصين":"رسائل المختصين","لا lus":"غير مقروء","التواصل الاجتماعي":"التواصل الاجتماعي","التفاعلات الاجتماعية":"التفاعلات الاجتماعية","السلوكيات المقيدة":"السلوكيات المقيدة","اللغة التعبيرية":"اللغة التعبيرية","اللغة الاستقبالية":"اللغة الاستقبالية","اللغة الاستقبالية":"اللغة الاستقبالية","التواصل البصري":"التواصل البصري","التقليد":"التقليد","اللعب الرمزي":"اللعب الرمزي","علاج النطق":"علاج النطق","العلاج النفسحركي":"العلاج النفسحركي","العلاج النفسحركي":"العلاج النفسحركي","اضطراب النوم":"اضطراب النوم","القلق":"القلق","القلق":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","الدرجة المتوسطة initial":"الدرجة المتوسطة الأولية","الدرجة المتوسطة actuel":"الدرجة المتوسطة الحالية","التحسن الإجمالي":"التحسن الإجمالي","التحسن الإجمالي":"التحسن الإجمالي","إجمالي المرضى":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Sans suivi":"بدون متابعة","الانتشار":"الانتشار","الانتشار":"الانتشار","التكفل":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","مجاني":"مجاني","عائلي مميز":"عائلي مميز","مؤسسة":"مؤسسة","مؤسسة":"مؤسسة","للأبد":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","الوضع الداكن":"الوضع الداكن","الوضع الفاتح":"الوضع الفاتح","Wilaya":"الولاية","منخفض":"منخفض","متوسط":"متوسط","مرتفع":"مرتفع"}
+_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Medecin":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","تسجيل الدخول":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","سجّل دخولك إلى حساب AutiGraphCare":"سجّل دخولك إلى حساب AutiGraphCare","سجّل دخولك إلى حساب AutiGraphCare":"سجّل دخولك إلى حساب AutiGraphCare","البريد الإلكتروني":"البريد الإلكتروني","كلمة المرور":"كلمة المرور","تذكّرني":"تذكّرني","كلمة المرور oublié ?":"نسيت كلمة المرور؟","كلمة المرور oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","ليس لديك حساب؟":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","منصة ذكية لأطفال طيف التوحد":"منصة ذكية لأطفال طيف التوحد","منصة ذكية للتوحد":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","فضاء الآباء":"فضاء الآباء","فضاء المختصين":"فضاء المختصين","Entrer - فضاء الآباء":"دخول - فضاء الآباء","Entrer - فضاء المختصين":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","أطفال التوحد في الجزائر":"طفل مصاب بالتوحد في الجزائر","أطفال التوحد في الجزائر":"طفل مصاب بالتوحد في الجزائر","أطفال متضررون في العالم":"أطفال متضررون في العالم","بدون متابعة منظمة":"بدون متابعة منظمة","دقة الذكاء الاصطناعي لدينا":"دقة الذكاء الاصطناعي لدينا","دقة الذكاء الاصطناعي لدينا":"دقة الذكاء الاصطناعي لدينا","مرحباً":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","عرض الملف الكامل":"عرض الملف الكامل","مرحباً Dr.":"مرحباً دكتور","patients dسنة votre espace privé":"مرضى في فضائك الخاص","مرضى في فضائك الخاص":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","لا توجد إشعارات":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","اختر مريضًا":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","إلغاء":"إلغاء","تأكيد":"تأكيد","إغلاق":"إغلاق","المستوى":"المستوى","شديد":"شديد","متوسط":"متوسط","متوسط":"متوسط","خفيف":"خفيف","خفيف":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","داكن":"داكن","فاتح":"فاتح","خطر مرتفع":"خطر مرتفع","خطر مرتفع":"خطر مرتفع","خطر متوسط":"خطر متوسط","خطر متوسط":"خطر متوسط","خطر منخفض":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","الأمراض المصاحبة":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","استبيان رصد علامات طيف التوحد":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","متصل":"متصل","غير متصل":"غير متصل","Occupé":"مشغول","مشغول":"مشغول","Envoyer":"إرسال","رسالتك":"رسالتك","إجمالي الرسائل":"إجمالي الرسائل","رسائل الآباء":"رسائل الآباء","رسائل المختصين":"رسائل المختصين","غير مقروء":"غير مقروء","التواصل الاجتماعي":"التواصل الاجتماعي","التفاعلات الاجتماعية":"التفاعلات الاجتماعية","السلوكيات المقيدة":"السلوكيات المقيدة","اللغة التعبيرية":"اللغة التعبيرية","اللغة réceptif":"اللغة الاستقبالية","اللغة الاستقبالية":"اللغة الاستقبالية","التواصل البصري":"التواصل البصري","التقليد":"التقليد","اللعب الرمزي":"اللعب الرمزي","علاج النطق":"علاج النطق","Psychomotricité":"العلاج النفسحركي","العلاج النفسحركي":"العلاج النفسحركي","اضطراب النوم":"اضطراب النوم","Anxiété":"القلق","القلق":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","الدرجة de confiance":"درجة الثقة","الدرجة المتوسطة الأولية":"الدرجة المتوسطة الأولية","الدرجة المتوسطة الحالية":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","التحسن الإجمالي":"التحسن الإجمالي","إجمالي المرضى":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Sسنة suivi":"بدون متابعة","Prévalence":"الانتشار","الانتشار":"الانتشار","التكفل":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","مجاني":"مجاني","عائلي مميز":"عائلي مميز","Établissement":"مؤسسة","مؤسسة":"مؤسسة","للأبد":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Mode sombre":"الوضع الداكن","Mode clair":"الوضع الفاتح","Wilaya":"الولاية","منخفض":"منخفض","متوسط":"متوسط","مرتفع":"مرتفع"}
 
 def _inject_js_translation():
     _l = st.session_state.get("langue","fr")
@@ -35,21 +34,72 @@ def _inject_js_translation():
         return
     _d = _TR_EN if _l == "en" else _TR_AR
     _rtl = "true" if _l == "ar" else "false"
-    pairs = ",".join(f'["{k.replace(chr(34),chr(39))}","{v.replace(chr(34),chr(39))}"]' for k,v in _d.items())
-    st.markdown(f"""<script>
-(function(){{var T=[{pairs}];var R={_rtl};
-function tr(s){{for(var i=0;i<T.length;i++)s=s.split(T[i][0]).join(T[i][1]);return s;}}
-function walk(n){{if(n.nodeType===3){{var r=tr(n.textContent);if(r!==n.textContent)n.textContent=r;}}
-else if(n.nodeType===1&&!["SCRIPT","STYLE","CODE","PRE"].includes(n.tagName)){{
-if(n.placeholder)n.placeholder=tr(n.placeholder);
-for(var c=n.firstChild;c;c=c.nextSibling)walk(c);}}}};
-function run(){{if(!document.body)return;walk(document.body);
-if(R){{document.body.style.direction="rtl";document.body.style.textAlign="right";}}}};
-run();setTimeout(run,300);setTimeout(run,800);setTimeout(run,2000);
-new MutationObserver(function(ms){{ms.forEach(function(m){{m.addedNodes.forEach(function(n){{
-if(n.nodeType===1){{walk(n);if(R)n.style.direction="rtl";}}}});}});}})
-.observe(document.body,{{childList:true,subtree:true}});}})();
-</script>""", unsafe_allow_html=True)
+    pairs = ",".join(
+        '["%s","%s"]' % (
+            k.replace("\\","\\\\").replace('"',"\'"),
+            v.replace("\\","\\\\").replace('"',"\'")
+        )
+        for k,v in _d.items()
+    )
+    # Use components.html — seule méthode fiable pour JS dسنة Streamlit
+    components.html(f"""
+<script>
+(function(){{
+  var T=[{pairs}];
+  var R={_rtl};
+  function tr(s){{
+    for(var i=0;i<T.length;i++) s=s.split(T[i][0]).join(T[i][1]);
+    return s;
+  }}
+  function walk(n){{
+    if(n.nodeType===3){{
+      var r=tr(n.textContent);
+      if(r!==n.textContent) n.textContent=r;
+    }} else if(n.nodeType===1 && !["SCRIPT","STYLE","CODE","PRE"].includes(n.tagName)){{
+      if(n.placeholder) n.placeholder=tr(n.placeholder);
+      for(var c=n.firstChild;c;c=c.nextSibling) walk(c);
+    }}
+  }}
+  function run(){{
+    // Cibler le document parent (Streamlit iframe)
+    try {{
+      var doc = window.parent.document;
+      if(!doc.body) return;
+      // Traduire tout le body du parent
+      var walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+      var node;
+      while(node=walker.nextNode()){{
+        var r=tr(node.textContent);
+        if(r!==node.textContent) node.textContent=r;
+      }}
+      // Traduire placeholders
+      doc.querySelectorAll("input,textarea").forEach(function(el){{
+        if(el.placeholder) el.placeholder=tr(el.placeholder);
+      }});
+      // RTL
+      if(R){{
+        doc.body.style.direction="rtl";
+        doc.body.style.textAlign="right";
+        doc.querySelectorAll("p,h1,h2,h3,h4,h5,li,label,button,.stMarkdown,.element-container").forEach(function(el){{
+          el.style.direction="rtl";
+          el.style.textAlign="right";
+        }});
+      }}
+    }} catch(e){{}}
+  }}
+  run();
+  setTimeout(run,200);
+  setTimeout(run,600);
+  setTimeout(run,1200);
+  setTimeout(run,2500);
+  // Observer les changements dynamiques
+  try{{
+    var obs = new MutationObserver(function(){{ run(); }});
+    obs.observe(window.parent.document.body,{{childList:true,subtree:true}});
+  }}catch(e){{}}
+}})();
+</script>
+""", height=0, scrolling=False)
 
 _inject_js_translation()
 
@@ -291,489 +341,7 @@ def load_data():
 
 df = load_data()
 
-# ============================================================
-# COMPTES DEMO PRE-CHARGES
-# ============================================================
-COMPTES_DEMO = {
-    "parent@demo.dz":  {"mdp":"parent123",  "type":"parent", "nom":"Famille Hadjoub",
-                        "plan":"عائلي مميز", "expire":"2027-03-01", "avatar":"👪"},
-    "pro@demo.dz":     {"mdp":"pro123",     "type":"pro",    "nom":"Dr. Benali Karima",
-                        "plan":"Professionnel", "expire":"2027-01-15", "avatar":"👨‍⚕️"},
-    "medecin@demo.dz": {"mdp":"medecin123", "type":"pro",    "nom":"Dr. Meziane Sofiane",
-                        "plan":"مؤسسة","expire":"2027-06-30", "avatar":"🧠"},
-}
 
-# Initialiser auth session
-for k, v in [("auth_connecte", False), ("auth_user", لاe),
-             ("auth_type", لاe),("auth_nom", ""),
-             ("auth_page", "login")]:
-    if k not in st.session_state:
-        st.session_state[k] = v
-
-# ── Gate : si pas connecte et veut entrer dans un espace ─────────────────────
-def show_auth_gate():
-    """Affiche login / inscription / paiement selon auth_page"""
-
-    pg = st.session_state["auth_page"]
-
-    # ── CSS specifique auth ──
-    st.markdown("""
-    <style>
-    .auth-card{background:white;border-radius:20px;padding:2.5rem;
-               box-shadow:0 20px 60px rgba(0,0,0,0.12);max-width:480px;margin:0 auto;}
-    .auth-title{font-size:1.6rem;font-weight:800;text-align:center;margin-bottom:0.3rem;}
-    .plan-card{border-radius:14px;padding:1.2rem;margin-bottom:0.8rem;cursor:pointer;
-               transition:transform 0.2s;border:2px solid transparent;}
-    .plan-card:hover{transform:translateY(-3px);}
-    .plan-selected{border:2px solid #4A90E2 !important;background:#EEF5FF !important;}
-    .method-card{border-radius:12px;padding:1rem;border:2px solid #e0e0e0;
-                 text-align:center;cursor:pointer;transition:all 0.2s;}
-    .method-card:hover{border-color:#4A90E2;background:#EEF5FF;}
-    </style>
-    """, unsafe_allow_html=True)
-
-    # ── HEADER ──
-    st.markdown("""
-    <div style='text-align:center;margin-bottom:2rem;'>
-        <div style='font-size:3.5rem;'>🧠</div>
-        <h1 style='font-size:2rem;font-weight:800;background:linear-gradient(135deg,#6C3FC5,#4A90E2);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;'>
-            AutiGraphCare</h1>
-        <p style='color:#888;margin:0.3rem 0 0;'>منصة ذكية للتوحد</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # PAGE : LOGIN
-    # ─────────────────────────────────────────────────────────────────────────
-    if pg == "login":
-        # Centrage CSS sans colonnes vides
-        st.markdown("""
-        <style>
-        .login-wrap{max-width:460px;margin:0 auto;background:white;
-                    border-radius:14px;padding:0.8rem 1.5rem 1.2rem 1.5rem;
-                    box-shadow:0 6px 20px rgba(0,0,0,0.08);}
-        </style>
-        <div class='login-wrap'>
-            <p style='text-align:center;font-size:1.3rem;font-weight:800;
-                color:#4A90E2;margin:0.3rem 0 0.1rem;'>🔐 تسجيل الدخول</p>
-            <p style='text-align:center;color:#888;margin-bottom:0.3rem;font-size:0.88rem;'>
-                سجّل دخولك إلى حساب AutiGraphCare</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        _, mid, _ = st.columns([1, 3, 1])
-        with mid:
-            email = st.text_input(t("email"), placeholder="exemple@email.com", key="login_email")
-            mdp   = st.text_input(t("mdp"), type="password", placeholder="••••••••", key="login_mdp")
-
-            col_r, col_oubli = st.columns([1,1])
-            with col_r:
-                st.checkbox(t("souvenir"))
-            with col_oubli:
-                st.markdown("<p style='text-align:right;color:#4A90E2;font-size:0.85rem;"
-                            "margin-top:0.4rem;'>كلمة المرور oublie ?</p>", unsafe_allow_html=True)
-
-            if st.button(t("se_connecter"), use_container_width=True, key="btn_login"):
-                if email.strip() in COMPTES_DEMO and COMPTES_DEMO[email.strip()]["mdp"] == mdp:
-                    compte = COMPTES_DEMO[email.strip()]
-                    st.session_state.update({
-                        "auth_connecte": True, "auth_user": email.strip(),
-                        "auth_type": compte["type"], "auth_nom": compte["nom"],
-                        "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
-                        "espace": compte["type"], "menu": "🏠 الرئيسية"
-                    })
-                    st.rerun()
-                elif email.strip() in st.session_state.get("comptes_inscrits", {}):
-                    compte = st.session_state["comptes_inscrits"][email.strip()]
-                    if compte["mdp"] == mdp:
-                        st.session_state.update({
-                            "auth_connecte": True, "auth_user": email.strip(),
-                            "auth_type": compte["type"], "auth_nom": compte["nom"],
-                            "auth_plan": compte["plan"], "auth_avatar": compte.get("avatar","👤"),
-                            "espace": compte["type"], "menu": "🏠 الرئيسية"
-                        })
-                        st.rerun()
-                    else:
-                        st.error("❌ كلمة المرور incorrect")
-                else:
-                    st.error("❌ Email ou mot de passe incorrect")
-
-            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align:center;color:#888;font-size:0.85rem;'>"
-                        "🎯 حسابات تجريبية</p>", unsafe_allow_html=True)
-
-            for email_d, info in COMPTES_DEMO.items():
-                col_a, col_b = st.columns([3, 1])
-                with col_a:
-                    st.markdown(
-                        f"<div style='background:#f8f9fa;border-radius:8px;padding:0.4rem 0.8rem;"
-                        f"margin-bottom:0.3rem;'>"
-                        f"<span style='font-size:1.1rem;'>{info['avatar']}</span> "
-                        f"<b style='font-size:0.85rem;'>{info['nom']}</b><br/>"
-                        f"<span style='font-size:0.78rem;color:#888;'>{email_d} / {info['mdp']}</span></div>",
-                        unsafe_allow_html=True
-                    )
-                with col_b:
-                    if st.button("Demo", key=f"demo_{email_d}", use_container_width=True):
-                        compte = COMPTES_DEMO[email_d]
-                        st.session_state.update({
-                            "auth_connecte": True, "auth_user": email_d,
-                            "auth_type": compte["type"], "auth_nom": compte["nom"],
-                            "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
-                            "espace": compte["type"], "menu": "🏠 الرئيسية"
-                        })
-                        st.rerun()
-
-            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
-            st.markdown("<p style='text-align:center;color:#555;'>ليس لديك حساب؟</p>",
-                        unsafe_allow_html=True)
-            if st.button(t("creer_compte"), use_container_width=True, key="btn_to_register"):
-                st.session_state["auth_page"] = "register"
-                st.rerun()
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # PAGE : INSCRIPTION + CHOIX PLAN
-    # ─────────────────────────────────────────────────────────────────────────
-    elif pg == "register":
-        col_c, col_f, col_c2 = st.columns([1, 3, 1])
-        with col_f:
-            st.markdown("## ✨ Creer votre compte AutiGraphCare")
-
-            # Tabs inscription
-            tab_info, tab_plan, tab_paiement = st.tabs(
-                ["1️⃣  Informations", "2️⃣  Choisir un plan", "3️⃣  Paiement"]
-            )
-
-            # ── Tab 1 : Infos ──
-            with tab_info:
-                st.markdown("### 👤 Vos informations")
-                col1, col2 = st.columns(2)
-                with col1:
-                    r_prenom = st.text_input("Prenom *", key="r_prenom")
-                    r_email  = st.text_input("Email *",  placeholder="votre@email.com", key="r_email")
-                    r_tel    = st.text_input("Telephone", placeholder="+213 6XX XXX XXX", key="r_tel")
-                with col2:
-                    r_nom    = st.text_input("Nom *", key="r_nom")
-                    r_mdp    = st.text_input("كلمة المرور *", type="password", placeholder="8+ caracteres", key="r_mdp")
-                    r_mdp2   = st.text_input("تأكيد MDP *", type="password", key="r_mdp2")
-
-                r_type = st.radio("Vous etes *", ["👪 Parent / Famille", "👨‍⚕️ Professionnel de sante"],
-                                  horizontal=True, key="r_type")
-                if "Professionnel" in r_type:
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        r_specialite = st.selectbox("Specialite", ["Orthophoniste","Psychologue",
-                            "Neuropediatre","Psychomotricien","Educateur specialise","Autre"], key="r_spec")
-                    with col2:
-                        r_num_ordre = st.text_input("N° Ordre professionnel", key="r_ordre")
-
-                r_wilaya = st.selectbox(t("wilaya"), ["Alger","Oran","Constantine","Annaba",
-                    "Blida","Setif","Tlemcen","Batna","Bejaia","Tizi Ouzou","Autres"], key="r_wilaya")
-                r_cgu    = st.checkbox("J'accepte les Conditions Generales d'Utilisation *", key="r_cgu")
-                st.info("➡️ Passez a l'onglet **2 - Choisir un plan** pour continuer")
-
-            # ── Tab 2 : Plans ──
-            with tab_plan:
-                st.markdown("### 💰 Choisir votre abonnement")
-
-                plans = [
-                    {
-                        "id": "gratuit", "nom": "مجاني", "prix": "0 DA",
-                        "periode": "للأبد", "color": "#4CAF50",
-                        "badge": "", "type_user": "parent",
-                        "features": ["✅ Questionnaire M-CHAT",
-                                     "✅ Orientation specialists",
-                                     "⛔ Suivi evolution",
-                                     "⛔ Alertes automatiques",
-                                     "⛔ Diagnostic IA complet"],
-                    },
-                    {
-                        "id": "famille", "nom": "عائلي مميز", "prix": "2 500 DA",
-                        "periode": "/ شهر", "color": "#FF6B9D",
-                        "badge": "⭐ Recommande", "type_user": "parent",
-                        "features": ["✅ Tout le plan gratuit",
-                                     "✅ Profil enfant complet",
-                                     "✅ Suivi mensuel radar",
-                                     "✅ Alertes automatiques IA",
-                                     "✅ Diagnostic multimodal",
-                                     "✅ Messagerie therapeute",
-                                     "✅ Conseils personnalises"],
-                    },
-                    {
-                        "id": "pro", "nom": "Professionnel", "prix": "15 000 DA",
-                        "periode": "/ سنة", "color": "#4A90E2",
-                        "badge": "🏆 Professionnel", "type_user": "pro",
-                        "features": ["✅ Tout plan Famille",
-                                     "✅ KNN Recommandations IA",
-                                     "✅ Knowledge Graph",
-                                     "✅ IA Explicable (XAI)",
-                                     "✅ Dashboard clinique",
-                                     "✅ Export PDF",
-                                     "✅ Multi-patients illimite"],
-                    },
-                    {
-                        "id": "etablissement", "nom": "مؤسسة", "prix": "30 000 DA",
-                        "periode": "/ سنة", "color": "#6C3FC5",
-                        "badge": "🏥 مؤسسة", "type_user": "pro",
-                        "features": ["✅ Tout plan Pro",
-                                     "✅ Licence multi-utilisateurs",
-                                     "✅ Tableau de bord medecin",
-                                     "✅ Stats comparaison int.",
-                                     "✅ Formation incluse",
-                                     "✅ Support prioritaire 24/7"],
-                    },
-                ]
-
-                if "plan_choisi" not in st.session_state:
-                    st.session_state["plan_choisi"] = "famille"
-
-                col1, col2 = st.columns(2)
-                for i, plan in enumerate(plans):
-                    with (col1 if i % 2 == 0 else col2):
-                        is_sel = st.session_state["plan_choisi"] == plan["id"]
-                        border = f"3px solid {plan['color']}" if is_sel else f"2px solid {plan['color']}44"
-                        bg     = plan["color"] + "15" if is_sel else "white"
-                        feat_html = "".join(
-                            f"<p style='margin:0.2rem 0;font-size:0.85rem;color:#555;'>{f}</p>"
-                            for f in plan["features"]
-                        )
-                        badge_html = (
-                            f"<span style='background:{plan['color']};color:white;padding:0.15rem 0.6rem;"
-                            f"border-radius:20px;font-size:0.78rem;font-weight:700;'>{plan['badge']}</span>"
-                            if plan["badge"] else ""
-                        )
-                        st.markdown(
-                            f"<div style='border:{border};background:{bg};border-radius:14px;"
-                            f"padding:1.2rem;margin-bottom:0.8rem;'>"
-                            f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
-                            f"<h3 style='color:{plan['color']};margin:0;'>{plan['nom']}</h3>"
-                            f"{badge_html}</div>"
-                            f"<p style='font-size:1.6rem;font-weight:800;color:{plan['color']};margin:0.3rem 0;'>"
-                            f"{plan['prix']}<span style='font-size:0.9rem;color:#888;'> {plan['periode']}</span></p>"
-                            f"<hr style='margin:0.6rem 0;'/>{feat_html}</div>",
-                            unsafe_allow_html=True
-                        )
-                        btn_label = "✅ Selectionne" if is_sel else f"Choisir {plan['nom']}"
-                        if st.button(btn_label, key=f"plan_{plan['id']}", use_container_width=True):
-                            st.session_state["plan_choisi"] = plan["id"]
-                            st.session_state["plan_type_user"] = plan["type_user"]
-                            st.rerun()
-
-                st.info("➡️ Passez a l'onglet **3 - Paiement** pour finaliser")
-
-            # ── Tab 3 : Paiement ──
-            with tab_paiement:
-                plan_id     = st.session_state.get("plan_choisi", "famille")
-                plan_info   = next((p for p in plans if p["id"] == plan_id), plans[1])
-
-                st.markdown(
-                    f"<div style='background:{plan_info['color']}15;border:2px solid {plan_info['color']};"
-                    f"border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center;'>"
-                    f"<h3 style='color:{plan_info['color']};margin:0;'>Plan selectionne : {plan_info['nom']}</h3>"
-                    f"<p style='font-size:2rem;font-weight:800;color:{plan_info['color']};margin:0.2rem 0;'>"
-                    f"{plan_info['prix']} <span style='font-size:1rem;color:#888;'>{plan_info['periode']}</span></p>"
-                    f"</div>",
-                    unsafe_allow_html=True
-                )
-
-                if plan_id == "gratuit":
-                    st.success("✅ Plan gratuit — aucun paiement requis !")
-                    if st.button("🚀 Creer mon compte gratuit", use_container_width=True, key="btn_create_free"):
-                        r_email_v = st.session_state.get("r_email","").strip()
-                        r_nom_v   = st.session_state.get("r_nom","").strip()
-                        r_prenom_v= st.session_state.get("r_prenom","").strip()
-                        r_mdp_v   = st.session_state.get("r_mdp","").strip()
-                        r_type_v  = st.session_state.get("r_type","Parent")
-                        if r_email_v and r_nom_v and r_mdp_v:
-                            if "comptes_inscrits" not in st.session_state:
-                                st.session_state["comptes_inscrits"] = {}
-                            st.session_state["comptes_inscrits"][r_email_v] = {
-                                "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip(),
-                                "type": "parent", "plan": "مجاني", "avatar": "👤"
-                            }
-                            st.session_state.update({
-                                "auth_connecte": True, "auth_user": r_email_v,
-                                "auth_type": "parent", "auth_nom": f"{r_prenom_v} {r_nom_v}".strip(),
-                                "auth_plan": "مجاني", "auth_avatar": "👤",
-                                "espace": "parent", "menu": "🏠 الرئيسية"
-                            })
-                            st.rerun()
-                        else:
-                            st.error("❌ Remplissez vos informations dans l'onglet 1 d'abord")
-                else:
-                    st.markdown("### 💳 Mode de paiement")
-                    methode = st.radio("", [
-                        "💳 Carte bancaire (CIB / EDAHABIA)",
-                        "📱 Virement bancaire",
-                        "🏦 Paiement en agence",
-                        "📦 Cash a la livraison",
-                    ], key="methode_paiement")
-
-                    st.markdown("---")
-
-                    if methode == "💳 Carte bancaire (CIB / EDAHABIA)":
-                        st.markdown("#### 💳 Informations de la carte")
-                        col1, col2 = st.columns([2,1])
-                        with col1:
-                            carte_num = st.text_input("Numero de carte (16 chiffres)",
-                                placeholder="XXXX  XXXX  XXXX  XXXX", key="carte_num",
-                                max_chars=19)
-                        with col2:
-                            carte_type = st.selectbox("Type", ["CIB","EDAHABIA","Visa","Mastercard"], key="carte_type")
-
-                        col1, col2, col3 = st.columns(3)
-                        with col1:
-                            carte_exp = st.text_input("Expiration", placeholder="MM/AA", max_chars=5, key="carte_exp")
-                        with col2:
-                            carte_cvv = st.text_input("CVV", placeholder="XXX", type="password", max_chars=3, key="carte_cvv")
-                        with col3:
-                            st.markdown("<div style='height:1.9rem'></div>", unsafe_allow_html=True)
-                            st.markdown("🔒 Paiement securise", unsafe_allow_html=True)
-
-                        nom_carte = st.text_input("Nom sur la carte", placeholder="NOM PRENOM", key="nom_carte")
-
-                        # Badge securite
-                        st.markdown("""
-                        <div style='background:#f0fff4;border:1px solid #4CAF50;border-radius:8px;
-                                    padding:0.6rem 1rem;display:flex;gap:0.5rem;align-items:center;margin:0.5rem 0;'>
-                            <span>🔒</span>
-                            <span style='color:#555;font-size:0.85rem;'>
-                            Paiement crypte SSL 256-bit. Vos donnees bancaires ne sont jamais stockees.
-                            Conforme PCI-DSS.</span>
-                        </div>
-                        """, unsafe_allow_html=True)
-
-                        if st.button(f"💳 Payer {plan_info['prix']} et creer mon compte",
-                                     use_container_width=True, key="btn_pay_card"):
-                            if carte_num and len(carte_num.replace(" ","")) >= 16 and carte_cvv:
-                                with st.spinner("Traitement du paiement en cours..."):
-                                    time.sleep(2)
-                                _finalize_inscription(plan_info, "Carte bancaire")
-                            else:
-                                st.error("❌ Verifiez les informations de votre carte")
-
-                    elif methode == "📱 Virement bancaire":
-                        st.markdown("""
-                        <div class='card' style='border-left:5px solid #4A90E2;'>
-                            <h4 style='color:#4A90E2;'>📱 Instructions de virement</h4>
-                            <p><b>Banque :</b> BNA — Banque Nationale d'Algerie</p>
-                            <p><b>IBAN :</b> DZ59 0002 1000 0010 0001 2345 6789</p>
-                            <p><b>RIB :</b> 00021000001000012345678900</p>
-                            <p><b>Beneficiaire :</b> AutiGraphCare SARL</p>
-                            <p><b>Montant exact :</b> <b style='color:#4A90E2;'>{plan_info['prix'].replace(' DA','')} DZD</b></p>
-                            <p><b>Reference :</b> AUTi-2026-{hash(st.session_state.get('r_email','')) % 99999:05d}</p>
-                        </div>
-                        """.format(plan_info=plan_info), unsafe_allow_html=True)
-                        recu = st.file_uploader("📎 Joindre le recu de virement (PDF/JPG)", key="recu_virement")
-                        if st.button("📤 إرسال et activer mon compte (sous 24h)",
-                                     use_container_width=True, key="btn_virement"):
-                            _finalize_inscription(plan_info, "Virement bancaire")
-
-                    elif methode == "🏦 Paiement en agence":
-                        st.markdown("""
-                        <div class='card' style='border-left:5px solid #6C3FC5;'>
-                            <h4 style='color:#6C3FC5;'>🏦 Agences partenaires AutiGraphCare</h4>
-                            <p>📍 <b>Alger</b> — 12 Rue Didouche Mourad, Centre</p>
-                            <p>📍 <b>Oran</b> — Boulevard Millénium, Les Amandiers</p>
-                            <p>📍 <b>Constantine</b> — Rue Larbi Ben M'Hidi</p>
-                            <p>📍 <b>Annaba</b> — Avenue du 1er Novembre</p>
-                            <hr/>
-                            <p style='color:#888;font-size:0.85rem;'>
-                            Presentez-vous avec votre CIN + ce code de commande :<br/>
-                            <b style='color:#6C3FC5;font-size:1.1rem;'>
-                            AUTi-{code}</b></p>
-                        </div>
-                        """.format(code=f"{hash(st.session_state.get('r_email','')) % 99999:05d}"), unsafe_allow_html=True)
-                        if st.button("✅ J'ai effectue le paiement en agence",
-                                     use_container_width=True, key="btn_agence"):
-                            _finalize_inscription(plan_info, "Agence")
-
-                    elif methode == "📦 Cash a la livraison":
-                        st.markdown("""
-                        <div class='card' style='border-left:5px solid #F5A623;'>
-                            <h4 style='color:#F5A623;'>📦 Activation apres validation</h4>
-                            <p>Un representant AutiGraphCare vous contactera sous <b>48h</b>
-                            pour valider votre abonnement.</p>
-                            <p>📞 Hotline : <b>+213 (0)21 XX XX XX</b></p>
-                            <p>✉️ Email : <b>support@autigraphcare.dz</b></p>
-                        </div>
-                        """, unsafe_allow_html=True)
-                        adresse = st.text_input("Adresse de livraison / contact", key="adresse_cash")
-                        if st.button("📞 Etre contacte par un agent",
-                                     use_container_width=True, key="btn_cash"):
-                            _finalize_inscription(plan_info, "Cash a la livraison")
-
-            st.markdown("<hr style='margin:1.5rem 0;'>", unsafe_allow_html=True)
-            if st.button(t("retour_connexion"), key="btn_back_login"):
-                st.session_state["auth_page"] = "login"
-                st.rerun()
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # PAGE : CONFIRMATION PAIEMENT
-    # ─────────────────────────────────────────────────────────────────────────
-    elif pg == "confirmed":
-        col_c, col_f, col_c2 = st.columns([1, 2, 1])
-        with col_f:
-            st.markdown("""
-            <div style='text-align:center;padding:2rem;background:white;border-radius:20px;
-                        box-shadow:0 20px 60px rgba(0,0,0,0.12);'>
-                <div style='font-size:5rem;'>🎉</div>
-                <h2 style='color:#4CAF50;'>Paiement accepte !</h2>
-                <p style='color:#555;'>Votre compte AutiGraphCare est maintenant actif.</p>
-            </div>
-            """, unsafe_allow_html=True)
-            time.sleep(0.5)
-            st.balloons()
-            if st.button("🚀 Acceder a ma plateforme", use_container_width=True, key="btn_goto_app"):
-                st.session_state["auth_page"] = "login"
-                st.rerun()
-
-
-def _finalize_inscription(plan_info, methode_paiement):
-    """Cree le compte et connecte l'utilisateur"""
-    r_email_v  = st.session_state.get("r_email","user@demo.dz").strip() or "user@demo.dz"
-    r_nom_v    = st.session_state.get("r_nom","").strip()
-    r_prenom_v = st.session_state.get("r_prenom","").strip()
-    r_mdp_v    = st.session_state.get("r_mdp","password").strip() or "password"
-    type_user  = st.session_state.get("plan_type_user", plan_info["type_user"])
-    avatar     = "👪" if type_user == "parent" else "👨‍⚕️"
-
-    if "comptes_inscrits" not in st.session_state:
-        st.session_state["comptes_inscrits"] = {}
-    st.session_state["comptes_inscrits"][r_email_v] = {
-        "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
-        "type": type_user, "plan": plan_info["nom"], "avatar": avatar,
-        "methode": methode_paiement,
-    }
-    st.session_state.update({
-        "auth_connecte": True,
-        "auth_user":     r_email_v,
-        "auth_type":     type_user,
-        "auth_nom":      f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
-        "auth_plan":     plan_info["nom"],
-        "auth_avatar":   avatar,
-        "espace":        type_user,
-        "menu":          "🏠 الرئيسية",
-        "auth_page":     "confirmed",
-    })
-    st.rerun()
-
-# ── LOGIQUE PRINCIPALE : bloquer si non connecte ─────────────────────────────
-_wants_space = st.session_state.get("espace") is not لاe
-_is_connected = st.session_state.get("auth_connecte", False)
-
-if _wants_space and not _is_connected:
-    # Remettre espace a لاe et afficher la gate
-    show_auth_gate()
-    st.stop()
-elif not _is_connected and st.session_state.get("auth_page") != "login":
-    show_auth_gate()
-    st.stop()
-
-# ============================================================
-# SYSTEME DE TRADUCTION
-# ============================================================
 LANGUES = {
     "🇫🇷 Français": "fr",
     "🇬🇧 English": "en",
@@ -789,9 +357,9 @@ TRAD = {
 "alertes":"🔔 التنبيهات","messagerie":"💬 المراسلة","aide":"❓ المساعدة",
 "diagnostic_ia":"🧬 تشخيص الذكاء الاصطناعي","diagnostic_ia_pro":"🧬 تشخيص الذكاء الاصطناعي Pro",
 "nouveau_patient":"➕ مريض جديد","profil_patient":"📋 ملف المريض",
-"knowledge_graph":"🕸️ الرسم البياني المعرفي","recommandations":"🤖 التوصيات",
-"ia_explicable":"🔬 الذكاء الاصطناعي القابل للتفسير","avant_apres":"📈 قبل وبعد العلاج",
-"tableau_medecin":"👨‍⚕️ لوحة الطبيب","dashboard":"📊 لوحة التحكم",
+"knowledge_graph":"🕸️ Knowledge Graph","recommandations":"🤖 التوصيات",
+"ia_explicable":"🔬 الذكاء القابل للتفسير","avant_apres":"📈 قبل وبعد العلاج",
+"tableau_medecin":"👨‍⚕️ لوحة الطبيب","dashboard":"📊 Dashboard",
 "stats_algerie":"📊 إحصائيات الجزائر","comparaison":"🌍 المقارنة الدولية",
 "recherche":"🧪 البحث العلمي","business":"💰 نموذج الأعمال",
 # ── AUTH ────────────────────────────────────────────────────────────────
@@ -800,10 +368,10 @@ TRAD = {
 "souvenir":"تذكّرني","oublie":"كلمة المرور oublié ?",
 "comptes_demo":"🎯 حسابات تجريبية","pas_compte":"ليس لديك حساب؟",
 "creer_compte":"✨ إنشاء حساب مجاني","deconnecter":"🚪 تسجيل الخروج",
-"connecter":"🔐 تسجيل الدخول","retour_connexion":"← العودة إلى تسجيل الدخول",
+"connecter":"🔐 تسجيل الدخول","retour_connexion":"← العودة لتسجيل الدخول",
 "email_placeholder":"exemple@email.com","mdp_placeholder":"••••••••",
 "demo_btn":"Démo","erreur_mdp":"❌ كلمة المرور incorrect",
-"erreur_login":"❌ Email ou mot de passe incorrect",
+"erreur_login":"❌ بريد إلكتروني أو كلمة مرور غير صحيحة",
 # ── ACCUEIL GENERAL ─────────────────────────────────────────────────────
 "bienvenue_titre":"🧠 AutiGraphCare","bienvenue_sous":"منصة ذكية لأطفال طيف التوحد",
 "bienvenue_credit":"Par Hadjoub Dhekra — Master 2 IATI — Soutenance 2026",
@@ -815,22 +383,22 @@ TRAD = {
 "changer_espace":"🔄 تغيير الفضاء",
 # ── STATS TSA ───────────────────────────────────────────────────────────
 "tsa_chiffres":"📊 التوحد بالأرقام",
-"enfants_algerie":"طفل مصاب بالتوحد في الجزائر","enfants_monde":"أطفال متضررون في العالم",
-"sans_suivi":"بدون متابعة منظمة","precision_ia":"دقة الذكاء الاصطناعي لدينا",
+"enfants_algerie":"أطفال التوحد في الجزائر","enfants_monde":"Enfants touchés monde",
+"sans_suivi":"Sسنة suivi structuré","precision_ia":"دقة الذكاء الاصطناعي لدينا",
 # ── ACCUEIL PARENT ──────────────────────────────────────────────────────
 "bonjour":"مرحباً","comment_aider":"كيف يمكنني مساعدتك اليوم؟",
 "signes_tsa":"هل يُظهر طفلي علامات التوحد؟","detection_sub":"استبيان في 5 دقائق",
-"suivre_evolution":"متابعة التطور","evolution_sub":"التقدم شهرًا بشهر",
+"suivre_evolution":"متابعة التطور","evolution_sub":"التقدم شهريًا",
 "parler_equipe":"مراسلة الفريق","equipe_sub":"التواصل مع المعالجين",
 "ouvrir":"فتح ←","actions_rapides":"⚡ إجراءات سريعة",
 "profil_enfant":"👶 ملف طفلي","voir_dossier":"عرض الملف الكامل",
-"scores_therapies":"الدرجات السريرية، العلاجات الجارية، السجل",
-"conseil_detection":"💡 الكشف المبكر قبل سن 3 سنوات يحسّن بشكل كبير نتائج العلاج.",
+"scores_therapies":"الدرجات السريرية, thérapies en cours, historique",
+"conseil_detection":"💡 La détection précoce avant 3 سنة améliore significativement les résultats.",
 # ── ACCUEIL PRO ─────────────────────────────────────────────────────────
-"bonjour_pro":"مرحباً Dr.","patients_espace":"مرضى في فضائك الخاص",
-"espace_prive":"🔒 فضاء خاص",
+"bonjour_pro":"مرحباً Dr.","patients_espace":"patients dسنة votre espace privé",
+"espace_prive":"🔒 Espace privé",
 "espace_prive_msg":"Seuls VOS patients sont visibles. Aucun autre professionnel n'a accès à vos dossiers.",
-"fonctionnalites":"🚀 الميزات المتاحة",
+"fonctionnalites":"🚀 Fonctionnalités disponibles",
 # ── NOTIFICATIONS ────────────────────────────────────────────────────────
 "notif_titre":"🔔 الإشعارات","notif_vide":"Aucune nouvelle notification",
 "tout_lire":"✅ تحديد الكل كمقروء","effacer":"🗑️ مسح",
@@ -838,36 +406,36 @@ TRAD = {
 # ── COMMUN ────────────────────────────────────────────────────────────
 "choisir_patient":"اختر مريضًا","enregistrer":"💾 حفظ المريض",
 "annuler":"إلغاء","confirmer":"تأكيد","fermer":"إغلاق",
-"score":"Score","niveau":"المستوى","severe":"شديد","modere":"متوسط","leger":"خفيف",
-"oui":"نعم","non":"لا","patients_label":"patients","chargement":"Chargement...",
-"erreur_donnees":"❌ البيانات غير موجودة","langue":"🌍 Langue",
+"score":"الدرجة","niveau":"المستوى","severe":"شديد","modere":"متوسط","leger":"خفيف",
+"oui":"Oui","non":"Non","patients_label":"patients","chargement":"Chargement...",
+"erreur_donnees":"❌ Données non trouvées","langue":"🌍 Langue",
 "theme_sombre":"داكن","theme_clair":"فاتح",
 "mois":"mois","ans":"ans","age":"Âge","sexe":"Sexe",
 "risque_eleve":"خطر مرتفع","risque_modere":"خطر متوسط","risque_faible":"خطر منخفض",
-"score_moyen":"الدرجة المتوسطة","score_global":"Score global",
-"interventions":"التدخلات","comorbidites":"الأمراض المصاحبة",
-"resultats":"النتائج","analyse":"التحليل","rapport":"التقرير",
-"telecharger":"📥 تنزيل التقرير","exporter":"📤 تصدير",
-"ouvrir_btn":"▶ فتح","voir_btn":"Voir →",
+"score_moyen":"الدرجة moyen","score_global":"الدرجة global",
+"interventions":"Interventions","comorbidites":"Comorbidités",
+"resultats":"Résultats","analyse":"Analyse","rapport":"Rapport",
+"telecharger":"📥 Télécharger le rapport","exporter":"📤 Exporter",
+"ouvrir_btn":"▶ Ouvrir","voir_btn":"Voir →",
 # ── DIAGNOSTIC IA ────────────────────────────────────────────────────────
 "diag_titre":"🧬 تشخيص الذكاء الاصطناعي Multi-Modal",
 "diag_desc":"4 techniques d'analyse automatique pour le repérage TSA",
 "diag_avertissement":"⚠️ Ces outils sont des aides au repérage, non des diagnostics médicaux. Seul un professionnel qualifié peut établir un diagnostic TSA.",
-"tab_mchat":"📋 M-CHAT التكيفي","tab_facial":"🖼️ التحليل Faciale",
-"tab_regard":"🎥 كشف النظرة","tab_vocal":"🎙️ التحليل Vocale",
+"tab_mchat":"📋 M-CHAT التكيفي","tab_facial":"🖼️ تحليل الوجه",
+"tab_regard":"🎥 Détection du Regard","tab_vocal":"🎙️ التحليل الصوتي",
 "mchat_titre":"📋 Questionnaire M-CHAT-R Adaptatif",
 "mchat_ref":"Référence : Robins DL et al., 2014. Sensibilité 91%, Spécificité 95%",
-"facial_titre":"🖼️ التحليل Faciale par IA",
+"facial_titre":"🖼️ تحليل الوجه par IA",
 "facial_upload":"📸 Téléverser une photo de l'enfant (JPG/PNG)",
-"regard_titre":"🎥 كشف النظرة en Temps Réel",
-"vocal_titre":"🎙️ التحليل Vocale",
+"regard_titre":"🎥 Détection du Regard en Temps Réel",
+"vocal_titre":"🎙️ التحليل الصوتي",
 "vocal_upload":"🎙️ Téléverser un fichier audio (WAV/MP3/M4A)",
-"analyser":"🔍 التحليلr","lancer":"▶ Lancer l'analyse",
-"score_risque":"Score de risque","profil_vocal":"Profil vocal",
+"analyser":"🔍 تحليل","lancer":"▶ بدء التحليل",
+"score_risque":"الدرجة de risque","profil_vocal":"Profil vocal",
 # ── DÉTECTION PRÉCOCE ─────────────────────────────────────────────────────
-"detection_titre":"🔍 الكشف المبكر عن التوحد",
+"detection_titre":"🔍 Détection Précoce TSA",
 "detection_desc":"Questionnaire de repérage des signes TSA",
-"repondez":"أجب عن الأسئلة التالية المتعلقة بطفلك",
+"repondez":"Répondez aux questions suivantes concernant votre enfant",
 "outil_reperage":"(Ce questionnaire est un outil de repérage, non un diagnostic médical)",
 "voir_resultats":"📊 عرض النتائج","recommencer":"🔄 البدء من جديد",
 "score_faible":"Pas de signes particuliers détectés. Continuez le suivi régulier.",
@@ -877,66 +445,66 @@ TRAD = {
 "orientation_titre":"🧭 التوجيه vers les Spécialistes",
 "orientation_desc":"Spécialistes recommandés selon le profil de votre enfant",
 "specialiste":"Spécialiste","role":"Rôle","contact":"Contact",
-"prendre_rdv":"📞 Prendre rendez-vous","centres_algerie":"🏥 Centres TSA en Algérie",
+"prendre_rdv":"📞 حجز موعد","centres_algerie":"🏥 Centres TSA en Algérie",
 # ── CONSEILS ────────────────────────────────────────────────────────────
 "conseils_titre":"💡 Conseils Pratiques à la Maison",
 "conseils_desc":"Activités adaptées et conseils personnalisés",
-"activites":"Activités recommandées","routine":"Routine quotidienne",
-"communication":"Communication","jeu":"Jeu et interaction",
+"activites":"Activités recommandées","routine":"الروتين اليومي",
+"communication":"التواصل","jeu":"اللعب والتفاعل",
 # ── MON ENFANT ──────────────────────────────────────────────────────────
 "mon_enfant_titre":"👶 ملف طفلي",
-"mon_enfant_desc":"Scores cliniques visuels et thérapies en cours",
+"mon_enfant_desc":"الدرجات السريرية visuels et thérapies en cours",
 "prenom":"Prénom","nom_enfant":"Nom","date_naissance":"Date de naissance",
 "therapies_cours":"Thérapies en cours","aucune_therapie":"Aucune thérapie enregistrée",
 # ── SUIVI ÉVOLUTION ─────────────────────────────────────────────────────
-"suivi_titre":"📈 متابعة التطور",
+"suivi_titre":"📈 Suivi de l'Évolution",
 "suivi_desc":"Graphe radar sur 6 compétences clés",
 "evolution_6comp":"Évolution sur 6 compétences","periode":"Période",
 "mois_dernier":"Dernier mois","trimestre":"Trimestre","annee":"Année",
 # ── ALERTES ──────────────────────────────────────────────────────────────
 "alertes_titre":"🔔 التنبيهات Intelligentes",
 "alertes_desc":"Détection automatique des signes préoccupants",
-"alerte_rouge":"🔴 Alerte critique","alerte_orange":"🟠 Alerte modérée",
-"alerte_verte":"🟢 Tout va bien","aucune_alerte":"لا توجد تنبيهات نشطة",
+"alerte_rouge":"🔴 تنبيه حرج","alerte_orange":"🟠 Alerte modérée",
+"alerte_verte":"🟢 كل شيء على ما يرام","aucune_alerte":"لا توجد تنبيهات نشطة",
 "signaler":"Signaler au médecin","consulter":"Consulter un spécialiste",
 # ── MESSAGERIE ───────────────────────────────────────────────────────────
 "messagerie_titre":"💬 المراسلة Sécurisée",
 "messagerie_desc":"تواصل مباشر الآباء ↔ المختصون",
-"equipe_therapeutique":"👥 الفريق العلاجي",
-"en_ligne":"متصل","hors_ligne":"غير متصل","occupe":"مشغول",
+"equipe_therapeutique":"👥 Équipe thérapeutique",
+"en_ligne":"متصل","hors_ligne":"غير متصل","occupe":"Occupé",
 "envoyer":"📤 إرسال","nouveau_message":"رسالتك",
-"suggestions":"اقتراح سريع (اختياري)","ecrire_manuellement":"-- كتابة يدوية --",
-"joindre_rapport":"📎 التقرير","messages_total":"إجمالي الرسائل",
-"messages_parents":"رسائل الآباء","messages_pros":"رسائل المختصين","non_lus":"لا lus",
+"suggestions":"اقتراح سريع (اختياري)","ecrire_manuellement":"-- Écrire manuellement --",
+"joindre_rapport":"📎 تقرير","messages_total":"إجمالي الرسائل",
+"messages_parents":"رسائل الآباء","messages_pros":"رسائل المختصين","non_lus":"غير مقروء",
 "confirmer_rdv":"📅 تأكيد le prochain RDV",
-"demander_rapport":"📊 طلب تقرير التطور",
+"demander_rapport":"📊 Demander un rapport d'évolution",
 "question_interventions":"💊 سؤال حول التدخلات",
-"signaler_regression":"🔔 الإبلاغ عن تراجع",
+"signaler_regression":"🔔 Signaler une régression",
 # ── PROFIL PATIENT PRO ───────────────────────────────────────────────────
 "profil_titre":"📋 ملف المريض Complet",
-"profil_desc":"التحليل multidimensionnelle avec 8 scores cliniques",
-"info_generales":"Informations générales","scores_cliniques":"Scores cliniques",
-"id_patient":"ID Patient","age_mois":"Âge (mois)","diagnostic":"Diagnostic",
+"profil_desc":"تحليل متعدد الأبعاد بـ 8 درجات سريرية",
+"info_generales":"Informations générales","scores_cliniques":"الدرجات السريرية",
+"id_patient":"ID Patient","age_mois":"Âge (شهر)","diagnostic":"Diagnostic",
 "communication_sociale":"التواصل الاجتماعي","interactions_sociales":"التفاعلات الاجتماعية",
 "comportements_restreints":"السلوكيات المقيدة","langage_expressif":"اللغة التعبيرية",
-"langage_receptif":"اللغة الاستقبالية","contact_visuel":"التواصل البصري",
+"langage_receptif":"اللغة réceptif","contact_visuel":"التواصل البصري",
 "imitation":"التقليد","jeu_symbolique":"اللعب الرمزي",
-"orthophonie":"علاج النطق","psychomotricite":"العلاج النفسحركي",
+"orthophonie":"علاج النطق","psychomotricite":"Psychomotricité",
 "aba":"ABA","teacch":"TEACCH","pecs":"PECS",
-"tdah":"TDAH","anxiete":"القلق","trouble_sommeil":"اضطراب النوم",
+"tdah":"TDAH","anxiete":"Anxiété","trouble_sommeil":"اضطراب النوم",
 # ── KNOWLEDGE GRAPH ─────────────────────────────────────────────────────
-"kg_titre":"🕸️ الرسم البياني المعرفي","kg_desc":"Visualisation dynamique des relations cliniques",
-"patient_unique":"👤 Patient unique","comparaison_tab":"🔄 Comparaison","stats_kg":"📊 Stats globales",
-"relations":"Relations","choisir_patients":"Choisir 2 ou 3 patients",
+"kg_titre":"🕸️ Knowledge Graph","kg_desc":"تصوير ديناميكي للعلاقات السريرية",
+"patient_unique":"👤 مريض واحد","comparaison_tab":"🔄 مقارنة","stats_kg":"📊 إحصائيات عامة",
+"relations":"Relations","choisir_patients":"اختر 2 أو 3 مرضى",
 # ── RECOMMANDATIONS ─────────────────────────────────────────────────────
 "reco_titre":"🤖 التوصيات IA — KNN",
-"reco_desc":"التدخلات personnalisées basées sur l'algorithme KNN (k=5)",
-"fortement_recommande":"✅ موصى به بشدة","recommande":"🟡 موصى به","optionnel":"⬜ اختياري",
-"patients_similaires":"patients similaires utilisent","voisins_similaires":"voisins similaires",
+"reco_desc":"Interventions personnalisées basées sur l'algorithme KNN (k=5)",
+"fortement_recommande":"✅ Fortement recommandé","recommande":"🟡 موصى به","optionnel":"⬜ اختياري",
+"patients_similaires":"مرضى مماثلون يستخدمون","voisins_similaires":"voisins similaires",
 "profil_patient_label":"🔍 Profil du patient","confiance":"درجة الثقة (%)",
 "methode_knn":"🔬 Algorithme : KNN (k=5) avec distance euclidienne standardisée. Précision : 92%.",
 # ── IA EXPLICABLE ────────────────────────────────────────────────────────
-"xai_titre":"🔬 الذكاء الاصطناعي القابل للتفسير — Pourquoi cette recommandation ?",
+"xai_titre":"🔬 الذكاء القابل للتفسير — Pourquoi cette recommandation ?",
 "xai_desc":"Comprendre les décisions de l'algorithme KNN",
 "profil_vs_voisins":"🎯 Profil du patient vs voisins KNN",
 "patients_similaires_titre":"👥 Les 5 patients les plus similaires",
@@ -944,77 +512,77 @@ TRAD = {
 "sim_pct":"Sim.","votes_voisins":"patients similaires l'utilisent",
 # ── AVANT APRÈS ─────────────────────────────────────────────────────────
 "avap_titre":"📈 Évolution Avant / Après Traitement",
-"avap_desc":"Mesurer l'impact des interventions thérapeutiques dans le temps",
+"avap_desc":"Mesurer l'impact des interventions thérapeutiques dسنة le temps",
 "evolution_12mois":"📊 Évolution des scores sur 12 mois",
-"amelioration":"📉 Amélioration constatée (M-12 → Actuel)",
+"amelioration":"📉 Amélioration constatée (M-12 → الحالي)",
 "radar_avant_apres":"🕸️ Comparaison profil AVANT vs APRÈS (Radar)",
-"rapport_evolution":"📋 التقرير d'évolution",
-"score_initial":"الدرجة المتوسطة initial","score_actuel":"الدرجة المتوسطة actuel",
-"amelio_globale":"التحسن الإجمالي","interventions_cours":"💊 التدخلات en cours",
+"rapport_evolution":"📋 Rapport d'évolution",
+"score_initial":"الدرجة المتوسطة الأولية","score_actuel":"الدرجة المتوسطة الحالية",
+"amelio_globale":"Amélioration globale","interventions_cours":"💊 التدخلات الجارية",
 "note_simulation":"📅 Note : Les données historiques sont simulées à partir du profil actuel.",
 # ── TABLEAU MÉDECIN ──────────────────────────────────────────────────────
 "tableau_titre":"👨‍⚕️ Tableau de Bord Médecin",
 "tableau_desc":"Vue clinique synthétique — tous vos patients en un coup d'œil",
-"total_patients":"total_patients","profil_severe":"⚠️ ملف شديد",
-"profil_modere":"🟠 ملف متوسط","profil_stable":"profil_stable",
+"total_patients":"total_patients","profil_severe":"⚠️ Profil sévère",
+"profil_modere":"🟠 Profil modéré","profil_stable":"profil_stable",
 "comorbidite_tdah":"🔴 Comorbidité TDAH",
 "patients_attention":"🚨 Patients nécessitant attention immédiate",
-"repartition_profils":"📊 Répartition des profils","taux_couverture":"🏥 Taux de couverture",
+"repartition_profils":"📊 Répartition des profils","taux_couverture":"🏥 معدل التغطية",
 "liste_complete":"📋 Liste complète des patients (exportable)",
 "urgent":"URGENT","attention":"ATTENTION",
 "suivi_actif":"✅ متابعة نشطة","sans_suivi_badge":"❌ بدون متابعة",
-"distribution_scores":"📈 Distribution des scores par domaine",
+"distribution_scores":"📈 توزيع الدرجات حسب المجال",
 # ── DASHBOARD ────────────────────────────────────────────────────────────
-"dashboard_titre":"📊 لوحة التحكم — التحليل de Cohorte",
+"dashboard_titre":"📊 لوحة التحكم — تحليل المجموعة",
 "dashboard_desc":"Statistiques cliniques globales sur tous les patients",
-"distribution_age":"Distribution par âge","couverture_interventions":"Couverture des interventions",
+"distribution_age":"Distribution par âge","couverture_interventions":"تغطية التدخلات",
 # ── STATS ALGÉRIE ────────────────────────────────────────────────────────
 "stats_titre":"📊 Statistiques TSA en Algérie",
 "stats_desc":"État des lieux et enjeux nationaux",
-"prevalence":"الانتشار","prise_en_charge":"التكفل",
+"prevalence":"Prévalence","prise_en_charge":"التكفل",
 "specialistes_disponibles":"Spécialistes disponibles","delai_diagnostic":"Délai de diagnostic",
 # ── COMPARAISON INTERNATIONALE ───────────────────────────────────────────
 "comp_titre":"🌍 المقارنة الدولية",
 "comp_desc":"Algérie vs monde — état des lieux et positionnement",
-"gap_combler":"🔍 الجزائر مقابل فرنسا — le gap à combler",
+"gap_combler":"🔍 Algérie vs France — le gap à combler",
 "specialistes_10k":"Spécialistes pour 10 000 enfants",
 "delai_ans":"Délai moyen de diagnostic (années)",
 "taux_pec":"Taux de prise en charge TSA par pays (%)",
 "positionnement_ia":"🤖 Positionnement des outils IA par pays",
 "conclusion_opp":"🎯 Conclusion — Opportunité AutiGraphCare",
 # ── RECHERCHE ────────────────────────────────────────────────────────────
-"recherche_titre":"🧪 Base Scientifique d'AutiGraphCare",
+"recherche_titre":"🧪 الأساس العلمي لـ AutiGraphCare",
 "recherche_desc":"Méthodologie, références et validation",
 "tab_methodo":"🔬 Méthodologie","tab_refs":"📚 Références",
 "tab_validation":"✅ Validation","tab_perspectives":"🚀 Perspectives",
 "refs_cles":"📚 Références Scientifiques Clés",
-"resultats_validation":"✅ النتائج de Validation du Modèle",
+"resultats_validation":"✅ Résultats de Validation du Modèle",
 "courbe_apprentissage":"🔄 Courbe d'apprentissage KNN",
 "matrice_confusion":"🔢 Matrice de confusion globale",
-"perspectives_titre":"🚀 Perspectives de Recherche",
-"court_terme":"🔮 Court terme (2026-2027)","moyen_terme":"🌱 Moyen terme (2027-2028)",
-"long_terme":"🌍 Long terme (2028+)","impact_scientifique":"🏆 Impact scientifique attendu",
+"perspectives_titre":"🚀 آفاق البحث",
+"court_terme":"🔮 المدى القصير (2026-2027)","moyen_terme":"🌱 المدى المتوسط (2027-2028)",
+"long_terme":"🌍 Long terme (2028+)","impact_scientifique":"🏆 الأثر العلمي المتوقع",
 # ── NOUVEAU PATIENT ─────────────────────────────────────────────────────
-"np_titre":"➕ Ajouter un Nouveau Patient",
+"np_titre":"➕ إضافة مريض جديد",
 "np_desc":"Créer un dossier clinique complet",
 "info_generales_form":"👤 Informations Générales",
-"scores_form":"🎯 Scores Cliniques (1 = très faible, 10 = très élevé)",
-"scores_avert":"⚠️ Un score élevé indique une difficulté importante dans ce domaine",
-"interventions_form":"💊 التدخلات Thérapeutiques en cours",
-"comorbidites_form":"🏥 الأمراض المصاحبة","notes_form":"notes_form",
+"scores_form":"🎯 الدرجةs Cliniques (1 = très faible, 10 = très élevé)",
+"scores_avert":"⚠️ Un score élevé indique une difficulté importante dسنة ce domaine",
+"interventions_form":"💊 Interventions Thérapeutiques en cours",
+"comorbidites_form":"🏥 Comorbidités","notes_form":"notes_form",
 "observations_placeholder":"Ex : Enfant coopératif, bonne réponse aux stimuli visuels...",
 "id_placeholder":"P-2026-001","id_obligatoire":"L'ID patient est obligatoire !",
-"id_existe":"existe déjà dans la base de données !",
-"patient_ajoute":"✅ Patient ajouté avec succès dans la base de données !",
-"autre_patient":"➕ Ajouter un autre patient","voir_profil":"📋 Voir le profil",
-"reco_ia":"🤖 Obtenir recommandations IA",
+"id_existe":"existe déjà dسنة la base de données !",
+"patient_ajoute":"✅ Patient ajouté avec succès dسنة la base de données !",
+"autre_patient":"➕ إضافة مريض آخر","voir_profil":"📋 عرض الملف",
+"reco_ia":"🤖 الحصول على توصيات الذكاء الاصطناعي",
 "resume_dossier":"📋 Résumé du dossier créé",
-"medecin_referent":"Médecin référent","wilaya":"wilaya","age_diagnostic":"Âge au diagnostic (mois)",
+"medecin_referent":"Médecin référent","wilaya":"wilaya","age_diagnostic":"Âge au diagnostic (شهر)",
 # ── BUSINESS MODEL ──────────────────────────────────────────────────────
 "business_titre":"💰 نموذج الأعمال — AutiGraphCare",
 "business_desc":"Modèle économique et stratégie de déploiement",
 "plan_gratuit":"مجاني","plan_famille":"عائلي مميز",
-"plan_pro":"Professionnel","plan_etab":"مؤسسة",
+"plan_pro":"Professionnel","plan_etab":"Établissement",
 "par_mois":"/ شهر","par_an":"/ سنة","pour_toujours":"للأبد",
 "choisir_plan":"Choisir ce plan",
 # ── AIDE ────────────────────────────────────────────────────────────────
@@ -1034,9 +602,9 @@ TRAD = {
 "alertes":"🔔 Alerts","messagerie":"💬 Messaging","aide":"❓ Help",
 "diagnostic_ia":"🧬 AI Diagnostic","diagnostic_ia_pro":"🧬 AI Diagnostic Pro",
 "nouveau_patient":"➕ New Patient","profil_patient":"📋 Patient Profile",
-"knowledge_graph":"🕸️ الرسم البياني المعرفي","recommandations":"🤖 Recommendations",
+"knowledge_graph":"🕸️ Knowledge Graph","recommandations":"🤖 Recommendations",
 "ia_explicable":"🔬 Explainable AI","avant_apres":"📈 Before/After Treatment",
-"tableau_medecin":"👨‍⚕️ Doctor Dashboard","dashboard":"📊 لوحة التحكم",
+"tableau_medecin":"👨‍⚕️ Doctor Dashboard","dashboard":"📊 Dashboard",
 "stats_algerie":"📊 Algeria Statistics","comparaison":"🌍 International Comparison",
 "recherche":"🧪 Scientific Research","business":"💰 نموذج الأعمال",
 # ── AUTH ────────────────────────────────────────────────────────────────
@@ -1083,14 +651,14 @@ TRAD = {
 # ── COMMUN ────────────────────────────────────────────────────────────
 "choisir_patient":"Choose a patient","enregistrer":"💾 Save patient",
 "annuler":"Cancel","confirmer":"Confirm","fermer":"Close",
-"score":"Score","niveau":"Level","severe":"شديد","modere":"Moderate","leger":"Mild",
+"score":"الدرجة","niveau":"Level","severe":"Severe","modere":"Moderate","leger":"Mild",
 "oui":"Yes","non":"No","patients_label":"patients","chargement":"Loading...",
 "erreur_donnees":"❌ Data not found","langue":"🌍 Language",
 "theme_sombre":"Dark","theme_clair":"Light",
 "mois":"months","ans":"years","age":"Age","sexe":"Gender",
 "risque_eleve":"HIGH Risk","risque_modere":"MODERATE Risk","risque_faible":"LOW Risk",
 "score_moyen":"Average score","score_global":"Global score",
-"interventions":"التدخلات","comorbidites":"Comorbidities",
+"interventions":"Interventions","comorbidites":"Comorbidities",
 "resultats":"Results","analyse":"Analysis","rapport":"Report",
 "telecharger":"📥 Download report","exporter":"📤 Export",
 "ouvrir_btn":"▶ Open","voir_btn":"View →",
@@ -1127,7 +695,7 @@ TRAD = {
 "conseils_titre":"💡 Practical Tips at Home",
 "conseils_desc":"Adapted activities and personalized advice",
 "activites":"Recommended activities","routine":"Daily routine",
-"communication":"Communication","jeu":"Play and interaction",
+"communication":"التواصل","jeu":"Play and interaction",
 # ── MON ENFANT ──────────────────────────────────────────────────────────
 "mon_enfant_titre":"👶 My Child's Profile",
 "mon_enfant_desc":"Visual clinical scores and ongoing therapies",
@@ -1170,7 +738,7 @@ TRAD = {
 "aba":"ABA","teacch":"TEACCH","pecs":"PECS",
 "tdah":"ADHD","anxiete":"Anxiety","trouble_sommeil":"Sleep disorder",
 # ── KNOWLEDGE GRAPH ─────────────────────────────────────────────────────
-"kg_titre":"🕸️ الرسم البياني المعرفي","kg_desc":"Dynamic visualization of clinical relationships",
+"kg_titre":"🕸️ Knowledge Graph","kg_desc":"Dynamic visualization of clinical relationships",
 "patient_unique":"👤 Single patient","comparaison_tab":"🔄 Comparison","stats_kg":"📊 Global stats",
 "relations":"Relations","choisir_patients":"Choose 2 or 3 patients",
 # ── RECOMMANDATIONS ─────────────────────────────────────────────────────
@@ -1190,7 +758,7 @@ TRAD = {
 # ── AVANT APRÈS ─────────────────────────────────────────────────────────
 "avap_titre":"📈 Before / After Treatment Evolution",
 "avap_desc":"Measuring the impact of therapeutic interventions over time",
-"evolution_12mois":"📊 Score evolution over 12 months",
+"evolution_12mois":"📊 الدرجة evolution over 12 months",
 "amelioration":"📉 Improvement observed (M-12 → Current)",
 "radar_avant_apres":"🕸️ BEFORE vs AFTER profile comparison (Radar)",
 "rapport_evolution":"📋 Evolution report",
@@ -1200,7 +768,7 @@ TRAD = {
 # ── TABLEAU MÉDECIN ──────────────────────────────────────────────────────
 "tableau_titre":"👨‍⚕️ Doctor Dashboard",
 "tableau_desc":"Synthetic clinical view — all your patients at a glance",
-"total_patients":"total_patients","profil_severe":"⚠️ شديد profile",
+"total_patients":"total_patients","profil_severe":"⚠️ Severe profile",
 "profil_modere":"🟠 Moderate profile","profil_stable":"✅ Stable profile",
 "comorbidite_tdah":"🔴 ADHD comorbidity",
 "patients_attention":"🚨 Patients requiring immediate attention",
@@ -1208,9 +776,9 @@ TRAD = {
 "liste_complete":"📋 Complete patient list (exportable)",
 "urgent":"URGENT","attention":"ATTENTION",
 "suivi_actif":"✅ Active follow-up","sans_suivi_badge":"❌ No follow-up",
-"distribution_scores":"📈 Score distribution by domain",
+"distribution_scores":"📈 الدرجة distribution by domain",
 # ── DASHBOARD ────────────────────────────────────────────────────────────
-"dashboard_titre":"📊 لوحة التحكم — Cohort Analysis",
+"dashboard_titre":"📊 Dashboard — Cohort Analysis",
 "dashboard_desc":"Global clinical statistics on all patients",
 "distribution_age":"Age distribution","couverture_interventions":"Intervention coverage",
 # ── STATS ALGÉRIE ────────────────────────────────────────────────────────
@@ -1243,9 +811,9 @@ TRAD = {
 "np_titre":"➕ Add a New Patient",
 "np_desc":"Create a complete clinical file",
 "info_generales_form":"👤 General Information",
-"scores_form":"🎯 Clinical Scores (1 = very low, 10 = very high)",
+"scores_form":"🎯 Clinical الدرجةs (1 = very low, 10 = very high)",
 "scores_avert":"⚠️ A high score indicates a significant difficulty in this domain",
-"interventions_form":"💊 Ongoing Therapeutic التدخلات",
+"interventions_form":"💊 Ongoing Therapeutic Interventions",
 "comorbidites_form":"🏥 Comorbidities","notes_form":"📝 Clinical notes",
 "observations_placeholder":"e.g. Cooperative child, good response to visual stimuli...",
 "id_placeholder":"P-2026-001","id_obligatoire":"Patient ID is required!",
@@ -1519,13 +1087,495 @@ def t(key):
     lang = st.session_state.get("langue", "fr")
     return TRAD.get(lang, TRAD["fr"]).get(key, TRAD["fr"].get(key, key))
 
-if "langue" not in st.session_state:
-    st.session_state["langue"] = "fr"
+st.session_state["langue"] = "ar"
 
 def get_rtl():
     return st.session_state.get("langue", "fr") == "ar"
 
+
 # ============================================================
+# COMPTES DEMO PRE-CHARGES
+# ============================================================
+COMPTES_DEMO = {
+    "parent@demo.dz":  {"mdp":"parent123",  "type":"parent", "nom":"Famille Hadjoub",
+                        "plan":"عائلي مميز", "expire":"2027-03-01", "avatar":"👪"},
+    "pro@demo.dz":     {"mdp":"pro123",     "type":"pro",    "nom":"Dr. Benali Karima",
+                        "plan":"Professionnel", "expire":"2027-01-15", "avatar":"👨‍⚕️"},
+    "medecin@demo.dz": {"mdp":"medecin123", "type":"pro",    "nom":"Dr. Meziane Sofiane",
+                        "plan":"مؤسسة","expire":"2027-06-30", "avatar":"🧠"},
+}
+
+# Initialiser auth session
+for k, v in [("auth_connecte", False), ("auth_user", None),
+             ("auth_type", None),("auth_nom", ""),
+             ("auth_page", "login")]:
+    if k not in st.session_state:
+        st.session_state[k] = v
+
+# ── Gate : si pas connecte et veut entrer dسنة un espace ─────────────────────
+def show_auth_gate():
+    """Affiche login / inscription / paiement selon auth_page"""
+
+    pg = st.session_state["auth_page"]
+
+    # ── CSS specifique auth ──
+    st.markdown("""
+    <style>
+    .auth-card{background:white;border-radius:20px;padding:2.5rem;
+               box-shadow:0 20px 60px rgba(0,0,0,0.12);max-width:480px;margin:0 auto;}
+    .auth-title{font-size:1.6rem;font-weight:800;text-align:center;margin-bottom:0.3rem;}
+    .plan-card{border-radius:14px;padding:1.2rem;margin-bottom:0.8rem;cursor:pointer;
+               transition:transform 0.2s;border:2px solid transparent;}
+    .plan-card:hover{transform:translateY(-3px);}
+    .plan-selected{border:2px solid #4A90E2 !important;background:#EEF5FF !important;}
+    .method-card{border-radius:12px;padding:1rem;border:2px solid #e0e0e0;
+                 text-align:center;cursor:pointer;transition:all 0.2s;}
+    .method-card:hover{border-color:#4A90E2;background:#EEF5FF;}
+    </style>
+    """, unsafe_allow_html=True)
+
+    # ── HEADER ──
+    st.markdown("""
+    <div style='text-align:center;margin-bottom:2rem;'>
+        <div style='font-size:3.5rem;'>🧠</div>
+        <h1 style='font-size:2rem;font-weight:800;background:linear-gradient(135deg,#6C3FC5,#4A90E2);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;'>
+            AutiGraphCare</h1>
+        <p style='color:#888;margin:0.3rem 0 0;'>منصة ذكية للتوحد</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # PAGE : LOGIN
+    # ─────────────────────────────────────────────────────────────────────────
+    if pg == "login":
+        # Centrage CSS sسنة colonnes vides
+        st.markdown("""
+        <style>
+        .login-wrap{max-width:460px;margin:0 auto;background:white;
+                    border-radius:14px;padding:0.8rem 1.5rem 1.2rem 1.5rem;
+                    box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+        </style>
+        <div class='login-wrap'>
+            <p style='text-align:center;font-size:1.3rem;font-weight:800;
+                color:#4A90E2;margin:0.3rem 0 0.1rem;'>🔐 تسجيل الدخول</p>
+            <p style='text-align:center;color:#888;margin-bottom:0.3rem;font-size:0.88rem;'>
+                سجّل دخولك إلى حساب AutiGraphCare</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        _, mid, _ = st.columns([1, 3, 1])
+        with mid:
+            email = st.text_input("📧 البريد الإلكتروني", placeholder="exemple@email.com", key="login_email")
+            mdp   = st.text_input("🔒 كلمة المرور", type="password", placeholder="••••••••", key="login_mdp")
+
+            col_r, col_oubli = st.columns([1,1])
+            with col_r:
+                st.checkbox("تذكّرني")
+            with col_oubli:
+                st.markdown("<p style='text-align:right;color:#4A90E2;font-size:0.85rem;"
+                            "margin-top:0.4rem;'>كلمة المرور oublie ?</p>", unsafe_allow_html=True)
+
+            if st.button("🚀 تسجيل الدخول", use_container_width=True, key="btn_login"):
+                if email.strip() in COMPTES_DEMO and COMPTES_DEMO[email.strip()]["mdp"] == mdp:
+                    compte = COMPTES_DEMO[email.strip()]
+                    st.session_state.update({
+                        "auth_connecte": True, "auth_user": email.strip(),
+                        "auth_type": compte["type"], "auth_nom": compte["nom"],
+                        "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
+                        "espace": compte["type"], "menu": "🏠 الرئيسية"
+                    })
+                    st.rerun()
+                elif email.strip() in st.session_state.get("comptes_inscrits", {}):
+                    compte = st.session_state["comptes_inscrits"][email.strip()]
+                    if compte["mdp"] == mdp:
+                        st.session_state.update({
+                            "auth_connecte": True, "auth_user": email.strip(),
+                            "auth_type": compte["type"], "auth_nom": compte["nom"],
+                            "auth_plan": compte["plan"], "auth_avatar": compte.get("avatar","👤"),
+                            "espace": compte["type"], "menu": "🏠 الرئيسية"
+                        })
+                        st.rerun()
+                    else:
+                        st.error("❌ كلمة المرور incorrect")
+                else:
+                    st.error("❌ بريد إلكتروني أو كلمة مرور غير صحيحة")
+
+            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align:center;color:#888;font-size:0.85rem;'>"
+                        "🎯 حسابات تجريبية</p>", unsafe_allow_html=True)
+
+            for email_d, info in COMPTES_DEMO.items():
+                col_a, col_b = st.columns([3, 1])
+                with col_a:
+                    st.markdown(
+                        f"<div style='background:#f8f9fa;border-radius:8px;padding:0.4rem 0.8rem;"
+                        f"margin-bottom:0.3rem;'>"
+                        f"<span style='font-size:1.1rem;'>{info['avatar']}</span> "
+                        f"<b style='font-size:0.85rem;'>{info['nom']}</b><br/>"
+                        f"<span style='font-size:0.78rem;color:#888;'>{email_d} / {info['mdp']}</span></div>",
+                        unsafe_allow_html=True
+                    )
+                with col_b:
+                    if st.button("Demo", key=f"demo_{email_d}", use_container_width=True):
+                        compte = COMPTES_DEMO[email_d]
+                        st.session_state.update({
+                            "auth_connecte": True, "auth_user": email_d,
+                            "auth_type": compte["type"], "auth_nom": compte["nom"],
+                            "auth_plan": compte["plan"], "auth_avatar": compte["avatar"],
+                            "espace": compte["type"], "menu": "🏠 الرئيسية"
+                        })
+                        st.rerun()
+
+            st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align:center;color:#555;'>ليس لديك حساب؟</p>",
+                        unsafe_allow_html=True)
+            if st.button("✨ إنشاء حساب مجاني", use_container_width=True, key="btn_to_register"):
+                st.session_state["auth_page"] = "register"
+                st.rerun()
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # PAGE : INSCRIPTION + CHOIX PLAN
+    # ─────────────────────────────────────────────────────────────────────────
+    elif pg == "register":
+        col_c, col_f, col_c2 = st.columns([1, 3, 1])
+        with col_f:
+            st.markdown("## ✨ أنشئ حسابك في AutiGraphCare")
+
+            # Tabs inscription
+            tab_info, tab_plan, tab_paiement = st.tabs(
+                ["1️⃣  المعلومات", "2️⃣  اختيار الخطة", "3️⃣  الدفع"]
+            )
+
+            # ── Tab 1 : Infos ──
+            with tab_info:
+                st.markdown("### 👤 معلوماتك")
+                col1, col2 = st.columns(2)
+                with col1:
+                    r_prenom = st.text_input("Prenom *", key="r_prenom")
+                    r_email  = st.text_input("Email *",  placeholder="votre@email.com", key="r_email")
+                    r_tel    = st.text_input("الهاتف", placeholder="+213 6XX XXX XXX", key="r_tel")
+                with col2:
+                    r_nom    = st.text_input("Nom *", key="r_nom")
+                    r_mdp    = st.text_input("كلمة المرور *", type="password", placeholder="8+ caracteres", key="r_mdp")
+                    r_mdp2   = st.text_input("تأكيد MDP *", type="password", key="r_mdp2")
+
+                r_type = st.radio("أنت *", ["👪 ولي أمر / عائلة", "👨‍⚕️ Professionnel de sante"],
+                                  horizontal=True, key="r_type")
+                if "Professionnel" in r_type:
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        r_specialite = st.selectbox("التخصص", ["Orthophoniste","Psychologue",
+                            "Neuropediatre","Psychomotricien","Educateur specialise","Autre"], key="r_spec")
+                    with col2:
+                        r_num_ordre = st.text_input("رقم الهيئة المهنية", key="r_ordre")
+
+                r_wilaya = st.selectbox(t("wilaya"), ["Alger","Oran","Constantine","Annaba",
+                    "Blida","Setif","Tlemcen","Batna","Bejaia","Tizi Ouzou","Autres"], key="r_wilaya")
+                r_cgu    = st.checkbox("أوافق على شروط الاستخدام *", key="r_cgu")
+                st.info("➡️ Passez a l'onglet **2 - Choisir un plan** pour continuer")
+
+            # ── Tab 2 : Plسنة ──
+            with tab_plan:
+                st.markdown("### 💰 اختر اشتراكك")
+
+                plسنة = [
+                    {
+                        "id": "gratuit", "nom": "مجاني", "prix": "0 DA",
+                        "periode": "للأبد", "color": "#4CAF50",
+                        "badge": "", "type_user": "parent",
+                        "features": ["✅ Questionnaire M-CHAT",
+                                     "✅ Orientation specialists",
+                                     "⛔ Suivi evolution",
+                                     "⛔ Alertes automatiques",
+                                     "⛔ Diagnostic IA complet"],
+                    },
+                    {
+                        "id": "famille", "nom": "عائلي مميز", "prix": "2 500 DA",
+                        "periode": "/ شهر", "color": "#FF6B9D",
+                        "badge": "⭐ Recommande", "type_user": "parent",
+                        "features": ["✅ كل مميزات الخطة المجانية",
+                                     "✅ ملف طفل كامل",
+                                     "✅ متابعة شهرية رادار",
+                                     "✅ تنبيهات ذكاء اصطناعي تلقائية",
+                                     "✅ تشخيص متعدد الوسائط",
+                                     "✅ Messagerie therapeute",
+                                     "✅ نصائح شخصية"],
+                    },
+                    {
+                        "id": "pro", "nom": "Professionnel", "prix": "15 000 DA",
+                        "periode": "/ سنة", "color": "#4A90E2",
+                        "badge": "🏆 Professionnel", "type_user": "pro",
+                        "features": ["✅ Tout plan Famille",
+                                     "✅ KNN Recommandations IA",
+                                     "✅ Knowledge Graph",
+                                     "✅ IA Explicable (XAI)",
+                                     "✅ Dashboard clinique",
+                                     "✅ Export PDF",
+                                     "✅ مرضى غير محدودون"],
+                    },
+                    {
+                        "id": "etablissement", "nom": "مؤسسة", "prix": "30 000 DA",
+                        "periode": "/ سنة", "color": "#6C3FC5",
+                        "badge": "🏥 مؤسسة", "type_user": "pro",
+                        "features": ["✅ Tout plan Pro",
+                                     "✅ رخصة متعددة المستخدمين",
+                                     "✅ Tableau de bord medecin",
+                                     "✅ Stats comparaison int.",
+                                     "✅ تدريب مشمول",
+                                     "✅ دعم أولوية 24/7"],
+                    },
+                ]
+
+                if "plan_choisi" not in st.session_state:
+                    st.session_state["plan_choisi"] = "famille"
+
+                col1, col2 = st.columns(2)
+                for i, plan in enumerate(plسنة):
+                    with (col1 if i % 2 == 0 else col2):
+                        is_sel = st.session_state["plan_choisi"] == plan["id"]
+                        border = f"3px solid {plan['color']}" if is_sel else f"2px solid {plan['color']}44"
+                        bg     = plan["color"] + "15" if is_sel else "white"
+                        feat_html = "".join(
+                            f"<p style='margin:0.2rem 0;font-size:0.85rem;color:#555;'>{f}</p>"
+                            for f in plan["features"]
+                        )
+                        badge_html = (
+                            f"<span style='background:{plan['color']};color:white;padding:0.15rem 0.6rem;"
+                            f"border-radius:20px;font-size:0.78rem;font-weight:700;'>{plan['badge']}</span>"
+                            if plan["badge"] else ""
+                        )
+                        st.markdown(
+                            f"<div style='border:{border};background:{bg};border-radius:14px;"
+                            f"padding:1.2rem;margin-bottom:0.8rem;'>"
+                            f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
+                            f"<h3 style='color:{plan['color']};margin:0;'>{plan['nom']}</h3>"
+                            f"{badge_html}</div>"
+                            f"<p style='font-size:1.6rem;font-weight:800;color:{plan['color']};margin:0.3rem 0;'>"
+                            f"{plan['prix']}<span style='font-size:0.9rem;color:#888;'> {plan['periode']}</span></p>"
+                            f"<hr style='margin:0.6rem 0;'/>{feat_html}</div>",
+                            unsafe_allow_html=True
+                        )
+                        btn_label = "✅ Selectionne" if is_sel else f"Choisir {plan['nom']}"
+                        if st.button(btn_label, key=f"plan_{plan['id']}", use_container_width=True):
+                            st.session_state["plan_choisi"] = plan["id"]
+                            st.session_state["plan_type_user"] = plan["type_user"]
+                            st.rerun()
+
+                st.info("➡️ Passez a l'onglet **3 - Paiement** pour finaliser")
+
+            # ── Tab 3 : Paiement ──
+            with tab_paiement:
+                plan_id     = st.session_state.get("plan_choisi", "famille")
+                plan_info   = next((p for p in plسنة if p["id"] == plan_id), plans[1])
+
+                st.markdown(
+                    f"<div style='background:{plan_info['color']}15;border:2px solid {plan_info['color']};"
+                    f"border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center;'>"
+                    f"<h3 style='color:{plan_info['color']};margin:0;'>الخطة المختارة: {plan_info['nom']}</h3>"
+                    f"<p style='font-size:2rem;font-weight:800;color:{plan_info['color']};margin:0.2rem 0;'>"
+                    f"{plan_info['prix']} <span style='font-size:1rem;color:#888;'>{plan_info['periode']}</span></p>"
+                    f"</div>",
+                    unsafe_allow_html=True
+                )
+
+                if plan_id == "gratuit":
+                    st.success("✅ خطة مجانية — لا حاجة للدفع!")
+                    if st.button("🚀 إنشاء حسابي المجاني", use_container_width=True, key="btn_create_free"):
+                        r_email_v = st.session_state.get("r_email","").strip()
+                        r_nom_v   = st.session_state.get("r_nom","").strip()
+                        r_prenom_v= st.session_state.get("r_prenom","").strip()
+                        r_mdp_v   = st.session_state.get("r_mdp","").strip()
+                        r_type_v  = st.session_state.get("r_type","Parent")
+                        if r_email_v and r_nom_v and r_mdp_v:
+                            if "comptes_inscrits" not in st.session_state:
+                                st.session_state["comptes_inscrits"] = {}
+                            st.session_state["comptes_inscrits"][r_email_v] = {
+                                "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip(),
+                                "type": "parent", "plan": "مجاني", "avatar": "👤"
+                            }
+                            st.session_state.update({
+                                "auth_connecte": True, "auth_user": r_email_v,
+                                "auth_type": "parent", "auth_nom": f"{r_prenom_v} {r_nom_v}".strip(),
+                                "auth_plan": "مجاني", "auth_avatar": "👤",
+                                "espace": "parent", "menu": "🏠 الرئيسية"
+                            })
+                            st.rerun()
+                        else:
+                            st.error("❌ أكمل معلوماتك في التبويب 1 أولاً")
+                else:
+                    st.markdown("### 💳 طريقة الدفع")
+                    methode = st.radio("", [
+                        "💳 بطاقة بنكية (CIB / EDAHABIA)",
+                        "📱 تحويل بنكي",
+                        "🏦 الدفع في الوكالة",
+                        "📦 الدفع عند التسليم",
+                    ], key="methode_paiement")
+
+                    st.markdown("---")
+
+                    if methode == "💳 بطاقة بنكية (CIB / EDAHABIA)":
+                        st.markdown("#### 💳 معلومات البطاقة")
+                        col1, col2 = st.columns([2,1])
+                        with col1:
+                            carte_num = st.text_input("رقم البطاقة (16 رقم)",
+                                placeholder="XXXX  XXXX  XXXX  XXXX", key="carte_num",
+                                max_chars=19)
+                        with col2:
+                            carte_type = st.selectbox("Type", ["CIB","EDAHABIA","Visa","Mastercard"], key="carte_type")
+
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            carte_exp = st.text_input("Expiration", placeholder="MM/AA", max_chars=5, key="carte_exp")
+                        with col2:
+                            carte_cvv = st.text_input("CVV", placeholder="XXX", type="password", max_chars=3, key="carte_cvv")
+                        with col3:
+                            st.markdown("<div style='height:1.9rem'></div>", unsafe_allow_html=True)
+                            st.markdown("🔒 Paiement securise", unsafe_allow_html=True)
+
+                        nom_carte = st.text_input("الاسم على البطاقة", placeholder="NOM PRENOM", key="nom_carte")
+
+                        # Badge securite
+                        st.markdown("""
+                        <div style='background:#f0fff4;border:1px solid #4CAF50;border-radius:8px;
+                                    padding:0.6rem 1rem;display:flex;gap:0.5rem;align-items:center;margin:0.5rem 0;'>
+                            <span>🔒</span>
+                            <span style='color:#555;font-size:0.85rem;'>
+                            دفع مشفر SSL 256-bit. بياناتك البنكية لا تُخزَّن أبدًا.
+                            Conforme PCI-DSS.</span>
+                        </div>
+                        """, unsafe_allow_html=True)
+
+                        if st.button(f"💳 Payer {plan_info['prix']} et creer mon compte",
+                                     use_container_width=True, key="btn_pay_card"):
+                            if carte_num and len(carte_num.replace(" ","")) >= 16 and carte_cvv:
+                                with st.spinner("جار معالجة الدفع..."):
+                                    time.sleep(2)
+                                _finalize_inscription(plan_info, "Carte bancaire")
+                            else:
+                                st.error("❌ Verifiez les informations de votre carte")
+
+                    elif methode == "📱 تحويل بنكي":
+                        st.markdown("""
+                        <div class='card' style='border-left:5px solid #4A90E2;'>
+                            <h4 style='color:#4A90E2;'>📱 تعليمات التحويل</h4>
+                            <p><b>Banque :</b> BNA — Banque Nationale d'Algerie</p>
+                            <p><b>IBAN :</b> DZ59 0002 1000 0010 0001 2345 6789</p>
+                            <p><b>RIB :</b> 00021000001000012345678900</p>
+                            <p><b>المستفيد:</b> AutiGraphCare SARL</p>
+                            <p><b>المبلغ الدقيق:</b> <b style='color:#4A90E2;'>{plan_info['prix'].replace(' DA','')} DZD</b></p>
+                            <p><b>المرجع:</b> AUTi-2026-{hash(st.session_state.get('r_email','')) % 99999:05d}</p>
+                        </div>
+                        """.format(plan_info=plan_info), unsafe_allow_html=True)
+                        recu = st.file_uploader("📎 Joindre le recu de virement (PDF/JPG)", key="recu_virement")
+                        if st.button("📤 إرسال وتفعيل حسابي (خلال 24 ساعة)",
+                                     use_container_width=True, key="btn_virement"):
+                            _finalize_inscription(plan_info, "Virement bancaire")
+
+                    elif methode == "🏦 الدفع في الوكالة":
+                        st.markdown("""
+                        <div class='card' style='border-left:5px solid #6C3FC5;'>
+                            <h4 style='color:#6C3FC5;'>🏦 وكالات شريكة لـ AutiGraphCare</h4>
+                            <p>📍 <b>Alger</b> — 12 Rue Didouche Mourad, Centre</p>
+                            <p>📍 <b>Oran</b> — Boulevard Millénium, Les Amandiers</p>
+                            <p>📍 <b>Constantine</b> — Rue Larbi Ben M'Hidi</p>
+                            <p>📍 <b>Annaba</b> — Avenue du 1er Novembre</p>
+                            <hr/>
+                            <p style='color:#888;font-size:0.85rem;'>
+                            Presentez-vous avec votre CIN + ce code de commande :<br/>
+                            <b style='color:#6C3FC5;font-size:1.1rem;'>
+                            AUTi-{code}</b></p>
+                        </div>
+                        """.format(code=f"{hash(st.session_state.get('r_email','')) % 99999:05d}"), unsafe_allow_html=True)
+                        if st.button("✅ J'ai effectue le paiement en agence",
+                                     use_container_width=True, key="btn_agence"):
+                            _finalize_inscription(plan_info, "Agence")
+
+                    elif methode == "📦 الدفع عند التسليم":
+                        st.markdown("""
+                        <div class='card' style='border-left:5px solid #F5A623;'>
+                            <h4 style='color:#F5A623;'>📦 التفعيل بعد التحقق</h4>
+                            <p>Un representant AutiGraphCare vous contactera sous <b>48h</b>
+                            pour valider votre abonnement.</p>
+                            <p>📞 Hotline : <b>+213 (0)21 XX XX XX</b></p>
+                            <p>✉️ Email : <b>support@autigraphcare.dz</b></p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        adresse = st.text_input("Adresse de livraison / contact", key="adresse_cash")
+                        if st.button("📞 Etre contacte par un agent",
+                                     use_container_width=True, key="btn_cash"):
+                            _finalize_inscription(plan_info, "Cash a la livraison")
+
+            st.markdown("<hr style='margin:1.5rem 0;'>", unsafe_allow_html=True)
+            if st.button("← العودة لتسجيل الدخول", key="btn_back_login"):
+                st.session_state["auth_page"] = "login"
+                st.rerun()
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # PAGE : CONFIRMATION PAIEMENT
+    # ─────────────────────────────────────────────────────────────────────────
+    elif pg == "confirmed":
+        col_c, col_f, col_c2 = st.columns([1, 2, 1])
+        with col_f:
+            st.markdown("""
+            <div style='text-align:center;padding:2rem;background:white;border-radius:20px;
+                        box-shadow:0 20px 60px rgba(0,0,0,0.12);'>
+                <div style='font-size:5rem;'>🎉</div>
+                <h2 style='color:#4CAF50;'>تم قبول الدفع!</h2>
+                <p style='color:#555;'>حسابك في AutiGraphCare نشط الآن.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            time.sleep(0.5)
+            st.balloons()
+            if st.button("🚀 الوصول إلى منصتي", use_container_width=True, key="btn_goto_app"):
+                st.session_state["auth_page"] = "login"
+                st.rerun()
+
+
+def _finalize_inscription(plan_info, methode_paiement):
+    """Cree le compte et connecte l'utilisateur"""
+    r_email_v  = st.session_state.get("r_email","user@demo.dz").strip() or "user@demo.dz"
+    r_nom_v    = st.session_state.get("r_nom","").strip()
+    r_prenom_v = st.session_state.get("r_prenom","").strip()
+    r_mdp_v    = st.session_state.get("r_mdp","password").strip() or "password"
+    type_user  = st.session_state.get("plan_type_user", plan_info["type_user"])
+    avatar     = "👪" if type_user == "parent" else "👨‍⚕️"
+
+    if "comptes_inscrits" not in st.session_state:
+        st.session_state["comptes_inscrits"] = {}
+    st.session_state["comptes_inscrits"][r_email_v] = {
+        "mdp": r_mdp_v, "nom": f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
+        "type": type_user, "plan": plan_info["nom"], "avatar": avatar,
+        "methode": methode_paiement,
+    }
+    st.session_state.update({
+        "auth_connecte": True,
+        "auth_user":     r_email_v,
+        "auth_type":     type_user,
+        "auth_nom":      f"{r_prenom_v} {r_nom_v}".strip() or r_email_v,
+        "auth_plan":     plan_info["nom"],
+        "auth_avatar":   avatar,
+        "espace":        type_user,
+        "menu":          "🏠 الرئيسية",
+        "auth_page":     "confirmed",
+    })
+    st.rerun()
+
+# ── LOGIQUE PRINCIPALE : bloquer si non connecte ─────────────────────────────
+_wants_space = st.session_state.get("espace") is not None
+_is_connected = st.session_state.get("auth_connecte", False)
+
+if _wants_space and not _is_connected:
+    # Remettre espace a None et afficher la gate
+    show_auth_gate()
+    st.stop()
+elif not _is_connected and st.session_state.get("auth_page") != "login":
+    show_auth_gate()
+    st.stop()
+
+# ============================================================
+# SYSTEME DE TRADUCTION
+# ============================================================# ============================================================
 # SYSTEME DE NOTIFICATIONS
 # ============================================================
 def init_notifications():
@@ -1535,10 +1585,10 @@ def init_notifications():
              "texte":"Dr. Benali Karima vous a envoye un message",
              "heure":"09:14", "lu":False},
             {"id":2, "type":"alerte",   "icon":"⚠️", "color":"#FF4444",
-             "texte":"Score communication > 7 detecte pour votre enfant",
+             "texte":"الدرجة communication > 7 detecte pour votre enfant",
              "heure":"11:30", "lu":False},
             {"id":3, "type":"systeme",  "icon":"🤖", "color":"#50E3C2",
-             "texte":"التقرير mensuel IA disponible",
+             "texte":"Rapport mensuel IA disponible",
              "heure":"08:00", "lu":False},
         ]
 
@@ -1566,7 +1616,7 @@ def get_patients_du_pro(df, user_email):
     """Retourne seulement les patients assignes a ce professionnel"""
     if df.empty:
         return df
-    # Cle unique par pro dans session state
+    # Cle unique par pro dسنة session state
     key = f"patients_pro_{user_email.replace('@','_').replace('.','_')}"
     if key not in st.session_state:
         # Assignation initiale : diviser le dataset equitablement
@@ -1631,32 +1681,30 @@ with st.sidebar:
             f"</div></div></div>",
             unsafe_allow_html=True
         )
-        if st.button(t("deconnecter"), use_container_width=True, key="btn_logout"):
+        if st.button("🚪 Se deconnecter", use_container_width=True, key="btn_logout"):
             for k in ["auth_connecte","auth_user","auth_type","auth_nom",
                       "auth_plan","auth_avatar","espace"]:
-                st.session_state[k] = لاe if k == "espace" else False if k == "auth_connecte" else ""
+                st.session_state[k] = None if k == "espace" else False if k == "auth_connecte" else ""
             st.session_state["menu"] = "🏠 الرئيسية"
             st.session_state["auth_page"] = "login"
             st.rerun()
     else:
-        if st.button(t("connecter"), use_container_width=True, key="btn_login_side"):
+        if st.button("🔐 تسجيل الدخول", use_container_width=True, key="btn_login_side"):
             st.session_state["auth_page"] = "login"
             st.session_state["espace"] = "parent"   # trigger gate
             st.rerun()
 
     st.markdown("---")
 
-    # ── Langue ──────────────────────────────────────────────
-    lang_options = list(LANGUES.keys())
-    lang_current = next((k for k,v in LANGUES.items() if v == st.session_state.get("langue","fr")), lang_options[0])
-    lang_idx = lang_options.index(lang_current)
-    lang_sel = st.selectbox("🌍 Langue / Language / اللغة",
-                             lang_options, index=lang_idx, key="lang_select")
-    if LANGUES[lang_sel] != st.session_state.get("langue","fr"):
-        st.session_state["langue"] = LANGUES[lang_sel]
-        st.rerun()
-
-    # ── Theme + Notifications ────────────────────────────────
+    # ── محدد اللغة ─────────────────────────────────────────
+    st.markdown("**اللغة / Language / Langue**")
+    _lb1, _lb2, _lb3 = st.columns(3)
+    with _lb1:
+        st.markdown('<a href="https://autigraphcare-gftbgydb8oiqcvdjnwyn7u.streamlit.app/" target="_blank" style="text-decoration:none;"><div style="background:#f0f0f0;color:#555;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;cursor:pointer;">FR</div></a>', unsafe_allow_html=True)
+    with _lb2:
+        st.markdown('<a href="https://autigraphcare-en-dhekrahadjoub.streamlit.app/" target="_blank" style="text-decoration:none;"><div style="background:#f0f0f0;color:#555;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;cursor:pointer;">EN</div></a>', unsafe_allow_html=True)
+    with _lb3:
+        st.markdown('<div style="background:#50E3C2;color:white;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;">AR ✓</div>', unsafe_allow_html=True)
     c1, c2, c3 = st.columns([1, 2, 1])
     with c1:
         if st.button("🌙" if not dark else "☀️", key="theme_btn"):
@@ -1676,7 +1724,7 @@ with st.sidebar:
         st.markdown(
             f"<div style='background:white;border-radius:10px;padding:0.8rem;"
             f"box-shadow:0 4px 15px rgba(0,0,0,0.12);margin-top:0.3rem;'>"
-            f"<b style='color:#333;'>" + t("notif_titre") + "</b>",
+            f"<b style='color:#333;'>" + "🔔 الإشعارات" + "</b>",
             unsafe_allow_html=True
         )
         notifs = st.session_state.get("notifications", [])
@@ -1698,13 +1746,13 @@ with st.sidebar:
         st.markdown("</div>", unsafe_allow_html=True)
         col_a, col_b = st.columns(2)
         with col_a:
-            if st.button(t("tout_lire"), key="btn_notif_read", use_container_width=True):
+            if st.button("✅ تحديد الكل كمقروء", key="btn_notif_read", use_container_width=True):
                 for n in st.session_state["notifications"]:
                     n["lu"] = True
                 st.session_state["show_notif"] = False
                 st.rerun()
         with col_b:
-            if st.button(t("effacer"), key="btn_notif_clear", use_container_width=True):
+            if st.button("🗑️ مسح", key="btn_notif_clear", use_container_width=True):
                 st.session_state["notifications"] = []
                 st.session_state["show_notif"] = False
                 st.rerun()
@@ -1776,7 +1824,7 @@ with st.sidebar:
     st.markdown("---")
     if espace:
         if st.button(t("changer_espace")):
-            st.session_state['espace'] = لاe
+            st.session_state['espace'] = None
             st.session_state['menu'] = "🏠 الرئيسية"
             st.rerun()
 
@@ -1785,7 +1833,7 @@ with st.sidebar:
         if espace == 'pro':
             age_min = int(df['age_mois'].min())
             age_max = int(df['age_mois'].max())
-            age_range = st.slider("Filtrer par age (mois)", age_min, age_max, (age_min, age_max))
+            age_range = st.slider("Filtrer par age (شهر)", age_min, age_max, (age_min, age_max))
             df = df[(df['age_mois'] >= age_range[0]) & (df['age_mois'] <= age_range[1])]
             st.caption(f"📊 {len(df)} patients affiches")
     else:
@@ -1808,7 +1856,7 @@ if esp == 'pro' and st.session_state.get("auth_connecte", False):
 # ============================================================
 # ACCUEIL - CHOIX ESPACE
 # ============================================================
-if mp("accueil") and esp is لاe:
+if mp("accueil") and esp is None:
     st.markdown("""
     <div class='main-header'>
         <h1 style='color:white; font-size:3rem; margin-bottom:0;'>🧠 AutiGraphCare</h1>
@@ -1829,7 +1877,7 @@ if mp("accueil") and esp is لاe:
                 <li>🔍 الكشف المبكر des signes</li>
                 <li>📈 Suivi mensuel de l'evolution</li>
                 <li>🔔 التنبيهات automatiques intelligentes</li>
-                <li>💡 Conseils personnalises</li>
+                <li>💡 نصائح شخصية</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
@@ -1847,8 +1895,8 @@ if mp("accueil") and esp is لاe:
             <p style='color:#888;'>أدوات دعم القرار السريري بالذكاء الاصطناعي.</p>
             <ul style='text-align:left; color:#888;'>
                 <li>🤖 التوصيات IA KNN 92%</li>
-                <li>🕸️ الرسم البياني المعرفي interactif</li>
-                <li>📊 لوحة التحكم clinique complet</li>
+                <li>🕸️ Knowledge Graph interactif</li>
+                <li>📊 Dashboard clinique complet</li>
                 <li>📄 Export rapports PDF</li>
             </ul>
         </div>
@@ -1864,7 +1912,7 @@ if mp("accueil") and esp is لاe:
     st.markdown("### 📊 التوحد بالأرقام")
     col1, col2, col3, col4 = st.columns(4)
     for col, (val, label, color) in zip([col1, col2, col3, col4], [
-        ("50 000", "طفل مصاب بالتوحد في الجزائر", "#FF6B6B"),
+        ("50 000", "أطفال التوحد في الجزائر", "#FF6B6B"),
         ("1/100",  "أطفال متضررون في العالم",  "#4A90E2"),
         ("80%",    "بدون متابعة منظمة",    "#FFA500"),
         ("92%",    "دقة الذكاء الاصطناعي لدينا",   "#4CAF50"),
@@ -1891,7 +1939,7 @@ if mp("accueil") and esp is لاe:
                 <h4 style='color:#FF6B9D;margin:0 0 0.5rem;'>🔍 الكشف المبكر</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
                     Un <b>questionnaire clinique</b> integre permet de savoir si votre enfant
-                    presente des signes TSA et s'il est dans la norme pour son age.
+                    presente des signes TSA et s'il est dسنة la norme pour son age.
                 </p>
             </div>
             <div style='background:#F0F8FF;border-radius:10px;padding:1rem;border-left:4px solid #4A90E2;'>
@@ -1909,7 +1957,7 @@ if mp("accueil") and esp is لاe:
                 </p>
             </div>
             <div style='background:#FFFBF0;border-radius:10px;padding:1rem;border-left:4px solid #F5A623;'>
-                <h4 style='color:#F5A623;margin:0 0 0.5rem;'>📈 Suivi dans le temps</h4>
+                <h4 style='color:#F5A623;margin:0 0 0.5rem;'>📈 Suivi dسنة le temps</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
                     Un <b>suivi mensuel de l'evolution</b> avec graphes radar pour visualiser
                     les progres competence par competence.
@@ -2071,7 +2119,7 @@ elif mp("accueil") and esp == 'parent':
             st.rerun()
 
     st.markdown("<br/>", unsafe_allow_html=True)
-    st.info("💡 **Conseil :** La detection precoce avant 3 ans ameliore significativement les resultats therapeutiques.")
+    st.info("💡 **Conseil :** La detection precoce avant 3 سنة ameliore significativement les resultats therapeutiques.")
 
 # ============================================================
 # PARENTS - DIAGNOSTIC IA (4 modules)
@@ -2098,9 +2146,9 @@ elif mp("diagnostic_ia") and esp == 'parent':
 
     tab1, tab2, tab3, tab4 = st.tabs([
         "📋 M-CHAT التكيفي",
-        "🖼️ التحليل Faciale",
+        "🖼️ تحليل الوجه",
         "🎥 Detection Regard",
-        "🎙️ التحليل Vocale"
+        "🎙️ التحليل الصوتي"
     ])
 
     # ================================================================
@@ -2112,13 +2160,13 @@ elif mp("diagnostic_ia") and esp == 'parent':
         <div class='card' style='border-left:4px solid #4A90E2;'>
             <p style='margin:0; color:#555;'>
             Le <b>M-CHAT-R (Modified Checklist for Autism in Toddlers)</b> est l'outil de
-            reperage valide scientifiquement le plus utilise dans le monde. Notre version
+            reperage valide scientifiquement le plus utilise dسنة le monde. Notre version
             <b>adaptative</b> ajuste les questions selon les reponses precedentes.
             </p>
         </div>
         """, unsafe_allow_html=True)
 
-        age_mchat = st.slider("Age de l'enfant (mois)", 16, 48, 24, key="age_mchat")
+        age_mchat = st.slider("Age de l'enfant (شهر)", 16, 48, 24, key="age_mchat")
 
         if age_mchat < 16 or age_mchat > 48:
             st.warning("⚠️ Le M-CHAT est valide pour les enfants de 16 a 48 mois.")
@@ -2127,25 +2175,25 @@ elif mp("diagnostic_ia") and esp == 'parent':
 
             questions_mchat = [
                 ("Q1", "👁️", "Votre enfant regarde-t-il les objets que vous pointez du doigt ?",
-                 "Pointage proto-declaratif", "لا", 3),
+                 "Pointage proto-declaratif", "Non", 3),
                 ("Q2", "🤝", "Votre enfant s'interesse-t-il aux autres enfants ?",
-                 "Interet social", "لا", 2),
+                 "Interet social", "Non", 2),
                 ("Q3", "☝️", "Votre enfant pointe-t-il du doigt pour montrer quelque chose d'interessant ?",
-                 "Pointage proto-imperatif", "لا", 3),
+                 "Pointage proto-imperatif", "Non", 3),
                 ("Q4", "🎮", "Votre enfant joue-t-il a faire semblant ?",
-                 "اللعب الرمزي", "لا", 2),
-                ("Q5", "👁️", "Votre enfant vous regarde-t-il dans les yeux pendant plus de 1-2 secondes ?",
-                 "التواصل البصري", "لا", 3),
+                 "اللعب الرمزي", "Non", 2),
+                ("Q5", "👁️", "Votre enfant vous regarde-t-il dسنة les yeux pendant plus de 1-2 secondes ?",
+                 "التواصل البصري", "Non", 3),
                 ("Q6", "👂", "Votre enfant repond-il quand vous l'appelez par son prenom ?",
-                 "Reponse au prenom", "لا", 3),
+                 "Reponse au prenom", "Non", 3),
                 ("Q7", "😊", "Votre enfant vous sourit-il lorsque vous lui souriez ?",
-                 "Sourire social", "لا", 2),
+                 "Sourire social", "Non", 2),
                 ("Q8", "🚶", "Votre enfant marche-t-il normalement ?",
-                 "Developpement moteur", "لا", 1),
+                 "Developpement moteur", "Non", 1),
                 ("Q9", "🔄", "Votre enfant presente-t-il des mouvements repetitifs (battement des mains, se balancer) ?",
-                 "Stereotypies motrices", "نعم", 2),
+                 "Stereotypies motrices", "Oui", 2),
                 ("Q10", "😰", "Votre enfant est-il tres sensible aux bruits, lumieres ou textures ?",
-                 "Hypersensibilite sensorielle", "نعم", 1),
+                 "Hypersensibilite sensorielle", "Oui", 1),
             ]
 
             scores_mchat = []
@@ -2161,7 +2209,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                         unsafe_allow_html=True
                     )
                 with col_r:
-                    rep = st.radio("", ["نعم", "لا"], key=f"mchat_{qid}", horizontal=True, label_visibility="collapsed")
+                    rep = st.radio("", ["Oui", "Non"], key=f"mchat_{qid}", horizontal=True, label_visibility="collapsed")
                     if rep == reponse_risque:
                         scores_mchat.append(poids)
                     else:
@@ -2177,7 +2225,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
 
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    st.metric("Score de risque", f"{total} / {max_score}")
+                    st.metric("الدرجة de risque", f"{total} / {max_score}")
                 with col2:
                     niveau = "منخفض" if pct < 30 else "متوسط" if pct < 60 else "مرتفع"
                     st.metric("المستوى de risque", niveau)
@@ -2205,19 +2253,19 @@ elif mp("diagnostic_ia") and esp == 'parent':
                             st.error(f"🔴 {d}")
 
                 if pct < 30:
-                    st.success("✅ **Risque faible** — Le developpement semble dans la norme. Continuez le suivi pediatrique regulier.")
+                    st.success("✅ **Risque faible** — Le developpement semble dسنة la norme. Continuez le suivi pediatrique regulier.")
                 elif pct < 60:
-                    st.warning("🟠 **Risque modere** — Un bilan par un pediatre ou un orthophoniste est recommande dans les prochaines semaines.")
+                    st.warning("🟠 **Risque modere** — Un bilan par un pediatre ou un orthophoniste est recommande dسنة les prochaines semaines.")
                 else:
                     st.error("🔴 **Risque eleve** — Une evaluation urgente par un specialiste TSA (neuropediatre) est fortement recommandee.")
 
-                st.info("📋 Reference : Robins DL et al., M-CHAT-R/F, 2014. Sensibilite 91%, Specificite 95%.")
+                st.info("📋 المرجع: Robins DL et al., M-CHAT-R/F, 2014. الحساسية 91%, الخصوصية 95%.")
 
     # ================================================================
     # TAB 2 : ANALYSE FACIALE
     # ================================================================
     with tab2:
-        st.markdown("### 🖼️ التحليل Faciale par Intelligence Artificielle")
+        st.markdown("### 🖼️ تحليل الوجه par Intelligence Artificielle")
         st.markdown("""
         <div class='card' style='border-left:4px solid #6C3FC5;'>
             <p style='margin:0; color:#555;'>
@@ -2252,14 +2300,14 @@ elif mp("diagnostic_ia") and esp == 'parent':
             """, unsafe_allow_html=True)
 
         with col_upload:
-            if uploaded_img is not لاe:
+            if uploaded_img is not None:
                 st.image(uploaded_img, caption="Photo analysee", width=250)
 
                 if st.button("🧠 Lancer l'analyse faciale IA", use_container_width=True, key="btn_face"):
-                    with st.spinner("التحليل en cours..."):
+                    with st.spinner("Analyse en cours..."):
                         time.sleep(2)
 
-                        # التحليل basee sur les metadonnees de l'image
+                        # Analyse basee sur les metadonnees de l'image
                         img_bytes = uploaded_img.read()
                         img_size  = len(img_bytes)
                         seed_val  = img_size % 1000
@@ -2276,7 +2324,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                         risque = 1 - score_global
 
                     st.markdown("---")
-                    st.markdown("### 🧬 النتائج de l'analyse faciale")
+                    st.markdown("### 🧬 Resultats de l'analyse faciale")
 
                     col1, col2, col3, col4 = st.columns(4)
                     metriques = [
@@ -2295,7 +2343,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                                 unsafe_allow_html=True
                             )
 
-                    st.markdown("#### 📊 Score de risque TSA estime")
+                    st.markdown("#### 📊 الدرجة de risque TSA estime")
                     risk_pct  = risque * 100
                     risk_color = "#4CAF50" if risk_pct < 30 else "#FFA500" if risk_pct < 60 else "#FF4444"
                     risk_label = "منخفض" if risk_pct < 30 else "متوسط" if risk_pct < 60 else "مرتفع"
@@ -2316,7 +2364,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                     if orient_regard < 0.5:
                         observations.append(("🟠", "Orientation du regard atypique", "Tendance a eviter le regard direct"))
                     if not observations:
-                        observations.append(("🟢", "Aucun signe atypique majeur detecte", "Developpement facial dans la norme"))
+                        observations.append(("🟢", "Aucun signe atypique majeur detecte", "Developpement facial dسنة la norme"))
 
                     for emoji, titre, detail in observations:
                         st.markdown(
@@ -2332,7 +2380,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
     # TAB 3 : DETECTION REGARD WEBCAM
     # ================================================================
     with tab3:
-        st.markdown("### 🎥 كشف النظرة par Webcam")
+        st.markdown("### 🎥 Detection du Regard par Webcam")
         st.markdown("""
         <div class='card' style='border-left:4px solid #50E3C2;'>
             <p style='margin:0; color:#555;'>
@@ -2352,7 +2400,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
             2. **Cliquez Demarrer** pour activer la webcam
             3. **Montrez les stimuli** qui s'affichent
             4. L'IA analyse le **regard en temps reel**
-            5. **التقرير automatique** genere a la fin
+            5. **Rapport automatique** genere a la fin
             """)
         with col2:
             st.markdown("""
@@ -2403,7 +2451,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
 
           <div id="progress-wrap" style="margin-top:1rem;display:none;">
             <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;">
-              <span style="font-size:0.9rem;color:#555;">التحليل en cours...</span>
+              <span style="font-size:0.9rem;color:#555;">Analyse en cours...</span>
               <span id="timer-label" style="font-size:0.9rem;color:#4A90E2;font-weight:700;">60s</span>
             </div>
             <div style="width:100%;background:#e0e0e0;border-radius:10px;height:12px;">
@@ -2457,7 +2505,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
           document.getElementById("stopBtn").disabled = false;
           document.getElementById("stopBtn").style.opacity = "1";
           document.getElementById("progress-wrap").style.display = "block";
-          document.getElementById("status-bar").textContent = "🔴 التحليل en cours — Montrez les stimuli a l'enfant";
+          document.getElementById("status-bar").textContent = "🔴 Analyse en cours — Montrez les stimuli a l'enfant";
           document.getElementById("status-bar").style.background = "#1a2e1a";
           document.getElementById("status-bar").style.color = "#4CAF50";
 
@@ -2506,7 +2554,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
           clearTimeout(stimTimer);
           if (stream) { stream.getTracks().forEach(t => t.stop()); }
           document.getElementById("stimulus-box").style.display = "none";
-          document.getElementById("status-bar").textContent = "✅ التحليل terminee — التقرير genere";
+          document.getElementById("status-bar").textContent = "✅ اكتمل التحليل — تم إنشاء التقرير";
           document.getElementById("startBtn").disabled = false;
           document.getElementById("startBtn").style.opacity = "1";
           document.getElementById("stopBtn").disabled = true;
@@ -2527,15 +2575,15 @@ elif mp("diagnostic_ia") and esp == 'parent':
           document.getElementById("result-panel").style.display = "block";
           document.getElementById("result-panel").innerHTML = `
             <hr/>
-            <h4 style="color:#4A90E2;">📊 التقرير d'analyse du regard</h4>
+            <h4 style="color:#4A90E2;">📊 Rapport d'analyse du regard</h4>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1rem;">
               <div style="background:#EEF5FF;padding:0.8rem;border-radius:8px;text-align:center;">
                 <div style="font-size:1.5rem;font-weight:700;color:#4A90E2;">${regard.toFixed(0)}%</div>
-                <div style="font-size:0.8rem;color:#888;">التواصل البصري moyen</div>
+                <div style="font-size:0.8rem;color:#888;">متوسط التواصل البصري</div>
               </div>
               <div style="background:#F5F0FF;padding:0.8rem;border-radius:8px;text-align:center;">
                 <div style="font-size:1.5rem;font-weight:700;color:#6C3FC5;">${social.toFixed(0)}%</div>
-                <div style="font-size:0.8rem;color:#888;">Attention aux stimuli sociaux</div>
+                <div style="font-size:0.8rem;color:#888;">الانتباه للمحفزات الاجتماعية</div>
               </div>
               <div style="background:#FFF0F5;padding:0.8rem;border-radius:8px;text-align:center;">
                 <div style="font-size:1.5rem;font-weight:700;color:#FF6B9D;">${evitement.toFixed(0)}%</div>
@@ -2546,7 +2594,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                 <div style="font-size:0.8rem;color:#888;">متوسط مدة التثبيت</div>
               </div>
             </div>
-            <div style="margin-bottom:0.5rem;font-weight:600;">Score de risque TSA estime :</div>
+            <div style="margin-bottom:0.5rem;font-weight:600;">الدرجة de risque TSA estime :</div>
             <div style="width:100%;background:#e0e0e0;border-radius:10px;height:28px;">
               <div style="width:${Math.min(risk,100).toFixed(0)}%;background:${riskColor};height:28px;
                    border-radius:10px;display:flex;align-items:center;justify-content:center;
@@ -2556,7 +2604,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
             </div>
             <p style="margin-top:1rem;color:#666;font-size:0.9rem;">
               🔬 <i>Technologie : MediaPipe Face Mesh + Eye Landmark Detection.
-              Reference : Chawarska et al. (2013) — Eye tracking in ASD screening.</i>
+              المرجع: Chawarska et al. (2013) — Eye tracking in ASD screening.</i>
             </p>
           `;
         }
@@ -2568,7 +2616,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
     # TAB 4 : ANALYSE VOCALE
     # ================================================================
     with tab4:
-        st.markdown("### 🎙️ التحليل Vocale par Intelligence Artificielle")
+        st.markdown("### 🎙️ التحليل الصوتي par Intelligence Artificielle")
         st.markdown("""
         <div class='card' style='border-left:4px solid #FF6B9D;'>
             <p style='margin:0; color:#555;'>
@@ -2588,7 +2636,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
             - **Pitch moyen** : hauteur caracteristique de la voix
             - **Variabilite F0** : fluctuations de la frequence fondamentale
             - **Energie vocale** : volume et intensite
-            - **التقرير signal/silence** : temps de vocalisation
+            - **Rapport signal/silence** : temps de vocalisation
             """)
         with col2:
             st.markdown("""
@@ -2607,12 +2655,12 @@ elif mp("diagnostic_ia") and esp == 'parent':
             key="audio_upload"
         )
 
-        if audio_file is not لاe:
+        if audio_file is not None:
             st.audio(audio_file, format=audio_file.type)
             st.success(f"✅ Fichier charge : {audio_file.name} ({audio_file.size/1024:.1f} KB)")
 
-            if st.button("🎙️ التحليلr la voix avec l'IA", use_container_width=True, key="btn_audio"):
-                with st.spinner("التحليل acoustique en cours..."):
+            if st.button("🎙️ Analyser la voix avec l'IA", use_container_width=True, key="btn_audio"):
+                with st.spinner("Analyse acoustique en cours..."):
                     time.sleep(2.5)
 
                     seed = audio_file.size % 777
@@ -2630,12 +2678,12 @@ elif mp("diagnostic_ia") and esp == 'parent':
                     risque_vocal = (1 - score_vocal) * 100
 
                 st.markdown("---")
-                st.markdown("### 🔊 التقرير d'analyse vocale")
+                st.markdown("### 🔊 Rapport d'analyse vocale")
 
                 col1, col2, col3 = st.columns(3)
-                with col1: st.metric("Prosodie",       f"{prosodie*100:.0f}%", delta=لاe)
-                with col2: st.metric("Rythme vocal",   f"{rythme*100:.0f}%",   delta=لاe)
-                with col3: st.metric("Pitch moyen",    f"{pitch_hz:.0f} Hz",   delta=لاe)
+                with col1: st.metric("Prosodie",       f"{prosodie*100:.0f}%", delta=None)
+                with col2: st.metric("Rythme vocal",   f"{rythme*100:.0f}%",   delta=None)
+                with col3: st.metric("Pitch moyen",    f"{pitch_hz:.0f} Hz",   delta=None)
 
                 col1, col2, col3 = st.columns(3)
                 with col1: st.metric("Variabilite F0", f"{variabilite_f0*100:.0f}%")
@@ -2669,10 +2717,10 @@ elif mp("diagnostic_ia") and esp == 'parent':
                 )
                 st.plotly_chart(fig_radar, use_container_width=True)
 
-                # Score risque
+                # الدرجة risque
                 risk_color = "#4CAF50" if risque_vocal < 30 else "#FFA500" if risque_vocal < 60 else "#FF4444"
                 risk_label = "منخفض" if risque_vocal < 30 else "متوسط" if risque_vocal < 60 else "مرتفع"
-                st.markdown("#### 📊 Score de risque TSA vocal")
+                st.markdown("#### 📊 الدرجة de risque TSA vocal")
                 st.markdown(
                     f"<div style='width:100%;background:#e0e0e0;border-radius:10px;height:28px;'>"
                     f"<div style='width:{risque_vocal:.0f}%;background:{risk_color};height:28px;"
@@ -2691,13 +2739,13 @@ elif mp("diagnostic_ia") and esp == 'parent':
                 if ratio_silence > 0.55:
                     anomalies.append("🟡 Ratio silence eleve — vocalisation limitee")
                 if not anomalies:
-                    anomalies.append("🟢 Profil vocal dans la norme — aucune anomalie majeure")
+                    anomalies.append("🟢 Profil vocal dسنة la norme — aucune anomalie majeure")
 
                 st.markdown("#### 🔍 Anomalies detectees")
                 for a in anomalies:
                     st.markdown(f"- {a}")
 
-                st.info("🎙️ Reference : Bone et al. (2015) — Signal Processing for ASD vocal analysis. INTERSPEECH 2015.")
+                st.info("🎙️ المرجع: Bone et al. (2015) — Signal Processing for ASD vocal analysis. INTERSPEECH 2015.")
         else:
             st.markdown("""
             <div class='card' style='text-align:center; border: 2px dashed #ccc; background: transparent;'>
@@ -2716,7 +2764,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
         <tr style='background:linear-gradient(135deg,#4A90E2,#6C3FC5);color:white;'>
             <th style='padding:0.6rem;'>Module</th>
             <th style='padding:0.6rem;'>Poids recommande</th>
-            <th style='padding:0.6rem;'>Sensibilite</th>
+            <th style='padding:0.6rem;'>الحساسية</th>
         </tr>
         <tr style='background:#EEF5FF;'>
             <td style='padding:0.5rem;'>📋 M-CHAT التكيفي</td>
@@ -2724,7 +2772,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
             <td style='padding:0.5rem;text-align:center;'>91%</td>
         </tr>
         <tr style='background:#F5F0FF;'>
-            <td style='padding:0.5rem;'>🖼️ التحليل Faciale</td>
+            <td style='padding:0.5rem;'>🖼️ تحليل الوجه</td>
             <td style='padding:0.5rem;text-align:center;'><b>25%</b></td>
             <td style='padding:0.5rem;text-align:center;'>78%</td>
         </tr>
@@ -2734,7 +2782,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
             <td style='padding:0.5rem;text-align:center;'>83%</td>
         </tr>
         <tr style='background:#FFFBF0;'>
-            <td style='padding:0.5rem;'>🎙️ التحليل Vocale</td>
+            <td style='padding:0.5rem;'>🎙️ التحليل الصوتي</td>
             <td style='padding:0.5rem;text-align:center;'><b>10%</b></td>
             <td style='padding:0.5rem;text-align:center;'>71%</td>
         </tr>
@@ -2763,7 +2811,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
         # Infos patient
         col_inf, col_score = st.columns([1, 2])
         with col_inf:
-            age_ans = int(patient_diag["age_mois"]) // 12
+            age_سنة = int(patient_diag["age_mois"]) // 12
             st.markdown(
                 f"<div class='card' style='border-left:5px solid #4A90E2;'>"
                 f"<h4 style='color:#4A90E2;margin:0 0 0.5rem;'>👤 {pid_diag}</h4>"
@@ -2776,17 +2824,17 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
         with col_score:
             score_cols_d = [c for c in ["communication_sociale","interactions_sociales",
                 "comportements_restreints","langage_expressif","contact_visuel","imitation"] if c in df.columns]
-            labels_d = {"communication_sociale":"Communication","interactions_sociales":"Interactions",
-                "comportements_restreints":"Comportements","langage_expressif":"Langage",
+            labels_d = {"communication_sociale":"التواصل","interactions_sociales":"التفاعلات",
+                "comportements_restreints":"السلوكيات","langage_expressif":"اللغة",
                 "contact_visuel":"التواصل البصري","imitation":"التقليد"}
             score_moy_d = sum(float(patient_diag[s]) for s in score_cols_d if not pd.isna(patient_diag[s])) / len(score_cols_d)
             color_glob = "#FF4444" if score_moy_d >= 7 else "#FFA500" if score_moy_d >= 4 else "#4CAF50"
-            niveau_glob = "Profil شديد" if score_moy_d >= 7 else "Profil متوسط" if score_moy_d >= 4 else "Profil خفيف"
+            niveau_glob = "Profil Severe" if score_moy_d >= 7 else "Profil متوسط" if score_moy_d >= 4 else "Profil خفيف"
             st.markdown(
                 f"<div class='card' style='border-left:5px solid {color_glob};text-align:center;'>"
                 f"<p style='font-size:2.5rem;font-weight:800;color:{color_glob};margin:0;'>{score_moy_d:.1f}/10</p>"
                 f"<p style='color:{color_glob};font-weight:700;margin:0;'>{niveau_glob}</p>"
-                f"<p style='color:#888;font-size:0.85rem;margin:0.3rem 0 0;'>الدرجة المتوسطة sur {len(score_cols_d)} domaines</p>"
+                f"<p style='color:#888;font-size:0.85rem;margin:0.3rem 0 0;'>الدرجة moyen sur {len(score_cols_d)} domaines</p>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -2794,7 +2842,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
         st.markdown("---")
         tab1, tab2, tab3, tab4, tab5 = st.tabs([
             "📋 M-CHAT Clinique", "📊 Profil Radar",
-            "🔬 التحليل IA", "📈 Comparaison", "📄 التقرير"
+            "🔬 Analyse IA", "📈 Comparaison", "📄 Rapport"
         ])
 
         # ── Tab 1 : M-CHAT Clinique ──────────────────────────────────
@@ -2825,11 +2873,11 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                     st.markdown(f"<p style='margin:0.3rem 0;font-size:0.95rem;'><b>{i+1}.</b> {q}</p>",
                                 unsafe_allow_html=True)
                 with col_r:
-                    rep = st.radio("", ["✅ نعم","❌ لا"], key=f"mchat_pro_{key}",
+                    rep = st.radio("", ["✅ Oui","❌ Non"], key=f"mchat_pro_{key}",
                                    horizontal=True, label_visibility="collapsed")
                     reps_clin[key] = rep
 
-            # Score automatique basé sur profil patient
+            # الدرجة automatique basé sur profil patient
             for sc in score_cols_d:
                 v = float(patient_diag[sc]) if not pd.isna(patient_diag[sc]) else 5
                 total_mchat += min(v/10, 1) * 3
@@ -2840,12 +2888,12 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
             st.markdown(
                 f"<div class='card' style='border-left:5px solid {color_mc};margin-top:1rem;'>"
                 f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
-                f"<h4 style='color:{color_mc};margin:0;'>Score M-CHAT-R</h4>"
+                f"<h4 style='color:{color_mc};margin:0;'>الدرجة M-CHAT-R</h4>"
                 f"<span style='background:{color_mc};color:white;padding:0.3rem 1rem;"
                 f"border-radius:20px;font-size:1rem;font-weight:700;'>{label_mc}</span></div>"
                 f"<div style='width:100%;background:#e0e0e0;border-radius:10px;height:14px;margin:0.7rem 0;'>"
                 f"<div style='width:{pct_mchat:.0f}%;background:{color_mc};height:14px;border-radius:10px;'></div></div>"
-                f"<p style='margin:0;color:#555;font-size:0.9rem;'>Score estimé : {pct_mchat:.0f}% de risque TSA</p>"
+                f"<p style='margin:0;color:#555;font-size:0.9rem;'>الدرجة estimé : {pct_mchat:.0f}% de risque TSA</p>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -2879,7 +2927,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
             for s in score_cols_d:
                 v = float(patient_diag[s]) if not pd.isna(patient_diag[s]) else 5
                 color_s = "#FF4444" if v >= 7 else "#FFA500" if v >= 4 else "#4CAF50"
-                niv = "⚠️ شديد" if v >= 7 else "🟡 متوسط" if v >= 4 else "✅ خفيف"
+                niv = "⚠️ Severe" if v >= 7 else "🟡 متوسط" if v >= 4 else "✅ خفيف"
                 st.markdown(
                     f"<div style='display:flex;justify-content:space-between;align-items:center;"
                     f"padding:0.4rem 0.8rem;background:#f8f9fa;border-radius:8px;margin-bottom:0.3rem;"
@@ -2892,9 +2940,9 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                     unsafe_allow_html=True
                 )
 
-        # ── Tab 3 : التحليل IA ───────────────────────────────────────
+        # ── Tab 3 : Analyse IA ───────────────────────────────────────
         with tab3:
-            st.markdown("### 🔬 التحليل IA — Recommandations cliniques")
+            st.markdown("### 🔬 Analyse IA — Recommandations cliniques")
             from sklearn.preprocessing import StandardScaler
             from sklearn.neighbors import NearestNeighbors
             score_cols_all = [c for c in ["communication_sociale","interactions_sociales",
@@ -2917,7 +2965,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
 
             col_r1, col_r2 = st.columns(2)
             with col_r1:
-                st.markdown("#### 💊 التدخلات recommandées")
+                st.markdown("#### 💊 Interventions recommandées")
                 for k, v in sorted_d:
                     pct = (v/5)*100
                     color_r = "#4CAF50" if pct>=60 else "#FFA500" if pct>=40 else "#bbb"
@@ -2977,9 +3025,9 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
             )
             st.plotly_chart(fig_comp_pro, use_container_width=True)
 
-        # ── Tab 5 : التقرير ─────────────────────────────────────────
+        # ── Tab 5 : Rapport ─────────────────────────────────────────
         with tab5:
-            st.markdown("### 📄 التقرير clinique automatique")
+            st.markdown("### 📄 تقرير سريري تلقائي")
             import datetime
             date_rapport = datetime.datetime.now().strftime("%d/%m/%Y à %H:%M")
             nom_pro_r = st.session_state.get("auth_nom", "Professionnel")
@@ -2991,19 +3039,19 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 f"padding:2rem;font-family:Arial,sans-serif;'>"
                 f"<div style='display:flex;justify-content:space-between;border-bottom:2px solid #4A90E2;padding-bottom:1rem;margin-bottom:1rem;'>"
                 f"<div><h2 style='color:#4A90E2;margin:0;'>🧠 AutiGraphCare</h2>"
-                f"<p style='color:#888;margin:0;font-size:0.85rem;'>التقرير Diagnostic IA</p></div>"
+                f"<p style='color:#888;margin:0;font-size:0.85rem;'>تقرير تشخيص الذكاء الاصطناعي</p></div>"
                 f"<div style='text-align:right;'><p style='margin:0;color:#555;font-size:0.85rem;'>Date : {date_rapport}</p>"
                 f"<p style='margin:0;color:#555;font-size:0.85rem;'>Medecin : {nom_pro_r}</p></div></div>"
                 f"<h3 style='color:#333;'>Patient : {pid_diag}</h3>"
-                f"<p>Age : {int(patient_diag['age_mois'])//12} ans | Sexe : {patient_diag['sexe']}</p>"
+                f"<p>Age : {int(patient_diag['age_mois'])//12} سنة | Sexe : {patient_diag['sexe']}</p>"
                 f"<hr/>"
-                f"<h4 style='color:#4A90E2;'>📊 Scores cliniques</h4>"
+                f"<h4 style='color:#4A90E2;'>📊 الدرجات السريرية</h4>"
                 + "".join(
                     f"<p style='margin:0.2rem 0;'>• {labels_d[s]} : <b style='color:{'#FF4444' if float(patient_diag[s])>=7 else '#FFA500' if float(patient_diag[s])>=4 else '#4CAF50'};'>{float(patient_diag[s]):.1f}/10</b></p>"
                     for s in score_cols_d if not pd.isna(patient_diag[s])
                 ) +
                 f"<hr/>"
-                f"<h4 style='color:#4A90E2;'>💊 التدخلات actuelles</h4>"
+                f"<h4 style='color:#4A90E2;'>💊 Interventions actuelles</h4>"
                 f"<p>{'  •  '.join(interv_actives_r) if interv_actives_r else 'Aucune'}</p>"
                 f"<h4 style='color:#4CAF50;'>✅ Recommandations IA (KNN)</h4>"
                 f"<p>{'  •  '.join(rec_top) if rec_top else 'Evaluation en cours'}</p>"
@@ -3016,7 +3064,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
             )
             st.download_button(
                 "📥 تنزيل التقرير (TXT)",
-                data=f"RAPPORT DIAGNOSTIC IA — {pid_diag}\nDate: {date_rapport}\nMedecin: {nom_pro_r}\nالدرجة المتوسطة: {score_moy_d:.1f}/10\n",
+                data=f"RAPPORT DIAGNOSTIC IA — {pid_diag}\nDate: {date_rapport}\nMedecin: {nom_pro_r}\nالدرجة moyen: {score_moy_d:.1f}/10\n",
                 file_name=f"rapport_{pid_diag}_{datetime.datetime.now().strftime('%Y%m%d')}.txt",
                 mime="text/plain", use_container_width=True
             )
@@ -3041,48 +3089,48 @@ elif mp("detection") and esp == 'parent':
 
     with st.form("questionnaire_tsa"):
         st.markdown("#### 👁️ Contact et communication")
-        q1 = st.radio("Votre enfant vous regarde-t-il dans les yeux lorsque vous lui parlez ?",
+        q1 = st.radio("Votre enfant vous regarde-t-il dسنة les yeux lorsque vous lui parlez ?",
                        ["Souvent", "Parfois", "Rarement", "Jamais"], index=0, key="q1")
         q2 = st.radio("Votre enfant repond-il a son prenom quand vous l'appelez ?",
                        ["Toujours", "Souvent", "Parfois", "Jamais"], index=0, key="q2")
         q3 = st.radio("Votre enfant pointe-t-il du doigt pour montrer des objets ?",
-                       ["نعم frequemment", "Parfois", "Rarement", "لا"], index=0, key="q3")
+                       ["Oui frequemment", "Parfois", "Rarement", "Non"], index=0, key="q3")
 
         st.markdown("#### 🤝 التفاعلات الاجتماعية")
         q4 = st.radio("Votre enfant joue-t-il avec d'autres enfants ?",
-                       ["نعم volontiers", "Parfois", "Rarement", "لا"], index=0, key="q4")
+                       ["Oui volontiers", "Parfois", "Rarement", "Non"], index=0, key="q4")
         q5 = st.radio("Votre enfant imite-t-il vos gestes (agiter la main, applaudir...) ?",
-                       ["نعم", "Parfois", "Rarement", "Jamais"], index=0, key="q5")
+                       ["Oui", "Parfois", "Rarement", "Jamais"], index=0, key="q5")
 
-        st.markdown("#### 🔄 Comportements")
+        st.markdown("#### 🔄 السلوكيات")
         q6 = st.radio("Votre enfant a-t-il des mouvements repetitifs (se balancer, tourner les mains...) ?",
                        ["Jamais", "Rarement", "Souvent", "Tres souvent"], index=0, key="q6")
         q7 = st.radio("Votre enfant s'upset-il beaucoup lors de changements de routine ?",
                        ["Jamais", "Rarement", "Souvent", "Tres souvent"], index=0, key="q7")
 
-        st.markdown("#### 🗣️ Langage")
+        st.markdown("#### 🗣️ اللغة")
         q8 = st.radio("Votre enfant utilise-t-il des mots ou phrases pour communiquer ?",
-                       ["نعم, phrases completes", "Quelques mots", "Tres peu", "Pas du tout"], index=0, key="q8")
+                       ["Oui, phrases completes", "Quelques mots", "Tres peu", "Pas du tout"], index=0, key="q8")
 
-        age_enfant = st.slider("Age de votre enfant (en mois)", 12, 144, 36)
-        submitted = st.form_submit_button("📊 التحليلr les reponses", use_container_width=True)
+        age_enfant = st.slider("Age de votre enfant (en شهر)", 12, 144, 36)
+        submitted = st.form_submit_button("📊 Analyser les reponses", use_container_width=True)
 
     if submitted:
         score = 0
         score += {"Souvent": 0, "Parfois": 1, "Rarement": 2, "Jamais": 3}[q1]
         score += {"Toujours": 0, "Souvent": 1, "Parfois": 2, "Jamais": 3}[q2]
-        score += {"نعم frequemment": 0, "Parfois": 1, "Rarement": 2, "لا": 3}[q3]
-        score += {"نعم volontiers": 0, "Parfois": 1, "Rarement": 2, "لا": 3}[q4]
-        score += {"نعم": 0, "Parfois": 1, "Rarement": 2, "Jamais": 3}[q5]
+        score += {"Oui frequemment": 0, "Parfois": 1, "Rarement": 2, "Non": 3}[q3]
+        score += {"Oui volontiers": 0, "Parfois": 1, "Rarement": 2, "Non": 3}[q4]
+        score += {"Oui": 0, "Parfois": 1, "Rarement": 2, "Jamais": 3}[q5]
         score += {"Jamais": 0, "Rarement": 1, "Souvent": 2, "Tres souvent": 3}[q6]
         score += {"Jamais": 0, "Rarement": 1, "Souvent": 2, "Tres souvent": 3}[q7]
-        score += {"نعم, phrases completes": 0, "Quelques mots": 1, "Tres peu": 2, "Pas du tout": 3}[q8]
+        score += {"Oui, phrases completes": 0, "Quelques mots": 1, "Tres peu": 2, "Pas du tout": 3}[q8]
 
         st.markdown("---")
         st.markdown("### 📊 Resultat de l'analyse")
         col1, col2 = st.columns([1, 2])
         with col1:
-            st.metric("Score total", f"{score} / 24")
+            st.metric("الدرجة total", f"{score} / 24")
             if score <= 4:
                 st.success("🟢 Faible risque")
             elif score <= 10:
@@ -3092,7 +3140,7 @@ elif mp("detection") and esp == 'parent':
         with col2:
             if score <= 4:
                 st.success("""
-                **🟢 Developpement dans la norme**
+                **🟢 Developpement dسنة la norme**
                 Les reponses ne suggerent pas de signes TSA significatifs.
                 Continuez le suivi pediatrique regulier.
                 """)
@@ -3129,11 +3177,11 @@ elif mp("orientation") and esp == 'parent':
          ["Diagnostic officiel TSA", "Evaluation neurologique", "Prescription des bilans"],
          "Premier recours pour le diagnostic. Il coordonne le parcours de soin."),
         ("🗣️", "Orthophoniste", "#4A90E2",
-         ["Retard de langage", "Communication limitee", "Score PECS recommande"],
+         ["Retard de langage", "التواصل limitee", "الدرجة PECS recommande"],
          "Travaille le langage expressif, receptif et la communication alternative."),
         ("🧘", "Psychologue", "#6C3FC5",
          ["السلوكيات المقيدة", "القلق", "التفاعلات الاجتماعية limitees"],
-         "Accompagne l'enfant sur les plans comportemental et emotionnel."),
+         "Accompagne l'enfant sur les plسنة comportemental et emotionnel."),
         ("🏃", "Psychomotricien", "#50E3C2",
          ["Coordination motrice", "Hypersensibilite sensorielle", "التقليد limitee"],
          "Travaille le schema corporel, la motricite fine et globale."),
@@ -3179,33 +3227,33 @@ elif mp("conseils") and esp == 'parent':
         sc_inter = float(patient['interactions_sociales']) if not pd.isna(patient.get('interactions_sociales', float('nan'))) else 5
         sc_imitation = float(patient['imitation'])         if not pd.isna(patient.get('imitation', float('nan')))             else 5
 
-        st.markdown(f"### Conseils personnalises pour **{patient_id}** ({int(patient['age_mois'])//12} ans)")
+        st.markdown(f"### نصائح شخصية pour **{patient_id}** ({int(patient['age_mois'])//12} سنة)")
         st.markdown("---")
 
         conseils = []
         if sc_comm >= 5:
-            conseils.append(("🗣️ Communication", "#4A90E2", [
+            conseils.append(("🗣️ التواصل", "#4A90E2", [
                 "Parlez lentement et clairement, utilisez des phrases courtes",
                 "Accompagnez toujours vos mots de gestes expressifs",
                 "Utilisez des images ou pictogrammes pour aider la comprehension",
                 "Lisez des livres illustres ensemble chaque jour (15 min)"
             ]))
         if sc_lang >= 5:
-            conseils.append(("📚 Langage et Expression", "#6C3FC5", [
+            conseils.append(("📚 اللغة et Expression", "#6C3FC5", [
                 "Chantez des chansons avec des gestes (Comptines adaptees)",
                 "Nommez les objets du quotidien a chaque occasion",
                 "Encouragez toute tentative de communication, meme non verbale",
                 "Repetez ses essais de mots en les prononcant correctement"
             ]))
         if sc_comp >= 5:
-            conseils.append(("🔄 Comportements et Routine", "#FF4444", [
+            conseils.append(("🔄 السلوكيات et Routine", "#FF4444", [
                 "Etablissez une routine journaliere stable et previsible",
                 "Preparez votre enfant aux changements a l'avance (planning visuel)",
                 "Creez un coin calme dedié pour les moments de surcharge sensorielle",
                 "Felicitez et recompensez immediatement les bons comportements"
             ]))
         if sc_inter >= 5:
-            conseils.append(("🤝 Interactions Sociales", "#50E3C2", [
+            conseils.append(("🤝 التفاعلات Sociales", "#50E3C2", [
                 "Organisez des jeux simples a deux (coucou, balle...)",
                 "Privilegiez les jeux en parallele avant les jeux cooperatifs",
                 "Jouez a imiter : faites ce que fait votre enfant pour creer le lien",
@@ -3237,7 +3285,7 @@ elif mp("conseils") and esp == 'parent':
             """, unsafe_allow_html=True)
 
         st.markdown("---")
-        st.success("💚 Rappel : chaque enfant TSA est unique. Adaptez ces conseils a votre enfant et a votre quotidien.")
+        st.success("💚 الاستدعاء : chaque enfant TSA est unique. Adaptez ces conseils a votre enfant et a votre quotidien.")
         if st.button("📈 Voir le suivi de l'evolution", use_container_width=True):
             st.session_state['menu'] = "📈 متابعة التطور"
             st.rerun()
@@ -3258,14 +3306,14 @@ elif mp("mon_enfant") and esp == 'parent':
         with col1:
             patient_id = st.selectbox("Selectionner l'enfant", df['id_patient'].values, key="enfant_sel")
             patient    = df[df['id_patient'] == patient_id].iloc[0]
-            age_ans    = int(patient['age_mois']) // 12
+            age_سنة    = int(patient['age_mois']) // 12
             age_mois_r = int(patient['age_mois']) % 12
             sexe_icon  = "👦" if patient['sexe'] == 'M' else "👧"
             st.markdown(
                 f"<div class='card' style='text-align:center;'>"
                 f"<div style='font-size:4rem;'>{sexe_icon}</div>"
                 f"<h2>{patient_id}</h2>"
-                f"<p style='color:#888;'>{age_ans} ans {age_mois_r} mois</p>"
+                f"<p style='color:#888;'>{age_ans} سنة {age_mois_r} mois</p>"
                 f"<p style='color:#888;'>Diagnostic a {patient['age_diagnostic']} mois</p>"
                 f"<p style='color:#888;'>Sexe : <b>{patient['sexe']}</b></p></div>",
                 unsafe_allow_html=True
@@ -3294,7 +3342,7 @@ elif mp("mon_enfant") and esp == 'parent':
                         f"</div></div></div>",
                         unsafe_allow_html=True
                     )
-            st.markdown("### 💊 Therapies en cours")
+            st.markdown("### 💊 العلاجات الجارية")
             therapy_map = [
                 ('orthophonie',     "🗣️ علاج النطق",    "#4A90E2"),
                 ('psychomotricite', "🏃 العلاج النفسحركي", "#50E3C2"),
@@ -3331,8 +3379,8 @@ elif mp("suivi") and esp == 'parent':
         patient_id = st.selectbox("Selectionner l'enfant", df['id_patient'].values, key="suivi_sel")
         patient    = df[df['id_patient'] == patient_id].iloc[0]
         scores_map = {
-            'communication_sociale': 'Communication',
-            'interactions_sociales': 'Interactions',
+            'communication_sociale': 'التواصل',
+            'interactions_sociales': 'التفاعلات',
             'langage_expressif':     'اللغة التعبيرية',
             'contact_visuel':        'التواصل البصري',
             'imitation':             'التقليد',
@@ -3360,15 +3408,15 @@ elif mp("suivi") and esp == 'parent':
             st.plotly_chart(fig, use_container_width=True)
             sm = sum(values) / len(values)
             c1, c2, c3 = st.columns(3)
-            with c1: st.metric("الدرجة المتوسطة",           f"{sm:.1f}/10")
+            with c1: st.metric("الدرجة moyen",           f"{sm:.1f}/10")
             with c2: st.metric("Competences evaluees",  len(values))
-            with c3: st.metric("المستوى global", "شديد" if sm >= 7 else "متوسط" if sm >= 4 else "خفيف")
+            with c3: st.metric("المستوى global", "Severe" if sm >= 7 else "متوسط" if sm >= 4 else "خفيف")
             if sm >= 7:
-                st.error(f"⚠️ Score {sm:.1f}/10 - Suivi intensif recommande. Consultez un specialiste TSA.")
+                st.error(f"⚠️ الدرجة {sm:.1f}/10 - Suivi intensif recommande. Consultez un specialiste TSA.")
             elif sm >= 4:
-                st.warning(f"🟠 Score {sm:.1f}/10 - Suivi regulier conseille.")
+                st.warning(f"🟠 الدرجة {sm:.1f}/10 - Suivi regulier conseille.")
             else:
-                st.success(f"✅ Score {sm:.1f}/10 - Developpement encourageant!")
+                st.success(f"✅ الدرجة {sm:.1f}/10 - Developpement encourageant!")
     else:
         st.error(t("erreur_donnees"))
 
@@ -3429,7 +3477,7 @@ elif mp("alertes") and esp == 'parent':
             st.balloons()
 
         st.markdown("---")
-        st.info("📅 Prochaine evaluation recommandee : dans 3 mois")
+        st.info("📅 Prochaine evaluation recommandee : dسنة 3 mois")
         st.info("👨‍⚕️ Partagez ce rapport avec l'equipe therapeutique")
         st.info("📞 En cas de regression soudaine, contactez votre medecin")
     else:
@@ -3499,7 +3547,7 @@ elif mp("accueil") and esp == 'pro':
             )
         with col_btn:
             st.markdown("<div style='height:0.6rem;'></div>", unsafe_allow_html=True)
-            if st.button(f"▶ فتح", key=f"pro_btn_{titre}", use_container_width=True):
+            if st.button(f"▶ Ouvrir", key=f"pro_btn_{titre}", use_container_width=True):
                 st.session_state['menu'] = page
                 st.rerun()
 
@@ -3507,10 +3555,10 @@ elif mp("accueil") and esp == 'pro':
     st.markdown("## 🚀 الميزات المتاحة")
     col1, col2 = st.columns(2)
     for i, (title, color, desc, page) in enumerate([
-        ("📋 ملف المريض",     "#4A90E2", "التحليل multidimensionnelle complete avec 8 scores.", "📋 ملف المريض"),
+        ("📋 ملف المريض",     "#4A90E2", "Analyse multidimensionnelle complete avec 8 scores.", "📋 ملف المريض"),
         (t("kg_titre"),    "#6C3FC5", "Visualisation interactive des relations cliniques.", t("kg_titre")),
-        ("🤖 التوصيات IA", "#50E3C2", "التدخلات personnalisees KNN avec score de confiance.", "🤖 التوصيات"),
-        ("📊 لوحة التحكم",          "#F5A623", "Statistiques populationnelles et distributions.", "📊 لوحة التحكم"),
+        ("🤖 التوصيات IA", "#50E3C2", "Interventions personnalisees KNN avec score de confiance.", "🤖 التوصيات"),
+        ("📊 Dashboard",          "#F5A623", "Statistiques populationnelles et distributions.", "📊 Dashboard"),
     ]):
         with (col1 if i % 2 == 0 else col2):
             st.markdown(
@@ -3519,7 +3567,7 @@ elif mp("accueil") and esp == 'pro':
                 f"<p style='color:#888;'>{desc}</p></div>",
                 unsafe_allow_html=True
             )
-            if st.button(f"▶ فتح {title}", key=f"acc_pro_btn_{i}", use_container_width=True):
+            if st.button(f"▶ Ouvrir {title}", key=f"acc_pro_btn_{i}", use_container_width=True):
                 st.session_state['menu'] = page
                 st.rerun()
     if not df.empty:
@@ -3527,7 +3575,7 @@ elif mp("accueil") and esp == 'pro':
         st.markdown("## 📈 Apercu des donnees cliniques")
         col1, col2 = st.columns(2)
         with col1:
-            fig = px.histogram(df, x='age_mois', nbins=20, title='Distribution par age',
+            fig = px.histogram(df, x='age_mois', nbins=20, title='توزيع الأعمار',
                                color_discrete_sequence=['#4A90E2'])
             fig.update_layout(plot_bgcolor='white', paper_bgcolor='white')
             st.plotly_chart(fig, use_container_width=True)
@@ -3550,7 +3598,7 @@ elif mp("accueil") and esp == 'pro':
 # ============================================================
 elif mp("profil_patient") and esp == 'pro':
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>📋 التحليل du Profil Patient</h1>"
+        "<div class='main-header'><h1 style='color:white;'>📋 Analyse du Profil Patient</h1>"
         "<p style='color:white;'>Evaluation clinique complete</p></div>",
         unsafe_allow_html=True
     )
@@ -3563,7 +3611,7 @@ elif mp("profil_patient") and esp == 'pro':
             with ca: st.metric("Age",        f"{patient['age_mois']} mois", f"{int(patient['age_mois'])//12} ans")
             with cb: st.metric("Sexe",        patient['sexe'])
             with cc: st.metric("Diagnostic", f"{patient['age_diagnostic']} mois")
-            st.markdown("### 💊 التدخلات en cours")
+            st.markdown("### 💊 التدخلات الجارية")
             therapy_map = [
                 ('orthophonie',     "🗣️ علاج النطق"),
                 ('psychomotricite', "🏃 العلاج النفسحركي"),
@@ -3585,9 +3633,9 @@ elif mp("profil_patient") and esp == 'pro':
             if 'trouble_sommeil' in patient.index and patient['trouble_sommeil'] == 1:
                 st.warning("🟡 Troubles du sommeil"); has_comor = True
             if not has_comor:
-                st.success("✅ Aucune comorbidite")
+                st.success("✅ لا توجد أمراض مصاحبة")
         with col2:
-            st.markdown("### 🎯 Scores cliniques")
+            st.markdown("### 🎯 الدرجات السريرية")
             score_cols = [
                 ("التواصل الاجتماعي",    'communication_sociale'),
                 ("التفاعلات الاجتماعية",    'interactions_sociales'),
@@ -3604,7 +3652,7 @@ elif mp("profil_patient") and esp == 'pro':
                     score = float(patient[col_name])
                     score_vals.append(score)
                     color  = "#FF4444" if score >= 7 else "#FFA500" if score >= 4 else "#4CAF50"
-                    niveau = "شديد"  if score >= 7 else "متوسط"  if score >= 4 else "خفيف"
+                    niveau = "Severe"  if score >= 7 else "متوسط"  if score >= 4 else "خفيف"
                     emoji  = "🔴"     if score >= 7 else "🟠"      if score >= 4 else "🟢"
                     st.markdown(
                         f"<div style='margin-bottom:0.8rem;'>"
@@ -3619,12 +3667,12 @@ elif mp("profil_patient") and esp == 'pro':
             if score_vals:
                 sm = sum(score_vals) / len(score_vals)
                 cs = "#FF4444" if sm >= 7 else "#FFA500" if sm >= 4 else "#4CAF50"
-                ns = "شديد"  if sm >= 7 else "متوسط"  if sm >= 4 else "خفيف"
+                ns = "Severe"  if sm >= 7 else "متوسط"  if sm >= 4 else "خفيف"
                 st.markdown(
                     f"<div style='background:{cs}15;padding:1rem;border-radius:10px;"
                     f"border-left:5px solid {cs};margin-top:1rem;'>"
                     f"<p style='margin:0;color:{cs};font-weight:700;'>"
-                    f"Profil global : {ns} - الدرجة المتوسطة : {sm:.1f}/10</p></div>",
+                    f"Profil global : {ns} - الدرجة moyen : {sm:.1f}/10</p></div>",
                     unsafe_allow_html=True
                 )
     else:
@@ -3635,12 +3683,12 @@ elif mp("profil_patient") and esp == 'pro':
 # ============================================================
 elif mp("knowledge_graph") and esp == 'pro':
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>🕸️ الرسم البياني المعرفي</h1>"
-        "<p style='color:white;'>Visualisation dynamique des relations cliniques</p></div>",
+        "<div class='main-header'><h1 style='color:white;'>🕸️ Knowledge Graph</h1>"
+        "<p style='color:white;'>تصوير ديناميكي للعلاقات السريرية</p></div>",
         unsafe_allow_html=True
     )
     if not df.empty:
-        tab_kg1, tab_kg2, tab_kg3 = st.tabs(["👤 Patient unique", "🔄 Comparaison", "📊 Stats globales"])
+        tab_kg1, tab_kg2, tab_kg3 = st.tabs(["👤 مريض واحد", "🔄 مقارنة", "📊 إحصائيات عامة"])
 
         with tab_kg1:
             col1, col2 = st.columns([1, 2])
@@ -3649,17 +3697,17 @@ elif mp("knowledge_graph") and esp == 'pro':
                 patient_kg = df[df["id_patient"] == pid_kg].iloc[0]
                 st.markdown(f"""
                 <div class='card' style='border-left:4px solid #4A90E2;'>
-                    <p><b>Age :</b> {int(patient_kg["age_mois"])//12} ans ({int(patient_kg["age_mois"])} mois)</p>
+                    <p><b>Age :</b> {int(patient_kg["age_mois"])//12} سنة ({int(patient_kg["age_mois"])} شهر)</p>
                     <p><b>Sexe :</b> {patient_kg["sexe"]}</p>
                 </div>""", unsafe_allow_html=True)
                 score_cols_kg = [c for c in ["communication_sociale","interactions_sociales",
                     "comportements_restreints","langage_expressif","contact_visuel"] if c in df.columns]
-                labels_kg = {"communication_sociale":"Communication","interactions_sociales":"Interactions",
-                    "comportements_restreints":"Comportements","langage_expressif":"Langage","contact_visuel":"التواصل البصري"}
+                labels_kg = {"communication_sociale":"التواصل","interactions_sociales":"التفاعلات",
+                    "comportements_restreints":"السلوكيات","langage_expressif":"اللغة","contact_visuel":"التواصل البصري"}
                 for sc in score_cols_kg:
                     v = float(patient_kg[sc]) if not pd.isna(patient_kg[sc]) else 5
                     color = "#FF4444" if v>=7 else "#FFA500" if v>=4 else "#4CAF50"
-                    niveau = "شديد" if v>=7 else "متوسط" if v>=4 else "خفيف"
+                    niveau = "Severe" if v>=7 else "متوسط" if v>=4 else "خفيف"
                     st.markdown(
                         f"<div style='margin-bottom:0.4rem;'>"
                         f"<div style='display:flex;justify-content:space-between;'>"
@@ -3694,9 +3742,9 @@ elif mp("knowledge_graph") and esp == 'pro':
                     nodes_x.append(sx); nodes_y.append(sy)
                     nodes_text.append(labels_kg[sc] + " " + f"{v:.0f}/10")
                     nodes_color.append(color); nodes_size.append(28)
-                    edge_x += [cx, sx, لاe]; edge_y += [cy, sy, لاe]
+                    edge_x += [cx, sx, None]; edge_y += [cy, sy, None]
 
-                # التدخلات (bottom half)
+                # Interventions (bottom half)
                 interv_list = [(k,n) for k,n in [("orthophonie","Ortho"),("psychomotricite","Psychomot"),
                     ("aba","ABA"),("teacch","TEACCH"),("pecs","PECS")] if k in df.columns and patient_kg.get(k,0)==1]
                 n_interv = len(interv_list)
@@ -3707,7 +3755,7 @@ elif mp("knowledge_graph") and esp == 'pro':
                     nodes_x.append(ix); nodes_y.append(iy)
                     nodes_text.append(f"💊 {n}")
                     nodes_color.append("#50E3C2"); nodes_size.append(25)
-                    edge_x += [cx, ix, لاe]; edge_y += [cy, iy, لاe]
+                    edge_x += [cx, ix, None]; edge_y += [cy, iy, None]
 
                 # الأمراض المصاحبة (right)
                 comor_list = [(k,n) for k,n in [("tdah","TDAH"),("anxiete","القلق"),
@@ -3718,7 +3766,7 @@ elif mp("knowledge_graph") and esp == 'pro':
                     nodes_x.append(rx); nodes_y.append(ry)
                     nodes_text.append(f"⚠️ {n}")
                     nodes_color.append("#D0021B"); nodes_size.append(22)
-                    edge_x += [cx, rx, لاe]; edge_y += [cy, ry, لاe]
+                    edge_x += [cx, rx, None]; edge_y += [cy, ry, None]
 
                 fig_kg = go.Figure()
                 fig_kg.add_trace(go.Scatter(x=edge_x, y=edge_y, mode="lines",
@@ -3742,8 +3790,8 @@ elif mp("knowledge_graph") and esp == 'pro':
                     🟢 Intervention &nbsp;|&nbsp; 🔴 Comorbidite</p>""", unsafe_allow_html=True)
 
         with tab_kg2:
-            st.markdown("### 🔄 Comparaison de patients")
-            sel_pats = st.multiselect("Choisir 2 ou 3 patients",
+            st.markdown("### 🔄 مقارنة de patients")
+            sel_pats = st.multiselect("اختر 2 أو 3 مرضى",
                 df["id_patient"].values, default=list(df["id_patient"].values[:2]), key="kg_multi")
             if len(sel_pats) >= 2:
                 score_cols_c = [c for c in ["communication_sociale","interactions_sociales",
@@ -3780,7 +3828,7 @@ elif mp("knowledge_graph") and esp == 'pro':
             for col, (v, l) in zip([col1,col2,col3,col4],[
                 (len(df),"Patients"),
                 (len(df)*8,"Relations"),
-                (int(sum((df[k]==1).sum() for k in ["orthophonie","aba","teacch","pecs","psychomotricite"] if k in df.columns)),"التدخلات"),
+                (int(sum((df[k]==1).sum() for k in ["orthophonie","aba","teacch","pecs","psychomotricite"] if k in df.columns)),"Interventions"),
                 (6,"Symptomes"),
             ]):
                 with col:
@@ -3790,7 +3838,7 @@ elif mp("knowledge_graph") and esp == 'pro':
                 fig_s.add_trace(go.Violin(y=df[c].dropna(), name=labels_kg.get(c,c),
                     box_visible=True, meanline_visible=True,
                     line_color=["#FF6B9D","#4A90E2","#50E3C2","#F5A623"][i]))
-            fig_s.update_layout(yaxis=dict(range=[0,10.5],title="Score"),
+            fig_s.update_layout(yaxis=dict(range=[0,10.5],title="الدرجة"),
                 plot_bgcolor="white", paper_bgcolor="white", height=350, showlegend=False)
             st.plotly_chart(fig_s, use_container_width=True)
     else:
@@ -3802,7 +3850,7 @@ elif mp("knowledge_graph") and esp == 'pro':
 elif mp("recommandations") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🤖 التوصيات IA — KNN</h1>"
-        "<p style='color:white;'>التدخلات personnalisees basees sur l'algorithme KNN (k=5)</p></div>",
+        "<p style='color:white;'>Interventions personnalisees basees sur l'algorithme KNN (k=5)</p></div>",
         unsafe_allow_html=True
     )
     if not df.empty:
@@ -3818,8 +3866,8 @@ elif mp("recommandations") and esp == 'pro':
         interv_cols_r = [c for c in ["orthophonie","psychomotricite","aba","teacch","pecs"] if c in df.columns]
         interv_names_r = {"orthophonie":"علاج النطق","psychomotricite":"العلاج النفسحركي",
             "aba":"ABA","teacch":"TEACCH","pecs":"PECS"}
-        labels_r = {"communication_sociale":"Communication","interactions_sociales":"Interactions",
-            "comportements_restreints":"Comportements","langage_expressif":"Lang. expressif",
+        labels_r = {"communication_sociale":"التواصل","interactions_sociales":"التفاعلات",
+            "comportements_restreints":"السلوكيات","langage_expressif":"Lang. expressif",
             "langage_receptif":"Lang. receptif","contact_visuel":"التواصل البصري",
             "imitation":"التقليد","jeu_symbolique":"اللعب الرمزي"}
 
@@ -3862,7 +3910,7 @@ elif mp("recommandations") and esp == 'pro':
                 marker_color=["#4CAF50" if (v/5)*100>=60 else "#FFA500" if (v/5)*100>=40 else "#aaa" for k,v in sorted_v],
                 text=[f"{(v/5)*100:.0f}%" for k,v in sorted_v],
                 textposition="outside"))
-            fig_rec.add_hline(y=60, line_dash="dot", line_color="#4CAF50", annotation_text="Seuil recommande")
+            fig_rec.add_hline(y=60, line_dash="dot", line_color="#4CAF50", annotation_text="العتبة الموصى بها")
             fig_rec.update_layout(yaxis=dict(range=[0,110],title="درجة الثقة (%)"),
                 plot_bgcolor="white", paper_bgcolor="white", height=300, showlegend=False)
             st.plotly_chart(fig_rec, use_container_width=True)
@@ -3881,7 +3929,7 @@ elif mp("recommandations") and esp == 'pro':
                     f"<b>#{rank} — {nb['id_patient']}</b>"
                     f"<span style='background:{color};color:white;padding:0.1rem 0.5rem;"
                     f"border-radius:10px;font-size:0.82rem;'>Sim. {sim:.0f}%</span></div>"
-                    f"<span style='font-size:0.82rem;color:#666;'>Age: {int(nb['age_mois'])//12} ans | "
+                    f"<span style='font-size:0.82rem;color:#666;'>Age: {int(nb['age_mois'])//12} سنة | "
                     f"{' · '.join(nb_interv) if nb_interv else 'Aucune intervention'}</span></div>",
                     unsafe_allow_html=True)
 
@@ -3907,7 +3955,7 @@ elif mp("recommandations") and esp == 'pro':
 # ============================================================
 elif mp("dashboard") and esp == 'pro':
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>📊 لوحة التحكم - التحليل de Cohorte</h1>"
+        "<div class='main-header'><h1 style='color:white;'>📊 Dashboard - Analyse de Cohorte</h1>"
         "<p style='color:white;'>Statistiques cliniques globales</p></div>",
         unsafe_allow_html=True
     )
@@ -3945,12 +3993,12 @@ elif mp("dashboard") and esp == 'pro':
         sc_cols = [c for c in ['communication_sociale','interactions_sociales',
                                 'comportements_restreints','langage_expressif','contact_visuel']
                    if c in df.columns]
-        sl = df[sc_cols].melt(var_name='Score', value_name='Valeur').dropna()
-        nm2 = {'communication_sociale':'Communication','interactions_sociales':'Interactions',
-               'comportements_restreints':'Comportements','langage_expressif':'Langage',
+        sl = df[sc_cols].melt(var_name='الدرجة', value_name='Valeur').dropna()
+        nm2 = {'communication_sociale':'التواصل','interactions_sociales':'التفاعلات',
+               'comportements_restreints':'السلوكيات','langage_expressif':'اللغة',
                'contact_visuel':'التواصل البصري'}
-        sl['Score'] = sl['Score'].map(nm2)
-        fig = px.box(sl, x='Score', y='Valeur', color='Score',
+        sl['الدرجة'] = sl['الدرجة'].map(nm2)
+        fig = px.box(sl, x='الدرجة', y='Valeur', color='الدرجة',
                      title='Distribution des scores cliniques',
                      color_discrete_sequence=['#4A90E2','#50E3C2','#F5A623','#6C3FC5','#FF6B9D'])
         fig.update_layout(showlegend=False, plot_bgcolor='white', paper_bgcolor='white')
@@ -3972,13 +4020,13 @@ elif mp("dashboard") and esp == 'pro':
 # ============================================================
 elif mp("stats_algerie"):
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>📊 Statistiques TSA en Algerie</h1>"
+        "<div class='main-header'><h1 style='color:white;'>📊 إحصائيات التوحد في الجزائر</h1>"
         "<p style='color:white;'>Etat des lieux et opportunites de marche</p></div>",
         unsafe_allow_html=True
     )
     col1, col2, col3, col4 = st.columns(4)
     for col, (val, label, color) in zip([col1, col2, col3, col4], [
-        ("50 000", "طفل مصاب بالتوحد في الجزائر", "#FF6B6B"),
+        ("50 000", "أطفال التوحد في الجزائر", "#FF6B6B"),
         ("4 500",  "Orthophonistes",         "#4A90E2"),
         ("3 000",  "Psychologues",           "#50E3C2"),
         ("15",     "Centres specialises",    "#F5A623"),
@@ -3995,7 +4043,7 @@ elif mp("stats_algerie"):
     with col1:
         st.markdown("### 🔴 Le probleme actuel")
         for val, desc in [
-            ("80%",    "des enfants TSA sans suivi structure"),
+            ("80%",    "des enfants TSA sسنة suivi structure"),
             ("2-3 ans","delai moyen de diagnostic"),
             ("Faible", "coordination entre intervenants"),
             ("Limite", "acces aux outils specialises"),
@@ -4047,8 +4095,8 @@ elif mp("business"):
     col1, col2, col3 = st.columns(3)
     for col, (title, price, color, features) in zip([col1, col2, col3], [
         ("👪 Parents", "2 500 DA / شهر", "#FF6B9D",
-         ["✅ Profil enfant complet","✅ Suivi mensuel",
-          "✅ Alertes automatiques","✅ Conseils personnalises","✅ Support messagerie"]),
+         ["✅ ملف طفل كامل","✅ Suivi mensuel",
+          "✅ Alertes automatiques","✅ نصائح شخصية","✅ Support messagerie"]),
         ("👨‍⚕️ Professionnels", "15 000 DA / سنة", "#4A90E2",
          ["✅ Tout l'espace parents","✅ Recommandations IA KNN",
           "✅ Knowledge Graph","✅ Dashboard clinique",
@@ -4056,7 +4104,7 @@ elif mp("business"):
         ("🏥 مؤسسةs", "30 000 DA / سنة", "#6C3FC5",
          ["✅ Tout l'espace pro","✅ Multi-utilisateurs",
           "✅ Dashboard etablissement","✅ Stats cohorte",
-          "✅ Formation incluse","✅ Support prioritaire"]),
+          "✅ تدريب مشمول","✅ Support prioritaire"]),
     ]):
         with col:
             fhtml = ''.join(f"<p style='margin:0.3rem 0;text-align:left;'>{f}</p>" for f in features)
@@ -4126,7 +4174,7 @@ elif mp("business"):
 # ============================================================
 elif mp("ia_explicable") and esp == 'pro':
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>🔬 الذكاء الاصطناعي القابل للتفسير — Pourquoi cette recommandation ?</h1>"
+        "<div class='main-header'><h1 style='color:white;'>🔬 الذكاء القابل للتفسير — Pourquoi cette recommandation ?</h1>"
         "<p style='color:white;'>Comprendre les decisions de l'algorithme KNN</p></div>",
         unsafe_allow_html=True
     )
@@ -4137,8 +4185,8 @@ elif mp("ia_explicable") and esp == 'pro':
         score_cols = ['communication_sociale','interactions_sociales','comportements_restreints',
                       'langage_expressif','langage_receptif','contact_visuel','imitation','jeu_symbolique']
         score_cols = [c for c in score_cols if c in df.columns]
-        labels_fr  = {'communication_sociale':'Communication','interactions_sociales':'Interactions',
-                      'comportements_restreints':'Comportements','langage_expressif':'Lang. expressif',
+        labels_fr  = {'communication_sociale':'التواصل','interactions_sociales':'التفاعلات',
+                      'comportements_restreints':'السلوكيات','langage_expressif':'Lang. expressif',
                       'langage_receptif':'Lang. receptif','contact_visuel':'التواصل البصري',
                       'imitation':'التقليد','jeu_symbolique':'اللعب الرمزي'}
 
@@ -4204,7 +4252,7 @@ elif mp("ia_explicable") and esp == 'pro':
                     f"<span style='background:{color};color:white;padding:0.1rem 0.6rem;"
                     f"border-radius:10px;font-size:0.85rem;font-weight:700;'>Sim. {sim_pct:.0f}%</span></div>"
                     f"<div style='font-size:0.85rem;color:#666;margin-top:0.3rem;'>"
-                    f"Age: {int(nb['age_mois'])//12} ans | التدخلات: {interv_str}</div></div>",
+                    f"Age: {int(nb['age_mois'])//12} سنة | Interventions: {interv_str}</div></div>",
                     unsafe_allow_html=True
                 )
 
@@ -4235,7 +4283,7 @@ elif mp("ia_explicable") and esp == 'pro':
             bar_color = "#4CAF50" if pct_vote >= 60 else "#F5A623" if pct_vote >= 40 else "#aaa"
             rec_level = t("fortement_recommande") if pct_vote >= 60 else t("recommande") if pct_vote >= 40 else t("optionnel")
 
-            # Scores pertinents pour cette intervention
+            # الدرجةs pertinents pour cette intervention
             fact_cols = explications.get(interv_key, ())
             fact_str  = ""
             for fc in fact_cols:
@@ -4254,7 +4302,7 @@ elif mp("ia_explicable") and esp == 'pro':
                 f"<div style='width:100%;background:#e0e0e0;border-radius:10px;height:10px;margin-bottom:0.5rem;'>"
                 f"<div style='width:{pct_vote:.0f}%;background:{bar_color};height:10px;border-radius:10px;'></div></div>"
                 f"<div style='font-size:0.88rem;color:#555;'>"
-                f"<b>{votes}/5</b> patients similaires utilisent cette intervention{fact_str}</div></div>",
+                f"<b>{votes}/5</b> مرضى مماثلون يستخدمون cette intervention{fact_str}</div></div>",
                 unsafe_allow_html=True
             )
 
@@ -4270,7 +4318,7 @@ elif mp("ia_explicable") and esp == 'pro':
 elif mp("avant_apres") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📈 Evolution Avant / Apres Traitement</h1>"
-        "<p style='color:white;'>Mesurer l'impact des interventions therapeutiques dans le temps</p></div>",
+        "<p style='color:white;'>Mesurer l'impact des interventions therapeutiques dسنة le temps</p></div>",
         unsafe_allow_html=True
     )
     if not df.empty:
@@ -4280,13 +4328,13 @@ elif mp("avant_apres") and esp == 'pro':
         score_cols_aa = [c for c in ['communication_sociale','interactions_sociales',
                                       'comportements_restreints','langage_expressif',
                                       'contact_visuel','imitation'] if c in df.columns]
-        labels_aa = {'communication_sociale':'Communication','interactions_sociales':'Interactions',
-                     'comportements_restreints':'Comportements','langage_expressif':'Langage',
+        labels_aa = {'communication_sociale':'التواصل','interactions_sociales':'التفاعلات',
+                     'comportements_restreints':'السلوكيات','langage_expressif':'اللغة',
                      'contact_visuel':'التواصل البصري','imitation':'التقليد'}
 
         # Simulation d'historique 12 mois avec amelioration realiste
         rng_aa = np.random.RandomState(hash(patient_id) % 10000)
-        mois_labels = ["M-12","M-9","M-6","M-3","Actuel"]
+        mois_labels = ["M-12","M-9","M-6","M-3","الحالي"]
         historique  = {}
         for c in score_cols_aa:
             score_actuel = float(patient[c]) if not pd.isna(patient[c]) else 5.0
@@ -4305,7 +4353,7 @@ elif mp("avant_apres") and esp == 'pro':
         st.markdown("---")
 
         # Graphe principal evolution
-        st.markdown("### 📊 Evolution des scores sur 12 mois")
+        st.markdown("### 📊 تطور الدرجات خلال 12 شهرًا")
         colors_lines = ['#FF6B9D','#4A90E2','#50E3C2','#F5A623','#6C3FC5','#FF4444']
         fig_evo = go.Figure()
         for i, c in enumerate(score_cols_aa):
@@ -4317,11 +4365,11 @@ elif mp("avant_apres") and esp == 'pro':
                 marker=dict(size=8, color=colors_lines[i]),
             ))
         fig_evo.add_hline(y=7, line_dash="dot", line_color="red",
-                          annotation_text="Seuil d'alerte", annotation_position="right")
+                          annotation_text="عتبة التنبيه", annotation_position="right")
         fig_evo.add_hline(y=4, line_dash="dot", line_color="orange",
-                          annotation_text="Seuil modere", annotation_position="right")
+                          annotation_text="عتبة متوسطة", annotation_position="right")
         fig_evo.update_layout(
-            xaxis_title="Periode", yaxis_title="Score (1-10)",
+            xaxis_title="الفترة", yaxis_title="الدرجة (1-10)",
             yaxis=dict(range=[0,10.5]),
             plot_bgcolor='white', paper_bgcolor='white',
             height=420, legend=dict(x=1.02, y=1),
@@ -4330,7 +4378,7 @@ elif mp("avant_apres") and esp == 'pro':
         st.plotly_chart(fig_evo, use_container_width=True)
 
         # Metriques delta
-        st.markdown("### 📉 Amelioration constatee (M-12 → Actuel)")
+        st.markdown("### 📉 التحسن (M-12 → الحالي)")
         cols_delta = st.columns(len(score_cols_aa))
         for i, c in enumerate(score_cols_aa):
             avant  = historique[c][0]
@@ -4358,12 +4406,12 @@ elif mp("avant_apres") and esp == 'pro':
             fig_comp.add_trace(go.Scatterpolar(
                 r=scores_avant + [scores_avant[0]], theta=lbls + [lbls[0]],
                 fill='toself', fillcolor='rgba(255,68,68,0.2)',
-                line=dict(color='#FF4444', width=2), name='Avant (M-12)'
+                line=dict(color='#FF4444', width=2), name='قبل (M-12)'
             ))
             fig_comp.add_trace(go.Scatterpolar(
                 r=scores_apres + [scores_apres[0]], theta=lbls + [lbls[0]],
                 fill='toself', fillcolor='rgba(76,175,80,0.2)',
-                line=dict(color='#4CAF50', width=2), name='Apres (Actuel)'
+                line=dict(color='#4CAF50', width=2), name='بعد (الحالي)'
             ))
             fig_comp.update_layout(
                 polar=dict(radialaxis=dict(visible=True, range=[0,10])),
@@ -4373,30 +4421,30 @@ elif mp("avant_apres") and esp == 'pro':
             st.plotly_chart(fig_comp, use_container_width=True)
 
         with col2:
-            st.markdown("#### 📋 التقرير d'evolution")
+            st.markdown("#### 📋 Rapport d'evolution")
             moy_avant = sum(historique[c][0] for c in score_cols_aa) / len(score_cols_aa)
             moy_apres = sum(historique[c][-1] for c in score_cols_aa) / len(score_cols_aa)
             amelio_glob = ((moy_avant - moy_apres) / moy_avant) * 100
             st.markdown(
                 f"<div class='card' style='border-left:5px solid #4CAF50;'>"
                 f"<h4 style='color:#4CAF50;margin:0 0 1rem;'>✅ Synthese 12 mois</h4>"
-                f"<p>الدرجة المتوسطة initial : <b style='color:#FF4444;'>{moy_avant:.1f}/10</b></p>"
-                f"<p>الدرجة المتوسطة actuel : <b style='color:#4CAF50;'>{moy_apres:.1f}/10</b></p>"
+                f"<p>الدرجة المتوسطة الأولية : <b style='color:#FF4444;'>{moy_avant:.1f}/10</b></p>"
+                f"<p>الدرجة المتوسطة الحالية : <b style='color:#4CAF50;'>{moy_apres:.1f}/10</b></p>"
                 f"<p>التحسن الإجمالي : <b style='color:#4A90E2;font-size:1.3rem;'>-{amelio_glob:.1f}%</b></p>"
                 f"<hr/>"
                 f"<p style='color:#555;font-size:0.9rem;'>Interpretation : une diminution des scores "
-                f"indique une <b>reduction des difficultes</b> dans ces domaines.</p></div>",
+                f"indique une <b>reduction des difficultes</b> dسنة ces domaines.</p></div>",
                 unsafe_allow_html=True
             )
 
-            # التدخلات actives
+            # Interventions actives
             interv_actives = [n for k, n in [
                 ('orthophonie','علاج النطق'),('psychomotricite','العلاج النفسحركي'),
                 ('aba','ABA'),('teacch','TEACCH'),('pecs','PECS')
             ] if k in patient.index and patient[k] == 1]
             st.markdown(
                 f"<div class='card' style='border-left:5px solid #4A90E2;margin-top:1rem;'>"
-                f"<h4 style='color:#4A90E2;margin:0 0 0.5rem;'>💊 التدخلات en cours</h4>"
+                f"<h4 style='color:#4A90E2;margin:0 0 0.5rem;'>💊 التدخلات الجارية</h4>"
                 + "".join(f"<span style='background:#4A90E2;color:white;padding:0.2rem 0.6rem;"
                           f"border-radius:15px;margin:0.2rem;display:inline-block;font-size:0.85rem;'>{n}</span>"
                           for n in interv_actives) +
@@ -4404,7 +4452,7 @@ elif mp("avant_apres") and esp == 'pro':
                 unsafe_allow_html=True
             )
 
-        st.info("📅 Note : Les donnees historiques sont simulees a partir du profil actuel. "
+        st.info("📅 ملاحظة: البيانات التاريخية مُحاكاة من الملف الحالي. "
                 "En production, les scores seraient enregistres lors de chaque evaluation mensuelle.")
     else:
         st.error(t("erreur_donnees"))
@@ -4448,7 +4496,7 @@ elif mp("tableau_medecin") and esp == 'pro':
         col_left, col_right = st.columns([2, 1])
 
         with col_left:
-            st.markdown("### 🚨 Patients necessitant attention immediate")
+            st.markdown("### 🚨 مرضى يحتاجون اهتمامًا فوريًا")
             df_urgent = df[df['score_moyen'] >= 6.5].sort_values('score_moyen', ascending=False).head(8)
             for _, row in df_urgent.iterrows():
                 sm = row['score_moyen']
@@ -4465,7 +4513,7 @@ elif mp("tableau_medecin") and esp == 'pro':
                     f"<div style='background:#fff8f8;border-radius:10px;padding:0.7rem 1rem;"
                     f"margin-bottom:0.5rem;border-left:5px solid {color};'>"
                     f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
-                    f"<span style='font-weight:700;'>{row['id_patient']} — {int(row['age_mois'])//12} ans ({row['sexe']})</span>"
+                    f"<span style='font-weight:700;'>{row['id_patient']} — {int(row['age_mois'])//12} سنة ({row['sexe']})</span>"
                     f"<div style='display:flex;gap:0.4rem;'>"
                     f"<span style='background:{color};color:white;padding:0.15rem 0.6rem;"
                     f"border-radius:10px;font-size:0.8rem;font-weight:700;'>{badge}</span>"
@@ -4473,14 +4521,14 @@ elif mp("tableau_medecin") and esp == 'pro':
                     f"border-radius:10px;font-size:0.8rem;'>{interv_badge}</span>"
                     f"</div></div>"
                     f"<div style='font-size:0.85rem;color:#666;margin-top:0.3rem;'>"
-                    f"الدرجة المتوسطة: <b style='color:{color};'>{sm:.1f}/10</b>{comor_str}</div></div>",
+                    f"الدرجة moyen: <b style='color:{color};'>{sm:.1f}/10</b>{comor_str}</div></div>",
                     unsafe_allow_html=True
                 )
 
         with col_right:
-            st.markdown("### 📊 Repartition des profils")
+            st.markdown("### 📊 توزيع الملفات")
             fig_pie = go.Figure(go.Pie(
-                labels=["شديد","متوسط","Stable"],
+                labels=["Severe","متوسط","Stable"],
                 values=[n_urgent, n_modere, n_stable],
                 marker=dict(colors=["#FF4444","#FFA500","#4CAF50"]),
                 hole=0.45,
@@ -4494,7 +4542,7 @@ elif mp("tableau_medecin") and esp == 'pro':
             )
             st.plotly_chart(fig_pie, use_container_width=True)
 
-            st.markdown("### 🏥 Taux de couverture")
+            st.markdown("### 🏥 معدل التغطية")
             interv_data = {}
             for k, label in [('orthophonie','علاج النطق'),('aba','ABA'),
                               ('teacch','TEACCH'),('pecs','PECS'),('psychomotricite','Psychomot.')]:
@@ -4515,10 +4563,10 @@ elif mp("tableau_medecin") and esp == 'pro':
                 )
 
         st.markdown("---")
-        st.markdown("### 📈 Distribution des scores par domaine")
+        st.markdown("### 📈 توزيع الدرجات حسب المجال")
         fig_box = go.Figure()
         colors_box = ['#FF6B9D','#4A90E2','#50E3C2','#F5A623']
-        for i, (c, label) in enumerate(zip(score_moy_cols, ['Communication','Interactions','Comportements','Langage'])):
+        for i, (c, label) in enumerate(zip(score_moy_cols, ['التواصل','التفاعلات','السلوكيات','اللغة'])):
             fig_box.add_trace(go.Violin(
                 y=df[c].dropna(), name=label,
                 box_visible=True, meanline_visible=True,
@@ -4526,13 +4574,13 @@ elif mp("tableau_medecin") and esp == 'pro':
                 line_color=colors_box[i]
             ))
         fig_box.update_layout(
-            yaxis=dict(range=[0,10.5], title="Score"),
+            yaxis=dict(range=[0,10.5], title="الدرجة"),
             plot_bgcolor='white', paper_bgcolor='white',
             height=350, showlegend=False
         )
         st.plotly_chart(fig_box, use_container_width=True)
 
-        with st.expander("📋 Liste complete des patients (exportable)"):
+        with st.expander("📋 القائمة الكاملة للمرضى"):
             cols_show = ['id_patient','age_mois','sexe','score_moyen'] + score_moy_cols[:3]
             cols_show = [c for c in cols_show if c in df.columns]
             df_show = df[cols_show].round(2).sort_values('score_moyen', ascending=False)
@@ -4546,7 +4594,7 @@ elif mp("tableau_medecin") and esp == 'pro':
 elif mp("comparaison"):
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>🌍 المقارنة الدولية</h1>"
-        "<p style='color:white;'>Algerie vs monde — etat des lieux et positionnement</p></div>",
+        "<p style='color:white;'>الجزائر مقابل العالم — نظرة عامة</p></div>",
         unsafe_allow_html=True
     )
 
@@ -4554,16 +4602,16 @@ elif mp("comparaison"):
     data_comp = {
         "Pays":             pays,
         "الانتشار TSA %": [1.0, 1.1, 2.8, 0.9, 0.8, 1.0],
-        "Delai diagnostic (ans)": [4.5, 3.2, 4.0, 5.0, 5.5, 4.0],
+        "Delai diagnostic (سنة)": [4.5, 3.2, 4.0, 5.0, 5.5, 4.0],
         "Specialistes / 10k enfants": [0.8, 12.0, 18.5, 1.2, 1.5, 4.0],
         "Taux prise en charge %": [20, 72, 85, 25, 22, 45],
-        "Centres specialises": [15, 280, 1200, 18, 12, لاe],
+        "Centres specialises": [15, 280, 1200, 18, 12, None],
         "Outils IA disponibles": ["Emergent","Avance","Leader","Emergent","Emergent","Variable"],
     }
     df_comp = pd.DataFrame(data_comp)
 
-    # KPIs الجزائر مقابل فرنسا
-    st.markdown("### 🔍 الجزائر مقابل فرنسا — le gap a combler")
+    # KPIs Algerie vs France
+    st.markdown("### 🔍 الجزائر مقابل فرنسا — الفجوة التي يجب ردمها")
     c1,c2,c3,c4 = st.columns(4)
     gaps = [
         ("Specialistes", "0.8 vs 12/10k", "x15 moins", "#FF4444"),
@@ -4596,7 +4644,7 @@ elif mp("comparaison"):
         ))
         fig_spec.add_hline(y=data_comp["Specialistes / 10k enfants"][3], # OMS
                            line_dash="dot", line_color="#888",
-                           annotation_text="Moy. OMS")
+                           annotation_text="متوسط منظمة الصحة العالمية")
         fig_spec.update_layout(
             yaxis_title="Nb specialistes / 10k enfants",
             plot_bgcolor='white', paper_bgcolor='white', height=360,
@@ -4608,9 +4656,9 @@ elif mp("comparaison"):
         st.markdown("### ⏱️ Delai moyen de diagnostic (annees)")
         fig_delai = go.Figure(go.Bar(
             x=pays[:-1],
-            y=data_comp["Delai diagnostic (ans)"][:-1],
+            y=data_comp["Delai diagnostic (سنة)"][:-1],
             marker_color=["#FF4444","#4CAF50","#4CAF50","#FFA500","#FFA500"],
-            text=[f"{v} ans" for v in data_comp["Delai diagnostic (ans)"][:-1]],
+            text=[f"{v} ans" for v in data_comp["Delai diagnostic (سنة)"][:-1]],
             textposition='outside'
         ))
         fig_delai.update_layout(
@@ -4677,11 +4725,11 @@ elif mp("comparaison"):
 
     st.markdown(
         "<div class='card' style='border-left:5px solid #4A90E2;margin-top:1rem;'>"
-        "<h4 style='color:#4A90E2;'>🎯 Conclusion — Opportunite AutiGraphCare</h4>"
+        "<h4 style='color:#4A90E2;'>🎯 الخلاصة — فرصة AutiGraphCare</h4>"
         "<p style='color:#555;'>L'Algerie dispose d'un taux de prise en charge de <b>seulement 20%</b>, "
         "d'un nombre de specialistes <b>15x inferieur</b> a la France, et d'outils IA <b>quasi inexistants</b>. "
         "AutiGraphCare repond directement a ce deficit en proposant une plateforme IA accessible, "
-        "deployable immediatement, sans infrastructure lourde.</p></div>",
+        "deployable immediatement, sسنة infrastructure lourde.</p></div>",
         unsafe_allow_html=True
     )
     st.caption("Sources : OMS 2023, CDC USA 2023, HAS France 2023, Ministere de la Sante Algerie 2022.")
@@ -4691,13 +4739,13 @@ elif mp("comparaison"):
 # ============================================================
 elif mp("recherche"):
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>🧪 Base Scientifique d'AutiGraphCare</h1>"
-        "<p style='color:white;'>Methodologie, references et validation</p></div>",
+        "<div class='main-header'><h1 style='color:white;'>🧪 الأساس العلمي لـ AutiGraphCare</h1>"
+        "<p style='color:white;'>المنهجية والمراجع والتحقق</p></div>",
         unsafe_allow_html=True
     )
 
     tab_meth, tab_refs, tab_valid, tab_future = st.tabs([
-        "🔬 Methodologie", "📚 References", "✅ Validation", "🚀 Perspectives"
+        "🔬 المنهجية", "📚 References", "✅ Validation", "🚀 Perspectives"
     ])
 
     with tab_meth:
@@ -4729,16 +4777,16 @@ elif mp("recherche"):
             for titre, color, details in [
                 ("🧬 Diagnostic Multi-Modal", "#50E3C2",
                  ["M-CHAT-R : 10 items, validation internationale",
-                  "التحليل faciale : OpenCV + landmarks detection",
+                  "Analyse faciale : OpenCV + landmarks detection",
                   "Eye tracking : MediaPipe Face Mesh (468 points)",
-                  "التحليل vocale : features acoustiques (MFCC, F0)",
+                  "Analyse vocale : features acoustiques (MFCC, F0)",
                   "Fusion multimodale ponderee (40/25/25/10)"]),
                 ("📊 Dataset & Validation", "#F5A623",
                  ["150 patients simules (distribution realiste)",
                   "8 scores cliniques (1-10), 5 interventions",
                   "3 comorbidites, 2 genres, ages 2-12 ans",
                   "Validation croisee k-fold (k=10)",
-                  "Metriques : Precision, Rappel, F1-score"]),
+                  "Metriques : Precision, الاستدعاء, F1-score"]),
             ]:
                 items_html = "".join(f"<li style='color:#555;margin-bottom:0.3rem;'>{d}</li>" for d in details)
                 st.markdown(
@@ -4749,21 +4797,21 @@ elif mp("recherche"):
                 )
 
     with tab_refs:
-        st.markdown("### 📚 References Scientifiques Cles")
+        st.markdown("### 📚 المراجع العلمية الرئيسية")
         refs = [
             ("2023","Autisme","Maenner MJ et al.",
              "الانتشار and Characteristics of Autism Spectrum Disorder Among Children.",
              "MMWR CDC 2023","Taux de prevalence TSA : 1/36 enfants aux USA","#FF6B9D"),
             ("2014","M-CHAT","Robins DL et al.",
              "Validation of the Modified Checklist for Autism in Toddlers, Revised.",
-             "Pediatrics 2014","Sensibilite 91%, Specificite 95% pour reperage TSA 16-30 mois","#4A90E2"),
+             "Pediatrics 2014","الحساسية 91%, الخصوصية 95% pour reperage TSA 16-30 mois","#4A90E2"),
             ("2019","Deep Learning","Jiang M et al.",
              "Identifying Children with Autism Spectrum Disorder Based on Gaze-Following.",
              "IEEE Trans. Neural Syst. 2019","Precision 78% analyse faciale pour TSA","#6C3FC5"),
             ("2013","Eye Tracking","Chawarska K et al.",
              "Early Intervention for Toddlers with Autism: A Randomized Controlled Trial.",
-             "J. Child Psychol. 2013","Sensibilite 83% eye tracking pour detection precoce","#50E3C2"),
-            ("2015","التحليل Vocale","Bone D et al.",
+             "J. Child Psychol. 2013","الحساسية 83% eye tracking pour detection precoce","#50E3C2"),
+            ("2015","Analyse Vocale","Bone D et al.",
              "Applying Machine Learning to Facilitate Autism Diagnostics.",
              "INTERSPEECH 2015","Precision 71% analyse vocale patterns TSA","#F5A623"),
             ("2018","KNN Medical","Duda M et al.",
@@ -4786,22 +4834,22 @@ elif mp("recherche"):
                 f"<p style='margin:0;font-style:italic;color:#555;font-size:0.9rem;'>{titre}</p>"
                 f"<p style='margin:0.2rem 0 0;color:#888;font-size:0.82rem;'>{journal}</p>"
                 f"<p style='margin:0.3rem 0 0;'><span style='color:{color};font-weight:600;"
-                f"font-size:0.88rem;'>→ Apport : </span>"
+                f"font-size:0.88rem;'>→ المساهمة: </span>"
                 f"<span style='color:#555;font-size:0.88rem;'>{apport}</span></p>"
                 f"</div></div></div>",
                 unsafe_allow_html=True
             )
 
     with tab_valid:
-        st.markdown("### ✅ النتائج de Validation du Modele")
+        st.markdown("### ✅ نتائج التحقق من النموذج")
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("#### 📊 Performance KNN par intervention")
             interv_metrics = {
                 'Intervention':  ['علاج النطق','العلاج النفسحركي','ABA','TEACCH','PECS'],
                 'Precision (%)': [94, 88, 91, 89, 85],
-                'Rappel (%)':    [91, 85, 89, 87, 83],
-                'F1-Score':      [0.92, 0.86, 0.90, 0.88, 0.84],
+                'الاستدعاء (%)':    [91, 85, 89, 87, 83],
+                'F1-الدرجة':      [0.92, 0.86, 0.90, 0.88, 0.84],
             }
             df_metrics = pd.DataFrame(interv_metrics)
             fig_metrics = go.Figure()
@@ -4812,9 +4860,9 @@ elif mp("recherche"):
                 textposition='outside'
             ))
             fig_metrics.add_trace(go.Bar(
-                name='Rappel', x=df_metrics['Intervention'],
-                y=df_metrics['Rappel (%)'],
-                marker_color='#50E3C2', text=df_metrics['Rappel (%)'],
+                name='الاستدعاء', x=df_metrics['Intervention'],
+                y=df_metrics['الاستدعاء (%)'],
+                marker_color='#50E3C2', text=df_metrics['الاستدعاء (%)'],
                 textposition='outside'
             ))
             fig_metrics.update_layout(
@@ -4841,7 +4889,7 @@ elif mp("recherche"):
                 fill='tozeroy', fillcolor='rgba(74,144,226,0.1)'
             ))
             fig_learn.add_vline(x=150, line_dash="dot", line_color="#4CAF50",
-                                annotation_text="Dataset actuel")
+                                annotation_text="مجموعة البيانات الحالية")
             fig_learn.update_layout(
                 xaxis_title="Nb patients", yaxis_title="Precision (%)",
                 yaxis=dict(range=[60,101]),
@@ -4850,7 +4898,7 @@ elif mp("recherche"):
             st.plotly_chart(fig_learn, use_container_width=True)
 
         st.markdown("---")
-        st.markdown("### 🔢 Matrice de confusion globale (KNN k=5)")
+        st.markdown("### 🔢 مصفوفة الارتباك الإجمالية")
         labels_conf = ['علاج النطق','Psychomot.','ABA','TEACCH','PECS']
         confusion = np.array([
             [94, 2, 1, 2, 1],
@@ -4866,31 +4914,31 @@ elif mp("recherche"):
             colorbar=dict(title="N patients")
         ))
         fig_conf.update_layout(
-            xaxis_title="Predit", yaxis_title="Reel",
+            xaxis_title="متوقع", yaxis_title="فعلي",
             height=350, paper_bgcolor='white',
             margin=dict(t=20)
         )
         st.plotly_chart(fig_conf, use_container_width=True)
 
     with tab_future:
-        st.markdown("### 🚀 Perspectives de Recherche")
+        st.markdown("### 🚀 آفاق البحث")
         for i, (titre, color, items) in enumerate([
-            ("🔮 Court terme (2026-2027)", "#4A90E2", [
+            ("🔮 المدى القصير (2026-2027)", "#4A90E2", [
                 "Integration de donnees EEG pour detection neurologique precoce",
                 "Modele LSTM pour prediction de l'evolution a 6 mois",
                 "Validation clinique sur patients reels avec CHU Alger",
                 "Extension du dataset a 500+ patients avec donnees reelles",
             ]),
-            ("🌱 Moyen terme (2027-2028)", "#50E3C2", [
+            ("🌱 المدى المتوسط (2027-2028)", "#50E3C2", [
                 "Collaboration avec Hopital Canastel (Oran) et CHU Annaba",
                 "Integration API teleconsultation avec specialistes",
                 "Modele federe (Federated Learning) pour confidentialite des donnees",
-                "Publication dans IEEE/Springer : 'KNN-based ASD intervention system'",
+                "Publication dسنة IEEE/Springer : 'KNN-based ASD intervention system'",
             ]),
             ("🌍 Long terme (2028+)", "#6C3FC5", [
                 "Expansion vers les pays du Maghreb (Maroc, Tunisie, Libye)",
                 "Certification CE medical device (classe IIa)",
-                "Partenariat OMS pour deploiement dans les pays a ressources limitees",
+                "Partenariat OMS pour deploiement dسنة les pays a ressources limitees",
                 "Contribution au registre national TSA Algerie",
             ]),
         ]):
@@ -4904,7 +4952,7 @@ elif mp("recherche"):
 
         st.markdown(
             "<div class='card' style='border-top:4px solid #F5A623;text-align:center;'>"
-            "<h3 style='color:#F5A623;'>🏆 Impact scientifique attendu</h3>"
+            "<h3 style='color:#F5A623;'>🏆 الأثر العلمي المتوقع</h3>"
             "<p style='color:#555;'>AutiGraphCare vise a reduire le delai de diagnostic en Algerie de "
             "<b style='color:#FF4444;'>4.5 ans</b> a <b style='color:#4CAF50;'>moins de 2 ans</b>, "
             "et d'augmenter le taux de prise en charge de <b style='color:#FF4444;'>20%</b> a "
@@ -4921,8 +4969,8 @@ elif mp("recherche"):
 # ============================================================
 elif mp("nouveau_patient") and esp == 'pro':
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>➕ Ajouter un Nouveau Patient</h1>"
-        "<p style='color:white;'>Creer un dossier clinique complet</p></div>",
+        "<div class='main-header'><h1 style='color:white;'>➕ إضافة مريض جديد</h1>"
+        "<p style='color:white;'>إنشاء ملف سريري كامل</p></div>",
         unsafe_allow_html=True
     )
 
@@ -4931,7 +4979,7 @@ elif mp("nouveau_patient") and esp == 'pro':
 
     if st.session_state["patient_sauvegarde"]:
         pid = st.session_state.get("nouveau_pid","P-NEW")
-        st.success(f"✅ Patient **{pid}** ajoute avec succes dans la base de donnees !")
+        st.success(f"✅ Patient **{pid}** تمت الإضافة بنجاح إلى قاعدة البيانات!")
         st.balloons()
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -4946,24 +4994,24 @@ elif mp("nouveau_patient") and esp == 'pro':
         with col3:
             if st.button(t("reco_ia"), use_container_width=True):
                 st.session_state["patient_sauvegarde"] = False
-                st.session_state["menu"] = "🔬 الذكاء الاصطناعي القابل للتفسير"
+                st.session_state["menu"] = "🔬 الذكاء القابل للتفسير"
                 st.rerun()
 
         # Resume du patient cree
         p = st.session_state.get("nouveau_patient_data", {})
         if p:
             st.markdown("---")
-            st.markdown("### 📋 Resume du dossier cree")
+            st.markdown("### 📋 ملخص الملف المنشأ")
             col1, col2 = st.columns(2)
             with col1:
                 st.markdown(
                     f"<div class='card' style='border-left:5px solid #4A90E2;'>"
-                    f"<h4 style='color:#4A90E2;'>👤 Informations generales</h4>"
+                    f"<h4 style='color:#4A90E2;'>👤 معلومات عامة</h4>"
                     f"<p><b>ID :</b> {p.get('id','-')}</p>"
-                    f"<p><b>Age :</b> {p.get('age','-')} mois ({p.get('age',0)//12} ans)</p>"
+                    f"<p><b>Age :</b> {p.get('age','-')} mois ({p.get('age',0)//12} سنة)</p>"
                     f"<p><b>Sexe :</b> {p.get('sexe','-')}</p>"
                     f"<p><b>Age diagnostic :</b> {p.get('age_diag','-')} mois</p>"
-                    f"<p><b>Medecin referent :</b> {p.get('medecin','-')}</p>"
+                    f"<p><b>الطبيب المرجعي :</b> {p.get('medecin','-')}</p>"
                     f"</div>",
                     unsafe_allow_html=True
                 )
@@ -4974,9 +5022,9 @@ elif mp("nouveau_patient") and esp == 'pro':
                 st.markdown(
                     f"<div class='card' style='border-left:5px solid #50E3C2;'>"
                     f"<h4 style='color:#50E3C2;'>💊 التكفل</h4>"
-                    f"<p><b>التدخلات :</b> {', '.join(interv) if interv else 'Aucune'}</p>"
+                    f"<p><b>Interventions :</b> {', '.join(interv) if interv else 'Aucune'}</p>"
                     f"<p><b>الأمراض المصاحبة :</b> {', '.join(comor) if comor else 'Aucune'}</p>"
-                    f"<p><b>Score moy. :</b> {p.get('score_moy',0):.1f}/10</p>"
+                    f"<p><b>متوسط الدرجة:</b> {p.get('score_moy',0):.1f}/10</p>"
                     f"</div>",
                     unsafe_allow_html=True
                 )
@@ -4985,7 +5033,7 @@ elif mp("nouveau_patient") and esp == 'pro':
         <div class='card' style='border-left:5px solid #4A90E2;margin-bottom:1.5rem;'>
             <p style='margin:0;color:#555;'>
             📝 Remplissez tous les champs du formulaire clinique. Les donnees seront ajoutees
-            a la base de donnees et le patient sera immediatement disponible dans tous les modules
+            a la base de donnees et le patient sera immediatement disponible dسنة tous les modules
             (KNN, Knowledge Graph, Recommandations, Dashboard).
             </p>
         </div>
@@ -4994,18 +5042,18 @@ elif mp("nouveau_patient") and esp == 'pro':
         with st.form("form_nouveau_patient", clear_on_submit=False):
 
             # ---- SECTION 1 : Identite ----
-            st.markdown("### 👤 Informations Generales")
+            st.markdown("### 👤 المعلومات العامة")
             col1, col2, col3 = st.columns(3)
             with col1:
-                new_id  = st.text_input("ID Patient *", placeholder="P-2026-001", help="Identifiant unique")
+                new_id  = st.text_input("معرّف المريض *", placeholder="P-2026-001", help="Identifiant unique")
             with col2:
-                new_age = st.number_input("Age (mois) *", min_value=12, max_value=144, value=36, step=1)
+                new_age = st.number_input("العمر (أشهر) *", min_value=12, max_value=144, value=36, step=1)
             with col3:
                 new_sexe = st.selectbox("Sexe *", ["M", "F"])
 
             col1, col2, col3 = st.columns(3)
             with col1:
-                new_age_diag = st.number_input("Age au diagnostic (mois)", min_value=12, max_value=144, value=30)
+                new_age_diag = st.number_input("العمر عند التشخيص (أشهر)", min_value=12, max_value=144, value=30)
             with col2:
                 new_medecin  = st.text_input(t("medecin_referent"), placeholder="Dr. Nom Prenom")
             with col3:
@@ -5015,10 +5063,10 @@ elif mp("nouveau_patient") and esp == 'pro':
                 ])
 
             st.markdown("---")
-            # ---- SECTION 2 : Scores cliniques ----
-            st.markdown("### 🎯 Scores Cliniques (1 = tres faible, 10 = tres eleve)")
+            # ---- SECTION 2 : الدرجات السريرية ----
+            st.markdown("### 🎯 الدرجات السريرية (1=منخفض جداً، 10=مرتفع جداً)")
             st.markdown(
-                "<p style='color:#888;font-size:0.9rem;'>⚠️ Un score eleve indique une difficulte importante dans ce domaine</p>",
+                "<p style='color:#888;font-size:0.9rem;'>⚠️ درجة مرتفعة تعني صعوبة مهمة في هذا المجال</p>",
                 unsafe_allow_html=True
             )
 
@@ -5039,7 +5087,7 @@ elif mp("nouveau_patient") and esp == 'pro':
                 with (col1 if i % 2 == 0 else col2):
                     val = st.slider(f"{label}", 1, 10, default, key=f"ns_{key}")
                     color = "#FF4444" if val >= 7 else "#FFA500" if val >= 4 else "#4CAF50"
-                    niveau = "شديد" if val >= 7 else "متوسط" if val >= 4 else "خفيف"
+                    niveau = "Severe" if val >= 7 else "متوسط" if val >= 4 else "خفيف"
                     st.markdown(
                         f"<div style='width:100%;background:#e0e0e0;border-radius:5px;height:6px;margin-bottom:0.8rem;'>"
                         f"<div style='width:{val*10}%;background:{color};height:6px;border-radius:5px;'></div></div>"
@@ -5049,8 +5097,8 @@ elif mp("nouveau_patient") and esp == 'pro':
                     scores_vals[key] = val
 
             st.markdown("---")
-            # ---- SECTION 3 : التدخلات ----
-            st.markdown("### 💊 التدخلات Therapeutiques en cours")
+            # ---- SECTION 3 : Interventions ----
+            st.markdown("### 💊 التدخلات العلاجية الجارية")
             col1, col2, col3, col4, col5 = st.columns(5)
             with col1: i_ortho  = st.checkbox("🗣️ علاج النطق")
             with col2: i_psycho = st.checkbox("🏃 العلاج النفسحركي")
@@ -5068,9 +5116,9 @@ elif mp("nouveau_patient") and esp == 'pro':
 
             st.markdown("---")
             # ---- SECTION 5 : Notes ----
-            st.markdown("### 📝 Notes cliniques")
+            st.markdown("### 📝 ملاحظات سريرية")
             notes = st.text_area("Observations du medecin (optionnel)",
-                                 placeholder="Ex : Enfant cooperatif, bonne reponse aux stimuli visuels...",
+                                 placeholder="مثال: طفل متعاون، استجابة جيدة للمحفزات البصرية...",
                                  height=80)
 
             st.markdown("---")
@@ -5078,11 +5126,11 @@ elif mp("nouveau_patient") and esp == 'pro':
             # Apercu score moyen
             score_moy_preview = sum(scores_vals.values()) / len(scores_vals) if scores_vals else 5
             color_prev = "#FF4444" if score_moy_preview >= 7 else "#FFA500" if score_moy_preview >= 4 else "#4CAF50"
-            niveau_prev = "شديد" if score_moy_preview >= 7 else "متوسط" if score_moy_preview >= 4 else "خفيف"
+            niveau_prev = "Severe" if score_moy_preview >= 7 else "متوسط" if score_moy_preview >= 4 else "خفيف"
             st.markdown(
                 f"<div class='card' style='border-left:5px solid {color_prev};'>"
                 f"<p style='margin:0;font-size:1rem;'>"
-                f"📊 الدرجة المتوسطة : <b style='color:{color_prev};font-size:1.3rem;'>{score_moy_preview:.1f}/10</b>"
+                f"📊 الدرجة moyen : <b style='color:{color_prev};font-size:1.3rem;'>{score_moy_preview:.1f}/10</b>"
                 f" — Profil : <b style='color:{color_prev};'>{niveau_prev}</b></p></div>",
                 unsafe_allow_html=True
             )
@@ -5093,7 +5141,7 @@ elif mp("nouveau_patient") and esp == 'pro':
             if not new_id.strip():
                 st.error("❌ L'ID patient est obligatoire !")
             elif not df.empty and new_id.strip() in df['id_patient'].values:
-                st.error(f"❌ L'ID '{new_id}' existe deja dans la base de donnees !")
+                st.error(f"❌ L'ID '{new_id}' existe deja dسنة la base de donnees !")
             else:
                 # Construire la nouvelle ligne
                 new_row = {
@@ -5128,7 +5176,7 @@ elif mp("nouveau_patient") and esp == 'pro':
                         ignore_index=True
                     )
 
-                # Sauvegarder aussi dans le CSV
+                # Sauvegarder aussi dسنة le CSV
                 try:
                     for path in ['data/dataset_tsa_complet.csv', 'dataset_tsa_complet.csv']:
                         try:
@@ -5180,7 +5228,7 @@ elif mp("messagerie"):
              "heure": "10:32", "date": "Lundi 02 Mars", "lu": True},
             {"id": 3, "expediteur": "pro", "nom": "Dr. Benali Karima", "role": "Orthophoniste",
              "avatar": "🗣️", "couleur": "#4A90E2",
-             "contenu": "نعم, excellente nouvelle ! Le pointage proto-imperatif est un jalon important du developpement communicatif. Encouragez-le en nommant toujours l'objet qu'il pointe.",
+             "contenu": "Oui, excellente nouvelle ! Le pointage proto-imperatif est un jalon important du developpement communicatif. Encouragez-le en nommant toujours l'objet qu'il pointe.",
              "heure": "11:05", "date": "Lundi 02 Mars", "lu": True},
             {"id": 4, "expediteur": "pro", "nom": "Dr. Meziane Sofiane", "role": "Psychologue",
              "avatar": "🧠", "couleur": "#6C3FC5",
@@ -5188,7 +5236,7 @@ elif mp("messagerie"):
              "heure": "14:20", "date": "Mardi 03 Mars", "lu": True},
             {"id": 5, "expediteur": "parent", "nom": "Famille Hadjoub", "role": "Parent",
              "avatar": "👪", "couleur": "#FF6B9D",
-             "contenu": "نعم, le 15 mars nous convenons parfaitement. A quelle heure pensez-vous ?",
+             "contenu": "Oui, le 15 mars nous convenons parfaitement. A quelle heure pensez-vous ?",
              "heure": "15:47", "date": "Mardi 03 Mars", "lu": True},
             {"id": 6, "expediteur": "pro", "nom": "Dr. Meziane Sofiane", "role": "Psychologue",
              "avatar": "🧠", "couleur": "#6C3FC5",
@@ -5196,7 +5244,7 @@ elif mp("messagerie"):
              "heure": "16:03", "date": "Mardi 03 Mars", "lu": True},
             {"id": 7, "expediteur": "system", "nom": "AutiGraphCare", "role": "Systeme",
              "avatar": "🤖", "couleur": "#50E3C2",
-             "contenu": "📊 التقرير automatique : Le score de التواصل الاجتماعي est passe de 7.2 a 6.8 ce mois-ci. Amelioration de 0.4 point detectee par l'IA.",
+             "contenu": "📊 Rapport automatique : Le score de التواصل الاجتماعي est passe de 7.2 a 6.8 ce mois-ci. Amelioration de 0.4 point detectee par l'IA.",
              "heure": "08:00", "date": "Mercredi 04 Mars", "lu": False},
         ]
 
@@ -5356,7 +5404,7 @@ elif mp("messagerie"):
             nouveau_msg = st.text_area(
                 t("nouveau_message"),
                 value=default_text,
-                placeholder="Ecrivez votre message ici...",
+                placeholder="اكتب رسالتك هنا...",
                 height=80, key="new_msg_input", label_visibility="collapsed"
             )
 
@@ -5374,7 +5422,7 @@ elif mp("messagerie"):
                     "role": "Parent" if esp == "parent" else "Professionnel",
                     "avatar": "👪" if esp == "parent" else "👨‍⚕️",
                     "couleur": "#FF6B9D" if esp == "parent" else "#4A90E2",
-                    "contenu": "📎 [التقرير PDF joint] — التقرير d'evaluation mensuelle genere automatiquement par AutiGraphCare.",
+                    "contenu": "📎 [Rapport PDF joint] — Rapport d'evaluation mensuelle genere automatiquement par AutiGraphCare.",
                     "heure": now.strftime("%H:%M"),
                     "date": now.strftime("%A %d %B"),
                     "lu": False,
@@ -5408,7 +5456,7 @@ elif mp("messagerie"):
                     "مرحباً ! Je suis l'assistant IA d'AutiGraphCare. D'apres le profil de votre enfant, je peux vous aider avec les recommandations personnalisees.",
                     "J'ai analyse les derniers scores. La communication sociale montre une tendance positive ce mois-ci.",
                     "Pour optimiser les progres, je recommande de renforcer les seances d'orthophonie bi-hebdomadaires.",
-                    "Les 5 patients similaires dans notre base de donnees ont montre une amelioration de 23% en 6 mois avec ce profil d'interventions.",
+                    "Les 5 patients similaires dسنة notre base de donnees ont montre une amelioration de 23% en 6 mois avec ce profil d'interventions.",
                 ]
                 import random
                 rep_ia = {
@@ -5455,20 +5503,20 @@ elif mp("messagerie"):
 elif mp("aide"):
     st.title(t("aide_titre"))
     st.markdown("""
-## Guide d'utilisation - AutiGraphCare v2.0
+## دليل الاستخدام - AutiGraphCare v2.0
 
 ### فضاء الآباء
 - **Mon Enfant** : Profil de developpement avec scores visuels
-- **Suivi Evolution** : Graphe radar sur 6 competences cles
-- **Alertes** : Detection automatique des signes preoccupants
+- **Suivi Evolution** : مخطط رادار على 6 كفاءات رئيسية
+- **Alertes** : الكشف التلقائي عن العلامات المقلقة
 
 ### فضاء المختصين
-- **Profil Patient** : التحليل clinique complete (8 scores + comorbidites + interventions)
+- **Profil Patient** : Analyse clinique complete (8 scores + comorbidites + interventions)
 - **Knowledge Graph** : Ouvrez via l'hamburger Streamlit (pages/02_Knowledge_Graph.py)
 - **Recommandations IA** : Ouvrez via l'hamburger Streamlit (pages/03_Recommandations.py)
 - **Dashboard** : Statistiques de cohorte (150 patients)
 - **Statistiques Algerie** : Etat des lieux + projections marche
-- **Business Model** : Plans tarifaires + strategie de deploiement
+- **Business Model** : Plسنة tarifaires + strategie de deploiement
 
 ### Structure du projet
 ```
