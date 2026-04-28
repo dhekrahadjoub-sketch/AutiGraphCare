@@ -15,9 +15,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-for key, val in [('theme','clair'), ('espace',None), ('menu',"🏠 Accueil")]:
+for key, val in [('theme','clair'), ('menu',"🏠 Accueil")]:
     if key not in st.session_state:
         st.session_state[key] = val
+if 'espace' not in st.session_state:
+    st.session_state['espace'] = None
 
 dark = st.session_state['theme'] == 'dark'
 lang = st.session_state.get("langue", "fr")
@@ -1696,34 +1698,15 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # ── Sélecteur de langue — vrais boutons Streamlit ──────────
-    st.markdown("**🌍 Langue / Language / اللغة**")
-    _cur_lang = st.session_state.get("langue", "fr")
-
-    bl1, bl2, bl3 = st.columns(3)
-    with bl1:
-        _active_fr = _cur_lang == "fr"
-        if st.button("🇫🇷 FR", key="btn_lang_fr", use_container_width=True,
-                     type="primary" if _active_fr else "secondary"):
-            st.session_state["langue"] = "fr"
-            st.session_state["menu"] = "🏠 Accueil"
-            st.rerun()
-    with bl2:
-        _active_en = _cur_lang == "en"
-        if st.button("🇬🇧 EN", key="btn_lang_en", use_container_width=True,
-                     type="primary" if _active_en else "secondary"):
-            st.session_state["langue"] = "en"
-            st.session_state["menu"] = "🏠 Accueil"
-            st.rerun()
-    with bl3:
-        _active_ar = _cur_lang == "ar"
-        if st.button("🇸🇦 عر", key="btn_lang_ar", use_container_width=True,
-                     type="primary" if _active_ar else "secondary"):
-            st.session_state["langue"] = "ar"
-            st.session_state["menu"] = "🏠 Accueil"
-            st.rerun()
-
-    # ── Theme + Notifications ────────────────────────────────
+    # ── Language selector ─────────────────────────────────
+    st.markdown("**Langue / Language / اللغة**")
+    _lb1, _lb2, _lb3 = st.columns(3)
+    with _lb1:
+        st.markdown('<div style="background:#FF6B9D;color:white;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;">FR ✓</div>', unsafe_allow_html=True)
+    with _lb2:
+        st.markdown('<a href="https://autigraphcare-en-dhekrahadjoub.streamlit.app/" target="_blank" style="text-decoration:none;"><div style="background:#f0f0f0;color:#555;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;cursor:pointer;">EN</div></a>', unsafe_allow_html=True)
+    with _lb3:
+        st.markdown('<a href="https://autigraphcare-ar-dhekrahadjoub.streamlit.app/" target="_blank" style="text-decoration:none;"><div style="background:#f0f0f0;color:#555;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;cursor:pointer;">AR</div></a>', unsafe_allow_html=True)
     c1, c2, c3 = st.columns([1, 2, 1])
     with c1:
         if st.button("🌙" if not dark else "☀️", key="theme_btn"):
