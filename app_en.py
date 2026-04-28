@@ -15,19 +15,17 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-for key, val in [('theme','clair'), ('menu',"🏠 Home")]:
+for key, val in [('theme','clair'), ('espace',None), ('menu',"🏠 Home")]:
     if key not in st.session_state:
         st.session_state[key] = val
-if 'espace' not in st.session_state:
-    st.session_state['espace'] = None
 
 dark = st.session_state['theme'] == 'dark'
 lang = st.session_state.get("langue", "fr")
 
 # ── TRADUCTION COMPLÈTE FR→EN/AR via JS ──────────────────────────────────────
-_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Medecin":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","Login":"Login","Se déconnecter":"Sign out","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Email address":"Email address","Password":"Password","Remember me":"Remember me","Password oublié ?":"Forgot password?","Password oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","Don't have an account?":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","Intelligent platform for ASD children":"Intelligent platform for ASD children","Intelligent ASD Platform":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","Parent Space":"Parent Space","Professional Space":"Professional Space","Entrer - Parent Space":"Enter - Parent Space","Entrer - Professional Space":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","ASD children in Algeria":"ASD children in Algeria","ASD children in Algeria":"ASD children in Algeria","Children affected worldwide":"Children affected worldwide","Without structured care":"Without structured care","Our AI precision":"Our AI precision","Our AI precision":"Our AI precision","Hello":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","View complete file":"View complete file","Hello Dr.":"Hello Dr.","patients dans votre espace privé":"patients in your private space","patients in your private space":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","No notifications":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","Choose a patient":"Choose a patient","Enregistrer le patient":"Save patient","Cancel":"Cancel","Confirm":"Confirm","Close":"Close","Level":"Level","Severe":"Severe","Moderate":"Moderate","Moderate":"Moderate","Mild":"Mild","Mild":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","Dark":"Dark","Light":"Light","HIGH Risk":"HIGH Risk","HIGH Risk":"HIGH Risk","MODERATE Risk":"MODERATE Risk","MODERATE Risk":"MODERATE Risk","LOW Risk":"LOW Risk","Comorbidités":"Comorbidities","Comorbidities":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","ASD signs screening questionnaire":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","Online":"Online","Offline":"Offline","Occupé":"Busy","Busy":"Busy","Envoyer":"Send","Your message":"Your message","Total messages":"Total messages","Parent messages":"Parent messages","Pro messages":"Pro messages","Unread":"Unread","Social communication":"Social communication","Social interactions":"Social interactions","Restricted behaviors":"Restricted behaviors","Expressive language":"Expressive language","Language réceptif":"Receptive language","Receptive language":"Receptive language","Eye contact":"Eye contact","Imitation":"Imitation","Symbolic play":"Symbolic play","Speech therapy":"Speech therapy","Psychomotricité":"Psychomotricity","Psychomotricity":"Psychomotricity","Sleep disorder":"Sleep disorder","Anxiété":"Anxiety","Anxiety":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","Initial avg score":"Initial average score","Current avg score":"Current average score","Amélioration globale":"Overall improvement","Overall improvement":"Overall improvement","Total patients":"Total patients","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Sans suivi":"No follow-up","Prévalence":"Prevalence","Prevalence":"Prevalence","Coverage":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","Free":"Free","Family Premium":"Family Premium","Établissement":"Institution","Institution":"Institution","Forever":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Dark mode":"Dark mode","Light mode":"Light mode","Wilaya":"Wilaya","LOW":"LOW","MODERATE":"MODERATE","HIGH":"HIGH"}
+_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Medecin":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","Login":"Login","Se déconnecter":"Sign out","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Email address":"Email address","Password":"Password","Remember me":"Remember me","Password oublié ?":"Forgot password?","Password oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","Don't have an account?":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","Intelligent platform for ASD children":"Intelligent platform for ASD children","Intelligent ASD Platform":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","Parent Space":"Parent Space","Professional Space":"Professional Space","Entrer - Parent Space":"Enter - Parent Space","Entrer - Professional Space":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","ASD children in Algeria":"ASD children in Algeria","ASD children in Algeria":"ASD children in Algeria","Children affected worldwide":"Children affected worldwide","Without structured care":"Without structured care","Our AI precision":"Our AI precision","Our AI precision":"Our AI precision","Hello":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","View complete file":"View complete file","Hello Dr.":"Hello Dr.","patients dyears votre espace privé":"patients in your private space","patients in your private space":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","No notifications":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","Choose a patient":"Choose a patient","Enregistrer le patient":"Save patient","Cancel":"Cancel","Confirm":"Confirm","Close":"Close","Level":"Level","Severe":"Severe","Moderate":"Moderate","Moderate":"Moderate","Mild":"Mild","Mild":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","Dark":"Dark","Light":"Light","HIGH Risk":"HIGH Risk","HIGH Risk":"HIGH Risk","MODERATE Risk":"MODERATE Risk","MODERATE Risk":"MODERATE Risk","LOW Risk":"LOW Risk","Comorbidités":"Comorbidities","Comorbidities":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","ASD signs screening questionnaire":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","Online":"Online","Offline":"Offline","Occupé":"Busy","Busy":"Busy","Envoyer":"Send","Your message":"Your message","Total messages":"Total messages","Parent messages":"Parent messages","Pro messages":"Pro messages","Unread":"Unread","Social communication":"Social communication","Social interactions":"Social interactions","Restricted behaviors":"Restricted behaviors","Expressive language":"Expressive language","Language réceptif":"Receptive language","Receptive language":"Receptive language","Eye contact":"Eye contact","Imitation":"Imitation","Symbolic play":"Symbolic play","Speech therapy":"Speech therapy","Psychomotricité":"Psychomotricity","Psychomotricity":"Psychomotricity","Sleep disorder":"Sleep disorder","Anxiété":"Anxiety","Anxiety":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","Initial avg score":"Initial average score","Current avg score":"Current average score","Amélioration globale":"Overall improvement","Overall improvement":"Overall improvement","Total patients":"Total patients","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Syears suivi":"No follow-up","Prévalence":"Prevalence","Prevalence":"Prevalence","Coverage":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","Free":"Free","Family Premium":"Family Premium","Établissement":"Institution","Institution":"Institution","Forever":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Mode sombre":"Dark mode","Mode clair":"Light mode","Wilaya":"Wilaya","LOW":"LOW","MODERATE":"MODERATE","HIGH":"HIGH"}
 
-_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Medecin":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","Login":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Email address":"البريد الإلكتروني","Password":"كلمة المرور","Remember me":"تذكّرني","Password oublié ?":"نسيت كلمة المرور؟","Password oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","Don't have an account?":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","Intelligent platform for ASD children":"منصة ذكية لأطفال طيف التوحد","Intelligent ASD Platform":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","Parent Space":"فضاء الآباء","Professional Space":"فضاء المختصين","Entrer - Parent Space":"دخول - فضاء الآباء","Entrer - Professional Space":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","Children affected worldwide":"أطفال متضررون في العالم","Without structured care":"بدون متابعة منظمة","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Hello":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","View complete file":"عرض الملف الكامل","Hello Dr.":"مرحباً دكتور","patients dans votre espace privé":"مرضى في فضائك الخاص","patients in your private space":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","No notifications":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","Choose a patient":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","Cancel":"إلغاء","Confirm":"تأكيد","Close":"إغلاق","Level":"المستوى","Severe":"شديد","Moderate":"متوسط","Moderate":"متوسط","Mild":"خفيف","Mild":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","Dark":"داكن","Light":"فاتح","HIGH Risk":"خطر مرتفع","HIGH Risk":"خطر مرتفع","MODERATE Risk":"خطر متوسط","MODERATE Risk":"خطر متوسط","LOW Risk":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","Comorbidities":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","ASD signs screening questionnaire":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","Online":"متصل","Offline":"غير متصل","Occupé":"مشغول","Busy":"مشغول","Envoyer":"إرسال","Your message":"رسالتك","Total messages":"إجمالي الرسائل","Parent messages":"رسائل الآباء","Pro messages":"رسائل المختصين","Unread":"غير مقروء","Social communication":"التواصل الاجتماعي","Social interactions":"التفاعلات الاجتماعية","Restricted behaviors":"السلوكيات المقيدة","Expressive language":"اللغة التعبيرية","Language réceptif":"اللغة الاستقبالية","Receptive language":"اللغة الاستقبالية","Eye contact":"التواصل البصري","Imitation":"التقليد","Symbolic play":"اللعب الرمزي","Speech therapy":"علاج النطق","Psychomotricité":"العلاج النفسحركي","Psychomotricity":"العلاج النفسحركي","Sleep disorder":"اضطراب النوم","Anxiété":"القلق","Anxiety":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","Initial avg score":"الدرجة المتوسطة الأولية","Current avg score":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","Overall improvement":"التحسن الإجمالي","Total patients":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Sans suivi":"بدون متابعة","Prévalence":"الانتشار","Prevalence":"الانتشار","Coverage":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","Free":"مجاني","Family Premium":"عائلي مميز","Établissement":"مؤسسة","Institution":"مؤسسة","Forever":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Dark mode":"الوضع الداكن","Light mode":"الوضع الفاتح","Wilaya":"الولاية","LOW":"منخفض","MODERATE":"متوسط","HIGH":"مرتفع"}
+_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Medecin":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","Login":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Email address":"البريد الإلكتروني","Password":"كلمة المرور","Remember me":"تذكّرني","Password oublié ?":"نسيت كلمة المرور؟","Password oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","Don't have an account?":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","Intelligent platform for ASD children":"منصة ذكية لأطفال طيف التوحد","Intelligent ASD Platform":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","Parent Space":"فضاء الآباء","Professional Space":"فضاء المختصين","Entrer - Parent Space":"دخول - فضاء الآباء","Entrer - Professional Space":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","Children affected worldwide":"أطفال متضررون في العالم","Without structured care":"بدون متابعة منظمة","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Hello":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","View complete file":"عرض الملف الكامل","Hello Dr.":"مرحباً دكتور","patients dyears votre espace privé":"مرضى في فضائك الخاص","patients in your private space":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","No notifications":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","Choose a patient":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","Cancel":"إلغاء","Confirm":"تأكيد","Close":"إغلاق","Level":"المستوى","Severe":"شديد","Moderate":"متوسط","Moderate":"متوسط","Mild":"خفيف","Mild":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","Dark":"داكن","Light":"فاتح","HIGH Risk":"خطر مرتفع","HIGH Risk":"خطر مرتفع","MODERATE Risk":"خطر متوسط","MODERATE Risk":"خطر متوسط","LOW Risk":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","Comorbidities":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","ASD signs screening questionnaire":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","Online":"متصل","Offline":"غير متصل","Occupé":"مشغول","Busy":"مشغول","Envoyer":"إرسال","Your message":"رسالتك","Total messages":"إجمالي الرسائل","Parent messages":"رسائل الآباء","Pro messages":"رسائل المختصين","Unread":"غير مقروء","Social communication":"التواصل الاجتماعي","Social interactions":"التفاعلات الاجتماعية","Restricted behaviors":"السلوكيات المقيدة","Expressive language":"اللغة التعبيرية","Language réceptif":"اللغة الاستقبالية","Receptive language":"اللغة الاستقبالية","Eye contact":"التواصل البصري","Imitation":"التقليد","Symbolic play":"اللعب الرمزي","Speech therapy":"علاج النطق","Psychomotricité":"العلاج النفسحركي","Psychomotricity":"العلاج النفسحركي","Sleep disorder":"اضطراب النوم","Anxiété":"القلق","Anxiety":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","Initial avg score":"الدرجة المتوسطة الأولية","Current avg score":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","Overall improvement":"التحسن الإجمالي","Total patients":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Syears suivi":"بدون متابعة","Prévalence":"الانتشار","Prevalence":"الانتشار","Coverage":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","Free":"مجاني","Family Premium":"عائلي مميز","Établissement":"مؤسسة","Institution":"مؤسسة","Forever":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Mode sombre":"الوضع الداكن","Mode clair":"الوضع الفاتح","Wilaya":"الولاية","LOW":"منخفض","MODERATE":"متوسط","HIGH":"مرتفع"}
 
 def _inject_js_translation():
     _l = st.session_state.get("langue","fr")
@@ -42,7 +40,7 @@ def _inject_js_translation():
         )
         for k,v in _d.items()
     )
-    # Use components.html — seule méthode fiable pour JS dans Streamlit
+    # Use components.html — seule méthode fiable pour JS dyears Streamlit
     components.html(f"""
 <script>
 (function(){{
@@ -385,7 +383,7 @@ TRAD = {
 # ── STATS TSA ───────────────────────────────────────────────────────────
 "tsa_chiffres":"📊 ASD in numbers",
 "enfants_algerie":"ASD children in Algeria","enfants_monde":"Enfants touchés monde",
-"sans_suivi":"Sans suivi structuré","precision_ia":"Our AI precision",
+"sans_suivi":"Syears suivi structuré","precision_ia":"Our AI precision",
 # ── ACCUEIL PARENT ──────────────────────────────────────────────────────
 "bonjour":"Hello","comment_aider":"How can I help you today?",
 "signes_tsa":"My child — ASD signs?","detection_sub":"5-minute questionnaire",
@@ -394,9 +392,9 @@ TRAD = {
 "ouvrir":"Open →","actions_rapides":"⚡ Quick actions",
 "profil_enfant":"👶 My child's profile","voir_dossier":"View complete file",
 "scores_therapies":"Clinical scores, thérapies en cours, historique",
-"conseil_detection":"💡 La détection précoce avant 3 ans améliore significativement les résultats.",
+"conseil_detection":"💡 La détection précoce avant 3 years améliore significativement les résultats.",
 # ── ACCUEIL PRO ─────────────────────────────────────────────────────────
-"bonjour_pro":"Hello Dr.","patients_espace":"patients dans votre espace privé",
+"bonjour_pro":"Hello Dr.","patients_espace":"patients dyears votre espace privé",
 "espace_prive":"🔒 Espace privé",
 "espace_prive_msg":"Seuls VOS patients sont visibles. Aucun autre professionnel n'a accès à vos dossiers.",
 "fonctionnalites":"🚀 Fonctionnalités disponibles",
@@ -485,7 +483,7 @@ TRAD = {
 "profil_titre":"📋 Patient Profile Complet",
 "profil_desc":"Multidimensional analysis with 8 clinical scores",
 "info_generales":"Informations générales","scores_cliniques":"Clinical scores",
-"id_patient":"ID Patient","age_mois":"Âge (mois)","diagnostic":"Diagnostic",
+"id_patient":"ID Patient","age_mois":"Âge (months)","diagnostic":"Diagnostic",
 "communication_sociale":"Social communication","interactions_sociales":"Social interactions",
 "comportements_restreints":"Restricted behaviors","langage_expressif":"Expressive language",
 "langage_receptif":"Language réceptif","contact_visuel":"Eye contact",
@@ -513,7 +511,7 @@ TRAD = {
 "sim_pct":"Sim.","votes_voisins":"patients similaires l'utilisent",
 # ── AVANT APRÈS ─────────────────────────────────────────────────────────
 "avap_titre":"📈 Évolution Avant / Après Traitement",
-"avap_desc":"Mesurer l'impact des interventions thérapeutiques dans le temps",
+"avap_desc":"Mesurer l'impact des interventions thérapeutiques dyears le temps",
 "evolution_12mois":"📊 Évolution des scores sur 12 mois",
 "amelioration":"📉 Amélioration constatée (M-12 → Current)",
 "radar_avant_apres":"🕸️ Comparaison profil AVANT vs APRÈS (Radar)",
@@ -558,7 +556,7 @@ TRAD = {
 "tab_validation":"✅ Validation","tab_perspectives":"🚀 Perspectives",
 "refs_cles":"📚 Références Scientifiques Clés",
 "resultats_validation":"✅ Résultats de Validation du Modèle",
-"courbe_apprentissage":"🔄 KNN Learning Curve",
+"courbe_apprentissage":"🔄 Courbe d'apprentissage KNN",
 "matrice_confusion":"🔢 Matrice de confusion globale",
 "perspectives_titre":"🚀 Research Perspectives",
 "court_terme":"🔮 Short term (2026-2027)","moyen_terme":"🌱 Medium term (2027-2028)",
@@ -568,17 +566,17 @@ TRAD = {
 "np_desc":"Créer un dossier clinique complet",
 "info_generales_form":"👤 Informations Générales",
 "scores_form":"🎯 Scores Cliniques (1 = très faible, 10 = très élevé)",
-"scores_avert":"⚠️ Un score élevé indique une difficulté importante dans ce domaine",
+"scores_avert":"⚠️ Un score élevé indique une difficulté importante dyears ce domaine",
 "interventions_form":"💊 Interventions Thérapeutiques en cours",
 "comorbidites_form":"🏥 Comorbidités","notes_form":"notes_form",
 "observations_placeholder":"Ex : Enfant coopératif, bonne réponse aux stimuli visuels...",
 "id_placeholder":"P-2026-001","id_obligatoire":"L'ID patient est obligatoire !",
-"id_existe":"existe déjà dans la base de données !",
-"patient_ajoute":"✅ Patient ajouté avec succès dans la base de données !",
+"id_existe":"existe déjà dyears la base de données !",
+"patient_ajoute":"✅ Patient ajouté avec succès dyears la base de données !",
 "autre_patient":"➕ Add another patient","voir_profil":"📋 View profile",
 "reco_ia":"🤖 Get AI recommendations",
 "resume_dossier":"📋 Résumé du dossier créé",
-"medecin_referent":"Médecin référent","wilaya":"wilaya","age_diagnostic":"Âge au diagnostic (mois)",
+"medecin_referent":"Médecin référent","wilaya":"wilaya","age_diagnostic":"Âge au diagnostic (months)",
 # ── BUSINESS MODEL ──────────────────────────────────────────────────────
 "business_titre":"💰 Business Model — AutiGraphCare",
 "business_desc":"Modèle économique et stratégie de déploiement",
@@ -1088,7 +1086,7 @@ def t(key):
     lang = st.session_state.get("langue", "fr")
     return TRAD.get(lang, TRAD["fr"]).get(key, TRAD["fr"].get(key, key))
 
-st.session_state["langue"] = "en"  # EN version
+st.session_state["langue"] = "en"
 
 def get_rtl():
     return st.session_state.get("langue", "fr") == "ar"
@@ -1113,7 +1111,7 @@ for k, v in [("auth_connecte", False), ("auth_user", None),
     if k not in st.session_state:
         st.session_state[k] = v
 
-# ── Gate : si pas connecte et veut entrer dans un espace ─────────────────────
+# ── Gate : si pas connecte et veut entrer dyears un espace ─────────────────────
 def show_auth_gate():
     """Affiche login / inscription / paiement selon auth_page"""
 
@@ -1150,7 +1148,7 @@ def show_auth_gate():
     # PAGE : LOGIN
     # ─────────────────────────────────────────────────────────────────────────
     if pg == "login":
-        # Centrage CSS sans colonnes vides
+        # Centrage CSS syears colonnes vides
         st.markdown("""
         <style>
         .login-wrap{max-width:460px;margin:0 auto;background:white;
@@ -1269,18 +1267,18 @@ def show_auth_gate():
                         r_specialite = st.selectbox("Specialty", ["Orthophoniste","Psychologue",
                             "Neuropediatre","Psychomotricien","Educateur specialise","Autre"], key="r_spec")
                     with col2:
-                        r_num_ordre = st.text_input("Professional registration no.", key="r_ordre")
+                        r_num_ordre = st.text_input("Professional reg. no.", key="r_ordre")
 
                 r_wilaya = st.selectbox(t("wilaya"), ["Alger","Oran","Constantine","Annaba",
                     "Blida","Setif","Tlemcen","Batna","Bejaia","Tizi Ouzou","Autres"], key="r_wilaya")
                 r_cgu    = st.checkbox("I accept the Terms and Conditions *", key="r_cgu")
                 st.info("➡️ Passez a l'onglet **2 - Choisir un plan** pour continuer")
 
-            # ── Tab 2 : Plans ──
+            # ── Tab 2 : Plyears ──
             with tab_plan:
                 st.markdown("### 💰 Choose your subscription")
 
-                plans = [
+                plyears = [
                     {
                         "id": "gratuit", "nom": "Free", "prix": "0 DA",
                         "periode": "Forever", "color": "#4CAF50",
@@ -1308,7 +1306,7 @@ def show_auth_gate():
                         "periode": "/ year", "color": "#4A90E2",
                         "badge": "🏆 Professionnel", "type_user": "pro",
                         "features": ["✅ Tout plan Famille",
-                                     "✅ KNN AI Recommendations",
+                                     "✅ KNN Recommandations IA",
                                      "✅ Knowledge Graph",
                                      "✅ IA Explicable (XAI)",
                                      "✅ Dashboard clinique",
@@ -1322,7 +1320,7 @@ def show_auth_gate():
                         "features": ["✅ Tout plan Pro",
                                      "✅ Multi-user license",
                                      "✅ Tableau de bord medecin",
-                                     "✅ Int. comparison stats",
+                                     "✅ Stats comparaison int.",
                                      "✅ Training included",
                                      "✅ 24/7 priority support"],
                     },
@@ -1368,7 +1366,7 @@ def show_auth_gate():
             # ── Tab 3 : Paiement ──
             with tab_paiement:
                 plan_id     = st.session_state.get("plan_choisi", "famille")
-                plan_info   = next((p for p in plans if p["id"] == plan_id), plans[1])
+                plan_info   = next((p for p in plyears if p["id"] == plan_id), plans[1])
 
                 st.markdown(
                     f"<div style='background:{plan_info['color']}15;border:2px solid {plan_info['color']};"
@@ -1617,7 +1615,7 @@ def get_patients_du_pro(df, user_email):
     """Retourne seulement les patients assignes a ce professionnel"""
     if df.empty:
         return df
-    # Cle unique par pro dans session state
+    # Cle unique par pro dyears session state
     key = f"patients_pro_{user_email.replace('@','_').replace('.','_')}"
     if key not in st.session_state:
         # Assignation initiale : diviser le dataset equitablement
@@ -1697,38 +1695,15 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # ── Sélecteur de langue — vrais boutons Streamlit ──────────
-    st.markdown("**🌍 Langue / Language / اللغة**")
-    _cur_lang = st.session_state.get("langue", "fr")
-
-    # ── Language buttons EN version ──────────────────────────
-    _URL_FR_LNK = "https://autigraphcare-gftbgydb8oiqcvdjnwyn7u.streamlit.app/"
-
-    bl1, bl2, bl3 = st.columns(3)
-    with bl1:
-        st.markdown(
-            f"<a href='{_URL_FR_LNK}' target='_blank' style='text-decoration:none;'>"
-            "<div style='background:#f0f0f0;color:#333;border-radius:8px;"
-            "padding:0.4rem;text-align:center;font-weight:700;font-size:0.9rem;'>"
-            "🇫🇷 FR</div></a>",
-            unsafe_allow_html=True
-        )
-    with bl2:
-        st.markdown(
-            "<div style='background:#4A90E2;color:white;border-radius:8px;"
-            "padding:0.4rem;text-align:center;font-weight:700;font-size:0.9rem;'>"
-            "🇬🇧 EN ✓</div>",
-            unsafe_allow_html=True
-        )
-    with bl3:
-        st.markdown(
-            "<div style='background:#eee;color:#aaa;border-radius:8px;"
-            "padding:0.4rem;text-align:center;font-weight:700;font-size:0.9rem;'>"
-            "🇸🇦 AR</div>",
-            unsafe_allow_html=True
-        )
-
-    # ── Theme + Notifications ────────────────────────────────
+    # ── Language selector ─────────────────────────────────
+    st.markdown("**Language / Langue / اللغة**")
+    _lb1, _lb2, _lb3 = st.columns(3)
+    with _lb1:
+        st.markdown('<a href="https://autigraphcare-gftbgydb8oiqcvdjnwyn7u.streamlit.app/" target="_blank" style="text-decoration:none;"><div style="background:#f0f0f0;color:#555;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;cursor:pointer;">FR</div></a>', unsafe_allow_html=True)
+    with _lb2:
+        st.markdown('<div style="background:#4A90E2;color:white;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;">EN ✓</div>', unsafe_allow_html=True)
+    with _lb3:
+        st.markdown('<a href="https://autigraphcare-ar-dhekrahadjoub.streamlit.app/" target="_blank" style="text-decoration:none;"><div style="background:#f0f0f0;color:#555;border-radius:8px;padding:0.4rem;text-align:center;font-weight:700;cursor:pointer;">AR</div></a>', unsafe_allow_html=True)
     c1, c2, c3 = st.columns([1, 2, 1])
     with c1:
         if st.button("🌙" if not dark else "☀️", key="theme_btn"):
@@ -1857,7 +1832,7 @@ with st.sidebar:
         if espace == 'pro':
             age_min = int(df['age_mois'].min())
             age_max = int(df['age_mois'].max())
-            age_range = st.slider("Filtrer par age (mois)", age_min, age_max, (age_min, age_max))
+            age_range = st.slider("Filtrer par age (months)", age_min, age_max, (age_min, age_max))
             df = df[(df['age_mois'] >= age_range[0]) & (df['age_mois'] <= age_range[1])]
             st.caption(f"📊 {len(df)} patients affiches")
     else:
@@ -1963,7 +1938,7 @@ if mp("accueil") and esp is None:
                 <h4 style='color:#FF6B9D;margin:0 0 0.5rem;'>🔍 Early Detection</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
                     Un <b>questionnaire clinique</b> integre permet de savoir si votre enfant
-                    presente des signes TSA et s'il est dans la norme pour son age.
+                    presente des signes TSA et s'il est dyears la norme pour son age.
                 </p>
             </div>
             <div style='background:#F0F8FF;border-radius:10px;padding:1rem;border-left:4px solid #4A90E2;'>
@@ -1981,7 +1956,7 @@ if mp("accueil") and esp is None:
                 </p>
             </div>
             <div style='background:#FFFBF0;border-radius:10px;padding:1rem;border-left:4px solid #F5A623;'>
-                <h4 style='color:#F5A623;margin:0 0 0.5rem;'>📈 Suivi dans le temps</h4>
+                <h4 style='color:#F5A623;margin:0 0 0.5rem;'>📈 Suivi dyears le temps</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
                     Un <b>suivi mensuel de l'evolution</b> avec graphes radar pour visualiser
                     les progres competence par competence.
@@ -2143,7 +2118,7 @@ elif mp("accueil") and esp == 'parent':
             st.rerun()
 
     st.markdown("<br/>", unsafe_allow_html=True)
-    st.info("💡 **Conseil :** La detection precoce avant 3 ans ameliore significativement les resultats therapeutiques.")
+    st.info("💡 **Conseil :** La detection precoce avant 3 years ameliore significativement les resultats therapeutiques.")
 
 # ============================================================
 # PARENTS - DIAGNOSTIC IA (4 modules)
@@ -2184,13 +2159,13 @@ elif mp("diagnostic_ia") and esp == 'parent':
         <div class='card' style='border-left:4px solid #4A90E2;'>
             <p style='margin:0; color:#555;'>
             Le <b>M-CHAT-R (Modified Checklist for Autism in Toddlers)</b> est l'outil de
-            reperage valide scientifiquement le plus utilise dans le monde. Notre version
+            reperage valide scientifiquement le plus utilise dyears le monde. Notre version
             <b>adaptative</b> ajuste les questions selon les reponses precedentes.
             </p>
         </div>
         """, unsafe_allow_html=True)
 
-        age_mchat = st.slider("Age de l'enfant (mois)", 16, 48, 24, key="age_mchat")
+        age_mchat = st.slider("Age de l'enfant (months)", 16, 48, 24, key="age_mchat")
 
         if age_mchat < 16 or age_mchat > 48:
             st.warning("⚠️ Le M-CHAT est valide pour les enfants de 16 a 48 mois.")
@@ -2206,7 +2181,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                  "Pointage proto-imperatif", "Non", 3),
                 ("Q4", "🎮", "Votre enfant joue-t-il a faire semblant ?",
                  "Symbolic play", "Non", 2),
-                ("Q5", "👁️", "Votre enfant vous regarde-t-il dans les yeux pendant plus de 1-2 secondes ?",
+                ("Q5", "👁️", "Votre enfant vous regarde-t-il dyears les yeux pendant plus de 1-2 secondes ?",
                  "Eye contact", "Non", 3),
                 ("Q6", "👂", "Votre enfant repond-il quand vous l'appelez par son prenom ?",
                  "Reponse au prenom", "Non", 3),
@@ -2277,9 +2252,9 @@ elif mp("diagnostic_ia") and esp == 'parent':
                             st.error(f"🔴 {d}")
 
                 if pct < 30:
-                    st.success("✅ **Risque faible** — Le developpement semble dans la norme. Continuez le suivi pediatrique regulier.")
+                    st.success("✅ **Risque faible** — Le developpement semble dyears la norme. Continuez le suivi pediatrique regulier.")
                 elif pct < 60:
-                    st.warning("🟠 **Risque modere** — Un bilan par un pediatre ou un orthophoniste est recommande dans les prochaines semaines.")
+                    st.warning("🟠 **Risque modere** — Un bilan par un pediatre ou un orthophoniste est recommande dyears les prochaines semaines.")
                 else:
                     st.error("🔴 **Risque eleve** — Une evaluation urgente par un specialiste TSA (neuropediatre) est fortement recommandee.")
 
@@ -2388,7 +2363,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                     if orient_regard < 0.5:
                         observations.append(("🟠", "Orientation du regard atypique", "Tendance a eviter le regard direct"))
                     if not observations:
-                        observations.append(("🟢", "Aucun signe atypique majeur detecte", "Developpement facial dans la norme"))
+                        observations.append(("🟢", "Aucun signe atypique majeur detecte", "Developpement facial dyears la norme"))
 
                     for emoji, titre, detail in observations:
                         st.markdown(
@@ -2763,7 +2738,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                 if ratio_silence > 0.55:
                     anomalies.append("🟡 Ratio silence eleve — vocalisation limitee")
                 if not anomalies:
-                    anomalies.append("🟢 Profil vocal dans la norme — aucune anomalie majeure")
+                    anomalies.append("🟢 Profil vocal dyears la norme — aucune anomalie majeure")
 
                 st.markdown("#### 🔍 Anomalies detectees")
                 for a in anomalies:
@@ -2835,7 +2810,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
         # Infos patient
         col_inf, col_score = st.columns([1, 2])
         with col_inf:
-            age_ans = int(patient_diag["age_mois"]) // 12
+            age_years = int(patient_diag["age_mois"]) // 12
             st.markdown(
                 f"<div class='card' style='border-left:5px solid #4A90E2;'>"
                 f"<h4 style='color:#4A90E2;margin:0 0 0.5rem;'>👤 {pid_diag}</h4>"
@@ -3067,7 +3042,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 f"<div style='text-align:right;'><p style='margin:0;color:#555;font-size:0.85rem;'>Date : {date_rapport}</p>"
                 f"<p style='margin:0;color:#555;font-size:0.85rem;'>Medecin : {nom_pro_r}</p></div></div>"
                 f"<h3 style='color:#333;'>Patient : {pid_diag}</h3>"
-                f"<p>Age : {int(patient_diag['age_mois'])//12} ans | Sexe : {patient_diag['sexe']}</p>"
+                f"<p>Age : {int(patient_diag['age_mois'])//12} years | Sexe : {patient_diag['sexe']}</p>"
                 f"<hr/>"
                 f"<h4 style='color:#4A90E2;'>📊 Clinical scores</h4>"
                 + "".join(
@@ -3113,7 +3088,7 @@ elif mp("detection") and esp == 'parent':
 
     with st.form("questionnaire_tsa"):
         st.markdown("#### 👁️ Contact et communication")
-        q1 = st.radio("Votre enfant vous regarde-t-il dans les yeux lorsque vous lui parlez ?",
+        q1 = st.radio("Votre enfant vous regarde-t-il dyears les yeux lorsque vous lui parlez ?",
                        ["Souvent", "Parfois", "Rarement", "Jamais"], index=0, key="q1")
         q2 = st.radio("Votre enfant repond-il a son prenom quand vous l'appelez ?",
                        ["Toujours", "Souvent", "Parfois", "Jamais"], index=0, key="q2")
@@ -3136,7 +3111,7 @@ elif mp("detection") and esp == 'parent':
         q8 = st.radio("Votre enfant utilise-t-il des mots ou phrases pour communiquer ?",
                        ["Oui, phrases completes", "Quelques mots", "Tres peu", "Pas du tout"], index=0, key="q8")
 
-        age_enfant = st.slider("Age de votre enfant (en mois)", 12, 144, 36)
+        age_enfant = st.slider("Age de votre enfant (en months)", 12, 144, 36)
         submitted = st.form_submit_button("📊 Analyser les reponses", use_container_width=True)
 
     if submitted:
@@ -3164,7 +3139,7 @@ elif mp("detection") and esp == 'parent':
         with col2:
             if score <= 4:
                 st.success("""
-                **🟢 Developpement dans la norme**
+                **🟢 Developpement dyears la norme**
                 Les reponses ne suggerent pas de signes TSA significatifs.
                 Continuez le suivi pediatrique regulier.
                 """)
@@ -3205,7 +3180,7 @@ elif mp("orientation") and esp == 'parent':
          "Travaille le langage expressif, receptif et la communication alternative."),
         ("🧘", "Psychologue", "#6C3FC5",
          ["Restricted behaviors", "Anxiety", "Social interactions limitees"],
-         "Accompagne l'enfant sur les plans comportemental et emotionnel."),
+         "Accompagne l'enfant sur les plyears comportemental et emotionnel."),
         ("🏃", "Psychomotricien", "#50E3C2",
          ["Coordination motrice", "Hypersensibilite sensorielle", "Imitation limitee"],
          "Travaille le schema corporel, la motricite fine et globale."),
@@ -3330,14 +3305,14 @@ elif mp("mon_enfant") and esp == 'parent':
         with col1:
             patient_id = st.selectbox("Selectionner l'enfant", df['id_patient'].values, key="enfant_sel")
             patient    = df[df['id_patient'] == patient_id].iloc[0]
-            age_ans    = int(patient['age_mois']) // 12
+            age_years    = int(patient['age_mois']) // 12
             age_mois_r = int(patient['age_mois']) % 12
             sexe_icon  = "👦" if patient['sexe'] == 'M' else "👧"
             st.markdown(
                 f"<div class='card' style='text-align:center;'>"
                 f"<div style='font-size:4rem;'>{sexe_icon}</div>"
                 f"<h2>{patient_id}</h2>"
-                f"<p style='color:#888;'>{age_ans} ans {age_mois_r} mois</p>"
+                f"<p style='color:#888;'>{age_ans} years {age_mois_r} mois</p>"
                 f"<p style='color:#888;'>Diagnostic a {patient['age_diagnostic']} mois</p>"
                 f"<p style='color:#888;'>Sexe : <b>{patient['sexe']}</b></p></div>",
                 unsafe_allow_html=True
@@ -3501,7 +3476,7 @@ elif mp("alertes") and esp == 'parent':
             st.balloons()
 
         st.markdown("---")
-        st.info("📅 Prochaine evaluation recommandee : dans 3 mois")
+        st.info("📅 Prochaine evaluation recommandee : dyears 3 mois")
         st.info("👨‍⚕️ Partagez ce rapport avec l'equipe therapeutique")
         st.info("📞 En cas de regression soudaine, contactez votre medecin")
     else:
@@ -3721,7 +3696,7 @@ elif mp("knowledge_graph") and esp == 'pro':
                 patient_kg = df[df["id_patient"] == pid_kg].iloc[0]
                 st.markdown(f"""
                 <div class='card' style='border-left:4px solid #4A90E2;'>
-                    <p><b>Age :</b> {int(patient_kg["age_mois"])//12} ans ({int(patient_kg["age_mois"])} mois)</p>
+                    <p><b>Age :</b> {int(patient_kg["age_mois"])//12} years ({int(patient_kg["age_mois"])} months)</p>
                     <p><b>Sexe :</b> {patient_kg["sexe"]}</p>
                 </div>""", unsafe_allow_html=True)
                 score_cols_kg = [c for c in ["communication_sociale","interactions_sociales",
@@ -3908,7 +3883,7 @@ elif mp("recommandations") and esp == 'pro':
         col1, col2 = st.columns([1,1])
 
         with col1:
-            st.markdown("### 🎯 Recommendations by intervention")
+            st.markdown("### 🎯 Recommandations par intervention")
             votes = {k: int((neighbors[k]==1).sum()) for k in interv_cols_r}
             sorted_v = sorted(votes.items(), key=lambda x: x[1], reverse=True)
             for k, v in sorted_v:
@@ -3953,7 +3928,7 @@ elif mp("recommandations") and esp == 'pro':
                     f"<b>#{rank} — {nb['id_patient']}</b>"
                     f"<span style='background:{color};color:white;padding:0.1rem 0.5rem;"
                     f"border-radius:10px;font-size:0.82rem;'>Sim. {sim:.0f}%</span></div>"
-                    f"<span style='font-size:0.82rem;color:#666;'>Age: {int(nb['age_mois'])//12} ans | "
+                    f"<span style='font-size:0.82rem;color:#666;'>Age: {int(nb['age_mois'])//12} years | "
                     f"{' · '.join(nb_interv) if nb_interv else 'Aucune intervention'}</span></div>",
                     unsafe_allow_html=True)
 
@@ -4067,7 +4042,7 @@ elif mp("stats_algerie"):
     with col1:
         st.markdown("### 🔴 Le probleme actuel")
         for val, desc in [
-            ("80%",    "des enfants TSA sans suivi structure"),
+            ("80%",    "des enfants TSA syears suivi structure"),
             ("2-3 ans","delai moyen de diagnostic"),
             ("Faible", "coordination entre intervenants"),
             ("Limite", "acces aux outils specialises"),
@@ -4276,7 +4251,7 @@ elif mp("ia_explicable") and esp == 'pro':
                     f"<span style='background:{color};color:white;padding:0.1rem 0.6rem;"
                     f"border-radius:10px;font-size:0.85rem;font-weight:700;'>Sim. {sim_pct:.0f}%</span></div>"
                     f"<div style='font-size:0.85rem;color:#666;margin-top:0.3rem;'>"
-                    f"Age: {int(nb['age_mois'])//12} ans | Interventions: {interv_str}</div></div>",
+                    f"Age: {int(nb['age_mois'])//12} years | Interventions: {interv_str}</div></div>",
                     unsafe_allow_html=True
                 )
 
@@ -4342,7 +4317,7 @@ elif mp("ia_explicable") and esp == 'pro':
 elif mp("avant_apres") and esp == 'pro':
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📈 Evolution Avant / Apres Traitement</h1>"
-        "<p style='color:white;'>Mesurer l'impact des interventions therapeutiques dans le temps</p></div>",
+        "<p style='color:white;'>Mesurer l'impact des interventions therapeutiques dyears le temps</p></div>",
         unsafe_allow_html=True
     )
     if not df.empty:
@@ -4389,9 +4364,9 @@ elif mp("avant_apres") and esp == 'pro':
                 marker=dict(size=8, color=colors_lines[i]),
             ))
         fig_evo.add_hline(y=7, line_dash="dot", line_color="red",
-                          annotation_text="Seuil d'alerte", annotation_position="right")
+                          annotation_text="Alert threshold", annotation_position="right")
         fig_evo.add_hline(y=4, line_dash="dot", line_color="orange",
-                          annotation_text="Seuil modere", annotation_position="right")
+                          annotation_text="Moderate threshold", annotation_position="right")
         fig_evo.update_layout(
             xaxis_title="Period", yaxis_title="Score (1-10)",
             yaxis=dict(range=[0,10.5]),
@@ -4457,7 +4432,7 @@ elif mp("avant_apres") and esp == 'pro':
                 f"<p>Overall improvement : <b style='color:#4A90E2;font-size:1.3rem;'>-{amelio_glob:.1f}%</b></p>"
                 f"<hr/>"
                 f"<p style='color:#555;font-size:0.9rem;'>Interpretation : une diminution des scores "
-                f"indique une <b>reduction des difficultes</b> dans ces domaines.</p></div>",
+                f"indique une <b>reduction des difficultes</b> dyears ces domaines.</p></div>",
                 unsafe_allow_html=True
             )
 
@@ -4476,7 +4451,7 @@ elif mp("avant_apres") and esp == 'pro':
                 unsafe_allow_html=True
             )
 
-        st.info("📅 Note: Historical data is simulated from current profile. "
+        st.info("📅 Note: Historical data simulated from current profile. "
                 "En production, les scores seraient enregistres lors de chaque evaluation mensuelle.")
     else:
         st.error(t("erreur_donnees"))
@@ -4537,7 +4512,7 @@ elif mp("tableau_medecin") and esp == 'pro':
                     f"<div style='background:#fff8f8;border-radius:10px;padding:0.7rem 1rem;"
                     f"margin-bottom:0.5rem;border-left:5px solid {color};'>"
                     f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
-                    f"<span style='font-weight:700;'>{row['id_patient']} — {int(row['age_mois'])//12} ans ({row['sexe']})</span>"
+                    f"<span style='font-weight:700;'>{row['id_patient']} — {int(row['age_mois'])//12} years ({row['sexe']})</span>"
                     f"<div style='display:flex;gap:0.4rem;'>"
                     f"<span style='background:{color};color:white;padding:0.15rem 0.6rem;"
                     f"border-radius:10px;font-size:0.8rem;font-weight:700;'>{badge}</span>"
@@ -4753,7 +4728,7 @@ elif mp("comparaison"):
         "<p style='color:#555;'>L'Algerie dispose d'un taux de prise en charge de <b>seulement 20%</b>, "
         "d'un nombre de specialistes <b>15x inferieur</b> a la France, et d'outils IA <b>quasi inexistants</b>. "
         "AutiGraphCare repond directement a ce deficit en proposant une plateforme IA accessible, "
-        "deployable immediatement, sans infrastructure lourde.</p></div>",
+        "deployable immediatement, syears infrastructure lourde.</p></div>",
         unsafe_allow_html=True
     )
     st.caption("Sources : OMS 2023, CDC USA 2023, HAS France 2023, Ministere de la Sante Algerie 2022.")
@@ -4897,7 +4872,7 @@ elif mp("recherche"):
             st.plotly_chart(fig_metrics, use_container_width=True)
 
         with col2:
-            st.markdown("#### 🔄 KNN Learning Curve")
+            st.markdown("#### 🔄 Courbe d'apprentissage KNN")
             n_samples = [10, 20, 30, 50, 75, 100, 120, 150]
             acc_train = [0.98, 0.96, 0.95, 0.94, 0.93, 0.93, 0.92, 0.92]
             acc_test  = [0.71, 0.78, 0.82, 0.86, 0.89, 0.91, 0.92, 0.92]
@@ -4957,12 +4932,12 @@ elif mp("recherche"):
                 "Collaboration avec Hopital Canastel (Oran) et CHU Annaba",
                 "Integration API teleconsultation avec specialistes",
                 "Modele federe (Federated Learning) pour confidentialite des donnees",
-                "Publication dans IEEE/Springer : 'KNN-based ASD intervention system'",
+                "Publication dyears IEEE/Springer : 'KNN-based ASD intervention system'",
             ]),
             ("🌍 Long terme (2028+)", "#6C3FC5", [
                 "Expansion vers les pays du Maghreb (Maroc, Tunisie, Libye)",
                 "Certification CE medical device (classe IIa)",
-                "Partenariat OMS pour deploiement dans les pays a ressources limitees",
+                "Partenariat OMS pour deploiement dyears les pays a ressources limitees",
                 "Contribution au registre national TSA Algerie",
             ]),
         ]):
@@ -5057,7 +5032,7 @@ elif mp("nouveau_patient") and esp == 'pro':
         <div class='card' style='border-left:5px solid #4A90E2;margin-bottom:1.5rem;'>
             <p style='margin:0;color:#555;'>
             📝 Remplissez tous les champs du formulaire clinique. Les donnees seront ajoutees
-            a la base de donnees et le patient sera immediatement disponible dans tous les modules
+            a la base de donnees et le patient sera immediatement disponible dyears tous les modules
             (KNN, Knowledge Graph, Recommandations, Dashboard).
             </p>
         </div>
@@ -5088,7 +5063,7 @@ elif mp("nouveau_patient") and esp == 'pro':
 
             st.markdown("---")
             # ---- SECTION 2 : Clinical scores ----
-            st.markdown("### 🎯 Clinical Scores (1 = very low, 10 = very high)")
+            st.markdown("### 🎯 Clinical Scores (1=very low, 10=very high)")
             st.markdown(
                 "<p style='color:#888;font-size:0.9rem;'>⚠️ A high score indicates a significant difficulty</p>",
                 unsafe_allow_html=True
@@ -5165,7 +5140,7 @@ elif mp("nouveau_patient") and esp == 'pro':
             if not new_id.strip():
                 st.error("❌ L'ID patient est obligatoire !")
             elif not df.empty and new_id.strip() in df['id_patient'].values:
-                st.error(f"❌ L'ID '{new_id}' existe deja dans la base de donnees !")
+                st.error(f"❌ L'ID '{new_id}' existe deja dyears la base de donnees !")
             else:
                 # Construire la nouvelle ligne
                 new_row = {
@@ -5200,7 +5175,7 @@ elif mp("nouveau_patient") and esp == 'pro':
                         ignore_index=True
                     )
 
-                # Sauvegarder aussi dans le CSV
+                # Sauvegarder aussi dyears le CSV
                 try:
                     for path in ['data/dataset_tsa_complet.csv', 'dataset_tsa_complet.csv']:
                         try:
@@ -5480,7 +5455,7 @@ elif mp("messagerie"):
                     "Hello ! Je suis l'assistant IA d'AutiGraphCare. D'apres le profil de votre enfant, je peux vous aider avec les recommandations personnalisees.",
                     "J'ai analyse les derniers scores. La communication sociale montre une tendance positive ce mois-ci.",
                     "Pour optimiser les progres, je recommande de renforcer les seances d'orthophonie bi-hebdomadaires.",
-                    "Les 5 patients similaires dans notre base de donnees ont montre une amelioration de 23% en 6 mois avec ce profil d'interventions.",
+                    "Les 5 patients similaires dyears notre base de donnees ont montre une amelioration de 23% en 6 mois avec ce profil d'interventions.",
                 ]
                 import random
                 rep_ia = {
@@ -5540,7 +5515,7 @@ elif mp("aide"):
 - **Recommandations IA** : Ouvrez via l'hamburger Streamlit (pages/03_Recommandations.py)
 - **Dashboard** : Statistiques de cohorte (150 patients)
 - **Statistiques Algerie** : Etat des lieux + projections marche
-- **Business Model** : Plans tarifaires + strategie de deploiement
+- **Business Model** : Plyears tarifaires + strategie de deploiement
 
 ### Structure du projet
 ```
