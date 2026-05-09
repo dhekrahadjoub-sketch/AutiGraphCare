@@ -23,9 +23,9 @@ dark = st.session_state['theme'] == 'dark'
 lang = st.session_state.get("langue", "fr")
 
 # ── TRADUCTION COMPLÈTE FR→EN/AR via JS ──────────────────────────────────────
-_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Medecin":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","Login":"Login","Se déconnecter":"Sign out","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Email address":"Email address","Password":"Password","Remember me":"Remember me","Password oublié ?":"Forgot password?","Password oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","Don't have an account?":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","Intelligent platform for ASD children":"Intelligent platform for ASD children","Intelligent ASD Platform":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","Parent Space":"Parent Space","Professional Space":"Professional Space","Entrer - Parent Space":"Enter - Parent Space","Entrer - Professional Space":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","ASD children in Algeria":"ASD children in Algeria","ASD children in Algeria":"ASD children in Algeria","Children affected worldwide":"Children affected worldwide","Without structured care":"Without structured care","Our AI precision":"Our AI precision","Our AI precision":"Our AI precision","Hello":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","View complete file":"View complete file","Hello Dr.":"Hello Dr.","patients dyears votre espace privé":"patients in your private space","patients in your private space":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","No notifications":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","Choose a patient":"Choose a patient","Enregistrer le patient":"Save patient","Cancel":"Cancel","Confirm":"Confirm","Close":"Close","Level":"Level","Severe":"Severe","Moderate":"Moderate","Moderate":"Moderate","Mild":"Mild","Mild":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","Dark":"Dark","Light":"Light","HIGH Risk":"HIGH Risk","HIGH Risk":"HIGH Risk","MODERATE Risk":"MODERATE Risk","MODERATE Risk":"MODERATE Risk","LOW Risk":"LOW Risk","Comorbidités":"Comorbidities","Comorbidities":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","ASD signs screening questionnaire":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","Online":"Online","Offline":"Offline","Occupé":"Busy","Busy":"Busy","Envoyer":"Send","Your message":"Your message","Total messages":"Total messages","Parent messages":"Parent messages","Pro messages":"Pro messages","Unread":"Unread","Social communication":"Social communication","Social interactions":"Social interactions","Restricted behaviors":"Restricted behaviors","Expressive language":"Expressive language","Language réceptif":"Receptive language","Receptive language":"Receptive language","Eye contact":"Eye contact","Imitation":"Imitation","Symbolic play":"Symbolic play","Speech therapy":"Speech therapy","Psychomotricité":"Psychomotricity","Psychomotricity":"Psychomotricity","Sleep disorder":"Sleep disorder","Anxiété":"Anxiety","Anxiety":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","Initial avg score":"Initial average score","Current avg score":"Current average score","Amélioration globale":"Overall improvement","Overall improvement":"Overall improvement","Total patients":"Total patients","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Syears suivi":"No follow-up","Prévalence":"Prevalence","Prevalence":"Prevalence","Coverage":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","Free":"Free","Family Premium":"Family Premium","Établissement":"Institution","Institution":"Institution","Forever":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Mode sombre":"Dark mode","Mode clair":"Light mode","Wilaya":"Wilaya","LOW":"LOW","MODERATE":"MODERATE","HIGH":"HIGH"}
+_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Doctor":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","Login":"Login","Se déconnecter":"Sign out","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Email address":"Email address","Password":"Password","Remember me":"Remember me","Password oublié ?":"Forgot password?","Password oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","Don't have an account?":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","Intelligent platform for ASD children":"Intelligent platform for ASD children","Intelligent ASD Platform":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","Parent Space":"Parent Space","Professional Space":"Professional Space","Entrer - Parent Space":"Enter - Parent Space","Entrer - Professional Space":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","ASD children in Algeria":"ASD children in Algeria","ASD children in Algeria":"ASD children in Algeria","Children affected worldwide":"Children affected worldwide","Without structured care":"Without structured care","Our AI precision":"Our AI precision","Our AI precision":"Our AI precision","Hello":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","View complete file":"View complete file","Hello Dr.":"Hello Dr.","patients dyears votre espace privé":"patients in your private space","patients in your private space":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","No notifications":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","Choose a patient":"Choose a patient","Enregistrer le patient":"Save patient","Cancel":"Cancel","Confirm":"Confirm","Close":"Close","Level":"Level","Severe":"Severe","Moderate":"Moderate","Moderate":"Moderate","Mild":"Mild","Mild":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","Dark":"Dark","Light":"Light","HIGH Risk":"HIGH Risk","HIGH Risk":"HIGH Risk","MODERATE Risk":"MODERATE Risk","MODERATE Risk":"MODERATE Risk","LOW Risk":"LOW Risk","Comorbidités":"Comorbidities","Comorbidities":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","ASD signs screening questionnaire":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","Online":"Online","Offline":"Offline","Occupé":"Busy","Busy":"Busy","Envoyer":"Send","Your message":"Your message","Total messages":"Total messages","Parent messages":"Parent messages","Pro messages":"Pro messages","Unread":"Unread","Social communication":"Social communication","Social interactions":"Social interactions","Restricted behaviors":"Restricted behaviors","Expressive language":"Expressive language","Language réceptif":"Receptive language","Receptive language":"Receptive language","Eye contact":"Eye contact","Imitation":"Imitation","Symbolic play":"Symbolic play","Speech therapy":"Speech therapy","Psychomotricité":"Psychomotricity","Psychomotricity":"Psychomotricity","Sleep disorder":"Sleep disorder","Anxiété":"Anxiety","Anxiety":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","Initial avg score":"Initial average score","Current avg score":"Current average score","Amélioration globale":"Overall improvement","Overall improvement":"Overall improvement","Total patients":"Total patients","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Syears suivi":"No follow-up","Prévalence":"Prevalence","Prevalence":"Prevalence","Coverage":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","Free":"Free","Family Premium":"Family Premium","Établissement":"Institution","Institution":"Institution","Forever":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Mode sombre":"Dark mode","Mode clair":"Light mode","Wilaya":"Wilaya","LOW":"LOW","MODERATE":"MODERATE","HIGH":"HIGH"}
 
-_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Medecin":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","Login":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Email address":"البريد الإلكتروني","Password":"كلمة المرور","Remember me":"تذكّرني","Password oublié ?":"نسيت كلمة المرور؟","Password oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","Don't have an account?":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","Intelligent platform for ASD children":"منصة ذكية لأطفال طيف التوحد","Intelligent ASD Platform":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","Parent Space":"فضاء الآباء","Professional Space":"فضاء المختصين","Entrer - Parent Space":"دخول - فضاء الآباء","Entrer - Professional Space":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","Children affected worldwide":"أطفال متضررون في العالم","Without structured care":"بدون متابعة منظمة","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Hello":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","View complete file":"عرض الملف الكامل","Hello Dr.":"مرحباً دكتور","patients dyears votre espace privé":"مرضى في فضائك الخاص","patients in your private space":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","No notifications":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","Choose a patient":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","Cancel":"إلغاء","Confirm":"تأكيد","Close":"إغلاق","Level":"المستوى","Severe":"شديد","Moderate":"متوسط","Moderate":"متوسط","Mild":"خفيف","Mild":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","Dark":"داكن","Light":"فاتح","HIGH Risk":"خطر مرتفع","HIGH Risk":"خطر مرتفع","MODERATE Risk":"خطر متوسط","MODERATE Risk":"خطر متوسط","LOW Risk":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","Comorbidities":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","ASD signs screening questionnaire":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","Online":"متصل","Offline":"غير متصل","Occupé":"مشغول","Busy":"مشغول","Envoyer":"إرسال","Your message":"رسالتك","Total messages":"إجمالي الرسائل","Parent messages":"رسائل الآباء","Pro messages":"رسائل المختصين","Unread":"غير مقروء","Social communication":"التواصل الاجتماعي","Social interactions":"التفاعلات الاجتماعية","Restricted behaviors":"السلوكيات المقيدة","Expressive language":"اللغة التعبيرية","Language réceptif":"اللغة الاستقبالية","Receptive language":"اللغة الاستقبالية","Eye contact":"التواصل البصري","Imitation":"التقليد","Symbolic play":"اللعب الرمزي","Speech therapy":"علاج النطق","Psychomotricité":"العلاج النفسحركي","Psychomotricity":"العلاج النفسحركي","Sleep disorder":"اضطراب النوم","Anxiété":"القلق","Anxiety":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","Initial avg score":"الدرجة المتوسطة الأولية","Current avg score":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","Overall improvement":"التحسن الإجمالي","Total patients":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Syears suivi":"بدون متابعة","Prévalence":"الانتشار","Prevalence":"الانتشار","Coverage":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","Free":"مجاني","Family Premium":"عائلي مميز","Établissement":"مؤسسة","Institution":"مؤسسة","Forever":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Mode sombre":"الوضع الداكن","Mode clair":"الوضع الفاتح","Wilaya":"الولاية","LOW":"منخفض","MODERATE":"متوسط","HIGH":"مرتفع"}
+_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Doctor":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","Login":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Email address":"البريد الإلكتروني","Password":"كلمة المرور","Remember me":"تذكّرني","Password oublié ?":"نسيت كلمة المرور؟","Password oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","Don't have an account?":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","Intelligent platform for ASD children":"منصة ذكية لأطفال طيف التوحد","Intelligent ASD Platform":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","Parent Space":"فضاء الآباء","Professional Space":"فضاء المختصين","Entrer - Parent Space":"دخول - فضاء الآباء","Entrer - Professional Space":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","Children affected worldwide":"أطفال متضررون في العالم","Without structured care":"بدون متابعة منظمة","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Hello":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","View complete file":"عرض الملف الكامل","Hello Dr.":"مرحباً دكتور","patients dyears votre espace privé":"مرضى في فضائك الخاص","patients in your private space":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","No notifications":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","Choose a patient":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","Cancel":"إلغاء","Confirm":"تأكيد","Close":"إغلاق","Level":"المستوى","Severe":"شديد","Moderate":"متوسط","Moderate":"متوسط","Mild":"خفيف","Mild":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","Dark":"داكن","Light":"فاتح","HIGH Risk":"خطر مرتفع","HIGH Risk":"خطر مرتفع","MODERATE Risk":"خطر متوسط","MODERATE Risk":"خطر متوسط","LOW Risk":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","Comorbidities":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","ASD signs screening questionnaire":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","Online":"متصل","Offline":"غير متصل","Occupé":"مشغول","Busy":"مشغول","Envoyer":"إرسال","Your message":"رسالتك","Total messages":"إجمالي الرسائل","Parent messages":"رسائل الآباء","Pro messages":"رسائل المختصين","Unread":"غير مقروء","Social communication":"التواصل الاجتماعي","Social interactions":"التفاعلات الاجتماعية","Restricted behaviors":"السلوكيات المقيدة","Expressive language":"اللغة التعبيرية","Language réceptif":"اللغة الاستقبالية","Receptive language":"اللغة الاستقبالية","Eye contact":"التواصل البصري","Imitation":"التقليد","Symbolic play":"اللعب الرمزي","Speech therapy":"علاج النطق","Psychomotricité":"العلاج النفسحركي","Psychomotricity":"العلاج النفسحركي","Sleep disorder":"اضطراب النوم","Anxiété":"القلق","Anxiety":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","Initial avg score":"الدرجة المتوسطة الأولية","Current avg score":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","Overall improvement":"التحسن الإجمالي","Total patients":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Syears suivi":"بدون متابعة","Prévalence":"الانتشار","Prevalence":"الانتشار","Coverage":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","Free":"مجاني","Family Premium":"عائلي مميز","Établissement":"مؤسسة","Institution":"مؤسسة","Forever":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Mode sombre":"الوضع الداكن","Mode clair":"الوضع الفاتح","Wilaya":"الولاية","LOW":"منخفض","MODERATE":"متوسط","HIGH":"مرتفع"}
 
 def _inject_js_translation():
     _l = st.session_state.get("langue","fr")
@@ -1264,8 +1264,8 @@ def show_auth_gate():
                 if "Professionnel" in r_type:
                     col1, col2 = st.columns(2)
                     with col1:
-                        r_specialite = st.selectbox("Specialty", ["Orthophoniste","Psychologue",
-                            "Neuropediatre","Psychomotricien","Educateur specialise","Autre"], key="r_spec")
+                        r_specialite = st.selectbox("Specialty", ["Speech therapist","Psychologist",
+                            "Neuropediatre","Psychomotricien","Educator specialise","Autre"], key="r_spec")
                     with col2:
                         r_num_ordre = st.text_input("Professional reg. no.", key="r_ordre")
 
@@ -1874,8 +1874,8 @@ if mp("accueil") and esp is None:
             <p style='color:#888;'>Track your child's development.</p>
             <ul style='text-align:left; color:#888;'>
                 <li>🔍 Early Detection des signes</li>
-                <li>📈 Suivi mensuel de l'evolution</li>
-                <li>🔔 Alerts automatiques intelligentes</li>
+                <li>📈 Monthly monitoring of progress</li>
+                <li>🔔 Intelligent automatic alerts</li>
                 <li>💡 Personalized advice</li>
             </ul>
         </div>
@@ -1893,10 +1893,10 @@ if mp("accueil") and esp is None:
             <h2 style='color:#4A90E2;'>Professional Space</h2>
             <p style='color:#888;'>AI clinical decision support tools.</p>
             <ul style='text-align:left; color:#888;'>
-                <li>🤖 Recommendations IA KNN 92%</li>
-                <li>🕸️ Knowledge Graph interactif</li>
-                <li>📊 Dashboard clinique complet</li>
-                <li>📄 Export rapports PDF</li>
+                <li>🤖 KNN AI Recommendations 92%</li>
+                <li>🕸️ Interactive Knowledge Graph</li>
+                <li>📊 Complete Clinical Dashboard</li>
+                <li>📄 Export PDF reports</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
@@ -1926,48 +1926,42 @@ if mp("accueil") and esp is None:
 
     # ---- CE QUE LA PLATEFORME APPORTE AUX PARENTS ----
     st.markdown("---")
-    st.markdown("## 👪 Ce que la plateforme apporte aux parents")
+    st.markdown("## 👪 What the platform offers parents")
     st.markdown("""
     <div class='card' style='border-top:4px solid #FF6B9D;'>
         <p style='font-size:1.05rem;color:#555;margin-bottom:1.2rem;'>
-            AutiGraphCare guide les parents a chaque etape du parcours de leur enfant TSA,
-            de la detection jusqu'au suivi therapeutique.
+            AutiGraphCare guides parents at every stage of their child's ASD journey, from detection to therapeutic follow-up.
         </p>
         <div style='display:grid; grid-template-columns:1fr 1fr; gap:1rem;'>
             <div style='background:#FFF0F5;border-radius:10px;padding:1rem;border-left:4px solid #FF6B9D;'>
                 <h4 style='color:#FF6B9D;margin:0 0 0.5rem;'>🔍 Early Detection</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
-                    Un <b>questionnaire clinique</b> integre permet de savoir si votre enfant
-                    presente des signes TSA et s'il est dyears la norme pour son age.
+                    A <b>clinical questionnaire</b> The integrated system allows you to know if your child shows signs of ASD and if he/she is below the norm for his/her age.
                 </p>
             </div>
             <div style='background:#F0F8FF;border-radius:10px;padding:1rem;border-left:4px solid #4A90E2;'>
                 <h4 style='color:#4A90E2;margin:0 0 0.5rem;'>🧭 Orientation</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
-                    La plateforme vous indique <b>vers quels specialistes orienter votre enfant</b>
-                    (orthophoniste, psychologue, neuropediatre...) selon son profil.
+                    The platform tells you <b>Which specialists should you refer your child to?</b>
+                    (speech therapist, psychologist, neuropediatrician...) depending on their profile.
                 </p>
             </div>
             <div style='background:#F0FFF4;border-radius:10px;padding:1rem;border-left:4px solid #4CAF50;'>
                 <h4 style='color:#4CAF50;margin:0 0 0.5rem;'>💡 Practical Tips</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
-                    Des <b>activites adaptees a faire a la maison</b> et des conseils personnalises
-                    selon les scores cliniques de votre enfant.
+                     <b>activities suitable to do at home</b> and personalized advice based on your child's clinical scores.
                 </p>
             </div>
             <div style='background:#FFFBF0;border-radius:10px;padding:1rem;border-left:4px solid #F5A623;'>
-                <h4 style='color:#F5A623;margin:0 0 0.5rem;'>📈 Suivi dyears le temps</h4>
+                <h4 style='color:#F5A623;margin:0 0 0.5rem;'>📈 Followed by years over time</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
-                    Un <b>suivi mensuel de l'evolution</b> avec graphes radar pour visualiser
-                    les progres competence par competence.
+                    A <b>Monthly monitoring of progress</b> awith radar charts to visualize progress skill by skill.
                 </p>
             </div>
             <div style='background:#F5F0FF;border-radius:10px;padding:1rem;border-left:4px solid #6C3FC5;grid-column:1/-1;'>
-                <h4 style='color:#6C3FC5;margin:0 0 0.5rem;'>🔔 Lien avec les professionnels et Alertes automatiques</h4>
+                <h4 style='color:#6C3FC5;margin:0 0 0.5rem;'>🔔 Links with professionals and automatic alerts</h4>
                 <p style='color:#555;margin:0;font-size:0.95rem;'>
-                    Des <b>alertes intelligentes</b> vous previennent des signes preoccupants
-                    (communication, comportements, sommeil...) et facilitent la coordination
-                    avec l'equipe therapeutique de votre enfant.
+                    <b>Intelligent alerts</b> They alert you to worrying signs (communication, behavior, sleep...) and facilitate coordination with your child's therapeutic team.
                 </p>
             </div>
         </div>
@@ -1976,47 +1970,44 @@ if mp("accueil") and esp is None:
 
     # ---- CE QUE LA PLATEFORME APPORTE AUX PROFESSIONNELS ----
     st.markdown("---")
-    st.markdown("## 👨‍⚕️ Ce que la plateforme apporte a chaque professionnel")
+    st.markdown("## 👨‍⚕️ What the platform offers to each professional")
     st.markdown("""
     <div class='card' style='border-top:4px solid #4A90E2;'>
         <p style='font-size:1.05rem;color:#555;margin-bottom:1.2rem;'>
-            AutiGraphCare est un outil d'aide a la decision clinique adapte a chaque acteur
-            du parcours de soin de l'enfant TSA.
+            AutiGraphCare is a clinical decision support tool adapted to each actor in the care pathway of the child with ASD.
         </p>
         <table style='width:100%;border-collapse:separate;border-spacing:0 0.5rem;'>
             <thead>
                 <tr style='background:linear-gradient(135deg,#4A90E2,#6C3FC5);color:white;'>
-                    <th style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;text-align:left;'>🏥 Acteur</th>
-                    <th style='padding:0.8rem 1.2rem;border-radius:0 8px 8px 0;text-align:left;'>✅ Aide apportee par AutiGraphCare</th>
+                    <th style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;text-align:left;'>🏥 Actor</th>
+                    <th style='padding:0.8rem 1.2rem;border-radius:0 8px 8px 0;text-align:left;'>✅ Assistance provided by AutiGraphCare</th>
                 </tr>
             </thead>
             <tbody>
                 <tr style='background:#EEF5FF;'>
-                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#4A90E2;'>👨‍⚕️ Medecin</td>
+                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#4A90E2;'>👨‍⚕️ Doctor</td>
                     <td style='padding:0.8rem 1.2rem;border-radius:0 8px 8px 0;color:#555;'>
-                        Recommandations sur les <b>strategies therapeutiques adaptees au profil</b>
-                        de l'enfant, basees sur l'IA KNN et le Knowledge Graph.
+                        Recommendations on the <b>therapeutic strategies adapted to the profile</b>
+                        of the child, based on KNN AI and the Knowledge Graph.
                     </td>
                 </tr>
                 <tr style='background:#F5F0FF;'>
-                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#6C3FC5;'>🗣️ Orthophoniste</td>
+                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#6C3FC5;'>🗣️ Speech therapist</td>
                     <td style='padding:0.8rem 1.2rem;border-radius:0 8px 8px 0;color:#555;'>
-                        <b>Techniques de communication specifiques</b> selon le niveau de langage
-                        expressif et receptif de l'enfant (scores cliniques detailles).
+                        <b>Specific communication techniques</b> according to the child's level of expressive and receptive language (detailed clinical scores).
                     </td>
                 </tr>
                 <tr style='background:#F0FFF4;'>
-                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#4CAF50;'>🧠 Psychologue</td>
+                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#4CAF50;'>🧠 Psychologist</td>
                     <td style='padding:0.8rem 1.2rem;border-radius:0 8px 8px 0;color:#555;'>
-                        <b>Strategies comportementales personnalisees</b> basees sur les scores
+                        <b>Personalized behavioral strategies</b> basees sur les scores
                         de comportements restreints, anxiete et interactions sociales.
                     </td>
                 </tr>
                 <tr style='background:#FFFBF0;'>
-                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#F5A623;'>📚 Educateur</td>
+                    <td style='padding:0.8rem 1.2rem;border-radius:8px 0 0 8px;font-weight:700;color:#F5A623;'>📚 Educator</td>
                     <td style='padding:0.8rem 1.2rem;border-radius:0 8px 8px 0;color:#555;'>
-                        <b>Approches educatives adaptees</b> au profil de l'enfant :
-                        methodes TEACCH, PECS, ABA selon les besoins identifies par l'IA.
+                        <b>Approches educatives adaptees</b> based on the child's profile: TEACCH, PECS, ABA methods according to the needs identified by the AI.
                     </td>
                 </tr>
             </tbody>
@@ -3040,7 +3031,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 f"<div><h2 style='color:#4A90E2;margin:0;'>🧠 AutiGraphCare</h2>"
                 f"<p style='color:#888;margin:0;font-size:0.85rem;'>AI Diagnostic Report</p></div>"
                 f"<div style='text-align:right;'><p style='margin:0;color:#555;font-size:0.85rem;'>Date : {date_rapport}</p>"
-                f"<p style='margin:0;color:#555;font-size:0.85rem;'>Medecin : {nom_pro_r}</p></div></div>"
+                f"<p style='margin:0;color:#555;font-size:0.85rem;'>Doctor : {nom_pro_r}</p></div></div>"
                 f"<h3 style='color:#333;'>Patient : {pid_diag}</h3>"
                 f"<p>Age : {int(patient_diag['age_mois'])//12} years | Sexe : {patient_diag['sexe']}</p>"
                 f"<hr/>"
@@ -3063,7 +3054,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
             )
             st.download_button(
                 "📥 Download report (TXT)",
-                data=f"RAPPORT DIAGNOSTIC IA — {pid_diag}\nDate: {date_rapport}\nMedecin: {nom_pro_r}\nScore moyen: {score_moy_d:.1f}/10\n",
+                data=f"RAPPORT DIAGNOSTIC IA — {pid_diag}\nDate: {date_rapport}\nDoctor: {nom_pro_r}\nScore moyen: {score_moy_d:.1f}/10\n",
                 file_name=f"rapport_{pid_diag}_{datetime.datetime.now().strftime('%Y%m%d')}.txt",
                 mime="text/plain", use_container_width=True
             )
@@ -3175,16 +3166,16 @@ elif mp("orientation") and esp == 'parent':
         ("🧠", "Neuropediatre", "#FF4444",
          ["Diagnostic officiel TSA", "Evaluation neurologique", "Prescription des bilans"],
          "Premier recours pour le diagnostic. Il coordonne le parcours de soin."),
-        ("🗣️", "Orthophoniste", "#4A90E2",
+        ("🗣️", "Speech therapist", "#4A90E2",
          ["Retard de langage", "Communication limitee", "Score PECS recommande"],
          "Travaille le langage expressif, receptif et la communication alternative."),
-        ("🧘", "Psychologue", "#6C3FC5",
+        ("🧘", "Psychologist", "#6C3FC5",
          ["Restricted behaviors", "Anxiety", "Social interactions limitees"],
          "Accompagne l'enfant sur les plyears comportemental et emotionnel."),
         ("🏃", "Psychomotricien", "#50E3C2",
          ["Coordination motrice", "Hypersensibilite sensorielle", "Imitation limitee"],
          "Travaille le schema corporel, la motricite fine et globale."),
-        ("📚", "Educateur specialise", "#F5A623",
+        ("📚", "Educator specialise", "#F5A623",
          ["Methode ABA", "Programme TEACCH", "Inclusion scolaire"],
          "Met en place des programmes educatifs adaptes au profil de l'enfant."),
     ]:
@@ -3522,17 +3513,17 @@ elif mp("accueil") and esp == 'pro':
     st.markdown("<p style='color:#555;font-size:1.05rem;'>Cliquez sur une ligne pour acceder a la fonctionnalite correspondante.</p>", unsafe_allow_html=True)
 
     for icon, titre, color, bg, desc, page in [
-        ("👨‍⚕️", "Medecin", "#4A90E2", "#EEF5FF",
-         "Recommandations sur les strategies therapeutiques adaptees au profil de l'enfant, basees sur l'IA KNN et le Knowledge Graph.",
+        ("👨‍⚕️", "Doctor", "#4A90E2", "#EEF5FF",
+         "Recommendations on the therapeutic strategies adapted to the profile of the child, based on KNN AI and the Knowledge Graph.",
          "🤖 Recommendations"),
-        ("🗣️", "Orthophoniste", "#6C3FC5", "#F5F0FF",
-         "Techniques de communication specifiques selon le niveau de langage expressif et receptif (scores cliniques detailles).",
+        ("🗣️", "Speech therapist", "#6C3FC5", "#F5F0FF",
+         "Specific communication techniques according to the child's level of expressive and receptive language (detailed clinical scores).",
          "📋 Patient Profile"),
-        ("🧠", "Psychologue", "#4CAF50", "#F0FFF4",
-         "Strategies comportementales personnalisees basees sur les scores de comportements restreints, anxiete et interactions sociales.",
+        ("🧠", "Psychologist", "#4CAF50", "#F0FFF4",
+         "Personalized behavioral strategies based on scores of restricted behaviors, anxiety and social interactions.",
          "📋 Patient Profile"),
-        ("📚", "Educateur", "#F5A623", "#FFFBF0",
-         "Approches educatives adaptees : methodes TEACCH, PECS, ABA selon les besoins identifies par l'IA.",
+        ("📚", "Educator", "#F5A623", "#FFFBF0",
+         "Adapted educational approaches: methodes TEACCH, PECS, ABA selon les besoins identifies par l'IA.",
          "🤖 Recommendations"),
     ]:
         col_info, col_btn = st.columns([3, 1])
@@ -4026,8 +4017,8 @@ elif mp("stats_algerie"):
     col1, col2, col3, col4 = st.columns(4)
     for col, (val, label, color) in zip([col1, col2, col3, col4], [
         ("50 000", "ASD children in Algeria", "#FF6B6B"),
-        ("4 500",  "Orthophonistes",         "#4A90E2"),
-        ("3 000",  "Psychologues",           "#50E3C2"),
+        ("4 500",  "Speech therapists",         "#4A90E2"),
+        ("3 000",  "Psychologists",           "#50E3C2"),
         ("15",     "Centres specialises",    "#F5A623"),
     ]):
         with col:
@@ -4119,7 +4110,7 @@ elif mp("business"):
     with col1:
         st.markdown("### 📊 Taille du marche cible")
         marche = pd.DataFrame({
-            'Segment': ['Familles','Orthophonistes','Psychologues','Centres'],
+            'Segment': ['Familles','Speech therapists','Psychologists','Centres'],
             'Taille':  [50000, 4500, 3000, 15]
         })
         fig = px.bar(marche, x='Segment', y='Taille', color='Segment',
@@ -4461,7 +4452,7 @@ elif mp("avant_apres") and esp == 'pro':
 # ============================================================
 elif mp("tableau_medecin") and esp == 'pro':
     st.markdown(
-        "<div class='main-header'><h1 style='color:white;'>👨‍⚕️ Tableau de Bord Medecin</h1>"
+        "<div class='main-header'><h1 style='color:white;'>👨‍⚕️ Tableau de Bord Doctor</h1>"
         "<p style='color:white;'>Vue clinique synthetique — tous vos patients en un coup d'oeil</p></div>",
         unsafe_allow_html=True
     )
@@ -5217,7 +5208,7 @@ elif mp("messagerie"):
     if "messages_chat" not in st.session_state:
         # Messages pre-charges (simulation historique)
         st.session_state["messages_chat"] = [
-            {"id": 1, "expediteur": "pro", "nom": "Dr. Benali Karima", "role": "Orthophoniste",
+            {"id": 1, "expediteur": "pro", "nom": "Dr. Benali Karima", "role": "Speech therapist",
              "avatar": "🗣️", "couleur": "#4A90E2",
              "contenu": "Hello, j'ai consulte le profil de votre enfant. Les scores de communication montrent une legere amelioration ce mois-ci. Continuez les exercices de pointage.",
              "heure": "09:14", "date": "Lundi 02 Mars", "lu": True},
@@ -5225,11 +5216,11 @@ elif mp("messagerie"):
              "avatar": "👪", "couleur": "#FF6B9D",
              "contenu": "Hello Docteur, merci pour le suivi. On a remarque qu'il commence a pointer du doigt vers les objets qu'il veut. C'est une bonne nouvelle ?",
              "heure": "10:32", "date": "Lundi 02 Mars", "lu": True},
-            {"id": 3, "expediteur": "pro", "nom": "Dr. Benali Karima", "role": "Orthophoniste",
+            {"id": 3, "expediteur": "pro", "nom": "Dr. Benali Karima", "role": "Speech therapist",
              "avatar": "🗣️", "couleur": "#4A90E2",
              "contenu": "Oui, excellente nouvelle ! Le pointage proto-imperatif est un jalon important du developpement communicatif. Encouragez-le en nommant toujours l'objet qu'il pointe.",
              "heure": "11:05", "date": "Lundi 02 Mars", "lu": True},
-            {"id": 4, "expediteur": "pro", "nom": "Dr. Meziane Sofiane", "role": "Psychologue",
+            {"id": 4, "expediteur": "pro", "nom": "Dr. Meziane Sofiane", "role": "Psychologist",
              "avatar": "🧠", "couleur": "#6C3FC5",
              "contenu": "Hello a tous. J'ai programme la prochaine evaluation pour le 15 mars. Pouvez-vous me confirmer votre disponibilite ?",
              "heure": "14:20", "date": "Mardi 03 Mars", "lu": True},
@@ -5237,7 +5228,7 @@ elif mp("messagerie"):
              "avatar": "👪", "couleur": "#FF6B9D",
              "contenu": "Oui, le 15 mars nous convenons parfaitement. A quelle heure pensez-vous ?",
              "heure": "15:47", "date": "Mardi 03 Mars", "lu": True},
-            {"id": 6, "expediteur": "pro", "nom": "Dr. Meziane Sofiane", "role": "Psychologue",
+            {"id": 6, "expediteur": "pro", "nom": "Dr. Meziane Sofiane", "role": "Psychologist",
              "avatar": "🧠", "couleur": "#6C3FC5",
              "contenu": "Parfait ! Rdv confirme le 15 mars a 10h00. Je vous enverrai un rapport d'evaluation complet apres la seance.",
              "heure": "16:03", "date": "Mardi 03 Mars", "lu": True},
@@ -5254,10 +5245,10 @@ elif mp("messagerie"):
     col_contacts, col_chat = st.columns([1, 3])
 
     contacts = [
-        {"nom": "Dr. Benali Karima",   "role": "Orthophoniste",  "avatar": "🗣️", "couleur": "#4A90E2", "statut": t("en_ligne"),    "statut_color": "#4CAF50"},
-        {"nom": "Dr. Meziane Sofiane", "role": "Psychologue",    "avatar": "🧠", "couleur": "#6C3FC5", "statut": t("hors_ligne"),  "statut_color": "#aaa"},
+        {"nom": "Dr. Benali Karima",   "role": "Speech therapist",  "avatar": "🗣️", "couleur": "#4A90E2", "statut": t("en_ligne"),    "statut_color": "#4CAF50"},
+        {"nom": "Dr. Meziane Sofiane", "role": "Psychologist",    "avatar": "🧠", "couleur": "#6C3FC5", "statut": t("hors_ligne"),  "statut_color": "#aaa"},
         {"nom": "Mme. Raouf Amina",    "role": "Psychomotricienne","avatar":"🏃","couleur": "#50E3C2", "statut": t("en_ligne"),    "statut_color": "#4CAF50"},
-        {"nom": "M. Brahimi Yacine",   "role": "Educateur ABA",  "avatar": "📚", "couleur": "#F5A623", "statut": t("occupe"),     "statut_color": "#FFA500"},
+        {"nom": "M. Brahimi Yacine",   "role": "Educator ABA",  "avatar": "📚", "couleur": "#F5A623", "statut": t("occupe"),     "statut_color": "#FFA500"},
         {"nom": "AutiGraphCare IA",    "role": "Assistant IA",   "avatar": "🤖", "couleur": "#50E3C2", "statut": "Toujours actif","statut_color":"#4CAF50"},
     ]
 
@@ -5556,9 +5547,9 @@ st.markdown(
     f"background:linear-gradient(135deg,#f8f9fa,#ffffff);"
     f"border-radius:10px;margin-top:2rem;'>"
     f"<p style='font-size:1.1rem;font-weight:600;color:#4A90E2;'>🧠 AutiGraphCare v2.0</p>"
-    f"<p>Plateforme intelligente pour la prise en charge des enfants TSA</p>"
+    f"<p>Smart platform for the care of children with autism spectrum disorder</p>"
     f"<p style='font-size:0.8rem;color:#999;'>"
-    f"Hadjoub Dhekra - Master 2 IATI | Donnees simulees a but educatif | Soutenance 2026</p>"
+    f"Hadjoub Dhekra - Master 2 IATI | Simulated Data for Educational Purposes | Thesis Defense 2026</p>"
     f"{badge}</div>",
     unsafe_allow_html=True
 )
