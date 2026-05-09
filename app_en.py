@@ -23,9 +23,9 @@ dark = st.session_state['theme'] == 'dark'
 lang = st.session_state.get("langue", "fr")
 
 # ── TRADUCTION COMPLÈTE FR→EN/AR via JS ──────────────────────────────────────
-_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Conseils pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Doctor":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","Login":"Login","Se déconnecter":"Sign out","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Email address":"Email address","Password":"Password","Remember me":"Remember me","Password oublié ?":"Forgot password?","Password oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","Don't have an account?":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","Intelligent platform for ASD children":"Intelligent platform for ASD children","Intelligent ASD Platform":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","Parent Space":"Parent Space","Professional Space":"Professional Space","Entrer - Parent Space":"Enter - Parent Space","Entrer - Professional Space":"Enter - Professional Space","Changer d'espace":"Switch space","TSA en chiffres":"ASD in numbers","ASD children in Algeria":"ASD children in Algeria","ASD children in Algeria":"ASD children in Algeria","Children affected worldwide":"Children affected worldwide","Without structured care":"Without structured care","Our AI precision":"Our AI precision","Our AI precision":"Our AI precision","Hello":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","View complete file":"View complete file","Hello Dr.":"Hello Dr.","patients dyears votre espace privé":"patients in your private space","patients in your private space":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","No notifications":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","Choose a patient":"Choose a patient","Enregistrer le patient":"Save patient","Cancel":"Cancel","Confirm":"Confirm","Close":"Close","Level":"Level","Severe":"Severe","Moderate":"Moderate","Moderate":"Moderate","Mild":"Mild","Mild":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","Dark":"Dark","Light":"Light","HIGH Risk":"HIGH Risk","HIGH Risk":"HIGH Risk","MODERATE Risk":"MODERATE Risk","MODERATE Risk":"MODERATE Risk","LOW Risk":"LOW Risk","Comorbidités":"Comorbidities","Comorbidities":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce TSA":"Early ASD Detection","Detection Precoce TSA":"Early ASD Detection","ASD signs screening questionnaire":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","Online":"Online","Offline":"Offline","Occupé":"Busy","Busy":"Busy","Envoyer":"Send","Your message":"Your message","Total messages":"Total messages","Parent messages":"Parent messages","Pro messages":"Pro messages","Unread":"Unread","Social communication":"Social communication","Social interactions":"Social interactions","Restricted behaviors":"Restricted behaviors","Expressive language":"Expressive language","Language réceptif":"Receptive language","Receptive language":"Receptive language","Eye contact":"Eye contact","Imitation":"Imitation","Symbolic play":"Symbolic play","Speech therapy":"Speech therapy","Psychomotricité":"Psychomotricity","Psychomotricity":"Psychomotricity","Sleep disorder":"Sleep disorder","Anxiété":"Anxiety","Anxiety":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","Initial avg score":"Initial average score","Current avg score":"Current average score","Amélioration globale":"Overall improvement","Overall improvement":"Overall improvement","Total patients":"Total patients","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Syears suivi":"No follow-up","Prévalence":"Prevalence","Prevalence":"Prevalence","Coverage":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","Free":"Free","Family Premium":"Family Premium","Établissement":"Institution","Institution":"Institution","Forever":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Mode sombre":"Dark mode","Mode clair":"Light mode","Wilaya":"Wilaya","LOW":"LOW","MODERATE":"MODERATE","HIGH":"HIGH"}
+_TR_EN = {"Accueil":"Home","Détection précoce":"Early Detection","Detection precoce":"Early Detection","Orientation":"Orientation","Advice pratiques":"Practical Tips","Mon Enfant":"My Child","Suivi Evolution":"Progress Tracking","Suivi Évolution":"Progress Tracking","Alertes":"Alerts","Messagerie":"Messaging","Aide":"Help","Diagnostic IA":"AI Diagnostic","Diagnostic IA Pro":"AI Diagnostic Pro","Nouveau Patient":"New Patient","Profil Patient":"Patient Profile","Recommandations":"Recommendations","IA Explicable":"Explainable AI","Avant Apres Traitement":"Before/After Treatment","Avant Après Traitement":"Before/After Treatment","Tableau Doctor":"Doctor Dashboard","Tableau Médecin":"Doctor Dashboard","Statistiques Algerie":"Algeria Statistics","Statistiques Algérie":"Algeria Statistics","Comparaison Internationale":"International Comparison","Recherche Scientifique":"Scientific Research","Login":"Login","Se déconnecter":"Sign out","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Sign in to your AutiGraphCare account":"Sign in to your AutiGraphCare account","Email address":"Email address","Password":"Password","Remember me":"Remember me","Password oublié ?":"Forgot password?","Password oublie ?":"Forgot password?","Comptes de démonstration":"Demo accounts","Comptes de demonstration":"Demo accounts","Don't have an account?":"Don't have an account?","Créer un compte gratuit":"Create a free account","Creer un compte gratuit":"Create a free account","Retour à la connexion":"Back to login","Retour a la connexion":"Back to login","Intelligent platform for ASD children":"Intelligent platform for ASD children","Intelligent ASD Platform":"Intelligent ASD Platform","Bienvenue ! Qui êtes-vous ?":"Welcome! Who are you?","Bienvenue ! Qui etes-vous ?":"Welcome! Who are you?","Parent Space":"Parent Space","Professional Space":"Professional Space","Entrer - Parent Space":"Enter - Parent Space","Entrer - Professional Space":"Enter - Professional Space","Changer d'espace":"Switch space","ASD en chiffres":"ASD in numbers","ASD children in Algeria":"ASD children in Algeria","ASD children in Algeria":"ASD children in Algeria","Children affected worldwide":"Children affected worldwide","Without structured care":"Without structured care","Our AI precision":"Our AI precision","Our AI precision":"Our AI precision","Hello":"Hello","Actions rapides":"Quick actions","Profil de mon enfant":"My child profile","View complete file":"View complete file","Hello Dr.":"Hello Dr.","patients dyears votre espace privé":"patients in your private space","patients in your private space":"patients in your private space","Espace privé":"Private space","Espace prive":"Private space","Seuls VOS patients sont visibles":"Only YOUR patients are visible","Fonctionnalités disponibles":"Available features","Fonctionnalites disponibles":"Available features","Notifications":"Notifications","No notifications":"No notifications","Tout lire":"Mark all read","Effacer":"Clear","Choose a patient":"Choose a patient","Enregistrer le patient":"Save patient","Cancel":"Cancel","Confirm":"Confirm","Close":"Close","Level":"Level","Severe":"Severe","Moderate":"Moderate","Moderate":"Moderate","Mild":"Mild","Mild":"Mild","Oui":"Yes","Non":"No","Données non trouvées":"Data not found","Donnees non trouvees":"Data not found","Dark":"Dark","Light":"Light","HIGH Risk":"HIGH Risk","HIGH Risk":"HIGH Risk","MODERATE Risk":"MODERATE Risk","MODERATE Risk":"MODERATE Risk","LOW Risk":"LOW Risk","Comorbidités":"Comorbidities","Comorbidities":"Comorbidities","Diagnostic IA Multi-Modal":"Multi-Modal AI Diagnostic","M-CHAT Adaptatif":"Adaptive M-CHAT","Analyse Faciale":"Facial Analysis","Détection du Regard":"Gaze Detection","Detection du Regard":"Gaze Detection","Analyse Vocale":"Vocal Analysis","Détection Précoce ASD":"Early ASD Detection","Detection Precoce ASD":"Early ASD Detection","ASD signs screening questionnaire":"ASD signs screening questionnaire","Voir les résultats":"View results","Voir les resultats":"View results","Recommencer":"Start over","Messagerie Sécurisée":"Secure Messaging","Messagerie Securisee":"Secure Messaging","Équipe thérapeutique":"Therapeutic team","Equipe therapeutique":"Therapeutic team","Online":"Online","Offline":"Offline","Occupé":"Busy","Busy":"Busy","Envoyer":"Send","Your message":"Your message","Total messages":"Total messages","Parent messages":"Parent messages","Pro messages":"Pro messages","Unread":"Unread","Social communication":"Social communication","Social interactions":"Social interactions","Restricted behaviors":"Restricted behaviors","Expressive language":"Expressive language","Language réceptif":"Receptive language","Receptive language":"Receptive language","Eye contact":"Eye contact","Imitation":"Imitation","Symbolic play":"Symbolic play","Speech therapy":"Speech therapy","Psychomotricité":"Psychomotricity","Psychomotricity":"Psychomotricity","Sleep disorder":"Sleep disorder","Anxiété":"Anxiety","Anxiety":"Anxiety","Fortement recommandé":"Strongly recommended","Fortement recommande":"Strongly recommended","Recommandé":"Recommended","Optionnel":"Optional","Score de confiance":"Confidence score","Initial avg score":"Initial average score","Current avg score":"Current average score","Amélioration globale":"Overall improvement","Overall improvement":"Overall improvement","Total patients":"Total patients","Profil sévère":"Severe profile","Profil severe":"Severe profile","Profil modéré":"Moderate profile","Profil modere":"Moderate profile","Profil stable":"Stable profile","Suivi actif":"Active follow-up","Syears suivi":"No follow-up","Prévalence":"Prevalence","Prevalence":"Prevalence","Coverage":"Coverage","Méthodologie":"Methodology","Methodologie":"Methodology","Free":"Free","Family Premium":"Family Premium","Établissement":"Institution","Institution":"Institution","Forever":"Forever","Aide et Documentation":"Help & Documentation","Par Hadjoub Dhekra":"By Hadjoub Dhekra","Soutenance 2026":"Defense 2026","Mode sombre":"Dark mode","Mode clair":"Light mode","Wilaya":"Wilaya","LOW":"LOW","MODERATE":"MODERATE","HIGH":"HIGH"}
 
-_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Conseils pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Doctor":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","Login":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Email address":"البريد الإلكتروني","Password":"كلمة المرور","Remember me":"تذكّرني","Password oublié ?":"نسيت كلمة المرور؟","Password oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","Don't have an account?":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","Intelligent platform for ASD children":"منصة ذكية لأطفال طيف التوحد","Intelligent ASD Platform":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","Parent Space":"فضاء الآباء","Professional Space":"فضاء المختصين","Entrer - Parent Space":"دخول - فضاء الآباء","Entrer - Professional Space":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","TSA en chiffres":"التوحد بالأرقام","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","Children affected worldwide":"أطفال متضررون في العالم","Without structured care":"بدون متابعة منظمة","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Hello":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","View complete file":"عرض الملف الكامل","Hello Dr.":"مرحباً دكتور","patients dyears votre espace privé":"مرضى في فضائك الخاص","patients in your private space":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","No notifications":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","Choose a patient":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","Cancel":"إلغاء","Confirm":"تأكيد","Close":"إغلاق","Level":"المستوى","Severe":"شديد","Moderate":"متوسط","Moderate":"متوسط","Mild":"خفيف","Mild":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","Dark":"داكن","Light":"فاتح","HIGH Risk":"خطر مرتفع","HIGH Risk":"خطر مرتفع","MODERATE Risk":"خطر متوسط","MODERATE Risk":"خطر متوسط","LOW Risk":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","Comorbidities":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce TSA":"الكشف المبكر عن التوحد","Detection Precoce TSA":"الكشف المبكر عن التوحد","ASD signs screening questionnaire":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","Online":"متصل","Offline":"غير متصل","Occupé":"مشغول","Busy":"مشغول","Envoyer":"إرسال","Your message":"رسالتك","Total messages":"إجمالي الرسائل","Parent messages":"رسائل الآباء","Pro messages":"رسائل المختصين","Unread":"غير مقروء","Social communication":"التواصل الاجتماعي","Social interactions":"التفاعلات الاجتماعية","Restricted behaviors":"السلوكيات المقيدة","Expressive language":"اللغة التعبيرية","Language réceptif":"اللغة الاستقبالية","Receptive language":"اللغة الاستقبالية","Eye contact":"التواصل البصري","Imitation":"التقليد","Symbolic play":"اللعب الرمزي","Speech therapy":"علاج النطق","Psychomotricité":"العلاج النفسحركي","Psychomotricity":"العلاج النفسحركي","Sleep disorder":"اضطراب النوم","Anxiété":"القلق","Anxiety":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","Initial avg score":"الدرجة المتوسطة الأولية","Current avg score":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","Overall improvement":"التحسن الإجمالي","Total patients":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Syears suivi":"بدون متابعة","Prévalence":"الانتشار","Prevalence":"الانتشار","Coverage":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","Free":"مجاني","Family Premium":"عائلي مميز","Établissement":"مؤسسة","Institution":"مؤسسة","Forever":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Mode sombre":"الوضع الداكن","Mode clair":"الوضع الفاتح","Wilaya":"الولاية","LOW":"منخفض","MODERATE":"متوسط","HIGH":"مرتفع"}
+_TR_AR = {"Accueil":"الرئيسية","Détection précoce":"الكشف المبكر","Detection precoce":"الكشف المبكر","Orientation":"التوجيه","Advice pratiques":"نصائح عملية","Mon Enfant":"طفلي","Suivi Evolution":"متابعة التطور","Suivi Évolution":"متابعة التطور","Alertes":"التنبيهات","Messagerie":"المراسلة","Aide":"المساعدة","Diagnostic IA":"تشخيص الذكاء الاصطناعي","Diagnostic IA Pro":"تشخيص ذكاء اصطناعي متقدم","Nouveau Patient":"مريض جديد","Profil Patient":"ملف المريض","Recommandations":"التوصيات","IA Explicable":"الذكاء الاصطناعي القابل للتفسير","Avant Apres Traitement":"قبل وبعد العلاج","Avant Après Traitement":"قبل وبعد العلاج","Tableau Doctor":"لوحة الطبيب","Tableau Médecin":"لوحة الطبيب","Statistiques Algerie":"إحصائيات الجزائر","Statistiques Algérie":"إحصائيات الجزائر","Comparaison Internationale":"المقارنة الدولية","Recherche Scientifique":"البحث العلمي","Business Model":"نموذج الأعمال","Login":"تسجيل الدخول","Se déconnecter":"تسجيل الخروج","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Sign in to your AutiGraphCare account":"سجّل دخولك إلى حساب AutiGraphCare","Email address":"البريد الإلكتروني","Password":"كلمة المرور","Remember me":"تذكّرني","Password oublié ?":"نسيت كلمة المرور؟","Password oublie ?":"نسيت كلمة المرور؟","Comptes de démonstration":"حسابات تجريبية","Comptes de demonstration":"حسابات تجريبية","Don't have an account?":"ليس لديك حساب؟","Créer un compte gratuit":"إنشاء حساب مجاني","Creer un compte gratuit":"إنشاء حساب مجاني","Retour à la connexion":"العودة إلى تسجيل الدخول","Retour a la connexion":"العودة إلى تسجيل الدخول","Intelligent platform for ASD children":"منصة ذكية لأطفال طيف التوحد","Intelligent ASD Platform":"منصة ذكية للتوحد","Bienvenue ! Qui êtes-vous ?":"مرحباً! من أنت؟","Bienvenue ! Qui etes-vous ?":"مرحباً! من أنت؟","Parent Space":"فضاء الآباء","Professional Space":"فضاء المختصين","Entrer - Parent Space":"دخول - فضاء الآباء","Entrer - Professional Space":"دخول - فضاء المختصين","Changer d'espace":"تغيير الفضاء","ASD en chiffres":"التوحد بالأرقام","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","ASD children in Algeria":"طفل مصاب بالتوحد في الجزائر","Children affected worldwide":"أطفال متضررون في العالم","Without structured care":"بدون متابعة منظمة","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Our AI precision":"دقة الذكاء الاصطناعي لدينا","Hello":"مرحباً","Actions rapides":"إجراءات سريعة","Profil de mon enfant":"ملف طفلي","View complete file":"عرض الملف الكامل","Hello Dr.":"مرحباً دكتور","patients dyears votre espace privé":"مرضى في فضائك الخاص","patients in your private space":"مرضى في فضائك الخاص","Espace privé":"فضاء خاص","Espace prive":"فضاء خاص","Seuls VOS patients sont visibles":"فقط مرضاك مرئيون هنا","Fonctionnalités disponibles":"الميزات المتاحة","Fonctionnalites disponibles":"الميزات المتاحة","Notifications":"الإشعارات","No notifications":"لا توجد إشعارات","Tout lire":"تحديد الكل كمقروء","Effacer":"مسح","Choose a patient":"اختر مريضًا","Enregistrer le patient":"حفظ المريض","Cancel":"إلغاء","Confirm":"تأكيد","Close":"إغلاق","Level":"المستوى","Severe":"شديد","Moderate":"متوسط","Moderate":"متوسط","Mild":"خفيف","Mild":"خفيف","Oui":"نعم","Non":"لا","Données non trouvées":"البيانات غير موجودة","Donnees non trouvees":"البيانات غير موجودة","Dark":"داكن","Light":"فاتح","HIGH Risk":"خطر مرتفع","HIGH Risk":"خطر مرتفع","MODERATE Risk":"خطر متوسط","MODERATE Risk":"خطر متوسط","LOW Risk":"خطر منخفض","Comorbidités":"الأمراض المصاحبة","Comorbidities":"الأمراض المصاحبة","Diagnostic IA Multi-Modal":"التشخيص متعدد الوسائط بالذكاء الاصطناعي","M-CHAT Adaptatif":"M-CHAT التكيفي","Analyse Faciale":"تحليل الوجه","Détection du Regard":"كشف النظرة","Detection du Regard":"كشف النظرة","Analyse Vocale":"التحليل الصوتي","Détection Précoce ASD":"الكشف المبكر عن التوحد","Detection Precoce ASD":"الكشف المبكر عن التوحد","ASD signs screening questionnaire":"استبيان رصد علامات طيف التوحد","Voir les résultats":"عرض النتائج","Voir les resultats":"عرض النتائج","Recommencer":"البدء من جديد","Messagerie Sécurisée":"المراسلة الآمنة","Messagerie Securisee":"المراسلة الآمنة","Équipe thérapeutique":"الفريق العلاجي","Equipe therapeutique":"الفريق العلاجي","Online":"متصل","Offline":"غير متصل","Occupé":"مشغول","Busy":"مشغول","Envoyer":"إرسال","Your message":"رسالتك","Total messages":"إجمالي الرسائل","Parent messages":"رسائل الآباء","Pro messages":"رسائل المختصين","Unread":"غير مقروء","Social communication":"التواصل الاجتماعي","Social interactions":"التفاعلات الاجتماعية","Restricted behaviors":"السلوكيات المقيدة","Expressive language":"اللغة التعبيرية","Language réceptif":"اللغة الاستقبالية","Receptive language":"اللغة الاستقبالية","Eye contact":"التواصل البصري","Imitation":"التقليد","Symbolic play":"اللعب الرمزي","Speech therapy":"علاج النطق","Psychomotricité":"العلاج النفسحركي","Psychomotricity":"العلاج النفسحركي","Sleep disorder":"اضطراب النوم","Anxiété":"القلق","Anxiety":"القلق","Fortement recommandé":"موصى به بشدة","Fortement recommande":"موصى به بشدة","Recommandé":"موصى به","Optionnel":"اختياري","Score de confiance":"درجة الثقة","Initial avg score":"الدرجة المتوسطة الأولية","Current avg score":"الدرجة المتوسطة الحالية","Amélioration globale":"التحسن الإجمالي","Overall improvement":"التحسن الإجمالي","Total patients":"إجمالي المرضى","Profil sévère":"ملف شديد","Profil severe":"ملف شديد","Profil modéré":"ملف متوسط","Profil modere":"ملف متوسط","Profil stable":"ملف مستقر","Suivi actif":"متابعة نشطة","Syears suivi":"بدون متابعة","Prévalence":"الانتشار","Prevalence":"الانتشار","Coverage":"التكفل","Méthodologie":"المنهجية","Methodologie":"المنهجية","Free":"مجاني","Family Premium":"عائلي مميز","Établissement":"مؤسسة","Institution":"مؤسسة","Forever":"للأبد","Aide et Documentation":"المساعدة والتوثيق","Par Hadjoub Dhekra":"بقلم: حجوب ذكرى","Soutenance 2026":"مناقشة 2026","Mode sombre":"الوضع الداكن","Mode clair":"الوضع الفاتح","Wilaya":"الولاية","LOW":"منخفض","MODERATE":"متوسط","HIGH":"مرتفع"}
 
 def _inject_js_translation():
     _l = st.session_state.get("langue","fr")
@@ -380,7 +380,7 @@ TRAD = {
 "desc_parents":"Suivez le développement de votre enfant.",
 "desc_pro":"Outils d'aide à la décision clinique IA.",
 "changer_espace":"🔄 Switch space",
-# ── STATS TSA ───────────────────────────────────────────────────────────
+# ── STATS ASD ───────────────────────────────────────────────────────────
 "tsa_chiffres":"📊 ASD in numbers",
 "enfants_algerie":"ASD children in Algeria","enfants_monde":"Enfants touchés monde",
 "sans_suivi":"Syears suivi structuré","precision_ia":"Our AI precision",
@@ -415,14 +415,14 @@ TRAD = {
 "interventions":"Interventions","comorbidites":"Comorbidités",
 "resultats":"Résultats","analyse":"Analyse","rapport":"Rapport",
 "telecharger":"📥 Télécharger le rapport","exporter":"📤 Exporter",
-"ouvrir_btn":"▶ Ouvrir","voir_btn":"Voir →",
+"ouvrir_btn":"▶ Open","voir_btn":"Voir →",
 # ── DIAGNOSTIC IA ────────────────────────────────────────────────────────
-"diag_titre":"🧬 AI Diagnostic Multi-Modal",
-"diag_desc":"4 techniques d'analyse automatique pour le repérage TSA",
-"diag_avertissement":"⚠️ Ces outils sont des aides au repérage, non des diagnostics médicaux. Seul un professionnel qualifié peut établir un diagnostic TSA.",
+"diag_titre":"🧬 AI Multi-Modal Diagnostic Aid",
+"diag_desc":"4 techniques d'analyse automatique pour le repérage ASD",
+"diag_avertissement":"⚠️ These tools are screening aids, not medical diagnoses. Only a qualified professional can make a diagnosis of ASD.",
 "tab_mchat":"📋 Adaptive M-CHAT","tab_facial":"🖼️ Facial Analysis",
 "tab_regard":"🎥 Détection du Regard","tab_vocal":"🎙️ Vocal Analysis",
-"mchat_titre":"📋 Questionnaire M-CHAT-R Adaptatif",
+"mchat_titre":"📋 Adaptive M-CHAT-R Questionnaire",
 "mchat_ref":"Référence : Robins DL et al., 2014. Sensibilité 91%, Spécificité 95%",
 "facial_titre":"🖼️ Facial Analysis par IA",
 "facial_upload":"📸 Téléverser une photo de l'enfant (JPG/PNG)",
@@ -430,10 +430,10 @@ TRAD = {
 "vocal_titre":"🎙️ Vocal Analysis",
 "vocal_upload":"🎙️ Téléverser un fichier audio (WAV/MP3/M4A)",
 "analyser":"🔍 Analyze","lancer":"▶ Start analysis",
-"score_risque":"Score de risque","profil_vocal":"Profil vocal",
+"score_risque":"Risk score","profil_vocal":"Profil vocal",
 # ── DÉTECTION PRÉCOCE ─────────────────────────────────────────────────────
-"detection_titre":"🔍 Détection Précoce TSA",
-"detection_desc":"Questionnaire de repérage des signes TSA",
+"detection_titre":"🔍 Détection Précoce ASD",
+"detection_desc":"Questionnaire de repérage des signes ASD",
 "repondez":"Répondez aux questions suivantes concernant votre enfant",
 "outil_reperage":"(Ce questionnaire est un outil de repérage, non un diagnostic médical)",
 "voir_resultats":"📊 View results","recommencer":"🔄 Start over",
@@ -444,9 +444,9 @@ TRAD = {
 "orientation_titre":"🧭 Orientation vers les Spécialistes",
 "orientation_desc":"Spécialistes recommandés selon le profil de votre enfant",
 "specialiste":"Spécialiste","role":"Rôle","contact":"Contact",
-"prendre_rdv":"📞 Book appointment","centres_algerie":"🏥 Centres TSA en Algérie",
+"prendre_rdv":"📞 Book appointment","centres_algerie":"🏥 Centres ASD en Algérie",
 # ── CONSEILS ────────────────────────────────────────────────────────────
-"conseils_titre":"💡 Conseils Pratiques à la Maison",
+"conseils_titre":"💡 Advice Pratiques à la Maison",
 "conseils_desc":"Activités adaptées et conseils personnalisés",
 "activites":"Activités recommandées","routine":"Daily routine",
 "communication":"Communication","jeu":"Play and interaction",
@@ -536,7 +536,7 @@ TRAD = {
 "dashboard_desc":"Statistiques cliniques globales sur tous les patients",
 "distribution_age":"Distribution par âge","couverture_interventions":"Intervention coverage",
 # ── STATS ALGÉRIE ────────────────────────────────────────────────────────
-"stats_titre":"📊 Statistiques TSA en Algérie",
+"stats_titre":"📊 Statistiques ASD en Algérie",
 "stats_desc":"État des lieux et enjeux nationaux",
 "prevalence":"Prévalence","prise_en_charge":"Coverage",
 "specialistes_disponibles":"Spécialistes disponibles","delai_diagnostic":"Délai de diagnostic",
@@ -546,7 +546,7 @@ TRAD = {
 "gap_combler":"🔍 Algérie vs France — le gap à combler",
 "specialistes_10k":"Spécialistes pour 10 000 enfants",
 "delai_ans":"Délai moyen de diagnostic (années)",
-"taux_pec":"Taux de prise en charge TSA par pays (%)",
+"taux_pec":"Taux de prise en charge ASD par pays (%)",
 "positionnement_ia":"🤖 Positionnement des outils IA par pays",
 "conclusion_opp":"🎯 Conclusion — Opportunité AutiGraphCare",
 # ── RECHERCHE ────────────────────────────────────────────────────────────
@@ -625,7 +625,7 @@ TRAD = {
 "desc_parents":"Track your child's development.",
 "desc_pro":"AI-powered clinical decision support tools.",
 "changer_espace":"🔄 Switch space",
-# ── STATS TSA ───────────────────────────────────────────────────────────
+# ── STATS ASD ───────────────────────────────────────────────────────────
 "tsa_chiffres":"📊 ASD in numbers",
 "enfants_algerie":"ASD children in Algeria","enfants_monde":"Children affected worldwide",
 "sans_suivi":"Without structured care","precision_ia":"Our AI precision",
@@ -869,7 +869,7 @@ TRAD = {
 "entrer_parents":"👪 دخول — فضاء الآباء","entrer_pro":"👨‍⚕️ دخول — فضاء المختصين",
 "desc_parents":"تابع تطور طفلك.","desc_pro":"أدوات دعم القرار السريري بالذكاء الاصطناعي.",
 "changer_espace":"🔄 تغيير الفضاء",
-# ── STATS TSA ───────────────────────────────────────────────────────────
+# ── STATS ASD ───────────────────────────────────────────────────────────
 "tsa_chiffres":"📊 التوحد بالأرقام",
 "enfants_algerie":"طفل مصاب بالتوحد في الجزائر","enfants_monde":"أطفال متضررون في العالم",
 "sans_suivi":"بدون متابعة منظمة","precision_ia":"دقة الذكاء الاصطناعي لدينا",
@@ -1581,13 +1581,13 @@ def init_notifications():
     if "notifications" not in st.session_state:
         st.session_state["notifications"] = [
             {"id":1, "type":"message",  "icon":"💬", "color":"#4A90E2",
-             "texte":"Dr. Benali Karima vous a envoye un message",
+             "texte":"Dr. Benali Karima has sent you a message",
              "heure":"09:14", "lu":False},
             {"id":2, "type":"alerte",   "icon":"⚠️", "color":"#FF4444",
-             "texte":"Score communication > 7 detecte pour votre enfant",
+             "texte":"Communication score > 7 detected for your child",
              "heure":"11:30", "lu":False},
             {"id":3, "type":"systeme",  "icon":"🤖", "color":"#50E3C2",
-             "texte":"Rapport mensuel IA disponible",
+             "texte":"Monthly AI report available",
              "heure":"08:00", "lu":False},
         ]
 
@@ -2070,7 +2070,7 @@ elif mp("accueil") and esp == 'parent':
     actions = [
         ("🧬", "Diagnostic IA", "#50E3C2", "🧬 AI Diagnostic"),
         ("🧭", "Orientation", "#4CAF50", "🧭 Orientation"),
-        ("💡", "Conseils", "#F5A623", "💡 Practical Tips"),
+        ("💡", "Advice", "#F5A623", "💡 Practical Tips"),
         ("🔔", "Alertes", "#FF4444", "🔔 Alerts"),
     ]
     for col, (icon, label, color, page) in zip([a1, a2, a3, a4], actions):
@@ -2104,12 +2104,12 @@ elif mp("accueil") and esp == 'parent':
         )
     with col_btn:
         st.markdown("<div style='height:0.6rem;'></div>", unsafe_allow_html=True)
-        if st.button("👶 Ouvrir", use_container_width=True, key="nav_enfant_quick"):
+        if st.button("👶 Open", use_container_width=True, key="nav_enfant_quick"):
             st.session_state['menu'] = "👶 My Child"
             st.rerun()
 
     st.markdown("<br/>", unsafe_allow_html=True)
-    st.info("💡 **Conseil :** La detection precoce avant 3 years ameliore significativement les resultats therapeutiques.")
+    st.info("💡 **Conseil :** Early detection before 3 years significantly improves therapeutic outcomes.")
 
 # ============================================================
 # PARENTS - DIAGNOSTIC IA (4 modules)
@@ -2118,7 +2118,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
 
     st.markdown(
         "<div class='main-header'>"
-        "<h1 style='color:white;'>🧬 AI Diagnostic Multi-Modal</h1>"
+        "<h1 style='color:white;'>🧬 AI Multi-Modal Diagnostic Aid</h1>"
         "<p style='color:white;'>4 automatic ASD screening techniques</p>"
         "</div>",
         unsafe_allow_html=True
@@ -2127,9 +2127,9 @@ elif mp("diagnostic_ia") and esp == 'parent':
     st.markdown("""
     <div class='card' style='border-left:5px solid #4A90E2; margin-bottom:1.5rem;'>
         <p style='margin:0; color:#555; font-size:1rem;'>
-        ⚠️ <b>Important :</b> Ces outils sont des aides au reperage, non des diagnostics medicaux.
-        Seul un professionnel de sante qualifie peut etablir un diagnostic TSA.
-        Combinez plusieurs modules pour un reperage plus fiable.
+        ⚠️ <b>Important :</b> These tools are screening aids, not medical diagnoses.
+        Only a qualified healthcare professional can make a diagnosis of ASD.
+        Combine several modules for more reliable screening.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -2145,45 +2145,44 @@ elif mp("diagnostic_ia") and esp == 'parent':
     # TAB 1 : M-CHAT ADAPTATIF
     # ================================================================
     with tab1:
-        st.markdown("### 📋 Questionnaire M-CHAT-R Adaptatif")
+        st.markdown("### 📋 Adaptive M-CHAT-R Questionnaire")
         st.markdown("""
         <div class='card' style='border-left:4px solid #4A90E2;'>
             <p style='margin:0; color:#555;'>
-            Le <b>M-CHAT-R (Modified Checklist for Autism in Toddlers)</b> est l'outil de
-            reperage valide scientifiquement le plus utilise dyears le monde. Notre version
-            <b>adaptative</b> ajuste les questions selon les reponses precedentes.
+            The <b>M-CHAT-R (Modified Checklist for Autism in Toddlers)</b> is the most scientifically valid tracking tool used in the world. Our
+            <b>adaptive</b> version adjusts the questions based on previous answers.
             </p>
         </div>
         """, unsafe_allow_html=True)
 
-        age_mchat = st.slider("Age de l'enfant (months)", 16, 48, 24, key="age_mchat")
+        age_mchat = st.slider("Child's age (months)", 16, 48, 24, key="age_mchat")
 
         if age_mchat < 16 or age_mchat > 48:
             st.warning("⚠️ Le M-CHAT est valide pour les enfants de 16 a 48 month.")
         else:
-            st.markdown("#### Repondez par OUI ou NON a chaque question :")
+            st.markdown("#### Answer YES or NO to each question:")
 
             questions_mchat = [
-                ("Q1", "👁️", "Votre enfant regarde-t-il les objets que vous pointez du doigt ?",
-                 "Pointage proto-declaratif", "Non", 3),
-                ("Q2", "🤝", "Votre enfant s'interesse-t-il aux autres enfants ?",
-                 "Interet social", "Non", 2),
-                ("Q3", "☝️", "Votre enfant pointe-t-il du doigt pour montrer quelque chose d'interessant ?",
-                 "Pointage proto-imperatif", "Non", 3),
-                ("Q4", "🎮", "Votre enfant joue-t-il a faire semblant ?",
+                ("Q1", "👁️", "Does your child look at the objects you point to?",
+                 "Proto-declarative scoring", "Non", 3),
+                ("Q2", "🤝", "Is your child interested in other children?",
+                 "Social interest", "Non", 2),
+                ("Q3", "☝️", "Does your child point to show something interesting?",
+                 "Proto-imperative pointing", "Non", 3),
+                ("Q4", "🎮", "Does your child play pretend?",
                  "Symbolic play", "Non", 2),
-                ("Q5", "👁️", "Votre enfant vous regarde-t-il dyears les yeux pendant plus de 1-2 secondes ?",
+                ("Q5", "👁️", "Does your child look at you in the eyes for more than 1-2 seconds?",
                  "Eye contact", "Non", 3),
-                ("Q6", "👂", "Votre enfant repond-il quand vous l'appelez par son prenom ?",
-                 "Reponse au prenom", "Non", 3),
-                ("Q7", "😊", "Votre enfant vous sourit-il lorsque vous lui souriez ?",
-                 "Sourire social", "Non", 2),
-                ("Q8", "🚶", "Votre enfant marche-t-il normalement ?",
-                 "Developpement moteur", "Non", 1),
-                ("Q9", "🔄", "Votre enfant presente-t-il des mouvements repetitifs (battement des mains, se balancer) ?",
-                 "Stereotypies motrices", "Oui", 2),
-                ("Q10", "😰", "Votre enfant est-il tres sensible aux bruits, lumieres ou textures ?",
-                 "Hypersensibilite sensorielle", "Oui", 1),
+                ("Q6", "👂", "Does your child respond when you call them by their first name?",
+                 "Answer by first name", "Non", 3),
+                ("Q7", "😊", "Does your child smile back when you smile at them?",
+                 "Social smile", "Non", 2),
+                ("Q8", "🚶", "Does your child walk normally?",
+                 "Engine development", "Non", 1),
+                ("Q9", "🔄", "Does your child exhibit repetitive movements (hand flapping, rocking)?",
+                 "Motor stereotypies", "Oui", 2),
+                ("Q10", "😰", "Is your child very sensitive to noises, lights or textures?",
+                 "Sensory Hypersensitivity", "Oui", 1),
             ]
 
             scores_mchat = []
@@ -2205,7 +2204,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                     else:
                         scores_mchat.append(0)
 
-            if st.button("📊 Calculer le score M-CHAT", use_container_width=True, key="btn_mchat"):
+            if st.button("📊 calculate the score M-CHAT", use_container_width=True, key="btn_mchat"):
                 total = sum(scores_mchat)
                 max_score = sum(p for _, _, _, _, _, p in questions_mchat)
                 pct = (total / max_score) * 100
@@ -2215,12 +2214,12 @@ elif mp("diagnostic_ia") and esp == 'parent':
 
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    st.metric("Score de risque", f"{total} / {max_score}")
+                    st.metric("Risk score", f"{total} / {max_score}")
                 with col2:
                     niveau = "LOW" if pct < 30 else "MODERATE" if pct < 60 else "HIGH"
-                    st.metric("Level de risque", niveau)
+                    st.metric("Risk level", niveau)
                 with col3:
-                    st.metric("Pourcentage", f"{pct:.0f}%")
+                    st.metric("Percentage", f"{pct:.0f}%")
 
                 # Jauge visuelle
                 bar_color = "#4CAF50" if pct < 30 else "#FFA500" if pct < 60 else "#FF4444"
@@ -2236,18 +2235,18 @@ elif mp("diagnostic_ia") and esp == 'parent':
                 domaines_risque = [domaine for (_, _, _, domaine, reponse_risque, _), s
                                    in zip(questions_mchat, scores_mchat) if s > 0]
                 if domaines_risque:
-                    st.markdown("#### ⚠️ Domaines necessitant attention :")
+                    st.markdown("#### ⚠️ Areas requiring attention:")
                     cols = st.columns(min(len(domaines_risque), 3))
                     for i, d in enumerate(domaines_risque):
                         with cols[i % 3]:
                             st.error(f"🔴 {d}")
 
                 if pct < 30:
-                    st.success("✅ **Risque faible** — Le developpement semble dyears la norme. Continuez le suivi pediatrique regulier.")
+                    st.success("✅ **Low risk** — The development appears to be within the norm. Continue regular pediatric follow-up.")
                 elif pct < 60:
-                    st.warning("🟠 **Risque modere** — Un bilan par un pediatre ou un orthophoniste est recommande dyears les prochaines semaines.")
+                    st.warning("🟠 **Moderate risk** — An assessment by a pediatrician or speech therapist is recommended in the coming weeks.")
                 else:
-                    st.error("🔴 **Risque eleve** — Une evaluation urgente par un specialiste TSA (neuropediatre) est fortement recommandee.")
+                    st.error("🔴 **High risk** — An urgent evaluation by an ASD specialist (neuropediatrician) is strongly recommended.")
 
                 st.info("📋 Reference: Robins DL et al., M-CHAT-R/F, 2014. Sensitivity 91%, Specificity 95%.")
 
@@ -2255,21 +2254,18 @@ elif mp("diagnostic_ia") and esp == 'parent':
     # TAB 2 : ANALYSE FACIALE
     # ================================================================
     with tab2:
-        st.markdown("### 🖼️ Facial Analysis par Intelligence Artificielle")
+        st.markdown("### 🖼️ Facial Analysis by Artificial Intelligence")
         st.markdown("""
         <div class='card' style='border-left:4px solid #6C3FC5;'>
             <p style='margin:0; color:#555;'>
-            Notre modele analyse les <b>expressions faciales</b> et les <b>caracteristiques
-            du regard</b> sur une photo de l'enfant. L'IA detecte les patterns associes
-            aux troubles du spectre autistique : contact visuel reduit, expressions atypiques,
-            orientation du regard.
+            Our model analyzes <b>facial expressions</b> and <b>eye characteristics</b> in a photo of the child. The AI ​​detects patterns associated with autism spectrum disorders: reduced eye contact, atypical expressions, and gaze direction.
             </p>
         </div>
         """, unsafe_allow_html=True)
 
-        st.markdown("#### 📤 Uploader une photo du visage de l'enfant")
+        st.markdown("#### 📤 Upload a photo of the child's face")
         uploaded_img = st.file_uploader(
-            "Choisir une image (JPG, PNG)", type=["jpg","jpeg","png"],
+            "Choose an image (JPG, PNG)", type=["jpg","jpeg","png"],
             key="face_upload",
             help="Photo de face, bonne luminosite, visage bien visible"
         )
@@ -2278,13 +2274,13 @@ elif mp("diagnostic_ia") and esp == 'parent':
         with col_tips:
             st.markdown("""
             <div class='card' style='border-left:4px solid #F5A623;'>
-                <h4 style='color:#F5A623; margin:0 0 0.5rem;'>📸 Conseils photo</h4>
+                <h4 style='color:#F5A623; margin:0 0 0.5rem;'>📸 Photo Advice </h4>
                 <ul style='color:#555; margin:0; padding-left:1.2rem; font-size:0.9rem;'>
-                    <li>Photo de face</li>
-                    <li>Bonne luminosite</li>
-                    <li>Visage entier visible</li>
-                    <li>Fond neutre</li>
-                    <li>Enfant non masque</li>
+                    <li>Front view photo</li>
+                    <li>Good lighting</li>
+                    <li>Full face visible</li>
+                    <li>Full face visible</li>
+                    <li>Child not wearing a mask</li>
                 </ul>
             </div>
             """, unsafe_allow_html=True)
@@ -2333,7 +2329,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                                 unsafe_allow_html=True
                             )
 
-                    st.markdown("#### 📊 Score de risque TSA estime")
+                    st.markdown("#### 📊 Risk score ASD estime")
                     risk_pct  = risque * 100
                     risk_color = "#4CAF50" if risk_pct < 30 else "#FFA500" if risk_pct < 60 else "#FF4444"
                     risk_label = "LOW" if risk_pct < 30 else "MODERATE" if risk_pct < 60 else "HIGH"
@@ -2348,9 +2344,9 @@ elif mp("diagnostic_ia") and esp == 'parent':
                     st.markdown("#### 🔍 Observations detaillees")
                     observations = []
                     if contact_visuel < 0.5:
-                        observations.append(("🔴", "Eye contact reduit detecte", "Signe potentiel TSA a approfondir"))
+                        observations.append(("🔴", "Eye contact reduit detecte", "Signe potentiel ASD a approfondir"))
                     if expression_soc < 0.5:
-                        observations.append(("🟠", "Expression sociale atypique", "Sourire social peu present"))
+                        observations.append(("🟠", "Expression sociale atypique", "Social smile peu present"))
                     if orient_regard < 0.5:
                         observations.append(("🟠", "Orientation du regard atypique", "Tendance a eviter le regard direct"))
                     if not observations:
@@ -2370,14 +2366,13 @@ elif mp("diagnostic_ia") and esp == 'parent':
     # TAB 3 : DETECTION REGARD WEBCAM
     # ================================================================
     with tab3:
-        st.markdown("### 🎥 Detection du Regard par Webcam")
+        st.markdown("### 🎥 Webcam Eye Detection")
         st.markdown("""
         <div class='card' style='border-left:4px solid #50E3C2;'>
             <p style='margin:0; color:#555;'>
-            Ce module utilise la <b>webcam</b> et la technologie <b>MediaPipe Face Mesh</b>
-            (Google) pour analyser en temps reel les <b>mouvements oculaires</b> et le
-            <b>contact visuel</b> de l'enfant. L'enfant est place devant l'ecran pendant
-            60 secondes pendant qu'on lui montre des stimuli visuels.
+            This module uses the <b>webcam</b> and <b>MediaPipe Face Mesh</b>
+            technology (Google) to analyze the child's <b>eye movements</b> and
+            <b>eye contact</b> in real time. The child is placed in front of the screen for 60 seconds while visual stimuli are shown.
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -2385,32 +2380,32 @@ elif mp("diagnostic_ia") and esp == 'parent':
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            #### 📋 Protocole de test (60 secondes)
-            1. **Placez l'enfant** devant l'ecran a 50cm
-            2. **Cliquez Demarrer** pour activer la webcam
-            3. **Montrez les stimuli** qui s'affichent
-            4. L'IA analyse le **regard en temps reel**
-            5. **Rapport automatique** genere a la fin
+            #### 📋 Test protocol (60 seconds)
+            1. **Place the child** 50cm in front of the screen.
+            2. **Click Start** to activate the webcam.
+            3. **Show** the displayed stimuli.
+            4. AI analyzes gaze **in real time.**
+            5. **Automatic report** generated at the end.
             """)
         with col2:
             st.markdown("""
-            #### 🔬 Ce que l'IA analyse
-            - **Eye contact** : regarde-t-il l'ecran ?
-            - **Temps de fixation** sur les visages vs objets
-            - **Saccades oculaires** (mouvements rapides)
-            - **Evitement du regard** (detournement de tete)
-            - **Attention conjointe** lors des stimuli sociaux
+            #### 🔬 What AI analyzes
+            - **Eye contact** : Is he looking at the screen?
+            - **Fixation time** on faces vs. objects
+            - **Eye saccades ** (rapid eye movements)
+            - **Avoidance of gaze** (head averting)
+            - **Joint attention** during social stimuli
             """)
 
         st.markdown("---")
-        st.markdown("#### 🚀 Demarrer le test de detection du regard")
+        st.markdown("#### 🚀 Start the gaze detection test")
 
         # Composant HTML/JS pour simulation webcam
         webcam_html = """
         <div style="font-family: Inter, sans-serif; max-width: 700px; margin: 0 auto;">
           <div id="status-bar" style="background:#1a1a2e;color:#50E3C2;padding:0.6rem 1rem;
                border-radius:8px;margin-bottom:1rem;font-size:0.9rem;text-align:center;">
-            ⏸ En attente — Cliquez sur Demarrer pour lancer l'analyse
+            ⏸ Pending — Click Start to begin the analysis
           </div>
           <div style="position:relative; width:100%; max-width:640px; margin:0 auto;">
             <video id="videoEl" width="640" height="400"
@@ -2429,13 +2424,13 @@ elif mp("diagnostic_ia") and esp == 'parent':
             <button id="startBtn" onclick="startAnalysis()"
               style="background:linear-gradient(135deg,#4A90E2,#50E3C2);color:white;border:none;
                      padding:0.7rem 2rem;border-radius:25px;font-size:1rem;font-weight:700;cursor:pointer;">
-              ▶ Demarrer l'analyse
+              ▶ Start the analysis
             </button>
             <button id="stopBtn" onclick="stopAnalysis()" disabled
               style="background:#FF4444;color:white;border:none;
                      padding:0.7rem 2rem;border-radius:25px;font-size:1rem;font-weight:700;
                      cursor:pointer;opacity:0.5;">
-              ⏹ Arreter
+              ⏹ Stop
             </button>
           </div>
 
@@ -2584,7 +2579,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                 <div style="font-size:0.8rem;color:#888;">Avg. fixation duration</div>
               </div>
             </div>
-            <div style="margin-bottom:0.5rem;font-weight:600;">Score de risque TSA estime :</div>
+            <div style="margin-bottom:0.5rem;font-weight:600;">Risk score ASD estime :</div>
             <div style="width:100%;background:#e0e0e0;border-radius:10px;height:28px;">
               <div style="width:${Math.min(risk,100).toFixed(0)}%;background:${riskColor};height:28px;
                    border-radius:10px;display:flex;align-items:center;justify-content:center;
@@ -2606,13 +2601,11 @@ elif mp("diagnostic_ia") and esp == 'parent':
     # TAB 4 : ANALYSE VOCALE
     # ================================================================
     with tab4:
-        st.markdown("### 🎙️ Vocal Analysis par Intelligence Artificielle")
+        st.markdown("### 🎙️ Voice Analysis by Artificial Intelligence")
         st.markdown("""
         <div class='card' style='border-left:4px solid #FF6B9D;'>
             <p style='margin:0; color:#555;'>
-            L'IA analyse les <b>caracteristiques acoustiques</b> de la voix de l'enfant :
-            prosodie, intonation, rythme et patterns vocaux. Les enfants TSA presentent souvent
-            des patterns vocaux atypiques detectables par traitement du signal audio.
+            AI analyzes the <b>acoustic characteristics</b> of the child's voice: prosody, intonation, rhythm, and vocal patterns. Children with autism spectrum disorder (ASD) often exhibit atypical vocal patterns detectable through audio signal processing.
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -2620,13 +2613,13 @@ elif mp("diagnostic_ia") and esp == 'parent':
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            #### 🔬 Parametres analyses
-            - **Prosodie** : variations de ton et d'intonation
-            - **Rythme vocal** : regularite des pauses et debits
-            - **Pitch moyen** : hauteur caracteristique de la voix
-            - **Variabilite F0** : fluctuations de la frequence fondamentale
-            - **Energie vocale** : volume et intensite
-            - **Rapport signal/silence** : temps de vocalisation
+            #### 🔬 Analysis parameters
+            - **Prosody** : variations in tone and intonation
+            - **Vocal rhythm** : regularity of pauses and speech rates
+            - **Average pitch** : characteristic pitch of the voice
+            - **F0 variability** : fluctuations in fundamental frequency
+            - **Vocal energy** : volume and intensity
+            - **Signal-to-silence ratio** : vocalization time
             """)
         with col2:
             st.markdown("""
@@ -2640,7 +2633,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
 
         st.markdown("---")
         audio_file = st.file_uploader(
-            "📤 Uploader un enregistrement audio",
+            "📤Upload an audio recording",
             type=["wav","mp3","m4a","ogg"],
             key="audio_upload"
         )
@@ -2710,7 +2703,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
                 # Score risque
                 risk_color = "#4CAF50" if risque_vocal < 30 else "#FFA500" if risque_vocal < 60 else "#FF4444"
                 risk_label = "LOW" if risque_vocal < 30 else "MODERATE" if risque_vocal < 60 else "HIGH"
-                st.markdown("#### 📊 Score de risque TSA vocal")
+                st.markdown("#### 📊 Risk score ASD vocal")
                 st.markdown(
                     f"<div style='width:100%;background:#e0e0e0;border-radius:10px;height:28px;'>"
                     f"<div style='width:{risque_vocal:.0f}%;background:{risk_color};height:28px;"
@@ -2740,20 +2733,20 @@ elif mp("diagnostic_ia") and esp == 'parent':
             st.markdown("""
             <div class='card' style='text-align:center; border: 2px dashed #ccc; background: transparent;'>
                 <div style='font-size:3rem;'>🎙️</div>
-                <p style='color:#888;'>Uploadez un fichier audio WAV, MP3 ou M4A pour demarrer l'analyse</p>
+                <p style='color:#888;'>Upload a WAV, MP3 or M4A audio file to start the analysis</p>
             </div>
             """, unsafe_allow_html=True)
 
         st.markdown("---")
 
         # Synthese globale
-        st.markdown("### 🧬 Comment combiner les 4 modules ?")
+        st.markdown("### 🧬 How do I combine the 4 modules?")
         st.markdown("""
         <div class='card' style='border-left:5px solid #4A90E2;'>
         <table style='width:100%;border-collapse:collapse;'>
         <tr style='background:linear-gradient(135deg,#4A90E2,#6C3FC5);color:white;'>
             <th style='padding:0.6rem;'>Module</th>
-            <th style='padding:0.6rem;'>Poids recommande</th>
+            <th style='padding:0.6rem;'>Recommended weight</th>
             <th style='padding:0.6rem;'>Sensitivity</th>
         </tr>
         <tr style='background:#EEF5FF;'>
@@ -2849,7 +2842,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 ("Votre enfant maintient-il le contact visuel ?", "contact_visuel", 3),
                 ("Votre enfant repond-il quand on appelle son prenom ?", "reponse_prenom", 2),
                 ("Votre enfant imite-t-il les gestes ou expressions ?", "imitation", 2),
-                ("Votre enfant joue-t-il a faire semblant ?", "jeu_symbolique", 2),
+                ("Does your child play pretend?", "jeu_symbolique", 2),
                 ("Votre enfant montre-t-il de l'interet pour les autres enfants ?", "interet_social", 2),
                 ("Votre enfant suit-il le regard d'une autre personne ?", "attention_conjointe", 2),
                 ("Votre enfant presente-t-il des comportements repetitifs ?", "stereotypies", 1),
@@ -2883,7 +2876,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 f"border-radius:20px;font-size:1rem;font-weight:700;'>{label_mc}</span></div>"
                 f"<div style='width:100%;background:#e0e0e0;border-radius:10px;height:14px;margin:0.7rem 0;'>"
                 f"<div style='width:{pct_mchat:.0f}%;background:{color_mc};height:14px;border-radius:10px;'></div></div>"
-                f"<p style='margin:0;color:#555;font-size:0.9rem;'>Score estimé : {pct_mchat:.0f}% de risque TSA</p>"
+                f"<p style='margin:0;color:#555;font-size:0.9rem;'>Score estimé : {pct_mchat:.0f}% de risque ASD</p>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -3078,43 +3071,43 @@ elif mp("detection") and esp == 'parent':
         st.session_state['questionnaire_done'] = False
 
     with st.form("questionnaire_tsa"):
-        st.markdown("#### 👁️ Contact et communication")
-        q1 = st.radio("Votre enfant vous regarde-t-il dyears les yeux lorsque vous lui parlez ?",
-                       ["Souvent", "Parfois", "Rarement", "Jamais"], index=0, key="q1")
-        q2 = st.radio("Votre enfant repond-il a son prenom quand vous l'appelez ?",
-                       ["Toujours", "Souvent", "Parfois", "Jamais"], index=0, key="q2")
-        q3 = st.radio("Votre enfant pointe-t-il du doigt pour montrer des objets ?",
-                       ["Oui frequemment", "Parfois", "Rarement", "Non"], index=0, key="q3")
+        st.markdown("#### 👁️ Contact and communication")
+        q1 = st.radio("Does your child look you in the eyes when you speak to them?",
+                       ["Often", "Sometimes", "Rarely", "Never"], index=0, key="q1")
+        q2 = st.radio("Does your child respond to their name when you call them?",
+                       ["Always", "Often", "Sometimes", "Never"], index=0, key="q2")
+        q3 = st.radio("Does your child point to objects?",
+                       ["yes frequently", "Sometimes", "Rarely", "Non"], index=0, key="q3")
 
         st.markdown("#### 🤝 Social interactions")
-        q4 = st.radio("Votre enfant joue-t-il avec d'autres enfants ?",
-                       ["Oui volontiers", "Parfois", "Rarement", "Non"], index=0, key="q4")
+        q4 = st.radio("Does your child play with other children?",
+                       ["Oui volontiers", "Sometimes", "Rarely", "Non"], index=0, key="q4")
         q5 = st.radio("Votre enfant imite-t-il vos gestes (agiter la main, applaudir...) ?",
-                       ["Oui", "Parfois", "Rarement", "Jamais"], index=0, key="q5")
+                       ["Oui", "Sometimes", "Rarely", "Never"], index=0, key="q5")
 
         st.markdown("#### 🔄 Behaviors")
-        q6 = st.radio("Votre enfant a-t-il des mouvements repetitifs (se balancer, tourner les mains...) ?",
-                       ["Jamais", "Rarement", "Souvent", "Tres souvent"], index=0, key="q6")
-        q7 = st.radio("Votre enfant s'upset-il beaucoup lors de changements de routine ?",
-                       ["Jamais", "Rarement", "Souvent", "Tres souvent"], index=0, key="q7")
+        q6 = st.radio("Does your child have repetitive movements (rocking, turning their hands...)?",
+                       ["Never", "Rarely", "Often", "Very often"], index=0, key="q6")
+        q7 = st.radio("Does your child get upset a lot when their routine changes?",
+                       ["Never", "Rarely", "Often", "Very often"], index=0, key="q7")
 
         st.markdown("#### 🗣️ Language")
-        q8 = st.radio("Votre enfant utilise-t-il des mots ou phrases pour communiquer ?",
-                       ["Oui, phrases completes", "Quelques mots", "Tres peu", "Pas du tout"], index=0, key="q8")
+        q8 = st.radio("Does your child use words or phrases to communicate?",
+                       ["Yes, complete sentences", "A few words", "Very little", "Very little"], index=0, key="q8")
 
-        age_enfant = st.slider("Age de votre enfant (en months)", 12, 144, 36)
-        submitted = st.form_submit_button("📊 Analyser les reponses", use_container_width=True)
+        age_enfant = st.slider("Your child's age (in months)", 12, 144, 36)
+        submitted = st.form_submit_button("📊 Analyze the responses", use_container_width=True)
 
     if submitted:
         score = 0
-        score += {"Souvent": 0, "Parfois": 1, "Rarement": 2, "Jamais": 3}[q1]
-        score += {"Toujours": 0, "Souvent": 1, "Parfois": 2, "Jamais": 3}[q2]
-        score += {"Oui frequemment": 0, "Parfois": 1, "Rarement": 2, "Non": 3}[q3]
-        score += {"Oui volontiers": 0, "Parfois": 1, "Rarement": 2, "Non": 3}[q4]
-        score += {"Oui": 0, "Parfois": 1, "Rarement": 2, "Jamais": 3}[q5]
-        score += {"Jamais": 0, "Rarement": 1, "Souvent": 2, "Tres souvent": 3}[q6]
-        score += {"Jamais": 0, "Rarement": 1, "Souvent": 2, "Tres souvent": 3}[q7]
-        score += {"Oui, phrases completes": 0, "Quelques mots": 1, "Tres peu": 2, "Pas du tout": 3}[q8]
+        score += {"Often": 0, "Sometimes": 1, "Rarely": 2, "Never": 3}[q1]
+        score += {"Always": 0, "Often": 1, "Sometimes": 2, "Never": 3}[q2]
+        score += {"yes frequently": 0, "Sometimes": 1, "Rarely": 2, "Non": 3}[q3]
+        score += {"Oui volontiers": 0, "Sometimes": 1, "Rarely": 2, "Non": 3}[q4]
+        score += {"Oui": 0, "Sometimes": 1, "Rarely": 2, "Never": 3}[q5]
+        score += {"Never": 0, "Rarely": 1, "Often": 2, "Very often": 3}[q6]
+        score += {"Never": 0, "Rarely": 1, "Often": 2, "Very often": 3}[q7]
+        score += {"Yes, complete sentences": 0, "A few words": 1, "Very little": 2, "Very little": 3}[q8]
 
         st.markdown("---")
         st.markdown("### 📊 Resultat de l'analyse")
@@ -3131,7 +3124,7 @@ elif mp("detection") and esp == 'parent':
             if score <= 4:
                 st.success("""
                 **🟢 Developpement dyears la norme**
-                Les reponses ne suggerent pas de signes TSA significatifs.
+                Les reponses ne suggerent pas de signes ASD significatifs.
                 Continuez le suivi pediatrique regulier.
                 """)
             elif score <= 10:
@@ -3144,7 +3137,7 @@ elif mp("detection") and esp == 'parent':
                 st.error("""
                 **🔴 Consultation specialisee recommandee**
                 Les reponses suggerent des signes necessitant une evaluation par
-                un specialiste TSA (neuropediatre, psychologue). N'attendez pas.
+                un specialiste ASD (neuropediatre, psychologue). N'attendez pas.
                 """)
         st.markdown("---")
         st.info("⚠️ Ce questionnaire est un outil de reperage uniquement. Seul un professionnel de sante peut etablir un diagnostic.")
@@ -3164,7 +3157,7 @@ elif mp("orientation") and esp == 'parent':
     st.markdown("### Quel specialiste pour quel besoin ?")
     for icon, titre, color, besoins, role in [
         ("🧠", "Neuropediatre", "#FF4444",
-         ["Diagnostic officiel TSA", "Evaluation neurologique", "Prescription des bilans"],
+         ["Diagnostic officiel ASD", "Evaluation neurologique", "Prescription des bilans"],
          "Premier recours pour le diagnostic. Il coordonne le parcours de soin."),
         ("🗣️", "Speech therapist", "#4A90E2",
          ["Retard de langage", "Communication limitee", "Score PECS recommande"],
@@ -3275,7 +3268,7 @@ elif mp("conseils") and esp == 'parent':
             """, unsafe_allow_html=True)
 
         st.markdown("---")
-        st.success("💚 Recall : chaque enfant TSA est unique. Adaptez ces conseils a votre enfant et a votre quotidien.")
+        st.success("💚 Recall : chaque enfant ASD est unique. Adaptez ces conseils a votre enfant et a votre quotidien.")
         if st.button("📈 Voir le suivi de l'evolution", use_container_width=True):
             st.session_state['menu'] = "📈 Progress Tracking"
             st.rerun()
@@ -3402,7 +3395,7 @@ elif mp("suivi") and esp == 'parent':
             with c2: st.metric("Competences evaluees",  len(values))
             with c3: st.metric("Level global", "Severe" if sm >= 7 else "Moderate" if sm >= 4 else "Mild")
             if sm >= 7:
-                st.error(f"⚠️ Score {sm:.1f}/10 - Suivi intensif recommande. Consultez un specialiste TSA.")
+                st.error(f"⚠️ Score {sm:.1f}/10 - Suivi intensif recommande. Consultez un specialiste ASD.")
             elif sm >= 4:
                 st.warning(f"🟠 Score {sm:.1f}/10 - Suivi regulier conseille.")
             else:
@@ -3427,7 +3420,7 @@ elif mp("alertes") and esp == 'parent':
         checks = [
             ('communication_sociale',    7, "urgent",    "🔴 URGENT",    "Social communication tres limitee",    "Consultez un orthophoniste rapidement.",        "#FF4444"),
             ('communication_sociale',    5, "attention", "🟠 ATTENTION", "Social communication a surveiller",     "Bilan orthophonique recommande.",               "#FFA500"),
-            ('contact_visuel',           7, "urgent",    "🔴 URGENT",    "Eye contact tres faible",             "Consultez un specialiste TSA.",                 "#FF4444"),
+            ('contact_visuel',           7, "urgent",    "🔴 URGENT",    "Eye contact tres faible",             "Consultez un specialiste ASD.",                 "#FF4444"),
             ('langage_expressif',        7, "attention", "🟠 ATTENTION", "Retard de langage expressif",            "Therapie PECS ou orthophonie en priorite.",     "#FFA500"),
             ('comportements_restreints', 7, "urgent",    "🔴 URGENT",    "Restricted behaviors severes",       "Therapie ABA recommandee en urgence.",          "#FF4444"),
             ('interactions_sociales',    7, "attention", "🟠 ATTENTION", "Social interactions tres limitees",    "Programme d'integration sociale recommande.",   "#FFA500"),
@@ -3537,7 +3530,7 @@ elif mp("accueil") and esp == 'pro':
             )
         with col_btn:
             st.markdown("<div style='height:0.6rem;'></div>", unsafe_allow_html=True)
-            if st.button(f"▶ Ouvrir", key=f"pro_btn_{titre}", use_container_width=True):
+            if st.button(f"▶ Open", key=f"pro_btn_{titre}", use_container_width=True):
                 st.session_state['menu'] = page
                 st.rerun()
 
@@ -3557,7 +3550,7 @@ elif mp("accueil") and esp == 'pro':
                 f"<p style='color:#888;'>{desc}</p></div>",
                 unsafe_allow_html=True
             )
-            if st.button(f"▶ Ouvrir {title}", key=f"acc_pro_btn_{i}", use_container_width=True):
+            if st.button(f"▶ Open {title}", key=f"acc_pro_btn_{i}", use_container_width=True):
                 st.session_state['menu'] = page
                 st.rerun()
     if not df.empty:
@@ -4051,7 +4044,7 @@ elif mp("stats_algerie"):
             textinfo="value+percent initial",
             marker=dict(color=["#4A90E2","#50E3C2","#6C3FC5","#FF6B9D"])
         ))
-        fig.update_layout(title="Entonnoir de marche TSA", paper_bgcolor='white', height=350)
+        fig.update_layout(title="Entonnoir de marche ASD", paper_bgcolor='white', height=350)
         st.plotly_chart(fig, use_container_width=True)
     st.markdown("---")
     st.markdown("### 📈 Growth projection 2026-2030")
@@ -4591,7 +4584,7 @@ elif mp("comparaison"):
     pays = ["Algerie","France","USA","Maroc","Tunisie","OMS Mondial"]
     data_comp = {
         "Pays":             pays,
-        "Prevalence TSA %": [1.0, 1.1, 2.8, 0.9, 0.8, 1.0],
+        "Prevalence ASD %": [1.0, 1.1, 2.8, 0.9, 0.8, 1.0],
         "Delai diagnostic (years)": [4.5, 3.2, 4.0, 5.0, 5.5, 4.0],
         "Specialistes / 10k enfants": [0.8, 12.0, 18.5, 1.2, 1.5, 4.0],
         "Taux prise en charge %": [20, 72, 85, 25, 22, 45],
@@ -4659,7 +4652,7 @@ elif mp("comparaison"):
         st.plotly_chart(fig_delai, use_container_width=True)
 
     st.markdown("---")
-    st.markdown("### 🌡️ Taux de prise en charge TSA par pays (%)")
+    st.markdown("### 🌡️ Taux de prise en charge ASD par pays (%)")
     fig_jauge = go.Figure()
     for i, (p, taux) in enumerate(zip(pays[:-1], data_comp["Taux prise en charge %"][:-1])):
         color_j = "#4CAF50" if taux >= 60 else "#FFA500" if taux >= 35 else "#FF4444"
@@ -4791,22 +4784,22 @@ elif mp("recherche"):
         refs = [
             ("2023","Autisme","Maenner MJ et al.",
              "Prevalence and Characteristics of Autism Spectrum Disorder Among Children.",
-             "MMWR CDC 2023","Taux de prevalence TSA : 1/36 enfants aux USA","#FF6B9D"),
+             "MMWR CDC 2023","Taux de prevalence ASD : 1/36 enfants aux USA","#FF6B9D"),
             ("2014","M-CHAT","Robins DL et al.",
              "Validation of the Modified Checklist for Autism in Toddlers, Revised.",
-             "Pediatrics 2014","Sensitivity 91%, Specificity 95% pour reperage TSA 16-30 month","#4A90E2"),
+             "Pediatrics 2014","Sensitivity 91%, Specificity 95% pour reperage ASD 16-30 month","#4A90E2"),
             ("2019","Deep Learning","Jiang M et al.",
              "Identifying Children with Autism Spectrum Disorder Based on Gaze-Following.",
-             "IEEE Trans. Neural Syst. 2019","Precision 78% analyse faciale pour TSA","#6C3FC5"),
+             "IEEE Trans. Neural Syst. 2019","Precision 78% analyse faciale pour ASD","#6C3FC5"),
             ("2013","Eye Tracking","Chawarska K et al.",
              "Early Intervention for Toddlers with Autism: A Randomized Controlled Trial.",
              "J. Child Psychol. 2013","Sensitivity 83% eye tracking pour detection precoce","#50E3C2"),
             ("2015","Analyse Vocale","Bone D et al.",
              "Applying Machine Learning to Facilitate Autism Diagnostics.",
-             "INTERSPEECH 2015","Precision 71% analyse vocale patterns TSA","#F5A623"),
+             "INTERSPEECH 2015","Precision 71% analyse vocale patterns ASD","#F5A623"),
             ("2018","KNN Medical","Duda M et al.",
              "Use of machine learning for behavioral distinction of autism and ADHD.",
-             "Translational Psychiatry 2018","KNN optimal pour classification TSA/TDAH : 92%","#FF4444"),
+             "Translational Psychiatry 2018","KNN optimal pour classification ASD/TDAH : 92%","#FF4444"),
             ("2020","Knowledge Graph","Wang Q et al.",
              "Knowledge Graph Embedding for Autism Spectrum Disorder.",
              "J. Biomed. Informatics 2020","KG ameliore precision recommandations de 18%","#888"),
@@ -4929,7 +4922,7 @@ elif mp("recherche"):
                 "Expansion vers les pays du Maghreb (Maroc, Tunisie, Libye)",
                 "Certification CE medical device (classe IIa)",
                 "Partenariat OMS pour deploiement dyears les pays a ressources limitees",
-                "Contribution au registre national TSA Algerie",
+                "Contribution au registre national ASD Algerie",
             ]),
         ]):
             items_html = "".join(f"<li style='color:#555;margin-bottom:0.4rem;'>{it}</li>" for it in items)
@@ -5249,7 +5242,7 @@ elif mp("messagerie"):
         {"nom": "Dr. Meziane Sofiane", "role": "Psychologist",    "avatar": "🧠", "couleur": "#6C3FC5", "statut": t("hors_ligne"),  "statut_color": "#aaa"},
         {"nom": "Mme. Raouf Amina",    "role": "Psychomotricienne","avatar":"🏃","couleur": "#50E3C2", "statut": t("en_ligne"),    "statut_color": "#4CAF50"},
         {"nom": "M. Brahimi Yacine",   "role": "Educator ABA",  "avatar": "📚", "couleur": "#F5A623", "statut": t("occupe"),     "statut_color": "#FFA500"},
-        {"nom": "AutiGraphCare IA",    "role": "Assistant IA",   "avatar": "🤖", "couleur": "#50E3C2", "statut": "Toujours actif","statut_color":"#4CAF50"},
+        {"nom": "AutiGraphCare IA",    "role": "Assistant IA",   "avatar": "🤖", "couleur": "#50E3C2", "statut": "Always actif","statut_color":"#4CAF50"},
     ]
 
     with col_contacts:
@@ -5285,7 +5278,7 @@ elif mp("messagerie"):
                 f"</div></div></div>",
                 unsafe_allow_html=True
             )
-            if st.button(f"Ouvrir", key=f"contact_{contact['nom']}", use_container_width=True):
+            if st.button(f"Open", key=f"contact_{contact['nom']}", use_container_width=True):
                 st.session_state["contacts_actif"] = contact["nom"]
                 # Marquer messages comme lus
                 for msg in st.session_state["messages_chat"]:
