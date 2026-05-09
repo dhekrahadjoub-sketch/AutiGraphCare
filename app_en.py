@@ -409,7 +409,7 @@ TRAD = {
 "oui":"Oui","non":"Non","patients_label":"patients","chargement":"Chargement...",
 "erreur_donnees":"❌ Données non trouvées","langue":"🌍 Langue",
 "theme_sombre":"Dark","theme_clair":"Light",
-"mois":"mois","ans":"ans","age":"Âge","sexe":"Sexe",
+"month":"month","ans":"ans","age":"Âge","sexe":"Sexe",
 "risque_eleve":"HIGH Risk","risque_modere":"MODERATE Risk","risque_faible":"LOW Risk",
 "score_moyen":"Score moyen","score_global":"Score global",
 "interventions":"Interventions","comorbidites":"Comorbidités",
@@ -459,7 +459,7 @@ TRAD = {
 "suivi_titre":"📈 Suivi de l'Évolution",
 "suivi_desc":"Graphe radar sur 6 compétences clés",
 "evolution_6comp":"Évolution sur 6 compétences","periode":"Période",
-"mois_dernier":"Dernier mois","trimestre":"Trimestre","annee":"Année",
+"month_dernier":"Dernier month","trimestre":"Trimestre","annee":"Année",
 # ── ALERTES ──────────────────────────────────────────────────────────────
 "alertes_titre":"🔔 Alerts Intelligentes",
 "alertes_desc":"Détection automatique des signes préoccupants",
@@ -483,7 +483,7 @@ TRAD = {
 "profil_titre":"📋 Patient Profile Complet",
 "profil_desc":"Multidimensional analysis with 8 clinical scores",
 "info_generales":"Informations générales","scores_cliniques":"Clinical scores",
-"id_patient":"ID Patient","age_mois":"Âge (months)","diagnostic":"Diagnostic",
+"id_patient":"ID Patient","age_month":"Âge (months)","diagnostic":"Diagnostic",
 "communication_sociale":"Social communication","interactions_sociales":"Social interactions",
 "comportements_restreints":"Restricted behaviors","langage_expressif":"Expressive language",
 "langage_receptif":"Language réceptif","contact_visuel":"Eye contact",
@@ -512,7 +512,7 @@ TRAD = {
 # ── AVANT APRÈS ─────────────────────────────────────────────────────────
 "avap_titre":"📈 Évolution Avant / Après Traitement",
 "avap_desc":"Mesurer l'impact des interventions thérapeutiques dyears le temps",
-"evolution_12mois":"📊 Évolution des scores sur 12 mois",
+"evolution_12month":"📊 Évolution des scores sur 12 month",
 "amelioration":"📉 Amélioration constatée (M-12 → Current)",
 "radar_avant_apres":"🕸️ Comparaison profil AVANT vs APRÈS (Radar)",
 "rapport_evolution":"📋 Rapport d'évolution",
@@ -582,7 +582,7 @@ TRAD = {
 "business_desc":"Modèle économique et stratégie de déploiement",
 "plan_gratuit":"Free","plan_famille":"Family Premium",
 "plan_pro":"Professionnel","plan_etab":"Établissement",
-"par_mois":"/ month","par_an":"/ year","pour_toujours":"Forever",
+"par_month":"/ month","par_an":"/ year","pour_toujours":"Forever",
 "choisir_plan":"Choisir ce plan",
 # ── AIDE ────────────────────────────────────────────────────────────────
 "aide_titre":"❓ Help et Documentation",
@@ -654,7 +654,7 @@ TRAD = {
 "oui":"Yes","non":"No","patients_label":"patients","chargement":"Loading...",
 "erreur_donnees":"❌ Data not found","langue":"🌍 Language",
 "theme_sombre":"Dark","theme_clair":"Light",
-"mois":"months","ans":"years","age":"Age","sexe":"Gender",
+"month":"months","ans":"years","age":"Age","sexe":"Gender",
 "risque_eleve":"HIGH Risk","risque_modere":"MODERATE Risk","risque_faible":"LOW Risk",
 "score_moyen":"Average score","score_global":"Global score",
 "interventions":"Interventions","comorbidites":"Comorbidities",
@@ -704,7 +704,7 @@ TRAD = {
 "suivi_titre":"📈 Progress Tracking",
 "suivi_desc":"Radar chart on 6 key competencies",
 "evolution_6comp":"Progress on 6 competencies","periode":"Period",
-"mois_dernier":"Last month","trimestre":"Quarter","annee":"Year",
+"month_dernier":"Last month","trimestre":"Quarter","annee":"Year",
 # ── ALERTES ──────────────────────────────────────────────────────────────
 "alertes_titre":"🔔 Smart Alerts",
 "alertes_desc":"Automatic detection of concerning signs",
@@ -728,7 +728,7 @@ TRAD = {
 "profil_titre":"📋 Complete Patient Profile",
 "profil_desc":"Multidimensional analysis with 8 clinical scores",
 "info_generales":"General information","scores_cliniques":"Clinical scores",
-"id_patient":"Patient ID","age_mois":"Age (months)","diagnostic":"Diagnosis",
+"id_patient":"Patient ID","age_month":"Age (months)","diagnostic":"Diagnosis",
 "communication_sociale":"Social communication","interactions_sociales":"Social interactions",
 "comportements_restreints":"Restricted behaviors","langage_expressif":"Expressive language",
 "langage_receptif":"Receptive language","contact_visuel":"Eye contact",
@@ -757,7 +757,7 @@ TRAD = {
 # ── AVANT APRÈS ─────────────────────────────────────────────────────────
 "avap_titre":"📈 Before / After Treatment Evolution",
 "avap_desc":"Measuring the impact of therapeutic interventions over time",
-"evolution_12mois":"📊 Score evolution over 12 months",
+"evolution_12month":"📊 Score evolution over 12 months",
 "amelioration":"📉 Improvement observed (M-12 → Current)",
 "radar_avant_apres":"🕸️ BEFORE vs AFTER profile comparison (Radar)",
 "rapport_evolution":"📋 Evolution report",
@@ -827,7 +827,7 @@ TRAD = {
 "business_desc":"Economic model and deployment strategy",
 "plan_gratuit":"Free","plan_famille":"Family Premium",
 "plan_pro":"Professional","plan_etab":"Institution",
-"par_mois":"/ month","par_an":"/ year","pour_toujours":"Forever",
+"par_month":"/ month","par_an":"/ year","pour_toujours":"Forever",
 "choisir_plan":"Choose this plan",
 # ── AIDE ────────────────────────────────────────────────────────────────
 "aide_titre":"❓ Help & Documentation",
@@ -898,7 +898,7 @@ TRAD = {
 "oui":"نعم","non":"لا","patients_label":"مرضى","chargement":"جار التحميل...",
 "erreur_donnees":"❌ البيانات غير موجودة","langue":"🌍 اللغة",
 "theme_sombre":"داكن","theme_clair":"فاتح",
-"mois":"أشهر","ans":"سنوات","age":"العمر","sexe":"الجنس",
+"month":"أشهر","ans":"سنوات","age":"العمر","sexe":"الجنس",
 "risque_eleve":"خطر مرتفع","risque_modere":"خطر متوسط","risque_faible":"خطر منخفض",
 "score_moyen":"الدرجة المتوسطة","score_global":"الدرجة الإجمالية",
 "interventions":"التدخلات","comorbidites":"الأمراض المصاحبة",
@@ -948,7 +948,7 @@ TRAD = {
 "suivi_titre":"📈 متابعة التطور",
 "suivi_desc":"مخطط رادار على 6 كفاءات رئيسية",
 "evolution_6comp":"التطور على 6 كفاءات","periode":"الفترة",
-"mois_dernier":"الشهر الأخير","trimestre":"الربع","annee":"السنة",
+"month_dernier":"الشهر الأخير","trimestre":"الربع","annee":"السنة",
 # ── ALERTES ──────────────────────────────────────────────────────────────
 "alertes_titre":"🔔 التنبيهات الذكية",
 "alertes_desc":"الكشف التلقائي عن العلامات المقلقة",
@@ -972,7 +972,7 @@ TRAD = {
 "profil_titre":"📋 الملف الكامل للمريض",
 "profil_desc":"تحليل متعدد الأبعاد بـ 8 درجات سريرية",
 "info_generales":"معلومات عامة","scores_cliniques":"الدرجات السريرية",
-"id_patient":"معرف المريض","age_mois":"العمر (أشهر)","diagnostic":"التشخيص",
+"id_patient":"معرف المريض","age_month":"العمر (أشهر)","diagnostic":"التشخيص",
 "communication_sociale":"التواصل الاجتماعي","interactions_sociales":"التفاعلات الاجتماعية",
 "comportements_restreints":"السلوكيات المقيدة","langage_expressif":"اللغة التعبيرية",
 "langage_receptif":"اللغة الاستقبالية","contact_visuel":"التواصل البصري",
@@ -1001,7 +1001,7 @@ TRAD = {
 # ── AVANT APRÈS ─────────────────────────────────────────────────────────
 "avap_titre":"📈 التطور قبل / بعد العلاج",
 "avap_desc":"قياس تأثير التدخلات العلاجية عبر الزمن",
-"evolution_12mois":"📊 تطور الدرجات خلال 12 شهرًا",
+"evolution_12month":"📊 تطور الدرجات خلال 12 شهرًا",
 "amelioration":"📉 التحسن المُلاحَظ (M-12 → الحالي)",
 "radar_avant_apres":"🕸️ مقارنة الملف قبل وبعد (رادار)",
 "rapport_evolution":"📋 تقرير التطور",
@@ -1071,7 +1071,7 @@ TRAD = {
 "business_desc":"النموذج الاقتصادي واستراتيجية النشر",
 "plan_gratuit":"مجاني","plan_famille":"عائلي مميز",
 "plan_pro":"مهني","plan_etab":"مؤسسة",
-"par_mois":"/ شهر","par_an":"/ سنة","pour_toujours":"للأبد",
+"par_month":"/ شهر","par_an":"/ سنة","pour_toujours":"للأبد",
 "choisir_plan":"اختر هذا الخطة",
 # ── AIDE ────────────────────────────────────────────────────────────────
 "aide_titre":"❓ المساعدة والتوثيق",
@@ -1830,10 +1830,10 @@ with st.sidebar:
     if not df.empty:
         st.success(f"✅ {len(df)} patients charges")
         if espace == 'pro':
-            age_min = int(df['age_mois'].min())
-            age_max = int(df['age_mois'].max())
+            age_min = int(df['age_month'].min())
+            age_max = int(df['age_month'].max())
             age_range = st.slider("Filtrer par age (months)", age_min, age_max, (age_min, age_max))
-            df = df[(df['age_mois'] >= age_range[0]) & (df['age_mois'] <= age_range[1])]
+            df = df[(df['age_month'] >= age_range[0]) & (df['age_month'] <= age_range[1])]
             st.caption(f"📊 {len(df)} patients affiches")
     else:
         st.error(t("erreur_donnees"))
@@ -2039,7 +2039,7 @@ elif mp("accueil") and esp == 'parent':
          "Questionnaire de detection en 5 minutes",
          "#FF6B9D", "🔍 Early Detection"),
         ("📈", "Suivre l'evolution",
-         "Voir les progres mois par mois",
+         "Voir les progres month par month",
          "#4A90E2", "📈 Progress Tracking"),
         ("💬", "Parler a l'equipe soignante",
          "Messagerie avec les therapeutes",
@@ -2159,7 +2159,7 @@ elif mp("diagnostic_ia") and esp == 'parent':
         age_mchat = st.slider("Age de l'enfant (months)", 16, 48, 24, key="age_mchat")
 
         if age_mchat < 16 or age_mchat > 48:
-            st.warning("⚠️ Le M-CHAT est valide pour les enfants de 16 a 48 mois.")
+            st.warning("⚠️ Le M-CHAT est valide pour les enfants de 16 a 48 month.")
         else:
             st.markdown("#### Repondez par OUI ou NON a chaque question :")
 
@@ -2801,13 +2801,13 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
         # Infos patient
         col_inf, col_score = st.columns([1, 2])
         with col_inf:
-            age_years = int(patient_diag["age_mois"]) // 12
+            age_years = int(patient_diag["age_month"]) // 12
             st.markdown(
                 f"<div class='card' style='border-left:5px solid #4A90E2;'>"
                 f"<h4 style='color:#4A90E2;margin:0 0 0.5rem;'>👤 {pid_diag}</h4>"
                 f"<p style='margin:0.2rem 0;'>Age : <b>{age_ans} ans</b></p>"
                 f"<p style='margin:0.2rem 0;'>Sexe : <b>{patient_diag['sexe']}</b></p>"
-                f"<p style='margin:0.2rem 0;'>Age diagnostic : <b>{int(patient_diag.get('age_diagnostic', 0))} mois</b></p>"
+                f"<p style='margin:0.2rem 0;'>Age diagnostic : <b>{int(patient_diag.get('age_diagnostic', 0))} month</b></p>"
                 f"</div>",
                 unsafe_allow_html=True
             )
@@ -3033,7 +3033,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 f"<div style='text-align:right;'><p style='margin:0;color:#555;font-size:0.85rem;'>Date : {date_rapport}</p>"
                 f"<p style='margin:0;color:#555;font-size:0.85rem;'>Doctor : {nom_pro_r}</p></div></div>"
                 f"<h3 style='color:#333;'>Patient : {pid_diag}</h3>"
-                f"<p>Age : {int(patient_diag['age_mois'])//12} years | Sexe : {patient_diag['sexe']}</p>"
+                f"<p>Age : {int(patient_diag['age_month'])//12} years | Sexe : {patient_diag['sexe']}</p>"
                 f"<hr/>"
                 f"<h4 style='color:#4A90E2;'>📊 Clinical scores</h4>"
                 + "".join(
@@ -3217,7 +3217,7 @@ elif mp("conseils") and esp == 'parent':
         sc_inter = float(patient['interactions_sociales']) if not pd.isna(patient.get('interactions_sociales', float('nan'))) else 5
         sc_imitation = float(patient['imitation'])         if not pd.isna(patient.get('imitation', float('nan')))             else 5
 
-        st.markdown(f"### Personalized advice pour **{patient_id}** ({int(patient['age_mois'])//12} years)")
+        st.markdown(f"### Personalized advice pour **{patient_id}** ({int(patient['age_month'])//12} years)")
         st.markdown("---")
 
         conseils = []
@@ -3296,15 +3296,15 @@ elif mp("mon_enfant") and esp == 'parent':
         with col1:
             patient_id = st.selectbox("Selectionner l'enfant", df['id_patient'].values, key="enfant_sel")
             patient    = df[df['id_patient'] == patient_id].iloc[0]
-            age_years    = int(patient['age_mois']) // 12
-            age_mois_r = int(patient['age_mois']) % 12
+            age_years    = int(patient['age_month']) // 12
+            age_month_r = int(patient['age_month']) % 12
             sexe_icon  = "👦" if patient['sexe'] == 'M' else "👧"
             st.markdown(
                 f"<div class='card' style='text-align:center;'>"
                 f"<div style='font-size:4rem;'>{sexe_icon}</div>"
                 f"<h2>{patient_id}</h2>"
-                f"<p style='color:#888;'>{age_ans} years {age_mois_r} mois</p>"
-                f"<p style='color:#888;'>Diagnostic a {patient['age_diagnostic']} mois</p>"
+                f"<p style='color:#888;'>{age_ans} years {age_month_r} month</p>"
+                f"<p style='color:#888;'>Diagnostic a {patient['age_diagnostic']} month</p>"
                 f"<p style='color:#888;'>Sexe : <b>{patient['sexe']}</b></p></div>",
                 unsafe_allow_html=True
             )
@@ -3467,7 +3467,7 @@ elif mp("alertes") and esp == 'parent':
             st.balloons()
 
         st.markdown("---")
-        st.info("📅 Prochaine evaluation recommandee : dyears 3 mois")
+        st.info("📅 Prochaine evaluation recommandee : dyears 3 month")
         st.info("👨‍⚕️ Partagez ce rapport avec l'equipe therapeutique")
         st.info("📞 En cas de regression soudaine, contactez votre medecin")
     else:
@@ -3565,7 +3565,7 @@ elif mp("accueil") and esp == 'pro':
         st.markdown("## 📈 Apercu des donnees cliniques")
         col1, col2 = st.columns(2)
         with col1:
-            fig = px.histogram(df, x='age_mois', nbins=20, title='Age distribution',
+            fig = px.histogram(df, x='age_month', nbins=20, title='Age distribution',
                                color_discrete_sequence=['#4A90E2'])
             fig.update_layout(plot_bgcolor='white', paper_bgcolor='white')
             st.plotly_chart(fig, use_container_width=True)
@@ -3598,9 +3598,9 @@ elif mp("profil_patient") and esp == 'pro':
             patient_id = st.selectbox(t("choisir_patient"), df['id_patient'].values, key="profil_pro")
             patient    = df[df['id_patient'] == patient_id].iloc[0]
             ca, cb, cc = st.columns(3)
-            with ca: st.metric("Age",        f"{patient['age_mois']} mois", f"{int(patient['age_mois'])//12} ans")
+            with ca: st.metric("Age",        f"{patient['age_month']} month", f"{int(patient['age_month'])//12} ans")
             with cb: st.metric("Sexe",        patient['sexe'])
-            with cc: st.metric("Diagnostic", f"{patient['age_diagnostic']} mois")
+            with cc: st.metric("Diagnostic", f"{patient['age_diagnostic']} month")
             st.markdown("### 💊 Ongoing interventions")
             therapy_map = [
                 ('orthophonie',     "🗣️ Speech therapy"),
@@ -3687,7 +3687,7 @@ elif mp("knowledge_graph") and esp == 'pro':
                 patient_kg = df[df["id_patient"] == pid_kg].iloc[0]
                 st.markdown(f"""
                 <div class='card' style='border-left:4px solid #4A90E2;'>
-                    <p><b>Age :</b> {int(patient_kg["age_mois"])//12} years ({int(patient_kg["age_mois"])} months)</p>
+                    <p><b>Age :</b> {int(patient_kg["age_month"])//12} years ({int(patient_kg["age_month"])} months)</p>
                     <p><b>Sexe :</b> {patient_kg["sexe"]}</p>
                 </div>""", unsafe_allow_html=True)
                 score_cols_kg = [c for c in ["communication_sociale","interactions_sociales",
@@ -3919,7 +3919,7 @@ elif mp("recommandations") and esp == 'pro':
                     f"<b>#{rank} — {nb['id_patient']}</b>"
                     f"<span style='background:{color};color:white;padding:0.1rem 0.5rem;"
                     f"border-radius:10px;font-size:0.82rem;'>Sim. {sim:.0f}%</span></div>"
-                    f"<span style='font-size:0.82rem;color:#666;'>Age: {int(nb['age_mois'])//12} years | "
+                    f"<span style='font-size:0.82rem;color:#666;'>Age: {int(nb['age_month'])//12} years | "
                     f"{' · '.join(nb_interv) if nb_interv else 'Aucune intervention'}</span></div>",
                     unsafe_allow_html=True)
 
@@ -3951,7 +3951,7 @@ elif mp("dashboard") and esp == 'pro':
     )
     if not df.empty:
         col1, col2, col3, col4 = st.columns(4)
-        with col1: st.metric("Age moyen",       f"{df['age_mois'].mean():.0f} mois", f"{df['age_mois'].mean()/12:.1f} ans")
+        with col1: st.metric("Age moyen",       f"{df['age_month'].mean():.0f} month", f"{df['age_month'].mean()/12:.1f} ans")
         with col2: st.metric("Garcons / Filles", f"{len(df[df['sexe']=='M'])} / {len(df[df['sexe']=='F'])}")
         with col3: st.metric("Taux Speech therapy", f"{(df['orthophonie']==1).mean()*100:.0f}%")
         with col4: st.metric("Taux ABA",          f"{(df['aba']==1).mean()*100:.0f}%")
@@ -3959,7 +3959,7 @@ elif mp("dashboard") and esp == 'pro':
         col1, col2 = st.columns(2)
         with col1:
             df2 = df.copy()
-            df2['age_groupe'] = pd.cut(df2['age_mois'], bins=[0,36,72,108,150],
+            df2['age_groupe'] = pd.cut(df2['age_month'], bins=[0,36,72,108,150],
                                        labels=['2-3 ans','4-6 ans','7-9 ans','10-12 ans'])
             ac = df2['age_groupe'].value_counts().reset_index()
             ac.columns = ['Groupe', 'Nombre']
@@ -4011,7 +4011,7 @@ elif mp("dashboard") and esp == 'pro':
 elif mp("stats_algerie"):
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>📊 ASD Statistics in Algeria</h1>"
-        "<p style='color:white;'>Etat des lieux et opportunites de marche</p></div>",
+        "<p style='color:white;'>Current situation and market opportunities</p></div>",
         unsafe_allow_html=True
     )
     col1, col2, col3, col4 = st.columns(4)
@@ -4031,12 +4031,12 @@ elif mp("stats_algerie"):
     st.markdown("---")
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("### 🔴 Le probleme actuel")
+        st.markdown("### 🔴 The current problem")
         for val, desc in [
-            ("80%",    "des enfants TSA syears suivi structure"),
-            ("2-3 ans","delai moyen de diagnostic"),
-            ("Faible", "coordination entre intervenants"),
-            ("Limite", "acces aux outils specialises"),
+            ("80%",    "children with  ASD following a structured follow-up"),
+            ("2-3 years","average time to diagnosis"),
+            ("Weak", "coordination between stakeholders"),
+            ("Limit", "access to specialized tools"),
         ]:
             st.markdown(
                 f"<div class='alert-attention'>"
@@ -4044,7 +4044,7 @@ elif mp("stats_algerie"):
                 unsafe_allow_html=True
             )
     with col2:
-        st.markdown("### 🟢 Notre opportunite")
+        st.markdown("### 🟢 Our opportunity")
         fig = go.Figure(go.Funnel(
             y=["50 000 familles", "Penetration 10%", "Abonnes actifs", "Utilisateurs fidelises"],
             x=[50000, 5000, 3000, 1500],
@@ -4054,7 +4054,7 @@ elif mp("stats_algerie"):
         fig.update_layout(title="Entonnoir de marche TSA", paper_bgcolor='white', height=350)
         st.plotly_chart(fig, use_container_width=True)
     st.markdown("---")
-    st.markdown("### 📈 Projection de croissance 2026-2030")
+    st.markdown("### 📈 Growth projection 2026-2030")
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=['2026','2027','2028','2029','2030'], y=[500,2000,5000,10000,20000],
@@ -4063,7 +4063,7 @@ elif mp("stats_algerie"):
     ))
     fig.add_trace(go.Scatter(
         x=['2026','2027','2028','2029','2030'], y=[100,400,1000,2500,4500],
-        name='Professionnels', line=dict(color='#4A90E2', width=3),
+        name='Professionals', line=dict(color='#4A90E2', width=3),
         fill='tozeroy', fillcolor='rgba(74,144,226,0.1)'
     ))
     fig.update_layout(
@@ -4079,22 +4079,22 @@ elif mp("stats_algerie"):
 elif mp("business"):
     st.markdown(
         "<div class='main-header'><h1 style='color:white;'>💰 Business Model</h1>"
-        "<p style='color:white;'>Modele economique hybride B2C et B2B</p></div>",
+        "<p style='color:white;'>Hybrid B2C and B2B business model</p></div>",
         unsafe_allow_html=True
     )
     col1, col2, col3 = st.columns(3)
     for col, (title, price, color, features) in zip([col1, col2, col3], [
         ("👪 Parents", "2 500 DA / month", "#FF6B9D",
-         ["✅ Complete child profile","✅ Suivi mensuel",
-          "✅ Alertes automatiques","✅ Personalized advice","✅ Support messagerie"]),
-        ("👨‍⚕️ Professionnels", "15 000 DA / year", "#4A90E2",
-         ["✅ Tout l'espace parents","✅ Recommandations IA KNN",
-          "✅ Knowledge Graph","✅ Dashboard clinique",
-          "✅ Export PDF","✅ Multi-patients"]),
+         ["✅ Complete child profile","✅ Monthly tracking",
+          "✅ Automatic alerts","✅ Personalized advice","✅ support messaging"]),
+        ("👨‍⚕️ Professionals", "15 000 DA / year", "#4A90E2",
+         ["✅ The entire parent area","✅ KNN AI Recommendations",
+          "✅ Knowledge Graph","✅ Clinical Dashboard",
+          "✅ PDF Export","✅ Multi-patient"]),
         ("🏥 Institutions", "30 000 DA / year", "#6C3FC5",
-         ["✅ Tout l'espace pro","✅ Multi-utilisateurs",
-          "✅ Dashboard etablissement","✅ Stats cohorte",
-          "✅ Training included","✅ Support prioritaire"]),
+         ["✅ The entire professional space","✅ Multi-user",
+          "✅ Institution dashboard","✅ Cohort statistics",
+          "✅ Training included","✅ Priority support"]),
     ]):
         with col:
             fhtml = ''.join(f"<p style='margin:0.3rem 0;text-align:left;'>{f}</p>" for f in features)
@@ -4132,30 +4132,30 @@ elif mp("business"):
                 unsafe_allow_html=True
             )
     st.markdown("---")
-    st.markdown("### 💡 Rentabilite avec 10% de penetration du marche")
+    st.markdown("### 💡 Profitability with 10% market penetration")
     c1, c2, c3 = st.columns(3)
     with c1:
         st.markdown(
             "<div class='card' style='text-align:center;border-top:3px solid #FF6B9D;'>"
             "<p class='stat-number' style='color:#FF6B9D;'>5 000</p>"
-            "<p style='color:#888;'>Familles abonnees</p>"
-            "<p style='color:#FF6B9D;font-weight:700;'>= 12,5M DA/mois</p></div>",
+            "<p style='color:#888;'>Subscribed families</p>"
+            "<p style='color:#FF6B9D;font-weight:700;'>= 12,5M DA/month</p></div>",
             unsafe_allow_html=True
         )
     with c2:
         st.markdown(
             "<div class='card' style='text-align:center;border-top:3px solid #4A90E2;'>"
             "<p class='stat-number' style='color:#4A90E2;'>750</p>"
-            "<p style='color:#888;'>Professionnels abonnes</p>"
-            "<p style='color:#4A90E2;font-weight:700;'>= 11,25M DA/an</p></div>",
+            "<p style='color:#888;'>Professional subscribers</p>"
+            "<p style='color:#4A90E2;font-weight:700;'>= 11,25M DA/year</p></div>",
             unsafe_allow_html=True
         )
     with c3:
         st.markdown(
             "<div class='card' style='text-align:center;border-top:3px solid #6C3FC5;'>"
             "<p class='stat-number' style='color:#6C3FC5;'>Viable</p>"
-            "<p style='color:#888;'>Des l'annee 1</p>"
-            "<p style='color:#6C3FC5;font-weight:700;'>Solide economiquement</p></div>",
+            "<p style='color:#888;'>From year 1</p>"
+            "<p style='color:#6C3FC5;font-weight:700;'>Economically sound</p></div>",
             unsafe_allow_html=True
         )
 
@@ -4242,7 +4242,7 @@ elif mp("ia_explicable") and esp == 'pro':
                     f"<span style='background:{color};color:white;padding:0.1rem 0.6rem;"
                     f"border-radius:10px;font-size:0.85rem;font-weight:700;'>Sim. {sim_pct:.0f}%</span></div>"
                     f"<div style='font-size:0.85rem;color:#666;margin-top:0.3rem;'>"
-                    f"Age: {int(nb['age_mois'])//12} years | Interventions: {interv_str}</div></div>",
+                    f"Age: {int(nb['age_month'])//12} years | Interventions: {interv_str}</div></div>",
                     unsafe_allow_html=True
                 )
 
@@ -4322,9 +4322,9 @@ elif mp("avant_apres") and esp == 'pro':
                      'comportements_restreints':'Behaviors','langage_expressif':'Language',
                      'contact_visuel':'Eye contact','imitation':'Imitation'}
 
-        # Simulation d'historique 12 mois avec amelioration realiste
+        # Simulation d'historique 12 month avec amelioration realiste
         rng_aa = np.random.RandomState(hash(patient_id) % 10000)
-        mois_labels = ["M-12","M-9","M-6","M-3","Current"]
+        month_labels = ["M-12","M-9","M-6","M-3","Current"]
         historique  = {}
         for c in score_cols_aa:
             score_actuel = float(patient[c]) if not pd.isna(patient[c]) else 5.0
@@ -4348,7 +4348,7 @@ elif mp("avant_apres") and esp == 'pro':
         fig_evo = go.Figure()
         for i, c in enumerate(score_cols_aa):
             fig_evo.add_trace(go.Scatter(
-                x=mois_labels, y=historique[c],
+                x=month_labels, y=historique[c],
                 mode='lines+markers',
                 name=labels_aa[c],
                 line=dict(color=colors_lines[i], width=2.5),
@@ -4417,7 +4417,7 @@ elif mp("avant_apres") and esp == 'pro':
             amelio_glob = ((moy_avant - moy_apres) / moy_avant) * 100
             st.markdown(
                 f"<div class='card' style='border-left:5px solid #4CAF50;'>"
-                f"<h4 style='color:#4CAF50;margin:0 0 1rem;'>✅ Synthese 12 mois</h4>"
+                f"<h4 style='color:#4CAF50;margin:0 0 1rem;'>✅ Synthese 12 month</h4>"
                 f"<p>Initial avg score : <b style='color:#FF4444;'>{moy_avant:.1f}/10</b></p>"
                 f"<p>Current avg score : <b style='color:#4CAF50;'>{moy_apres:.1f}/10</b></p>"
                 f"<p>Overall improvement : <b style='color:#4A90E2;font-size:1.3rem;'>-{amelio_glob:.1f}%</b></p>"
@@ -4503,7 +4503,7 @@ elif mp("tableau_medecin") and esp == 'pro':
                     f"<div style='background:#fff8f8;border-radius:10px;padding:0.7rem 1rem;"
                     f"margin-bottom:0.5rem;border-left:5px solid {color};'>"
                     f"<div style='display:flex;justify-content:space-between;align-items:center;'>"
-                    f"<span style='font-weight:700;'>{row['id_patient']} — {int(row['age_mois'])//12} years ({row['sexe']})</span>"
+                    f"<span style='font-weight:700;'>{row['id_patient']} — {int(row['age_month'])//12} years ({row['sexe']})</span>"
                     f"<div style='display:flex;gap:0.4rem;'>"
                     f"<span style='background:{color};color:white;padding:0.15rem 0.6rem;"
                     f"border-radius:10px;font-size:0.8rem;font-weight:700;'>{badge}</span>"
@@ -4571,7 +4571,7 @@ elif mp("tableau_medecin") and esp == 'pro':
         st.plotly_chart(fig_box, use_container_width=True)
 
         with st.expander("📋 Complete patient list (exportable)"):
-            cols_show = ['id_patient','age_mois','sexe','score_moyen'] + score_moy_cols[:3]
+            cols_show = ['id_patient','age_month','sexe','score_moyen'] + score_moy_cols[:3]
             cols_show = [c for c in cols_show if c in df.columns]
             df_show = df[cols_show].round(2).sort_values('score_moyen', ascending=False)
             st.dataframe(df_show, use_container_width=True, height=300)
@@ -4794,7 +4794,7 @@ elif mp("recherche"):
              "MMWR CDC 2023","Taux de prevalence TSA : 1/36 enfants aux USA","#FF6B9D"),
             ("2014","M-CHAT","Robins DL et al.",
              "Validation of the Modified Checklist for Autism in Toddlers, Revised.",
-             "Pediatrics 2014","Sensitivity 91%, Specificity 95% pour reperage TSA 16-30 mois","#4A90E2"),
+             "Pediatrics 2014","Sensitivity 91%, Specificity 95% pour reperage TSA 16-30 month","#4A90E2"),
             ("2019","Deep Learning","Jiang M et al.",
              "Identifying Children with Autism Spectrum Disorder Based on Gaze-Following.",
              "IEEE Trans. Neural Syst. 2019","Precision 78% analyse faciale pour TSA","#6C3FC5"),
@@ -4915,7 +4915,7 @@ elif mp("recherche"):
         for i, (titre, color, items) in enumerate([
             ("🔮 Short term (2026-2027)", "#4A90E2", [
                 "Integration de donnees EEG pour detection neurologique precoce",
-                "Modele LSTM pour prediction de l'evolution a 6 mois",
+                "Modele LSTM pour prediction de l'evolution a 6 month",
                 "Validation clinique sur patients reels avec CHU Alger",
                 "Extension du dataset a 500+ patients avec donnees reelles",
             ]),
@@ -4998,9 +4998,9 @@ elif mp("nouveau_patient") and esp == 'pro':
                     f"<div class='card' style='border-left:5px solid #4A90E2;'>"
                     f"<h4 style='color:#4A90E2;'>👤 General information</h4>"
                     f"<p><b>ID :</b> {p.get('id','-')}</p>"
-                    f"<p><b>Age :</b> {p.get('age','-')} mois ({p.get('age',0)//12} years)</p>"
+                    f"<p><b>Age :</b> {p.get('age','-')} month ({p.get('age',0)//12} years)</p>"
                     f"<p><b>Sexe :</b> {p.get('sexe','-')}</p>"
-                    f"<p><b>Age diagnostic :</b> {p.get('age_diag','-')} mois</p>"
+                    f"<p><b>Age diagnostic :</b> {p.get('age_diag','-')} month</p>"
                     f"<p><b>Referring doctor :</b> {p.get('medecin','-')}</p>"
                     f"</div>",
                     unsafe_allow_html=True
@@ -5136,7 +5136,7 @@ elif mp("nouveau_patient") and esp == 'pro':
                 # Construire la nouvelle ligne
                 new_row = {
                     'id_patient':               new_id.strip(),
-                    'age_mois':                 new_age,
+                    'age_month':                 new_age,
                     'sexe':                     new_sexe,
                     'age_diagnostic':           new_age_diag,
                     'communication_sociale':    scores_vals.get('communication_sociale', 5),
@@ -5210,7 +5210,7 @@ elif mp("messagerie"):
         st.session_state["messages_chat"] = [
             {"id": 1, "expediteur": "pro", "nom": "Dr. Benali Karima", "role": "Speech therapist",
              "avatar": "🗣️", "couleur": "#4A90E2",
-             "contenu": "Hello, j'ai consulte le profil de votre enfant. Les scores de communication montrent une legere amelioration ce mois-ci. Continuez les exercices de pointage.",
+             "contenu": "Hello, j'ai consulte le profil de votre enfant. Les scores de communication montrent une legere amelioration ce month-ci. Continuez les exercices de pointage.",
              "heure": "09:14", "date": "Lundi 02 Mars", "lu": True},
             {"id": 2, "expediteur": "parent", "nom": "Famille Hadjoub", "role": "Parent",
              "avatar": "👪", "couleur": "#FF6B9D",
@@ -5234,7 +5234,7 @@ elif mp("messagerie"):
              "heure": "16:03", "date": "Mardi 03 Mars", "lu": True},
             {"id": 7, "expediteur": "system", "nom": "AutiGraphCare", "role": "Systeme",
              "avatar": "🤖", "couleur": "#50E3C2",
-             "contenu": "📊 Rapport automatique : Le score de Social communication est passe de 7.2 a 6.8 ce mois-ci. Amelioration de 0.4 point detectee par l'IA.",
+             "contenu": "📊 Rapport automatique : Le score de Social communication est passe de 7.2 a 6.8 ce month-ci. Amelioration de 0.4 point detectee par l'IA.",
              "heure": "08:00", "date": "Mercredi 04 Mars", "lu": False},
         ]
 
@@ -5444,9 +5444,9 @@ elif mp("messagerie"):
             if contact_actif["nom"] == "AutiGraphCare IA":
                 reponses_ia = [
                     "Hello ! Je suis l'assistant IA d'AutiGraphCare. D'apres le profil de votre enfant, je peux vous aider avec les recommandations personnalisees.",
-                    "J'ai analyse les derniers scores. La communication sociale montre une tendance positive ce mois-ci.",
+                    "J'ai analyse les derniers scores. La communication sociale montre une tendance positive ce month-ci.",
                     "Pour optimiser les progres, je recommande de renforcer les seances d'orthophonie bi-hebdomadaires.",
-                    "Les 5 patients similaires dyears notre base de donnees ont montre une amelioration de 23% en 6 mois avec ce profil d'interventions.",
+                    "Les 5 patients similaires dyears notre base de donnees ont montre une amelioration de 23% en 6 month avec ce profil d'interventions.",
                 ]
                 import random
                 rep_ia = {
@@ -5508,27 +5508,6 @@ elif mp("aide"):
 - **Statistiques Algerie** : Etat des lieux + projections marche
 - **Business Model** : Plyears tarifaires + strategie de deploiement
 
-### Structure du projet
-```
-AutiGraphCare/
-├── app.py
-├── pages/
-│   ├── 02_Knowledge_Graph.py
-│   └── 03_Recommandations.py
-├── components/
-│   ├── kg_builder.py
-│   └── recommender.py
-├── data/
-│   ├── dataset_tsa_complet.csv
-│   └── generate_dataset.py
-├── utils/
-│   └── pdf_exporter.py
-└── assets/
-    └── style.css
-```
-
-### Technologies
-Streamlit - Pandas - NumPy - Plotly - Scikit-learn KNN - NetworkX - Pyvis - FPDF - Python 3.13
 
 AutiGraphCare v2.0 | Hadjoub Dhekra - Master 2 IATI | Soutenance 2026
 """)
