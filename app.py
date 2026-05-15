@@ -3018,10 +3018,9 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 dash = "solid" if pid == pid_diag else "dot"
                 go.Scatterpolar(
                     r=vals+[vals[0]],
-                    theta=[labels_d[s] for s in score_cols_d]+[labels_d[score_cols_d[0]]],
-                    fill="toself" if pid == pid_diag else "none",
-                    fillcolor=colors_cp[i]+"22" if pid == pid_diag else "transparent",
-                    line=dict(color=colors_cp[i], width=2.5 if pid==pid_diag else 1.5, dash=dash),
+                    theta=axes+[axes[0]],
+                    fill='toself',
+                    fillcolor="rgba(0,123,255,0.2)",
                     name=f"{'★ ' if pid==pid_diag else ''}{pid}"
                 )
             fig_comp_pro.update_layout(
