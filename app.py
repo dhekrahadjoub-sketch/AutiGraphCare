@@ -3016,7 +3016,7 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 row = df[df["id_patient"]==pid].iloc[0]
                 vals = [float(row[s]) if not pd.isna(row[s]) else 5 for s in score_cols_d]
                 dash = "solid" if pid == pid_diag else "dot"
-                Scatterpolar(
+                go.Scatterpolar(
                     r=vals+[vals[0]],
                     theta=[labels_d[s] for s in score_cols_d]+[labels_d[score_cols_d[0]]],
                     fill="toself" if pid == pid_diag else "none",
