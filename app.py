@@ -3003,9 +3003,12 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
         # ── Tab 4 : Comparaison ──────────────────────────────────────
         with tab4:
             st.markdown("### 📈 Comparaison avec patients similaires")
+            options_comp = [p for p in df["id_patient"].values if p != pid_diag]
+            default_comp = [p for p in list(df["id_patient"].values[:2]) if p in options_comp and p != pid_diag]
             sel_comp = st.multiselect("Ajouter des patients pour comparaison",
-                [p for p in df["id_patient"].values if p != pid_diag],
-                default=list(df["id_patient"].values[:2]), key="diag_pro_comp", max_selections=3)
+                options_comp,
+                default=default_comp[:3],
+                key="diag_pro_comp", max_selections=3)
             all_pids = [pid_diag] + sel_comp
             fig_comp_pro = go.Figure()
             colors_cp = ["#4A90E2","#FF6B9D","#50E3C2","#F5A623"]
