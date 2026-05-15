@@ -3803,13 +3803,18 @@ elif mp("knowledge_graph") and esp == 'pro':
                     "comportements_restreints","langage_expressif","contact_visuel"] if c in df.columns]
                 fig_comp = go.Figure()
                 colors_comp = ["#4A90E2","#FF6B9D","#50E3C2"]
+                rgba_comp = [
+                    "rgba(74,144,226,0.2)",
+                    "rgba(255,107,157,0.2)",
+                    "rgba(80,227,194,0.2)"
+                ]
                 for i, pid in enumerate(sel_pats[:3]):
                     row = df[df["id_patient"]==pid].iloc[0]
                     vals = [float(row[c]) if not pd.isna(row[c]) else 5 for c in score_cols_c]
                     fig_comp.add_trace(go.Scatterpolar(
                         r=vals+[vals[0]],
                         theta=[labels_kg[c] for c in score_cols_c]+[labels_kg[score_cols_c[0]]],
-                        fill="toself", fillcolor=colors_comp[i]+"33",
+                        fill="toself", fillcolor=rgba_comp[i],
                         line=dict(color=colors_comp[i], width=2), name=pid))
                 fig_comp.update_layout(
                     polar=dict(radialaxis=dict(visible=True, range=[0,10])),
