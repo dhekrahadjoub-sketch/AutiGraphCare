@@ -3016,14 +3016,14 @@ elif mp("diagnostic_ia_pro") and esp == 'pro':
                 row = df[df["id_patient"]==pid].iloc[0]
                 vals = [float(row[s]) if not pd.isna(row[s]) else 5 for s in score_cols_d]
                 dash = "solid" if pid == pid_diag else "dot"
-                fig_comp_pro.add_trace(go.Scatterpolar(
+                Scatterpolar(
                     r=vals+[vals[0]],
                     theta=[labels_d[s] for s in score_cols_d]+[labels_d[score_cols_d[0]]],
                     fill="toself" if pid == pid_diag else "none",
                     fillcolor=colors_cp[i]+"22" if pid == pid_diag else "transparent",
                     line=dict(color=colors_cp[i], width=2.5 if pid==pid_diag else 1.5, dash=dash),
                     name=f"{'★ ' if pid==pid_diag else ''}{pid}"
-                ))
+                )
             fig_comp_pro.update_layout(
                 polar=dict(radialaxis=dict(visible=True, range=[0,10])),
                 height=420, paper_bgcolor="white", legend=dict(x=0.75, y=1.1)
